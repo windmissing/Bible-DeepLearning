@@ -13,3 +13,7 @@
             * [6.2.2.3 用于Multinoulli输出分布的softmax单元](Chapter6/2Gradient/2OutputUnit/3Softmax.md)
             * [6.2.2.4 其他输出类型](Chapter6/2Gradient/2OutputUnit/4Other.md)
     * [6.3 隐藏单元](Chapter6/3Hidden/0Introduction.md)
+        * [6.3.1 ReLU及其扩展](Chapter6/3Hidden/1ReLU.md)
+        * [6.3.2 logistic sigmoid与双曲正切函数](Chapter6/3Hidden/2SigmoidTanh.md)
+        * [6.3.3 其他隐藏单元](Chapter6/3Hidden/3Other.md)
+
