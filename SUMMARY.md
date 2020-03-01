@@ -16,4 +16,5 @@
         * [6.3.1 ReLU及其扩展](Chapter6/3Hidden/1ReLU.md)
         * [6.3.2 logistic sigmoid与双曲正切函数](Chapter6/3Hidden/2SigmoidTanh.md)
         * [6.3.3 其他隐藏单元](Chapter6/3Hidden/3Other.md)
+    * [6.4 架构设计](Chapter6/4Architecture/Introduction.md)
 
