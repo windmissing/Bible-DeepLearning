@@ -20,4 +20,6 @@
     * [6.5 反向传播和其他的微分算法](Chapter6/5Backprop/0Introduction.md)
         * [6.5.1 计算图](Chapter6/5Backprop/1ComputationalGraphs.md)
         * [6.5.2 微积分中的链式法则](Chapter6/5Backprop/2ChainRule.md)
+        * [6.5.3 递归地使用链式法则来实现反向传播](Chapter6/5Backprop/3Recursively.md)
+        * [6.5.4 全连接MLP中的反向传播计算](Chapter6/5Backprop/4FullyConnectedMLP.md)
 
