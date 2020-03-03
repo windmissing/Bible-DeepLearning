@@ -22,4 +22,13 @@
         * [6.5.2 微积分中的链式法则](Chapter6/5Backprop/2ChainRule.md)
         * [6.5.3 递归地使用链式法则来实现反向传播](Chapter6/5Backprop/3Recursively.md)
         * [6.5.4 全连接MLP中的反向传播计算](Chapter6/5Backprop/4FullyConnectedMLP.md)
+        * 6.5.5 符号到符号的导数 没看懂
+        * 6.5.6 一般化的反向传播 没看懂
+        * [6.5.7 实例：用于MLP 训练的反向传播](Chapter6/5Backprop/7MLPTraining.md)
+        * 6.5.8 - 6.5.10 全部看不懂
+* [第七章深度学习中的正则化](Chapter7/0Introduction.md)
+    * [7.1 参数范数惩罚](Chapter7/1ParameterNormPenalties/0Introduction.md)
+        * [7.1.1 L2 参数正则化](Chapter7/1ParameterNormPenalties/1L2.md)
+        * [7.1.2 L1 参数正则化](Chapter7/1ParameterNormPenalties/2L1.md)
+    * [7.2 作为约束的范数惩罚](Chapter7/2ConstrainedOptimization.md)
 
