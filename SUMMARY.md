@@ -42,4 +42,6 @@
     * [7.12 Dropout](Chapter7/12Dropout.md)
     * [7.13 对抗训练](Chapter7/13AdversarialTraining.md)
     * 7.14 切面距离、正切传播和流形正切分类器 看不懂
+* [第8章 深度模型中的优化](Chapter8/0Optimization.md)
+    * [8.1 学习和纯优化有什么不同](Chapter8/1Difference/0Difference.md)
 

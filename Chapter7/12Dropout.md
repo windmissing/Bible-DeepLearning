@@ -6,8 +6,7 @@ Bagging集成方法涉及训练多个模型，需要大量的时间和空间。
 Dropout提供**廉价**的Bagging近似，能够训练和评估指数级数量的神经网络。  
 
 Dropout集成的是所有“从基础网络除去非输出单元后形成的子网络”。  
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter7/images/5.png)  
-
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/12.png) 
 # 训练
 
 每次随机从小批量中加载一个样本。  

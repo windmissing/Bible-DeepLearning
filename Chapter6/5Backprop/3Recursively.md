@@ -109,4 +109,4 @@ $$
 每一层的中间结果存下来，增加了内存的消耗。  
 但避免重复计算，减少了运行时间。  
 
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter6/images/5.png)  
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/5.png)  

@@ -24,7 +24,7 @@ $$
 # 改进
 
 使用不同特征空间，即输入和输出之间增加一个中间层。  
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter6/images/1.png)  
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/1.png)  
 其中：  
 中间层：  
 $$

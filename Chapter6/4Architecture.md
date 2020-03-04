@@ -2,9 +2,9 @@
 1. 应该具有多少个单元  
 2. 这些单元应该如何连接
 
-# 大多数网络结构是这样的  
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter6/images/2.jpg)  
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter6/images/3.jpg)  
+# 大多数网络结构是这样的   
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/2.jpg)  
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/3.jpg)  
 
 深层 VS 浅层：  
 优点：  

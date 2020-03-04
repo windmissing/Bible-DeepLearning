@@ -1,6 +1,5 @@
 随着迭代次数的增加，训练误差会越来越小，而验证误差在小到一定程度后会再次上升。  
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter7/images/2.png)  
-
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/9.png)  
 提前终止：  
 如果在一定时间内验证误差没有改善就停止迭代。  
 返回验证集上最好的参数而不是最新的参数。  

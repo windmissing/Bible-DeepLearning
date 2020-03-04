@@ -15,6 +15,5 @@ J = J_{MLE} + \lambda\left(\sum_{i,j}(W^{(1)}_{i,j})^2 + (W^{(2)}_{i,j})^2\right
 $$
 
 图为这个网络的正反传播的计算图：  
-![](https://github.com/windmissing/Bible-DeepLearning/raw/master/Chapter6/images/6.png)  
-
+![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/6.png)  
 [?]反向传播算法可以自动生成梯度？这句话什么意思？
