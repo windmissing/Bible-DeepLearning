@@ -26,9 +26,20 @@
         * 6.5.6 一般化的反向传播 没看懂
         * [6.5.7 实例：用于MLP 训练的反向传播](Chapter6/5Backprop/7MLPTraining.md)
         * 6.5.8 - 6.5.10 全部看不懂
-* [第七章深度学习中的正则化](Chapter7/0Introduction.md)
+* [第7章 深度学习中的正则化](Chapter7/0Introduction.md)
     * [7.1 参数范数惩罚](Chapter7/1ParameterNormPenalties/0Introduction.md)
-        * [7.1.1 L2 参数正则化](Chapter7/1ParameterNormPenalties/1L2.md)
-        * [7.1.2 L1 参数正则化](Chapter7/1ParameterNormPenalties/2L1.md)
+        * [7.1.1 L2参数正则化](Chapter7/1ParameterNormPenalties/1L2.md)
+        * [7.1.2 L1参数正则化](Chapter7/1ParameterNormPenalties/2L1.md)
     * [7.2 作为约束的范数惩罚](Chapter7/2ConstrainedOptimization.md)
+    * [7.3 正则化和欠约束问题](Chapter7/3UnderConstrainedProblems.md)
+    * [7.4 数据集增强](Chapter7/4DatasetAugmentation.md)
+    * [7.5 噪声鲁棒性](Chapter7/5NoiseRobustness.md)
+    * [7.6 7.7](Chapter7/67.md)
+    * [7.8 提前终止](Chapter7/8EarlyStopping.md)
+    * [7.9 参数绑定和参数共享](Chapter7/9ParameterSharing.md)
+    * [7.10 稀疏表示](Chapter7/10SparseRepresentations.md)
+    * [7.11 Bagging 和其他集成方法](Chapter7/11Bagging.md)
+    * [7.12 Dropout](Chapter7/12Dropout.md)
+    * [7.13 对抗训练](Chapter7/13AdversarialTraining.md)
+    * 7.14 切面距离、正切传播和流形正切分类器 看不懂
 

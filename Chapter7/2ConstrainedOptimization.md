@@ -9,7 +9,7 @@ $$
 s.t. \Omega(\theta)<k
 $$
 
-使用[KKT]()算法求解带约束的最小化问题，解为：  
+使用[KKT](https://windmising.gitbook.io/mathematics-basic-for-ml/shu-zhi-ji-suan/constrainedoptimization)算法求解带约束的最小化问题，解为：  
 $$
 \theta* = {\arg \min}_{\theta} \max_{\alpha,\alpha>0}{\cal L}(\theta, \alpha)
 $$
