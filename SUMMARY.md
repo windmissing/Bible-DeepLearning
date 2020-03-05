@@ -53,4 +53,7 @@
         * [8.2.3 - 8.2.8](Chapter8/2Challenges/345678.md)
     * 8.3 基本算法
         * [8.3.1 随机梯度下降](Chapter8/3BasicAlgorithms/1SGD.md)
+        * [8.3.2 动量](Chapter8/3BasicAlgorithms/2Momentum.md)
+        * [8.3.3 Nesterov 动量](Chapter8/3BasicAlgorithms/3Nesterov.md)
+    * [8.4 参数初始化策略](Chapter8/4ParameterInitialization.md)
 
