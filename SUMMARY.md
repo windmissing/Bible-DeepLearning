@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Introduction](README.md)
+* 第5章 机器学习基础
+    * [5.1.2 性能度量P](Chapter5/1LearningAlgorithms/2PerformanceMeasure.md)
 * [第6章 深度前馈网络](Chapter6/0Introduction.md)
     * [6.1 例子：学习XOR](Chapter6/1Examples.md)
     * [6.2 基于梯度的学习](Chapter6/2Gradient/0Introduction.md)
@@ -56,4 +58,7 @@
         * [8.3.2 动量](Chapter8/3BasicAlgorithms/2Momentum.md)
         * [8.3.3 Nesterov 动量](Chapter8/3BasicAlgorithms/3Nesterov.md)
     * [8.4 参数初始化策略](Chapter8/4ParameterInitialization.md)
+    * [8.5 自适应学习率算法](Chapter8/5AdaptiveLearningRates.md)
+    * [8.6 二阶近似方法](Chapter8/6ApproximateSecondOrder.md)
+* [第11章 实践方法论](Chapter11/Chapter11.md)
 
