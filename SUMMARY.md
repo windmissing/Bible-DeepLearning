@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * 第5章 机器学习基础
     * [5.1.2 性能度量P](Chapter5/1LearningAlgorithms/2PerformanceMeasure.md)
+    * [5.2.1 没有免费午餐定理](Chapter5/2/1.md)
 * [第6章 深度前馈网络](Chapter6/0Introduction.md)
     * [6.1 例子：学习XOR](Chapter6/1Examples.md)
     * [6.2 基于梯度的学习](Chapter6/2Gradient/0Introduction.md)
