@@ -2,6 +2,22 @@
     "gitbook": "3.2.3",
     "plugins": [
         "mathjax@0.0.6",
-        "alerts@^0.2.0"
-    ]
+        "alerts@^0.2.0",
+        "prism-themes",
+        "mygitalk"
+    ],
+    "pluginsConfig": {
+        "prism": {
+            "css": [
+                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+            ]
+        },
+        "mygitalk": {
+            "clientID": "GitHub Application Client ID",
+            "clientSecret": "GitHub Application Client Secret",
+            "repo": " https://github.com/windmissing/Bible-DeepLearning",
+            "owner": "windmissing",
+            "admin": ["windmissing"],
+            "distractionFreeMode": false }
+    }
 }
