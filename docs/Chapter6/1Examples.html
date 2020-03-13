@@ -1,0 +1,1169 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>6.1 例子：学习XOR · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2Gradient/0Introduction.html" />
+    
+    
+    <link rel="prev" href="0Introduction.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    第5章 机器学习基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../Chapter5/1LearningAlgorithms/2PerformanceMeasure.html">
+            
+                <a href="../Chapter5/1LearningAlgorithms/2PerformanceMeasure.html">
+            
+                    
+                    5.1.2 性能度量P
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../Chapter5/2/1.html">
+            
+                <a href="../Chapter5/2/1.html">
+            
+                    
+                    5.2.1 没有免费午餐定理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0Introduction.html">
+            
+                <a href="0Introduction.html">
+            
+                    
+                    第6章 深度前馈网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="1Examples.html">
+            
+                <a href="1Examples.html">
+            
+                    
+                    6.1 例子：学习XOR
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="2Gradient/0Introduction.html">
+            
+                <a href="2Gradient/0Introduction.html">
+            
+                    
+                    6.2 基于梯度的学习
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="2Gradient/1Cost/0Introduction.html">
+            
+                <a href="2Gradient/1Cost/0Introduction.html">
+            
+                    
+                    6.2.1 代价函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1.1" data-path="2Gradient/1Cost/1Likelihood.html">
+            
+                <a href="2Gradient/1Cost/1Likelihood.html">
+            
+                    
+                    使用最大似然学习条件分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.1.2" >
+            
+                <span>
+            
+                    
+                    6.2.1.2 学习条件统计量 看不懂
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="2Gradient/2OutputUnit/0Introduction.html">
+            
+                <a href="2Gradient/2OutputUnit/0Introduction.html">
+            
+                    
+                    6.2.2 输出单元
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.2.1" data-path="2Gradient/2OutputUnit/1Linear.html">
+            
+                <a href="2Gradient/2OutputUnit/1Linear.html">
+            
+                    
+                    6.2.2.1 用于高斯输出分布的线性神单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2.2" data-path="2Gradient/2OutputUnit/2Sigmoid.html">
+            
+                <a href="2Gradient/2OutputUnit/2Sigmoid.html">
+            
+                    
+                    6.2.2.2 用于Bernoulli输出分布的sigmoid单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2.3" data-path="2Gradient/2OutputUnit/3Softmax.html">
+            
+                <a href="2Gradient/2OutputUnit/3Softmax.html">
+            
+                    
+                    6.2.2.3 用于Multinoulli输出分布的softmax单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2.4" data-path="2Gradient/2OutputUnit/4Other.html">
+            
+                <a href="2Gradient/2OutputUnit/4Other.html">
+            
+                    
+                    6.2.2.4 其他输出类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="3Hidden/0Introduction.html">
+            
+                <a href="3Hidden/0Introduction.html">
+            
+                    
+                    6.3 隐藏单元
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="3Hidden/1ReLU.html">
+            
+                <a href="3Hidden/1ReLU.html">
+            
+                    
+                    6.3.1 ReLU及其扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2" data-path="3Hidden/2SigmoidTanh.html">
+            
+                <a href="3Hidden/2SigmoidTanh.html">
+            
+                    
+                    6.3.2 logistic sigmoid与双曲正切函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3" data-path="3Hidden/3Other.html">
+            
+                <a href="3Hidden/3Other.html">
+            
+                    
+                    6.3.3 其他隐藏单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="4Architecture.html">
+            
+                <a href="4Architecture.html">
+            
+                    
+                    6.4 架构设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="5Backprop/0Introduction.html">
+            
+                <a href="5Backprop/0Introduction.html">
+            
+                    
+                    6.5 反向传播和其他的微分算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="5Backprop/1ComputationalGraphs.html">
+            
+                <a href="5Backprop/1ComputationalGraphs.html">
+            
+                    
+                    6.5.1 计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="5Backprop/2ChainRule.html">
+            
+                <a href="5Backprop/2ChainRule.html">
+            
+                    
+                    6.5.2 微积分中的链式法则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="5Backprop/3Recursively.html">
+            
+                <a href="5Backprop/3Recursively.html">
+            
+                    
+                    6.5.3 递归地使用链式法则来实现反向传播
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.4" data-path="5Backprop/4FullyConnectedMLP.html">
+            
+                <a href="5Backprop/4FullyConnectedMLP.html">
+            
+                    
+                    6.5.4 全连接MLP中的反向传播计算
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.5" >
+            
+                <span>
+            
+                    
+                    6.5.5 符号到符号的导数 没看懂
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.6" >
+            
+                <span>
+            
+                    
+                    6.5.6 一般化的反向传播 没看懂
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.7" data-path="5Backprop/7MLPTraining.html">
+            
+                <a href="5Backprop/7MLPTraining.html">
+            
+                    
+                    6.5.7 实例：用于MLP 训练的反向传播
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.8" >
+            
+                <span>
+            
+                    
+                    6.5.8 - 6.5.10 全部看不懂
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter7/0Introduction.html">
+            
+                <a href="../Chapter7/0Introduction.html">
+            
+                    
+                    第7章 深度学习中的正则化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../Chapter7/1ParameterNormPenalties/0Introduction.html">
+            
+                <a href="../Chapter7/1ParameterNormPenalties/0Introduction.html">
+            
+                    
+                    7.1 参数范数惩罚
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../Chapter7/1ParameterNormPenalties/1L2.html">
+            
+                <a href="../Chapter7/1ParameterNormPenalties/1L2.html">
+            
+                    
+                    7.1.1 L2参数正则化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../Chapter7/1ParameterNormPenalties/2L1.html">
+            
+                <a href="../Chapter7/1ParameterNormPenalties/2L1.html">
+            
+                    
+                    7.1.2 L1参数正则化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../Chapter7/2ConstrainedOptimization.html">
+            
+                <a href="../Chapter7/2ConstrainedOptimization.html">
+            
+                    
+                    7.2 作为约束的范数惩罚
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../Chapter7/3UnderConstrainedProblems.html">
+            
+                <a href="../Chapter7/3UnderConstrainedProblems.html">
+            
+                    
+                    7.3 正则化和欠约束问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../Chapter7/4DatasetAugmentation.md">
+            
+                <span>
+            
+                    
+                    7.4 数据集增强
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../Chapter7/5NoiseRobustness.html">
+            
+                <a href="../Chapter7/5NoiseRobustness.html">
+            
+                    
+                    7.5 噪声鲁棒性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../Chapter7/67.html">
+            
+                <a href="../Chapter7/67.html">
+            
+                    
+                    7.6 7.7
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../Chapter7/8EarlyStopping.html">
+            
+                <a href="../Chapter7/8EarlyStopping.html">
+            
+                    
+                    7.8 提前终止
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../Chapter7/9ParameterSharing.html">
+            
+                <a href="../Chapter7/9ParameterSharing.html">
+            
+                    
+                    7.9 参数绑定和参数共享
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../Chapter7/10SparseRepresentations.html">
+            
+                <a href="../Chapter7/10SparseRepresentations.html">
+            
+                    
+                    7.10 稀疏表示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../Chapter7/11Bagging.html">
+            
+                <a href="../Chapter7/11Bagging.html">
+            
+                    
+                    7.11 Bagging 和其他集成方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../Chapter7/12Dropout.html">
+            
+                <a href="../Chapter7/12Dropout.html">
+            
+                    
+                    7.12 Dropout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../Chapter7/13AdversarialTraining.html">
+            
+                <a href="../Chapter7/13AdversarialTraining.html">
+            
+                    
+                    7.13 对抗训练
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" >
+            
+                <span>
+            
+                    
+                    7.14 切面距离、正切传播和流形正切分类器 看不懂
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../Chapter8/0Optimization.html">
+            
+                <a href="../Chapter8/0Optimization.html">
+            
+                    
+                    第8章 深度模型中的优化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../Chapter8/1Difference/0Difference.html">
+            
+                <a href="../Chapter8/1Difference/0Difference.html">
+            
+                    
+                    8.1 学习和纯优化有什么不同
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../Chapter8/1Difference/1EmpiricalRiskMinimization.html">
+            
+                <a href="../Chapter8/1Difference/1EmpiricalRiskMinimization.html">
+            
+                    
+                    8.1.1 经验风险最小化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../Chapter8/1Difference/2SurrogateLossFunctions.html">
+            
+                <a href="../Chapter8/1Difference/2SurrogateLossFunctions.html">
+            
+                    
+                    8.1.2 代理损失函数和提前终止
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="../Chapter8/1Difference/3Minibatch.html">
+            
+                <a href="../Chapter8/1Difference/3Minibatch.html">
+            
+                    
+                    8.1.3 批量算法和小批量算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" >
+            
+                <span>
+            
+                    
+                    8.2 神经网络优化中的挑战
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../Chapter8/2Challenges/1IllConditioning.html">
+            
+                <a href="../Chapter8/2Challenges/1IllConditioning.html">
+            
+                    
+                    8.2.1 病态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../Chapter8/2Challenges/2LocalMinima.html">
+            
+                <a href="../Chapter8/2Challenges/2LocalMinima.html">
+            
+                    
+                    8.2.2 局部极小值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../Chapter8/2Challenges/345678.html">
+            
+                <a href="../Chapter8/2Challenges/345678.html">
+            
+                    
+                    8.2.3 - 8.2.8
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" >
+            
+                <span>
+            
+                    
+                    8.3 基本算法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../Chapter8/3BasicAlgorithms/1SGD.html">
+            
+                <a href="../Chapter8/3BasicAlgorithms/1SGD.html">
+            
+                    
+                    8.3.1 随机梯度下降
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../Chapter8/3BasicAlgorithms/2Momentum.html">
+            
+                <a href="../Chapter8/3BasicAlgorithms/2Momentum.html">
+            
+                    
+                    8.3.2 动量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../Chapter8/3BasicAlgorithms/3Nesterov.html">
+            
+                <a href="../Chapter8/3BasicAlgorithms/3Nesterov.html">
+            
+                    
+                    8.3.3 Nesterov 动量
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../Chapter8/4ParameterInitialization.html">
+            
+                <a href="../Chapter8/4ParameterInitialization.html">
+            
+                    
+                    8.4 参数初始化策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../Chapter8/5AdaptiveLearningRates.html">
+            
+                <a href="../Chapter8/5AdaptiveLearningRates.html">
+            
+                    
+                    8.5 自适应学习率算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../Chapter8/6ApproximateSecondOrder.html">
+            
+                <a href="../Chapter8/6ApproximateSecondOrder.html">
+            
+                    
+                    8.6 二阶近似方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../Chapter11/Chapter11.html">
+            
+                <a href="../Chapter11/Chapter11.html">
+            
+                    
+                    第11章 实践方法论
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >6.1 例子：学习XOR</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x4EFB;&#x52A1;">&#x4EFB;&#x52A1;</h1>
+<p>&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x529F;&#x80FD;&#x5B8C;&#x6574;&#x7684;&#x524D;&#x9988;&#x7F51;&#x7EDC;&#x5B66;&#x4E60;XOR&#x51FD;&#x6570;&#x3002;  </p>
+<h1 id="&#x5DF2;&#x77E5;&#xFF1A;">&#x5DF2;&#x77E5;&#xFF1A;</h1>
+<p>XOR&#x51FD;&#x6570;&#x6709;&#x4E24;&#x4E2A;&#x975E;0&#x5373;1&#x7684;&#x8F93;&#x5165;&#x3002;&#x53EA;&#x6709;&#x5F53;&#x524D;x1&#x3001;x2&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x662F;1&#x65F6;&#x8F93;&#x51FA;&#x4E3A;1&#xFF0C;&#x5176;&#x5B83;&#x60C5;&#x51B5;&#x8F93;&#x51FA;&#x4E3A;0&#x3002;<br>&#x76EE;&#x6807;&#xFF1A;y = f*(x) = XOR(x1,x2)<br>&#x8F93;&#x51FA;&#xFF1A;$$y = f(x; \theta)$$<br>&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x96C6;&#xFF1A;$$X = {[0,0]^T, [0,1]^T, [1,0]^T, [1,1]^T}$$  </p>
+<h1 id="&#x9009;&#x62E9;">&#x9009;&#x62E9;</h1>
+<p>&#x9009;&#x62E9;&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E3A;MSE&#xFF0C;&#x5373;&#xFF1A;  </p>
+<p>$$
+J(\theta) = \frac{1}{4}\sum_{x \in X}(f^*(x)-f(x;\theta))^2</p>
+<p>$$
+&#x9009;&#x62E9;&#x6A21;&#x578B;&#x4E3A;&#x7EBF;&#x6027;&#x6A21;&#x578B;&#xFF0C;&#x5373;&#xFF1A;  </p>
+<p>$$
+f(x;\theta) = f(x;w, b) = x^Tw+b</p>
+<p>$$
+[?]&#x901A;&#x8FC7;&#x95ED;&#x89E3;&#x5F62;&#x5F0F;&#x89E3;&#x5F97;J(\theta)&#x7684;&#x6700;&#x5C0F;&#x5316;&#x4E3A;w = 0, b = 1/2
+&#x663E;&#x793A;&#x8FD9;&#x4E2A;&#x7ED3;&#x679C;&#x65E0;&#x6CD5;&#x8868;&#x8FBE;XOR&#x51FD;&#x6570;  </p>
+<h1 id="&#x6539;&#x8FDB;">&#x6539;&#x8FDB;</h1>
+<p>&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#xFF0C;&#x5373;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#x4E4B;&#x95F4;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x5C42;&#x3002;<br><img src="http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/1.png" alt=""><br>&#x5176;&#x4E2D;&#xFF1A;<br>&#x4E2D;&#x95F4;&#x5C42;&#xFF1A;  </p>
+<p>$$
+h = f^{(1)}(x; W, c)  \
+\require{AMScd}
+\begin{CD}
+    &#x5411;&#x91CF; @&gt;&#x77E9;&#x9635;W&#xFF0C;&#x5411;&#x91CF;c&gt;&gt; &#x5411;&#x91CF;
+\end{CD}</p>
+<p>$$
+&#x8F93;&#x51FA;&#x5C42;&#xFF1A;  </p>
+<p>$$
+y = f^{(2)}(h; w, b) \
+\require{AMScd}
+\begin{CD}
+    &#x5411;&#x91CF; @&gt;&#x5411;&#x91CF;w&#xFF0C;&#x6807;&#x91CF;b&gt;&gt; &#x6807;&#x91CF;
+\end{CD}</p>
+<p>$$
+&#x5B8C;&#x6574;&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;  </p>
+<p>$$
+f(x; W, c, w, b) = f^{(2)}(f^{(1)}(x)) \tag{1}</p>
+<p>$$</p>
+<h1 id="f1">f(1)</h1>
+<p>&#x663E;&#x7136;f(1)&#x4E0D;&#x662F;&#x4E00;&#x79CD;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF0C;&#x5426;&#x5219;&#x8FD8;&#x662F;&#x76F8;&#x5F53;&#x4E8E;y&#x662F;x&#x7684;&#x7EBF;&#x6027;&#x7EC4;&#x5408;&#x3002;<br>f(1)&#x901A;&#x5E38;&#x4E3A;&#x8FD9;&#x6837;&#x7684;&#x5F62;&#x5F0F;&#xFF1A;  </p>
+<p>$$
+h = g(W^Tx+c)   \tag{2}&#xFF0C;g&#x662F;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;</p>
+<p>$$
+g&#x4E00;&#x4E2A;&#x4F5C;&#x7528;&#x4E8E;&#x6574;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x901A;&#x5E38;&#x9ED8;&#x8BA4;&#x4E3A;ReLU&#x51FD;&#x6570;&#x3002;
+<strong>ReLU = rectified linear unit = &#x6574;&#x6D41;&#x7EBF;&#x6027;&#x5355;&#x5143;</strong></p>
+<p>$$
+g(z) = \max(0, z)   \tag{3}</p>
+<p>$$
+<img src="http://windmissing.github.io/images_for_gitbook/Nielsen-NNDL/6.png" alt="">  </p>
+<p>&#x5C06;&#x516C;&#x5F0F;&#xFF08;2&#xFF09;&#xFF08;3&#xFF09;&#x4EE3;&#x5165;&#x516C;&#x5F0F;&#xFF08;1&#xFF09;&#x5F97;&#xFF1A;  </p>
+<p>$$
+f(x; W, c, w, b) = w^T\max(0, W^Tx+c)+b \tag{4}</p>
+<p>$$
+&#x901A;&#x8FC7;&#x516C;&#x5F0F;&#x5DE7;&#x5999;&#x8BBE;&#x7F6E;&#x516C;&#x5F0F;&#xFF08;4&#xFF09;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x5F97;f(x)&#x7684;&#x7ED3;&#x679C;&#x4E0E;XOR&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x3002;  </p>
+<p><strong>&#x95EE;&#x9898;&#x662F;&#x5982;&#x4F55;&#x8BBE;&#x7F6E;&#x5408;&#x7406;&#x7684;&#x53C2;&#x6570;&#xFF1F;</strong></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="0Introduction.html" class="navigation navigation-prev " aria-label="Previous page: 第6章 深度前馈网络">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2Gradient/0Introduction.html" class="navigation navigation-next " aria-label="Next page: 6.2 基于梯度的学习">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"6.1 例子：学习XOR","level":"1.3.1","depth":2,"next":{"title":"6.2 基于梯度的学习","level":"1.3.2","depth":2,"path":"Chapter6/2Gradient/0Introduction.md","ref":"Chapter6/2Gradient/0Introduction.md","articles":[{"title":"6.2.1 代价函数","level":"1.3.2.1","depth":3,"path":"Chapter6/2Gradient/1Cost/0Introduction.md","ref":"Chapter6/2Gradient/1Cost/0Introduction.md","articles":[{"title":"使用最大似然学习条件分布","level":"1.3.2.1.1","depth":4,"path":"Chapter6/2Gradient/1Cost/1Likelihood.md","ref":"Chapter6/2Gradient/1Cost/1Likelihood.md","articles":[]},{"title":"6.2.1.2 学习条件统计量 看不懂","level":"1.3.2.1.2","depth":4,"ref":"","articles":[]}]},{"title":"6.2.2 输出单元","level":"1.3.2.2","depth":3,"path":"Chapter6/2Gradient/2OutputUnit/0Introduction.md","ref":"Chapter6/2Gradient/2OutputUnit/0Introduction.md","articles":[{"title":"6.2.2.1 用于高斯输出分布的线性神单元","level":"1.3.2.2.1","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/1Linear.md","ref":"Chapter6/2Gradient/2OutputUnit/1Linear.md","articles":[]},{"title":"6.2.2.2 用于Bernoulli输出分布的sigmoid单元","level":"1.3.2.2.2","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/2Sigmoid.md","ref":"Chapter6/2Gradient/2OutputUnit/2Sigmoid.md","articles":[]},{"title":"6.2.2.3 用于Multinoulli输出分布的softmax单元","level":"1.3.2.2.3","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/3Softmax.md","ref":"Chapter6/2Gradient/2OutputUnit/3Softmax.md","articles":[]},{"title":"6.2.2.4 其他输出类型","level":"1.3.2.2.4","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/4Other.md","ref":"Chapter6/2Gradient/2OutputUnit/4Other.md","articles":[]}]}]},"previous":{"title":"第6章 深度前馈网络","level":"1.3","depth":1,"path":"Chapter6/0Introduction.md","ref":"Chapter6/0Introduction.md","articles":[{"title":"6.1 例子：学习XOR","level":"1.3.1","depth":2,"path":"Chapter6/1Examples.md","ref":"Chapter6/1Examples.md","articles":[]},{"title":"6.2 基于梯度的学习","level":"1.3.2","depth":2,"path":"Chapter6/2Gradient/0Introduction.md","ref":"Chapter6/2Gradient/0Introduction.md","articles":[{"title":"6.2.1 代价函数","level":"1.3.2.1","depth":3,"path":"Chapter6/2Gradient/1Cost/0Introduction.md","ref":"Chapter6/2Gradient/1Cost/0Introduction.md","articles":[{"title":"使用最大似然学习条件分布","level":"1.3.2.1.1","depth":4,"path":"Chapter6/2Gradient/1Cost/1Likelihood.md","ref":"Chapter6/2Gradient/1Cost/1Likelihood.md","articles":[]},{"title":"6.2.1.2 学习条件统计量 看不懂","level":"1.3.2.1.2","depth":4,"ref":"","articles":[]}]},{"title":"6.2.2 输出单元","level":"1.3.2.2","depth":3,"path":"Chapter6/2Gradient/2OutputUnit/0Introduction.md","ref":"Chapter6/2Gradient/2OutputUnit/0Introduction.md","articles":[{"title":"6.2.2.1 用于高斯输出分布的线性神单元","level":"1.3.2.2.1","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/1Linear.md","ref":"Chapter6/2Gradient/2OutputUnit/1Linear.md","articles":[]},{"title":"6.2.2.2 用于Bernoulli输出分布的sigmoid单元","level":"1.3.2.2.2","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/2Sigmoid.md","ref":"Chapter6/2Gradient/2OutputUnit/2Sigmoid.md","articles":[]},{"title":"6.2.2.3 用于Multinoulli输出分布的softmax单元","level":"1.3.2.2.3","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/3Softmax.md","ref":"Chapter6/2Gradient/2OutputUnit/3Softmax.md","articles":[]},{"title":"6.2.2.4 其他输出类型","level":"1.3.2.2.4","depth":4,"path":"Chapter6/2Gradient/2OutputUnit/4Other.md","ref":"Chapter6/2Gradient/2OutputUnit/4Other.md","articles":[]}]}]},{"title":"6.3 隐藏单元","level":"1.3.3","depth":2,"path":"Chapter6/3Hidden/0Introduction.md","ref":"Chapter6/3Hidden/0Introduction.md","articles":[{"title":"6.3.1 ReLU及其扩展","level":"1.3.3.1","depth":3,"path":"Chapter6/3Hidden/1ReLU.md","ref":"Chapter6/3Hidden/1ReLU.md","articles":[]},{"title":"6.3.2 logistic sigmoid与双曲正切函数","level":"1.3.3.2","depth":3,"path":"Chapter6/3Hidden/2SigmoidTanh.md","ref":"Chapter6/3Hidden/2SigmoidTanh.md","articles":[]},{"title":"6.3.3 其他隐藏单元","level":"1.3.3.3","depth":3,"path":"Chapter6/3Hidden/3Other.md","ref":"Chapter6/3Hidden/3Other.md","articles":[]}]},{"title":"6.4 架构设计","level":"1.3.4","depth":2,"path":"Chapter6/4Architecture.md","ref":"Chapter6/4Architecture.md","articles":[]},{"title":"6.5 反向传播和其他的微分算法","level":"1.3.5","depth":2,"path":"Chapter6/5Backprop/0Introduction.md","ref":"Chapter6/5Backprop/0Introduction.md","articles":[{"title":"6.5.1 计算图","level":"1.3.5.1","depth":3,"path":"Chapter6/5Backprop/1ComputationalGraphs.md","ref":"Chapter6/5Backprop/1ComputationalGraphs.md","articles":[]},{"title":"6.5.2 微积分中的链式法则","level":"1.3.5.2","depth":3,"path":"Chapter6/5Backprop/2ChainRule.md","ref":"Chapter6/5Backprop/2ChainRule.md","articles":[]},{"title":"6.5.3 递归地使用链式法则来实现反向传播","level":"1.3.5.3","depth":3,"path":"Chapter6/5Backprop/3Recursively.md","ref":"Chapter6/5Backprop/3Recursively.md","articles":[]},{"title":"6.5.4 全连接MLP中的反向传播计算","level":"1.3.5.4","depth":3,"path":"Chapter6/5Backprop/4FullyConnectedMLP.md","ref":"Chapter6/5Backprop/4FullyConnectedMLP.md","articles":[]},{"title":"6.5.5 符号到符号的导数 没看懂","level":"1.3.5.5","depth":3,"ref":"","articles":[]},{"title":"6.5.6 一般化的反向传播 没看懂","level":"1.3.5.6","depth":3,"ref":"","articles":[]},{"title":"6.5.7 实例：用于MLP 训练的反向传播","level":"1.3.5.7","depth":3,"path":"Chapter6/5Backprop/7MLPTraining.md","ref":"Chapter6/5Backprop/7MLPTraining.md","articles":[]},{"title":"6.5.8 - 6.5.10 全部看不懂","level":"1.3.5.8","depth":3,"ref":"","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"3.2.3","theme":"default","variables":{},"plugins":["mathjax@0.0.6","alerts@^0.2.0"],"pluginsConfig":{"mathjax":{},"alerts":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter6/1Examples.md","mtime":"2020-03-04T23:48:10.045Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-13T13:39:01.856Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
