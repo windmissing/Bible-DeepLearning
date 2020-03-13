@@ -1,3 +1,7 @@
 {
-    "plugins": ["mathjax", "alerts"]
+    "gitbook": "3.2.3",
+    "plugins": [
+        "mathjax",
+        "alerts@^0.2.0"
+    ]
 }
