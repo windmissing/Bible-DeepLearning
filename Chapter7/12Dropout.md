@@ -42,12 +42,11 @@ Dropout集成的是所有“从基础网络除去非输出单元后形成的子�
 -------------------------
 
 Dropout提供了正则化一大类模型的方法，计算方便但功能强大。  
-> <font color="red">
-> [?] dropout能正则化“一大类模型”是什么意思？其他正则化方法都能正则化多种模型。
-> </font>
+
+> [warning] [?] dropout能正则化“一大类模型”是什么意思？其他正则化方法都能正则化多种模型。
 
 为了有个初步的近似感受，我们可以认为Dropout是集成大量深层神经网络的实用Bagging方法。  
-> [<font color="green"> Bagging </font>](https://windmising.gitbook.io/bible-deeplearning/0introduction-1/11bagging)
+> [success] Bagging：[link](https://windmising.gitbook.io/bible-deeplearning/0introduction-1/11bagging)
 
 Bagging涉及训练多个模型，并在每个测试样本上评估多个模型。
 当每个模型都是一个很大的神经网络时，这似乎是不切实际的，因为训练和评估这样的网络需要花费很多运行时间和内存。

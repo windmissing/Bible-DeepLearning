@@ -69,7 +69,7 @@ $$
 gh^l & = & \frac{\partial L(\hat y, y)}{\partial h^l}
 = \sum_i \frac{\partial L(\hat y, y)}{\partial z^{l+1}_i}\frac{\partial z^{l+1}_i}{\partial h^l}
 = \sum_i \frac{\partial L(\hat y, y)}{\partial z^{l+1}_i}\frac{\partial z^{l+1}_i}{\partial x^{l+1}} \\
-& = &(W^{l+1})^Tg \\
+& = &(W^{l+1})^Tgz^{l+1} \\
 gz^l & = & 
 \frac{\partial L(\hat y, y)}{\partial z^l}
 = \frac{\partial L(\hat y, y)}{\partial h^{l}_i}\frac{\partial h^{l}}{\partial z^l} = gh^l \bigodot f'(z^l) \\
