@@ -13,9 +13,9 @@
             ]
         },
         "mygitalk": {
-            "clientID": "GitHub Application Client ID",
-            "clientSecret": "GitHub Application Client Secret",
-            "repo": " https://github.com/windmissing/Bible-DeepLearning",
+            "clientID": "9893433c1bf273a50fce",
+            "clientSecret": "c1957c7f473efdcc1c8d14680380c44c0da97409",
+            "repo": "Bible-DeepLearning",
             "owner": "windmissing",
             "admin": ["windmissing"],
             "distractionFreeMode": false }
