@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="windmissing">
         
         
     
@@ -18,6 +18,10 @@
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
                 
             
                 
@@ -37,6 +41,8 @@
     
 
     
+        
+        <link rel="stylesheet" href="../../styles/website.css">
         
     
         
@@ -1034,7 +1040,7 @@ f(x^0 - \epsilon g) \approx f(x^0) + (\frac{1}{2}\epsilon^2g^THg - \epsilon g^Tg
 <p>[?]&#x5C3D;&#x7BA1;&#x68AF;&#x5EA6;&#x5F88;&#x5F3A;&#xFF0C;&#x5B66;&#x4E60;&#x4F1A;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x7F13;&#x6162;&#x3002;  </p>
 <h1 id="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;">&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</h1>
 <p>[?]&#x5176;&#x5B83;&#x6A21;&#x578B;&#x4E5F;&#x6709;&#x75C5;&#x6001;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x3002;  </p>
-
+<div id="gitalk-container"></div>
                                 
                                 </section>
                             
@@ -1073,7 +1079,7 @@ f(x^0 - \epsilon g) \approx f(x^0) + (\frac{1}{2}\epsilon^2g^THg - \epsilon g^Tg
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8.2.1 病态","level":"1.5.2.1","depth":3,"next":{"title":"8.2.2 局部极小值","level":"1.5.2.2","depth":3,"path":"Chapter8/2Challenges/2LocalMinima.md","ref":"Chapter8/2Challenges/2LocalMinima.md","articles":[]},"previous":{"title":"8.2 神经网络优化中的挑战","level":"1.5.2","depth":2,"ref":"","articles":[{"title":"8.2.1 病态","level":"1.5.2.1","depth":3,"path":"Chapter8/2Challenges/1IllConditioning.md","ref":"Chapter8/2Challenges/1IllConditioning.md","articles":[]},{"title":"8.2.2 局部极小值","level":"1.5.2.2","depth":3,"path":"Chapter8/2Challenges/2LocalMinima.md","ref":"Chapter8/2Challenges/2LocalMinima.md","articles":[]},{"title":"8.2.3 - 8.2.8","level":"1.5.2.3","depth":3,"path":"Chapter8/2Challenges/345678.md","ref":"Chapter8/2Challenges/345678.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.2.3","theme":"default","variables":{},"plugins":["mathjax@0.0.6","alerts@^0.2.0"],"pluginsConfig":{"mathjax":{},"alerts":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter8/2Challenges/1IllConditioning.md","mtime":"2020-03-05T06:21:01.636Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-13T13:39:01.856Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8.2.1 病态","level":"1.5.2.1","depth":3,"next":{"title":"8.2.2 局部极小值","level":"1.5.2.2","depth":3,"path":"Chapter8/2Challenges/2LocalMinima.md","ref":"Chapter8/2Challenges/2LocalMinima.md","articles":[]},"previous":{"title":"8.2 神经网络优化中的挑战","level":"1.5.2","depth":2,"ref":"","articles":[{"title":"8.2.1 病态","level":"1.5.2.1","depth":3,"path":"Chapter8/2Challenges/1IllConditioning.md","ref":"Chapter8/2Challenges/1IllConditioning.md","articles":[]},{"title":"8.2.2 局部极小值","level":"1.5.2.2","depth":3,"path":"Chapter8/2Challenges/2LocalMinima.md","ref":"Chapter8/2Challenges/2LocalMinima.md","articles":[]},{"title":"8.2.3 - 8.2.8","level":"1.5.2.3","depth":3,"path":"Chapter8/2Challenges/345678.md","ref":"Chapter8/2Challenges/345678.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["mathjax@0.0.6","alerts@^0.2.0","prism-themes","mygitalk"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prism-themes/themes/prism-base16-ateliersulphurpool.light.css"]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"prism-themes":{},"alerts":{},"mathjax":{},"mygitalk":{"flipMoveOptions":{},"clientID":"9893433c1bf273a50fce","number":-1,"perPage":10,"proxy":"https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","admin":["windmissing"],"createIssueManually":false,"distractionFreeMode":false,"repo":"Bible-DeepLearning","owner":"windmissing","enableHotKey":true,"clientSecret":"c1957c7f473efdcc1c8d14680380c44c0da97409","pagerDirection":"last","labels":["Gitalk"]},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"windmissing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.3"},"file":{"path":"Chapter8/2Challenges/1IllConditioning.md","mtime":"2020-03-05T06:21:01.636Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-14T03:01:53.002Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1092,6 +1098,18 @@ f(x^0 - \epsilon g) \approx f(x^0) + (\frac{1}{2}\epsilon^2g^THg - \epsilon g^Tg
     
         
         <script src="../../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+        
+    
+        
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-mygitalk/mygitalk.js"></script>
         
     
         
