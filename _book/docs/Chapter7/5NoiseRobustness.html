@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="windmissing">
         
         
     
@@ -18,6 +18,10 @@
             
                 
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
                 
             
                 
@@ -37,6 +41,8 @@
     
 
     
+        
+        <link rel="stylesheet" href="../styles/website.css">
         
     
         
@@ -1028,7 +1034,7 @@
 <p>&#x901A;&#x5E38;&#x7528;&#x4E8E;RNN&#x3002;<br>&#x6BD4;&#x4F20;&#x7EDF;&#x6B63;&#x5219;&#x5316;&#x5F62;&#x5F0F;&#x66F4;&#x7A33;&#x5B9A;&#x3002;<br>[?]&#x56E0;&#x4E3A;&#x5B83;&#x63A8;&#x52A8;&#x6A21;&#x578B;&#x8FDB;&#x5165;&#x5BF9;&#x6743;&#x91CD;&#x5C0F;&#x7684;&#x53D8;&#x5316;&#x76F8;&#x5BF9;&#x4E0D;&#x654F;&#x611F;&#x7684;&#x533A;&#x57DF;&#xFF0C;&#x627E;&#x5230;&#x7684;&#x70B9;&#x4E0D;&#x53EA;&#x662F;&#x6781;&#x5C0F;&#x70B9;  </p>
 <h1 id="&#x5C06;&#x566A;&#x58F0;&#x4F5C;&#x7528;&#x4E8E;&#x8F93;&#x51FA;">&#x5C06;&#x566A;&#x58F0;&#x4F5C;&#x7528;&#x4E8E;&#x8F93;&#x51FA;</h1>
 <p>&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x5047;&#x8BBE;&#x6807;&#x7B7E;y&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x9519;&#x8BEF;&#x3002;<br>&#x56E0;&#x6B64;&#x663E;&#x5F0F;&#x5730;&#x5BF9;&#x6807;&#x7B7E;&#x4E0A;&#x7684;&#x566A;&#x58F0;&#x8FDB;&#x884C;&#x5EFA;&#x6A21;&#x3002;<br>[?]&#x6807;&#x7B7E;&#x5E73;&#x6ED1;</p>
-
+<div id="gitalk-container"></div>
                                 
                                 </section>
                             
@@ -1071,7 +1077,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.5 噪声鲁棒性","level":"1.4.5","depth":2,"next":{"title":"7.6 7.7","level":"1.4.6","depth":2,"path":"Chapter7/67.md","ref":"Chapter7/67.md","articles":[]},"previous":{"title":"7.4 数据集增强","level":"1.4.4","depth":2,"path":"Chapter7/4DatasetAugmentation.md","ref":"Chapter7/4DatasetAugmentation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.2.3","theme":"default","variables":{},"plugins":["mathjax@0.0.6","alerts@^0.2.0"],"pluginsConfig":{"mathjax":{},"alerts":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter7/5NoiseRobustness.md","mtime":"2020-03-04T02:12:18.653Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-13T13:39:01.856Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.5 噪声鲁棒性","level":"1.4.5","depth":2,"next":{"title":"7.6 7.7","level":"1.4.6","depth":2,"path":"Chapter7/67.md","ref":"Chapter7/67.md","articles":[]},"previous":{"title":"7.4 数据集增强","level":"1.4.4","depth":2,"path":"Chapter7/4DatasetAugmentation.md","ref":"Chapter7/4DatasetAugmentation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax@0.0.6","alerts@^0.2.0","prism-themes","mygitalk"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prism-themes/themes/prism-base16-ateliersulphurpool.light.css"]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"prism-themes":{},"alerts":{},"mathjax":{},"mygitalk":{"flipMoveOptions":{},"clientID":"9893433c1bf273a50fce","number":-1,"perPage":10,"proxy":"https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","admin":["windmissing"],"createIssueManually":false,"distractionFreeMode":false,"repo":"Bible-DeepLearning","owner":"windmissing","enableHotKey":true,"clientSecret":"c1957c7f473efdcc1c8d14680380c44c0da97409","pagerDirection":"last","labels":["Gitalk"]},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"windmissing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.3"},"file":{"path":"Chapter7/5NoiseRobustness.md","mtime":"2020-03-04T02:12:18.653Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-14T03:01:53.002Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1090,6 +1096,18 @@
     
         
         <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+        
+    
+        
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mygitalk/mygitalk.js"></script>
         
     
         

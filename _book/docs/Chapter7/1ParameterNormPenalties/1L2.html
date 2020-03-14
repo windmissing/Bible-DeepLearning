@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="windmissing">
         
         
     
@@ -18,6 +18,10 @@
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
                 
             
                 
@@ -37,6 +41,8 @@
     
 
     
+        
+        <link rel="stylesheet" href="../../styles/website.css">
         
     
         
@@ -1040,7 +1046,7 @@ w \rightarrow w&apos; &amp; = &amp; w - \epsilon(\alpha w + \nabla_w J(w;X,y))\
 <p>[?]&#x4E2D;&#x95F4;&#x63A8;&#x5BFC;&#x6CA1;&#x770B;&#x61C2;<br>&#x6700;&#x540E;&#x7ED3;&#x8BBA;&#x662F;&#xFF1A;  </p>
 <ol>
 <li>&#x6743;&#x91CD;&#x8870;&#x51CF;&#x5BF9;&#x4F18;&#x5316;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x901A;&#x7528;&#x7684;&#x4E8C;&#x6B21;&#x4EE3;&#x4EF7;&#x51FD;&#x6570;&#x7684;&#x5F71;&#x54CD;&#x662F;&#x201C;<strong>&#x53EA;&#x6709;&#x5728;&#x663E;&#x8457;&#x51CF;&#x5C0F;&#x76EE;&#x6807;&#x51FD;&#x6570;&#x65B9;&#x5411;&#x4E0A;&#x7684;&#x53C2;&#x6570;&#x4F1A;&#x4FDD;&#x7559;&#x5F97;&#x76F8;&#x5BF9;&#x5B8C;&#x597D;&#x3002;&#x5728;&#x65E0;&#x52A9;&#x4E8E;&#x76EE;&#x6807;&#x51FD;&#x6570;&#x51CF;&#x5C0F;&#x7684;&#x65B9;&#x5411;&#xFF08;&#x5BF9;&#x5E94;Hessian &#x77E9;&#x9635;&#x8F83;&#x5C0F;&#x7684;&#x7279;&#x5F81;&#x503C;&#xFF09;&#x4E0A;&#x5BF9;&#x5E94;&#x7684;&#x5206;&#x91CF;&#x4F1A;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x56E0;&#x6B63;&#x5219;&#x5316;&#x800C;&#x8870;&#x51CF;&#x6389;&#x3002;</strong>&#x201D;</li>
-<li>&#x6743;&#x91CD;&#x8870;&#x51CF;&#x5BF9;&#x4F18;&#x5316;&#x4E00;&#x4E2A;&#x771F;&#x5B9E;&#x7684;&#x4E8C;&#x6B21;&#x4EE3;&#x4EF7;&#x51FD;&#x6570;$$\tilde J(\theta;X,y)$$&#x7684;&#x5F71;&#x54CD;&#x662F;&#x201C;<strong>L2&#x6B63;&#x5219;&#x5316;&#x80FD;&#x8BA9;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&quot;&#x611F;&#x77E5;&quot;&#x5230;&#x5177;&#x6709;&#x8F83;&#x9AD8;&#x65B9;&#x5DEE;&#x7684;&#x8F93;&#x5165;x&#xFF0C;&#x56E0;&#x6B64;&#x4E0E;&#x8F93;&#x51FA;&#x76EE;&#x6807;&#x7684;&#x534F;&#x65B9;&#x5DEE;&#x8F83;&#x5C0F;&#xFF08;&#x76F8;&#x5BF9;&#x589E;&#x52A0;&#x65B9;&#x5DEE;&#xFF09;&#x7684;&#x7279;&#x5F81;&#x7684;&#x6743;&#x91CD;&#x5C06;&#x4F1A;&#x6536;&#x7F29;&#x3002;</strong>&#x201D;</li>
+<li>&#x6743;&#x91CD;&#x8870;&#x51CF;&#x5BF9;&#x4F18;&#x5316;&#x4E00;&#x4E2A;&#x771F;&#x5B9E;&#x7684;&#x4E8C;&#x6B21;&#x4EE3;&#x4EF7;&#x51FD;&#x6570;$$\tilde J(\theta;X,y)$$&#x7684;&#x5F71;&#x54CD;&#x662F;&#x201C;<strong>L2&#x6B63;&#x5219;&#x5316;&#x80FD;&#x8BA9;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&quot;&#x611F;&#x77E5;&quot;&#x5230;&#x5177;&#x6709;&#x8F83;&#x9AD8;&#x65B9;&#x5DEE;&#x7684;&#x8F93;&#x5165;x&#xFF0C;&#x56E0;&#x6B64;&#x4E0E;&#x8F93;&#x51FA;&#x76EE;&#x6807;&#x7684;&#x534F;&#x65B9;&#x5DEE;&#x8F83;&#x5C0F;&#xFF08;&#x76F8;&#x5BF9;&#x589E;&#x52A0;&#x65B9;&#x5DEE;&#xFF09;&#x7684;&#x7279;&#x5F81;&#x7684;&#x6743;&#x91CD;&#x5C06;&#x4F1A;&#x6536;&#x7F29;&#x3002;</strong>&#x201D;<div id="gitalk-container"></div></li>
 </ol>
 
                                 
@@ -1085,7 +1091,7 @@ w \rightarrow w&apos; &amp; = &amp; w - \epsilon(\alpha w + \nabla_w J(w;X,y))\
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7.1.1 L2参数正则化","level":"1.4.1.1","depth":3,"next":{"title":"7.1.2 L1参数正则化","level":"1.4.1.2","depth":3,"path":"Chapter7/1ParameterNormPenalties/2L1.md","ref":"Chapter7/1ParameterNormPenalties/2L1.md","articles":[]},"previous":{"title":"7.1 参数范数惩罚","level":"1.4.1","depth":2,"path":"Chapter7/1ParameterNormPenalties/0Introduction.md","ref":"Chapter7/1ParameterNormPenalties/0Introduction.md","articles":[{"title":"7.1.1 L2参数正则化","level":"1.4.1.1","depth":3,"path":"Chapter7/1ParameterNormPenalties/1L2.md","ref":"Chapter7/1ParameterNormPenalties/1L2.md","articles":[]},{"title":"7.1.2 L1参数正则化","level":"1.4.1.2","depth":3,"path":"Chapter7/1ParameterNormPenalties/2L1.md","ref":"Chapter7/1ParameterNormPenalties/2L1.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.2.3","theme":"default","variables":{},"plugins":["mathjax@0.0.6","alerts@^0.2.0"],"pluginsConfig":{"mathjax":{},"alerts":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter7/1ParameterNormPenalties/1L2.md","mtime":"2020-03-03T07:53:22.581Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-13T13:39:01.856Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7.1.1 L2参数正则化","level":"1.4.1.1","depth":3,"next":{"title":"7.1.2 L1参数正则化","level":"1.4.1.2","depth":3,"path":"Chapter7/1ParameterNormPenalties/2L1.md","ref":"Chapter7/1ParameterNormPenalties/2L1.md","articles":[]},"previous":{"title":"7.1 参数范数惩罚","level":"1.4.1","depth":2,"path":"Chapter7/1ParameterNormPenalties/0Introduction.md","ref":"Chapter7/1ParameterNormPenalties/0Introduction.md","articles":[{"title":"7.1.1 L2参数正则化","level":"1.4.1.1","depth":3,"path":"Chapter7/1ParameterNormPenalties/1L2.md","ref":"Chapter7/1ParameterNormPenalties/1L2.md","articles":[]},{"title":"7.1.2 L1参数正则化","level":"1.4.1.2","depth":3,"path":"Chapter7/1ParameterNormPenalties/2L1.md","ref":"Chapter7/1ParameterNormPenalties/2L1.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["mathjax@0.0.6","alerts@^0.2.0","prism-themes","mygitalk"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prism-themes/themes/prism-base16-ateliersulphurpool.light.css"]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"prism-themes":{},"alerts":{},"mathjax":{},"mygitalk":{"flipMoveOptions":{},"clientID":"9893433c1bf273a50fce","number":-1,"perPage":10,"proxy":"https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","admin":["windmissing"],"createIssueManually":false,"distractionFreeMode":false,"repo":"Bible-DeepLearning","owner":"windmissing","enableHotKey":true,"clientSecret":"c1957c7f473efdcc1c8d14680380c44c0da97409","pagerDirection":"last","labels":["Gitalk"]},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"windmissing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.3"},"file":{"path":"Chapter7/1ParameterNormPenalties/1L2.md","mtime":"2020-03-03T07:53:22.581Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-14T03:01:53.002Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1104,6 +1110,18 @@ w \rightarrow w&apos; &amp; = &amp; w - \epsilon(\alpha w + \nabla_w J(w;X,y))\
     
         
         <script src="../../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+        
+    
+        
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-mygitalk/mygitalk.js"></script>
         
     
         

@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
-        
+        <meta name="author" content="windmissing">
         
         
     
@@ -18,6 +18,10 @@
             
                 
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
                 
             
                 
@@ -37,6 +41,8 @@
     
 
     
+        
+        <link rel="stylesheet" href="../styles/website.css">
         
     
         
@@ -1026,7 +1032,7 @@
 <li>&#x5728;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x4EFB;&#x52A1;&#x4E2D;&#x4F5C;&#x4E3A;&#x8BAD;&#x7EC3;&#x7B97;&#x6CD5;&#x4F7F;&#x7528;&#x7684;&#x4F18;&#x5316;&#x4E0E;&#x7EAF;&#x4F18;&#x5316;&#x6709;&#x54EA;&#x4E9B;&#x4E0D;&#x540C;&#x3002;  </li>
 <li>&#x5BFC;&#x81F4;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x4F18;&#x5316;&#x56F0;&#x96BE;&#x7684;&#x51E0;&#x4E2A;&#x5177;&#x4F53;&#x6311;&#x6218;&#x3002;  </li>
 <li>&#x51E0;&#x4E2A;&#x5B9E;&#x7528;&#x7B97;&#x6CD5;&#xFF0C;&#x5305;&#x62EC;&#x4F18;&#x5316;&#x7B97;&#x6CD5;&#x672C;&#x8EAB;&#x548C;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;&#x7684;&#x7B56;&#x7565;&#x3002;  </li>
-<li>&#x51E0;&#x4E2A;&#x5C06;&#x7B80;&#x5355;&#x4F18;&#x5316;&#x7B97;&#x6CD5;&#x7ED3;&#x5408;&#x6210;&#x9AD8;&#x7EA7;&#x8FC7;&#x7A0B;&#x7684;&#x4F18;&#x5316;&#x7B56;&#x7565;&#x3002;  </li>
+<li>&#x51E0;&#x4E2A;&#x5C06;&#x7B80;&#x5355;&#x4F18;&#x5316;&#x7B97;&#x6CD5;&#x7ED3;&#x5408;&#x6210;&#x9AD8;&#x7EA7;&#x8FC7;&#x7A0B;&#x7684;&#x4F18;&#x5316;&#x7B56;&#x7565;&#x3002;  <div id="gitalk-container"></div></li>
 </ol>
 
                                 
@@ -1067,7 +1073,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第8章 深度模型中的优化","level":"1.5","depth":1,"next":{"title":"8.1 学习和纯优化有什么不同","level":"1.5.1","depth":2,"path":"Chapter8/1Difference/0Difference.md","ref":"Chapter8/1Difference/0Difference.md","articles":[{"title":"8.1.1 经验风险最小化","level":"1.5.1.1","depth":3,"path":"Chapter8/1Difference/1EmpiricalRiskMinimization.md","ref":"Chapter8/1Difference/1EmpiricalRiskMinimization.md","articles":[]},{"title":"8.1.2 代理损失函数和提前终止","level":"1.5.1.2","depth":3,"path":"Chapter8/1Difference/2SurrogateLossFunctions.md","ref":"Chapter8/1Difference/2SurrogateLossFunctions.md","articles":[]},{"title":"8.1.3 批量算法和小批量算法","level":"1.5.1.3","depth":3,"path":"Chapter8/1Difference/3Minibatch.md","ref":"Chapter8/1Difference/3Minibatch.md","articles":[]}]},"previous":{"title":"7.14 切面距离、正切传播和流形正切分类器 看不懂","level":"1.4.13","depth":2,"ref":"","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.2.3","theme":"default","variables":{},"plugins":["mathjax@0.0.6","alerts@^0.2.0"],"pluginsConfig":{"mathjax":{},"alerts":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter8/0Optimization.md","mtime":"2020-03-04T23:30:47.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-13T13:39:01.856Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第8章 深度模型中的优化","level":"1.5","depth":1,"next":{"title":"8.1 学习和纯优化有什么不同","level":"1.5.1","depth":2,"path":"Chapter8/1Difference/0Difference.md","ref":"Chapter8/1Difference/0Difference.md","articles":[{"title":"8.1.1 经验风险最小化","level":"1.5.1.1","depth":3,"path":"Chapter8/1Difference/1EmpiricalRiskMinimization.md","ref":"Chapter8/1Difference/1EmpiricalRiskMinimization.md","articles":[]},{"title":"8.1.2 代理损失函数和提前终止","level":"1.5.1.2","depth":3,"path":"Chapter8/1Difference/2SurrogateLossFunctions.md","ref":"Chapter8/1Difference/2SurrogateLossFunctions.md","articles":[]},{"title":"8.1.3 批量算法和小批量算法","level":"1.5.1.3","depth":3,"path":"Chapter8/1Difference/3Minibatch.md","ref":"Chapter8/1Difference/3Minibatch.md","articles":[]}]},"previous":{"title":"7.14 切面距离、正切传播和流形正切分类器 看不懂","level":"1.4.13","depth":2,"ref":"","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax@0.0.6","alerts@^0.2.0","prism-themes","mygitalk"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prism-themes/themes/prism-base16-ateliersulphurpool.light.css"]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"prism-themes":{},"alerts":{},"mathjax":{},"mygitalk":{"flipMoveOptions":{},"clientID":"9893433c1bf273a50fce","number":-1,"perPage":10,"proxy":"https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","admin":["windmissing"],"createIssueManually":false,"distractionFreeMode":false,"repo":"Bible-DeepLearning","owner":"windmissing","enableHotKey":true,"clientSecret":"c1957c7f473efdcc1c8d14680380c44c0da97409","pagerDirection":"last","labels":["Gitalk"]},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"windmissing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.3"},"file":{"path":"Chapter8/0Optimization.md","mtime":"2020-03-04T23:30:47.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-14T03:01:53.002Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1086,6 +1092,18 @@
     
         
         <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+        
+    
+        
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mygitalk/mygitalk.js"></script>
         
     
         
