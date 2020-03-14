@@ -2,7 +2,7 @@
     "gitbook": "3.2.3",
     "author": "windmissing",
     "plugins": [
-        "mathjax@0.0.6",
+        "katex",
         "alerts@^0.2.0",
         "prism-themes",
         "mygitalk"
