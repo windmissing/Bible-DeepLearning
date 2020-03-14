@@ -1,6 +1,12 @@
 language: node_js
 node_js:
-  - "node"
+  - '8.9.1'
+
+# S: Build Lifecycle
+install:
+  - npm install
+script:
+  - npm run build
 
 after_script:
   - gitbook build
