@@ -3,22 +3,50 @@
     "author": "windmissing",
     "plugins": [
         "katex",
-        "alerts@^0.2.0",
-        "prism-themes",
-        "mygitalk"
+        "alerts",
+        "mygitalk",
+        "github",
+        "github-buttons",
+        "splitter",
+        "-sharing", "sharing-plus",
+        "donate",
+        "copy-code-button",
+        "anchor-navigation-ex"
     ],
     "pluginsConfig": {
-        "prism": {
-            "css": [
-                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-            ]
-        },
         "mygitalk": {
             "clientID": "9893433c1bf273a50fce",
             "clientSecret": "c1957c7f473efdcc1c8d14680380c44c0da97409",
             "repo": "Bible-DeepLearning",
             "owner": "windmissing",
             "admin": ["windmissing"],
-            "distractionFreeMode": false }
+            "distractionFreeMode": false
+        },
+        "github": {
+            "url": "https://github.com/windmissing/Bible-DeepLearning"
+        },
+        "github-buttons": {
+            "repo": "windmissing/Bible-DeepLearning",
+            "types": [
+                "star",
+                "watch",
+                "fork"
+            ],
+            "size": "small"
+        },
+        "donate": {
+            "wechat": "http://windmissing.github.io/images/2020/weixin.jpg",
+            "alipay": "http://windmissing.github.io/images/2020/alipay.jpg",
+            "title": "",
+            "button": "赏",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
+        },
+        "anchor-navigation-ex": {
+            "isShowTocTitleIcon": true,
+            "tocLevel1Icon": "fa fa-hand-o-right",
+            "tocLevel2Icon": "fa fa-hand-o-right",
+            "tocLevel3Icon": "fa fa-hand-o-right"
+        }
     }
 }
