@@ -11,7 +11,9 @@
         "-sharing", "sharing-plus",
         "donate",
         "copy-code-button",
-        "anchor-navigation-ex"
+        "anchor-navigation-ex",
+        "sectionx",
+        "click-reveal"
     ],
     "pluginsConfig": {
         "mygitalk": {
