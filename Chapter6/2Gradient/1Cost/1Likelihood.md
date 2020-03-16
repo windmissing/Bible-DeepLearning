@@ -53,7 +53,12 @@ $$
 把y|x代入负对数似然公式就得到了公式6.12。  
 
 代价函数的具体形式随着模型而改变，取决于$$\log p_\text{model}$$的具体形式。  
-> **[success]**与深度学习模型中的输出单元有关。  
+> **[success] 代价函数的具体形式与模型的关系**  
+假设根据当前的模型，模型输出为y1、y2，那么应该：  
+1. 分别计算$$p_\text{model}(y=y1 \mid x)$$、$$p_\text{model}(y=y2 \mid x)$$，  
+2. 将以上公式合并为$$p_\text{model}(y=y\mid x)$$  
+3. 进一步计算$$\log p_\text{model}(y=y\mid x)$$  
+4. 代入公式6.12  
 
 上述方程的展开形式通常会有一些项不依赖于模型的参数，我们可以舍去。
 例如，正如我们在第5.1.1节中看到的，如果$$p_\text{model}(y\mid x) = N(y;f(x;\theta), I)$$，那么我们就重新得到了均方误差代价，  
@@ -87,7 +92,7 @@ J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \t
 > **[warning]** 不把它参数化是什么意思？  
 
 之前，我们看到了对输出分布的最大似然估计和对线性模型均方误差的最小化之间的等价性，但事实上，这种等价性并不要求$$f(x; \theta)$$用于预测高斯分布的均值。  
-> **[warning]** 还适用于什么分面？还是适用于所有分布？如何证明？  
+> **[warning]** 还适用于什么分面？如何证明？肯定不是对全部模型都适用，至少对sigmoid unit是不适用的。  
 
 # 优点1：减轻设计代价函数的负担
 
@@ -113,31 +118,36 @@ J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \t
 这在很多情况下都会发生，因为用于产生隐藏单元或者输出单元的输出的激活函数会饱和。
 负的对数似然帮助我们在很多模型中避免这个问题。
 很多输出单元都会包含一个指数函数，这在它的变量取绝对值非常大的负值时会造成饱和。  
-> **[success] 举个例子**
+> **[success] 举个例子**  
 例如sigmoid unit，激活函数为$$\sigma(z) = \frac{1}{1+\exp(-z)}$$，它的导数为$$\sigma'(z) = \sigma(z)(1-\sigma(z))$$，那么当|z|非常大时，$$\sigma'(z)$$非常接近0，处于饱和状态。  
 
 负对数似然代价函数中的对数函数消除了某些输出单元中的指数效果。  
 > **[success] 继续上面的例子**  
-如果使用sigmoid unit，那么  
+真实样本的标签为0、1  
+Sigmoid 函数的输出表征了当前样本标签为 1 的概率，且没有参数$$\theta$$  
 $$
-p_\text{model}(y\mid x)=
-\begin{cases}
-f(x;\theta) & = & \sigma(x) & , y=1\\
-1 - f(x;\theta) & = & 1-\sigma(x) & , y = 0
-\end{cases}
+\begin{aligned}
+p_\text{model}(y=1\mid x)= \sigma(z) \\
+p_\text{model}(y=0\mid x)= 1 - \sigma(z)
+\end{aligned}
 $$
 
-> 代入代价函数得：  
+> 将上面两个式子整合到一起：  
 $$
-J(\theta) = - y\log\sigma(x) - (1-y)(1-\log\sigma(x)) 
+p_\text{model}(y\mid x) = \sigma(z)^y * (1-\log\sigma(z)^{1-y}
+$$
+
+> 将$$p_\text{model}(y\mid x)$$代入代价函数得：  
+$$
+J(x) = - y\log\sigma(z) - (1-y)(1-\log\sigma(z)) 
 $$
 
 > 根据求导链式法则：  
 $$
-\frac{\partial J}{\partial x} = \sigma(a) - y
+\frac{\partial J}{\partial z} = \sigma(z) - y
 $$
 
-> 导数中消除了$$\sigma'(z)$$这一部分，从而避免了饱和问题。  
+> 导数中消除了$$\sigma'$$这一部分，从而避免了饱和问题。  
 > [link](https://play-with-handwritten-digits.netlify.com/6-2-1-1-sigmoid-quadratic-crossentropy.html)证明了这一点  
 
 我们将会在第6.2.2节中讨论代价函数和输出单元的选择间的相互作用。
@@ -145,13 +155,13 @@ $$
 # 特性3：没有最小值
 
 用于实现最大似然估计的交叉熵代价函数有一个不同寻常的特性，那就是当它被应用于实践中经常遇到的模型时，它通常没有最小值。  
-> **[warning]** ?
+> **[success]** log函数的形状决定了这一特点。
 
 对于离散型输出变量，大多数模型以一种特殊的形式来参数化，即它们不能表示概率零和一，但是可以无限接近。  
-> **[success]** 例如输出变量为0、1，sigmoid输出的是(0,1)的某个值。  
+> **[success]** 例如输出变量为0、1，sigmoid输出的是(0,1)的某个值，取不到0和1，但是无限接近0和1。    
 
 逻辑回归是其中一个例子。
 对于实值的输出变量，如果模型可以控制输出分布的密度（例如，通过学习高斯输出分布的方差参数），那么它可能对正确的训练集输出赋予极其高的密度，这将导致交叉熵趋向负无穷。  
-> **[warning]** ?
+> **[warning]** [?]不是趋向于0吗？
 
 第7章中描述的正则化技术提供了一些不同的方法来修正学习问题，使得模型不会通过这种方式来获得无限制的收益。

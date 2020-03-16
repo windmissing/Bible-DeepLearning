@@ -9,5 +9,9 @@
     * [6.2 基于梯度的学习](Chapter6/2Gradient/0Introduction.md)
         * [6.2.1 代价函数](Chapter6/2Gradient/1Cost/0Introduction.md)
             * [6.2.1.1 使用最大似然学习条件分布](Chapter6/2Gradient/1Cost/1Likelihood.md)
+            * 6.2.1.2 学习条件统计量 看不懂
+        * [6.2.2 输出单元](Chapter6/2Gradient/2OutputUnit/0Introduction.md)
+            * [6.2.2.1 用于高斯输出分布的线性神单元](Chapter6/2Gradient/2OutputUnit/1Linear.md)
+            * [6.2.2.2 用于Bernoulli输出分布的sigmoid单元](Chapter6/2Gradient/2OutputUnit/2Sigmoid.md)
 * [第7章 深度学习中的正则化](Chapter7/0Introduction.md)
     * [7.12 Dropout](Chapter7/12Dropout.md)
