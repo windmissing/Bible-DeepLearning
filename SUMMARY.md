@@ -15,5 +15,8 @@
             * [6.2.2.3 用于Multinoulli输出分布的softmax单元](Chapter6/2Gradient/2OutputUnit/3Softmax.md)
     * [6.3 隐藏单元](Chapter6/3Hidden/0Introduction.md)
         * [6.3.1 ReLU及其扩展](Chapter6/3Hidden/1ReLU.md)
+        * [6.3.2 logistic sigmoid与双曲正切函数](Chapter6/3Hidden/2SigmoidTanh.md)
 * [第7章 深度学习中的正则化](Chapter7/0Introduction.md)
+    * [7.1 参数范数惩罚](Chapter7/1ParameterNormPenalties/0Introduction.md)
+        * [7.1.1 L2参数正则化](Chapter7/1ParameterNormPenalties/1L2.md)
     * [7.12 Dropout](Chapter7/12Dropout.md)
