@@ -20,4 +20,5 @@
     * [7.1 参数范数惩罚](Chapter7/1ParameterNormPenalties/0Introduction.md)
         * [7.1.1 L2参数正则化](Chapter7/1ParameterNormPenalties/1L2.md)
         * [7.1.2 L1参数正则化](Chapter7/1ParameterNormPenalties/2L1.md)
+    * [7.8 提前终止](Chapter7/8EarlyStopping.md)
     * [7.12 Dropout](Chapter7/12Dropout.md)
