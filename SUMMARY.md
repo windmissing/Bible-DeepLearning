@@ -22,4 +22,3 @@
         * [7.1.2 L1参数正则化](Chapter7/1ParameterNormPenalties/2L1.md)
     * [7.8 提前终止](Chapter7/8EarlyStopping.md)
     * [7.11 Bagging 和其他集成方法](Chapter7/11Bagging.md)
-    * [7.12 Dropout](Chapter7/12Dropout.md)
