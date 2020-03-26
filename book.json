@@ -3,6 +3,7 @@
     "author": "windmissing",
     "plugins": [
         "katex",
+        "katex-plus",
         "alerts",
         "mygitalk",
         "github",

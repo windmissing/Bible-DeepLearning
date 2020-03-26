@@ -22,3 +22,11 @@
         * [7.1.2 L1参数正则化](Chapter7/1ParameterNormPenalties/2L1.md)
     * [7.8 提前终止](Chapter7/8EarlyStopping.md)
     * [7.11 Bagging 和其他集成方法](Chapter7/11Bagging.md)
+    * [7.12 Dropout](Chapter7/12Dropout.md)
+* [第8章 深度模型中的优化](Chapter8/0Optimization.md)
+    * 8.3 基本算法
+        * [8.3.1 随机梯度下降](Chapter8/3BasicAlgorithms/1SGD.md)
+        * [8.3.2 动量](Chapter8/3BasicAlgorithms/2Momentum.md)
+        * [8.3.3 Nesterov 动量](Chapter8/3BasicAlgorithms/3Nesterov.md)
+    * 8.5 自适应学习率算法
+        * [8.5.1 AdaGrad](Chapter8/5AdaptiveLearningRates/AdaGrad.md)

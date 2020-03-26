@@ -60,6 +60,7 @@
         * [8.3.3 Nesterov 动量](Chapter8/3BasicAlgorithms/3Nesterov.md)
     * [8.4 参数初始化策略](Chapter8/4ParameterInitialization.md)
     * [8.5 自适应学习率算法](Chapter8/5AdaptiveLearningRates.md)
+        * [8.5.1 AdaGrad](Chapter8/5AdaptiveLearningRates/AdaGrad.md)
     * [8.6 二阶近似方法](Chapter8/6ApproximateSecondOrder.md)
 * [第11章 实践方法论](Chapter11/Chapter11.md)
 

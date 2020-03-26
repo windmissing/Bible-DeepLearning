@@ -1,63 +1,3 @@
-<!--sec data-title="something" data-id="section0" data-show=false ces-->
-
-Dropout是一类正则化方法，计算方便，功能强大。  
-
-# 原理
-
-Bagging集成方法涉及训练多个模型，需要大量的时间和空间。  
-Dropout提供**廉价**的Bagging近似，能够训练和评估指数级数量的神经网络。  
-
-Dropout集成的是所有“从基础网络除去非输出单元后形成的子网络”。  
-![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/12.png) 
-
-# dropout和Bagging的区别
-
-1. 在Bagging的情况下，所有模型都是独立的。
-在Dropout的情况下，所有模型共享参数，其中每个模型继承父神经网络参数的不同子集。  
-2. 在Bagging的情况下，每一个模型在其相应训练集上训练到收敛。
-在Dropout的情况下，通常大部分模型都没有显式地被训练。取而代之的是，在单个步骤中我们训练一小部分的子网络，参数共享会使得剩余的子网络也能有好的参数设定。  
-
-# 训练
-
-每次随机从小批量中加载一个样本。  
-将样本随机应用于dropout集中的一个子网络。  
-[?]掩码那一段没看懂。  
-
-# 预测
-
-每个模型i产生一个概率分布$$p^{(i)}(y|x)$$  
-集成测试由这些分布的[几何平均](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E5%B9%B3%E5%9D%87%E6%95%B0/5557084?fr=aladdin)给出。  
-[?]后面一大坨证明“为什么使用几何平均”和“怎样使用几何平均”。  
-
-# 优点与缺点
-
-优点：  
-1. 计算方便。  
-2. 不怎么限制适用的模型或训练过程。  
-
-缺点：  
-1. 减少了模型的有效容量。更大的模型和更多训练算法的迭代次数来弥补。  
-2. 当数据集很大（过拟合不严重）时，dropout的效果不明显。  
-
-[?]后面一大坨评论没看懂。  
-
-<!--endsec-->
--------------------------
-
-Dropout提供了正则化一大类模型的方法，计算方便但功能强大。  
-
-> **[warning]**
-> [?] dropout能正则化“一大类模型”是什么意思？其他正则化方法都能正则化多种模型。
-
-为了有个初步的近似感受，我们可以认为Dropout是集成大量深层神经网络的实用Bagging方法。  
-> **[success]**
-> Bagging：[link](https://windmising.gitbook.io/bible-deeplearning/0introduction-1/11bagging)
-
-Bagging涉及训练多个模型，并在每个测试样本上评估多个模型。
-当每个模型都是一个很大的神经网络时，这似乎是不切实际的，因为训练和评估这样的网络需要花费很多运行时间和内存。
-通常我们只能集成五至十个神经网络，如Szegedy-et-al-arxiv2014集成了六个神经网络赢得ILSVRC，超过这个数量就会迅速变得难以处理。
-Dropout提供了一种廉价的Bagging集成近似，能够训练和评估指数级数量的神经网络。
-
 # 什么是dropout  
 
 ## 怎样生成子模型  
@@ -97,11 +37,17 @@ Dropout的目标是在指数级数量的神经网络上近似这个过程。
 输入样本的函数：与输入样本有关的参数，不同样本这个值就不同。  
 这句话想表达的是：采样概率与迭代状态无关，与输入参数无关，是一开始就确定好的。  
 
-通常在每一个小批量训练的神经网络中，一个输入单元被包括的概率为$$0.8$$，一个隐藏单元被包括的概率为$$0.5$$。
+通常在每一个小批量训练的神经网络中，一个输入单元被包括的概率为$$0.8$$，一个隐藏单元被包括的概率为$0.5$。
 然后，我们运行和之前一样的前向传播、反向传播以及学习更新。
 图7.7说明了在Dropout下的前向传播。  
 
 ## 怎样训练子模型  
+
+> **[success] dropout和Bagging的区别**
+（1）在Bagging的情况下，所有模型都是独立的。
+在Dropout的情况下，所有模型共享参数，其中每个模型继承父神经网络参数的不同子集。  
+（2）在Bagging的情况下，每一个模型在其相应训练集上训练到收敛。
+在Dropout的情况下，通常大部分模型都没有显式地被训练。取而代之的是，在单个步骤中我们训练一小部分的子网络，参数共享会使得剩余的子网络也能有好的参数设定。  
 
 Dropout训练与Bagging训练不太一样。
 在Bagging的情况下，所有模型都是独立的。
@@ -142,7 +88,7 @@ $$
 并不是简单粗暴的最终结果投票。每个模型都直接产生它认为的最终结果，然后选择最终结果中出现次数最多的。不是这样的。  
 实际上每个模型不直接给出各自最终结果，而是给出它对所有结果的概率预测。由集成模型根据每个模型的概率分布计算出最终的概率分布，然后得到最终结果。  
 图：  
-![](assets/images/Chapter7/5.png)  
+![](/assets/images/Chapter7/5.png)  
 例如有三个模型，分别对某一个样本的预测分布与结果如下：   
 $$
 \begin{aligned}
@@ -153,7 +99,8 @@ model C && 0.99 && 0.01 && True  \\
 average model && \frac{1.97}{3} && \frac{1.03}{3} && True
 \end{aligned}
 $$
-如果直接对结果做统计，最终结果是False。  
+
+> 如果直接对结果做统计，最终结果是False。  
 如果对分布求算法平均， 再求最终结果，则应该是True。  
 
 在Dropout的情况下，通过掩码 $$\mu$$定义每个子模型的概率分布$$p(y \mid x, \mu)$$。  
@@ -190,8 +137,8 @@ $$
 然而，一个更好的方法能不错地近似整个集成的预测，且只需一个前向传播的代价。
 要做到这一点，我们改用集成成员预测分布的几何平均而不是算术平均。  
 > **[success]**  
-> 几何平均：$average = \frac{1}{4}(a+b+c+d)$  
-> 算术平均：$average = \sqrt[4](abcd)$
+> 算术平均：$average = \frac{1}{4}(a+b+c+d)$  
+> [几何平均](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E5%B9%B3%E5%9D%87%E6%95%B0/5557084?fr=aladdin)：$average = \sqrt[4](abcd)$
 
 WardeFarley提出的论点和经验证据表明，在这个情况下几何平均与算术平均表现得差不多。  
 > **[warning]** [?] 这个情况下是指什么？  
@@ -205,7 +152,7 @@ WardeFarley提出的论点和经验证据表明，在这个情况下几何平均
 
 $$
 \begin{aligned}
-\tilde{p}_{\text{ensemble}}(y \mid x) = \sqrt[2^d]{\prod_{\mu} p(y \mid x, \mu)} && （7.54）
+\tilde{p}_{\text{ensemble}}(y \mid x) = \sqrt[2^d]{\prod_{\mu} p(y \mid x, \mu)} && (7.54)
 \end{aligned}
 $$
 
@@ -225,7 +172,7 @@ $$
 $$
 \begin{aligned}
 p_{\text{ensemble}}(y \mid x)  = \frac{\tilde{p}_{\text{ensemble}}(y \mid x)}
- {\sum_{y'}\tilde{p}_{\text{ensemble}}(y' \mid x) }    && （7.55）
+ {\sum_{y'}\tilde{p}_{\text{ensemble}}(y' \mid x) }    && (7.55)
 \end{aligned}
 $$
 
@@ -329,9 +276,9 @@ $$
 $$
 \begin{aligned}
 \tilde{P}_{\text{ensemble}}(y=y \mid v) &\propto 
-\sqrt[2^n]{\prod_{d \in \{0,1\}^n} \exp (W_{y,:}^\top(d \odot v) + b_y)} && （7.64）\\
-& = \exp \Bigg(\frac{1}{2^n} \sum_{d \in \{0,1\}^n} W_{y,;}^\top(d \odot v) + b_y \Bigg)  && （7.65）\\
-& = \exp \Big(\frac{1}{2}W_{y,:}^\top v + b_y \Big)  && （7.66）
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} \exp (W_{y,:}^\top(d \odot v) + b_y)} && (7.64)\\
+& = \exp \Bigg(\frac{1}{2^n} \sum_{d \in \{0,1\}^n} W_{y,;}^\top(d \odot v) + b_y \Bigg)  && (7.65)\\
+& = \exp \Big(\frac{1}{2}W_{y,:}^\top v + b_y \Big)  && (7.66)
 \end{aligned}
 $$
 
