@@ -29,4 +29,6 @@
         * [8.3.2 动量](Chapter8/3BasicAlgorithms/2Momentum.md)
         * [8.3.3 Nesterov 动量](Chapter8/3BasicAlgorithms/3Nesterov.md)
     * 8.5 自适应学习率算法
-        * [8.5.1 AdaGrad](Chapter8/5AdaptiveLearningRates/AdaGrad.md)
+        * [8.5.1 AdaGrad](Chapter8/5AdaptiveLearningRates/1AdaGrad.md)
+        * [8.5.2 RMSProp](Chapter8/5AdaptiveLearningRates/2RMSProp.md)
+* [第9章 卷积网络](Chapter9/0cnn.md)
