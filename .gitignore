@@ -5,3 +5,4 @@ __pycache__
 node_modules
 _book
 _build
+.DS_Store
