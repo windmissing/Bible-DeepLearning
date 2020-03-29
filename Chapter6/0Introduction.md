@@ -22,7 +22,7 @@ f(x)：由模型得到的函数。
 # 从线性模型开始
 
 以逻辑回归、线性回归为代表的线性模型  
-优点：无论是通过[闭解形式](https://windmising.gitbook.io/mathematics-basic-for-ml/gao-deng-shu-xue/function)还是使用凸优化，它们都能高效且可靠地拟合。  
+优点：无论是通过[闭解形式](https://windmising.gitbook.io/mathematics-basic-for-ml/gao-deng-shu-xue/function)还是使用[凸优化](https://windmising.gitbook.io/mathematics-basic-for-ml/gao-deng-shu-xue/convex)，它们都能高效且可靠地拟合。  
 缺点：无法理解任何两个输入变量间的相互作用。  
 
 改进方法：不把线性模型用于x 本身，而是用在一个变换后的输入ϕ(x) 上。  
