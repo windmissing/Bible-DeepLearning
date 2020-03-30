@@ -33,3 +33,6 @@
         * [8.5.2 RMSProp](Chapter8/5AdaptiveLearningRates/2RMSProp.md)
         * [8.5.3 Adam](Chapter8/5AdaptiveLearningRates/3Adam.md)
 * [第9章 卷积网络](Chapter9/0cnn.md)
+    * [9.1 卷积运算](Chapter9/1Convolution.md)
+    * [9.3 池化](Chapter9/Pooling.md)
+    * [9.5 基本卷积函数的变体](Chapter9/Variant.md)
