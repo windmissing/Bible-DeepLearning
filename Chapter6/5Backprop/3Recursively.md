@@ -110,3 +110,146 @@ $$
 但避免重复计算，减少了运行时间。  
 
 ![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/5.png)  
+
+-------------------------------------------------------
+
+使用链式规则，我们可以直接写出某个标量关于计算图中任何产生该标量的节点的梯度的代数表达式。
+然而，实际在计算机中计算该表达式时会引入一些额外的考虑。
+
+具体来说，许多子表达式可能在梯度的整个表达式中重复若干次。
+任何计算梯度的程序都需要选择是存储这些子表达式还是重新计算它们几次。
+图6.9给出了一个例子来说明这些重复的子表达式是如何出现的。
+在某些情况下，计算两次相同的子表达式纯粹是浪费。
+在复杂图中，可能存在指数多的这种计算上的浪费，使得简单的链式法则不可实现。
+在其他情况下，计算两次相同的子表达式可能是以较高的运行时间为代价来减少内存开销的有效手段。  
+> **[success] 基于计算图前向传播计算偏微分**  
+> ![](/assets/images/Chapter6/3.png)  
+> 假设要根据上图计算b对e的偏微分$\frac{\partial e}{\partial b}$，可以这样做：  
+> （1）依次求出b、c、d、e上的值。  
+> （2）依次求出b到e的链路上任意两个相邻结点的偏微分
+>  $\frac{\partial e}{\partial c}$、$\frac{\partial e}{\partial d}$、$\frac{\partial c}{\partial b}$、$\frac{\partial d}{\partial b}$   
+>  (3) 令b上的值为1，记作{b}（**不是b的值**）、代表b对该结点的微分。  
+>  (4) 用[相乘和相加的计算方法](TODO:6.5.2)计算{c}、{d}、{e}  
+>  (5) {e}就是要求的b对e的微分。  
+> ![](/assets/images/Chapter6/4.png)
+>  假如现在要求a对e的偏微分$\frac{\partial e}{\partial a}$，可以继续使用上面过程中（1）、（2）的结果，然后令{a}=1，重新计算出{e}  
+> ![](/assets/images/Chapter6/5.png)
+>  在分别求$\frac{\partial e}{\partial a}$和$\frac{\partial e}{\partial b}$的过程中，虽然重复使用了（1）、（2）的结果，  
+>  但分别计算{e}时仍存在重复的计算，比如由{c}计算{e}的这一步。  
+>  在实际的前馈网络求参数偏导的过程中，一般都是这种情况，偏导的分子相同，分母不同。  
+>  如果所有参数偏导的计算都使用以上过程，都产生大量的重复计算。  
+
+我们首先给出一个版本的反向传播算法，它指明了梯度的直接计算方式（算法6.2以及相关的正向计算的算法6.1），按照它实际完成的顺序并且递归地使用链式法则。  
+> **[success] 基于计算图反向传播计算偏微分**   
+> （1）依次求出b、c、d、e上的值。  
+> （2）依次求出b到e的链路上任意两个相邻结点的偏微分
+>  $\frac{\partial e}{\partial c}$、$\frac{\partial e}{\partial d}$、$\frac{\partial c}{\partial b}$、$\frac{\partial d}{\partial b}$   
+>  (3) 令e上的值为1，记作{e}（**不是e的值**）、代表该结点对e的微分。 
+>  (4) 用[相乘和相加的计算方法](TODO:6.5.2)计算{c}、{d}、{b}、  
+>  (5) {e}就是要求的b对e的微分。  
+
+我们可以直接执行这些计算或者将算法的描述视为用于计算反向传播的计算图的符号表示。
+然而，这些公式并没有明确地操作和构造用于计算梯度的符号图。
+这些公式将在后面的第6.5.6节和算法6.5中给出，其中我们还推广到了包含任意张量的节点。
+
+首先考虑描述如何计算单个标量$u^{(n)}$（例如训练样本上的损失函数）的计算图。
+我们想要计算这个标量对$n_i$个输入节点$u^{(1)}$到$u^{(n_i)}$的梯度。
+换句话说，我们希望对所有的$i\in\{1,2,\ldots,n_i\}$计算$\frac{\partial u^{(n)}}{\partial u^{(i)}}$。
+在使用反向传播计算梯度来实现参数的梯度下降时，$u^{(n)}$将对应单个或者小批量实例的代价函数，而$u^{(1)}$到$u^{(n_i)}$则对应于模型的参数。
+
+我们假设图的节点已经以一种特殊的方式被排序，使得我们可以一个接一个地计算他们的输出，从$u^{(n_i+1)}$开始，一直上升到$u^{(n)}$。
+如\alg?中所定义的，每个节点$u^{(i)}$与操作$f^{(i)}$相关联，并且通过对以下函数求值来得到
+\begin{equation}
+  u^{(i)} = f(\SetA^{(i)}),
+\end{equation}
+其中$\SetA^{(i)}$是$u^{(i)}$所有父节点的集合。
+<!-- % alg 6.1 -->
+\begin{algorithm}[htbp]
+\caption{计算将$n_i$个输入$u^{(1)}$到$u^{(n_i)}$映射到一个输出$u^{(n)}$的程序。
+这定义了一个计算图，其中每个节点通过将函数$f^{(i)}$应用到变量集合$\SetA^{(i)}$上来计算$u^{(i)}$的值，$\SetA^{(i)}$包含先前节点$u^{(j)}$的值满足$j<i$且$j \in Pa(u^{(i)})$。
+计算图的输入是向量$\Vx$，并且被分配给前$n_i$个节点$u^{(1)}$到$u^{(n_i)}$。计算图的输出可以从最后一个（输出）节点$u^{(n)}$读出。}
+\begin{algorithmic}
+\FOR {$i=1, \ldots, n_i$}
+ \STATE $u^{(i)} \leftarrow x_i$
+\ENDFOR
+\FOR {$i=n_i+1, \ldots, n$}
+ \STATE $\SetA^{(i)} \leftarrow \{ u^{(j)} \mid j \in Pa(u^{(i)}) \}$
+ \STATE $u^{(i)} \leftarrow f^{(i)}(\SetA^{(i)})$
+\ENDFOR
+\STATE {\bf return} $u^{(n)}$
+\end{algorithmic}
+\end{algorithm}
+
+<!-- % -- 202 -- -->
+
+该算法详细说明了前向传播的计算，我们可以将其放入图$\CalG$中。
+为了执行反向传播，我们可以构造一个依赖于$\CalG$并添加额外一组节点的计算图。
+这形成了一个子图$\CalB$，它的每个节点都是$\CalG$的节点。
+$\CalB$中的计算和$\CalG$中的计算顺序完全相反，而且$\CalB$中的每个节点计算导数$\frac{\partial u^{(n)}}{\partial u^{(i)}}$与前向图中的节点$u^{(i)}$相关联。
+这通过对标量输出$u^{(n)}$使用链式法则来完成：
+\begin{equation}
+  \frac{\partial u^{(n)}}{\partial u^{(j)}} = \sum_{i:j \in Pa(u^{(i)})} \frac{\partial u^{(n)} }{ \partial u^{(i)} } \frac{ \partial u^{(i)} }{ \partial u^{(j)} }
+\end{equation}
+这在\alg?中详细说明。
+子图$\CalB$恰好包含每一条对应着$\CalG$中从节点$u^{(j)}$到节点$u^{(i)}$的边。
+从$u^{(j)}$到$u^{(i)}$的边对应着计算$\frac{\partial u^{(i)}}{\partial u^{(j)}}$。
+另外，对于每个节点都要执行一个内积，内积的一个因子是对于$u^{j}$子节点$u^{(i)}$的已经计算的梯度，另一个因子是对于相同子节点$u^{(i)}$ 的偏导数$\frac{\partial u^{(i)}}{\partial u^{(j)}}$组成的向量。
+总而言之，执行反向传播所需的计算量与$\CalG$中的边的数量成比例，其中每条边的计算包括计算偏导数（节点关于它的一个父节点的偏导数）以及执行一次乘法和一次加法。
+下面，我们将此分析推广到张量值节点，这只是在同一节点中对多个标量值进行分组并能够更高效地实现。
+<!-- % fig 6.9 -->
+\begin{figure}[!htb]
+\ifOpenSource
+\centerline{\includegraphics{figure.pdf}}
+\else
+\centerline{\includegraphics{Chapter6/figures/repeated_subexpression}}
+\fi
+\captionsetup{singlelinecheck=off}
+\caption[.]{
+计算梯度时导致重复子表达式的计算图。
+令$w \in \SetR$为图的输入。
+我们对链中的每一步使用相同的操作函数$f: \SetR \to \SetR$，这样$x=f(w), y=f(x), z=f(y)$。
+为了计算$\frac{\partial z}{\partial w}$，我们应用\eqn?得到：
+\begin{align}
+& \frac{\partial z}{\partial w}\\
+=& \frac{\partial z}{\partial y} \frac{\partial y}{\partial x} \frac{\partial x}{\partial w}\\
+=& f'(y)f'(x)f'(w)\\ 
+=& f'(f(f(w))) f'(f(w)) f'(w). 
+\end{align}
+\eqn?建议我们采用的实现方式是，仅计算$f(w)$的值一次并将它存储在变量$x$中。
+这是反向传播算法所采用的方法。
+\eqn?提出了一种替代方法，其中子表达式$f(w)$出现了不止一次。
+在替代方法中，每次只在需要时重新计算$f(w)$。
+当存储这些表达式的值所需的存储较少时，\eqn?的反向传播方法显然是较优的，因为它减少了运行时间。
+然而，\eqn?也是链式法则的有效实现，并且当存储受限时它是有用的。}
+\end{figure}
+
+<!-- % -- 203 -- -->
+
+反向传播算法被设计为减少公共子表达式的数量而不考虑存储的开销。
+具体来说，它大约对图中的每个节点执行一个~Jacobian~乘积。
+这可以从\alg?中看出，反向传播算法访问了图中的节点$u^{(j)}$到节点$u^{(i)}$的每条边一次，以获得相关的偏导数$\frac{\partial u^{(i)}}{\partial u^{(j)}}$。
+反向传播因此避免了重复子表达式的指数爆炸。
+然而，其他算法可能通过对计算图进行简化来避免更多的子表达式，或者也可能通过重新计算而不是存储这些子表达式来节省内存。
+我们将在描述完反向传播算法本身后再重新审视这些想法。
+<!-- % alg 6.2 -->
+\begin{algorithm}[htb!]
+\caption{反向传播算法的简化版本，用于计算$u^{(n)}$关于图中变量的导数。
+这个示例旨在通过演示所有变量都是标量的简化情况来进一步理解反向传播算法，这里我们希望计算关于$u^{(1)},\ldots,u^{(n_i)}$的导数。
+这个简化版本计算了关于图中所有节点的导数。
+假定与每条边相关联的偏导数计算需要恒定的时间的话，该算法的计算成本与图中边的数量成比例。
+这与前向传播的计算次数具有相同的阶。
+每个$\frac{\partial u^{(i)}}{\partial u^{(j)}}$是$u^{(i)}$的父节点$u^{(j)}$的函数，从而将前向图的节点链接到反向传播图中添加的节点。}
+\begin{algorithmic}
+\STATE 运行前向传播 (对于此例是\alg?) 获得网络的激活。
+\STATE 初始化 {\tt grad\_table}，用于存储计算好的导数的数据结构。 ${\tt grad\_table}[u^{(i)}]$将存储$\frac{\partial u^{(n)}}{\partial u^{(i)}}$计算好的值。
+\STATE ${\tt grad\_table}[u^{(n)}] \leftarrow 1$
+\FOR {$j=n-1$ down to 1}
+\STATE 下一行使用存储的值计算 $\frac{\partial u^{(n)}}{\partial u^{(j)}} =
+  \sum_{i: j \in Pa(u^{(i)})} \frac{\partial u^{(n)}}{\partial u^{(i)}} \frac{\partial u^{(i)}}{\partial u^{(j)}}$：
+\STATE ${\tt grad\_table}[ u^{(j)}] \leftarrow 
+\sum_{i: j \in Pa(u^{(i)})} {\tt grad\_table}[u^{(i)}]
+\frac{\partial u^{(i)}}{\partial u^{(j)}}$
+\ENDFOR
+\STATE {\bf return} $\{ {\tt grad\_table}[ u^{(i)}] \mid i=1, \dots, n_i \} $
+\end{algorithmic}
+\end{algorithm}
