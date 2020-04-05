@@ -198,7 +198,7 @@ g(G, V, s)_{i, j, k, l} = \frac{\partial}{\partial K_{i, j, k, l}} J(V, K) = \su
 
 如果这一层不是网络的底层，我们需要对$V$求梯度来使得误差进一步反向传播。
 我们可以使用如下的函数
-\begin{eqnarray}
+\begin{aligned}
 h(K, G, s)_{i, j, k} &=& \frac{\partial }{\partial V_{i, j, k}} J(V, K)\\
 &=& \sum_{\substack{l, m\\
                   \text{s.t.}\\
@@ -206,7 +206,7 @@ h(K, G, s)_{i, j, k} &=& \frac{\partial }{\partial V_{i, j, k}} J(V, K)\\
                                                             \text{s.t.}\\
                                                             (n-1)\times s +p = k}}
             \sum_q K_{q,i,m,p} G_{q, l, n}.
-\end{eqnarray}
+\end{aligned}
 
 \chap?描述的自编码器网络，是一些被训练成把输入拷贝到输出的前馈网络。
 一个简单的例子是\,PCA\,算法，将输入$\Vx$拷贝到一个近似的重构值$\Vr$，通过函数${\MW}^\top \MW \Vx$来实现。
