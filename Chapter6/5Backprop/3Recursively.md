@@ -61,8 +61,10 @@ $F^l$就是$u^l$的输出。
 这里的$u^{(i)}$也取第二种含义，即$u^{(n)}$的输出。  
 我理解是要求代价函数对神经网络中的每一个unit的输出的偏导。或者说每一个unit的输出的变化对cost的变化的影响。    
 
-**后面我将使用$\frac{\partial u^L}{\partial u^l_i}$来代表代价函数对第l层第i个神经元的结果的偏导。**  
-![](http://windmissing.github.io/images_for_gitbook/Bible-DeepLearning/5.png)  
+**后面我将使用$\frac{\partial u^L}{\partial u^l_i}$来代表代价函数对第l层第i个神经元的结果的偏导。**   
+
+----------------------------------
+
 {% endreveal %}
 
 使用链式规则，我们可以直接写出某个标量关于计算图中任何产生该标量的节点的梯度的代数表达式。
