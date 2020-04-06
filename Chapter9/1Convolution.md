@@ -121,3 +121,25 @@ $$
 
 典型的卷积神经网络为了更有效地处理大规模输入，确实使用了一些专门化的技巧，但这些在理论分析方面并不是严格必要的。
 
+------------------------
+
+> **[success]**  
+> 每个kernel定义一个小的矩阵用于侦测一个patten。  
+> 图像一块同样大小的区域与kernel的内积，得到一个数值。  
+> 全部数值组合到一起，是一个小一点的矩阵，称为feature map。  
+> 矩阵中的值越大，说明原图像对应位置与patten越相似。  
+> 每个filter会得到一个feature map。  
+> 如果原始图像是彩色的，那么原始图像是3维的张图，kernel也是3维的张量。  
+> **卷积网络层与全链接网络层的区别**：  
+> （1）full connect -> 只连接部分input  
+> ![](/assets/images/Chapter9/3.png)  
+> （2）每个连接使用不同参数 -> 参数共享  
+> ![](/assets/images/Chapter9/4.png)  
+> flatten：  
+> ![](/assets/images/Chapter9/5.png)  
+
+
+
+
+
+
