@@ -45,7 +45,7 @@ $$
 > **[success]**  
 > 公式6.46可以看作是公式6.44的高维形式。  
 > $\frac{dz}{dy}$中的z是标量，y是向量，向量对标量的偏导仍是向量，记做$\nabla_{y} z$  
-> $\frac{dy}{dx}$中的y是n维向量，x是m维向量，向量对向量的偏导是[Jacobian矩阵](https://windmissing.github.io/mathematics_basic_for_ML/LinearAlgebra/special_matrix.html)，矩阵大小为n\times m$。  
+> $\frac{dy}{dx}$中的y是n维向量，x是m维向量，向量对向量的偏导是[Jacobian矩阵](https://windmissing.github.io/mathematics_basic_for_ML/LinearAlgebra/special_matrix.html)，矩阵大小为$n\times m$。  
 
 从这里我们看到，变量$x$的梯度可以通过Jacobian矩阵$\frac{\partial y}{\partial x}$和梯度$\nabla_{y} z$相乘来得到。
 反向传播算法由图中每一个这样的Jacobian梯度的乘积操作所组成。

@@ -2,7 +2,7 @@
 |---|---|---|
 |损失函数|$L(\hat y, y)$||
 |总代价|J|$J= L(\hat y, y) + \lambda \Omega(\theta)$|
-|正则项|$\Omega(\theta)|\theta包含所有参数（权重和偏置$|
+|正则项|$\Omega(\theta)$|$\theta$包含所有参数（权重和偏置|
 |模型的权重矩阵|$W^l$||
 |模型的偏置参数|$b^l$||
 |程序的输出|x||
@@ -111,6 +111,7 @@ $$
 计算出来的是一个矩阵，称为[Jacobian矩阵](https://windmising.gitbook.io/mathematics-basic-for-ml/xian-xing-dai-shu/special_matrix)。  
 
 
+
 {% reveal %}
 ```
 {% raw %}
@@ -138,7 +139,6 @@ $$
 {% endraw %}
 ```
 {% endreveal %}
-
 算法6.3和算法6.4是简单而直观的演示。
 然而，它们专门针对特定的问题。
 
