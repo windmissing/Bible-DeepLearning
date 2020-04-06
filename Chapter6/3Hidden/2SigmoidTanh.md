@@ -39,4 +39,17 @@ sigmoid激活函数在除了前馈网络以外的情景中更为常见。
 > **[warning]** [?]一堆还没学到的术语。  
 循环网络、自编码器、额外的要求、不能使用分段线性激活函数  
 
+--------------------------------------------
 
+
+> **[success] 问：什么是梯度消失问题？**   
+> 答：![](/assets/images/Chapter6/13.png)  
+> 网络靠前位置和靠后位置的梯度相差很大。（左边是前，右边是后）。  
+> 前面由于学得慢，参数还处于随机状态，后面部分就已经趋于收敛了。此时的收敛不是真正的收敛，因此它是基于随机值算出来的收敛值。  
+> **问：为什么靠前位置的梯度会消失？**  
+> 答：从直觉上讲，$\frac{\partial C}{\partial w}$代表w的变化$\Delta w$对代价函数的变化$\Delta C$的影响程度。即$\frac{\partial C}{\partial w} = \text{?} \frac{\partial \Delta C}{\partial \Delta w}$   
+> 每一层的$\Delta w$都要经过后面的很多层才会影响到最终的$\Delta C$。  
+> 由于sigmoid激活函数的特征，$\Delta w$每经过一层，其影响力都要减弱一点，到了最后对$\Delta C$的影响就很小了。  
+> 对应的数学上的表现就是梯度消失。  
+> **问：怎么解决梯度消失问题？**  
+> 答：换一个激活函数。例如[ReLU函数](https://windmissing.github.io/Bible-DeepLearning/Chapter6/3Hidden/1ReLU.html)。  

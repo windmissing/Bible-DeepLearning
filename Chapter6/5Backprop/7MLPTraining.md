@@ -45,46 +45,50 @@ $\nabla_y C = [\frac{\partial C}{\partial y_1} \frac{\partial C}{\partial y_2} \
 > 预测结果为y。  
 > 交叉熵代价为$C = -\log y_r$，其中y来自预测结果，r来自真实结果  
 > 具体来说：  
-> $$
+$$
+\begin{aligned}
+\frac{\partial C}{\partial y_i} & = & -\frac{1}{y_r} && i=r \\
+& = & 0 && i \ne r
+\end{aligned}
+$$
 
 然而，为了使得这个例子更加真实，我们也包含一个正则项。
 总的代价函数为  
 $$
-\begin{equation}
+\begin{aligned}
   J = J_{\text{MLE}} + \lambda \left ( \sum_{i, j} \left (W_{i, j}^{(1)} \right )^2 + \sum_{i, j} \left (W_{i, j}^{(2)} \right)^2 \right )
-\end{equation}
+\end{aligned}
 $$
 
 包含了交叉熵和系数为$\lambda$的权重衰减项。
-它的计算图在\fig?中给出。
-<!-- % fig 6.11 -->
-\begin{figure}[!htb]
-\ifOpenSource
-\centerline{\includegraphics{figure.pdf}}
-\else
-\centerline{\includegraphics{Chapter6/figures/mlp_example}}
-\fi
-\caption{用于计算代价函数的计算图，这个代价函数是使用交叉熵损失以及权重衰减训练我们的单层MLP示例所产生的。}
-\end{figure}
+它的计算图在图6.11中给出。
+> **[success]** 网上找了不带正则化的计算图  
+> ![](/assets/images/Chapter6/10.png)  
+> 图中的上标1、2不是幂的意思。  
+> $\frac{\partial C}{\partial y}$在上面已经讲过  
+> $\frac{\partial y}{\partial z^{(2)}}$是一个Jacobian矩阵。i=j时，$\frac{\partial y_i}{\partial z_j^{(2)}}=$激活函数的偏导。$i \ne j$时偏导为0。（如果激活函数是softmax函数，这个矩阵就不是对角矩阵了）。  
+> $\frac{\partial z_i^{(i)}}{\partial a_j^{(1)}} = W_{ij}^2$  
+> $\frac{\partial z^{(2)}}{\partial W^{(2)}}$是一个三维的张量。i=j时，$\frac{\partial z_i^{(i)}}{\partial W_{jk}^{(2)}} = a_k^{(1)}$。$i \ne j$时偏导为0。  
+> ![](/assets/images/Chapter6/8.png)  
 
 这个示例的梯度计算图实在太大，以致绘制或者阅读都将是乏味的。
-这显示出了反向传播算法的优点之一，即它可以自动生成梯度，而这种计算对于软件工程师来说需要进行直观但冗长的手动推导。
+这显示出了反向传播算法的优点之一，即它可以自动生成梯度，而这种计算对于软件工程师来说需要进行直观但冗长的手动推导。  
+> **[warning]** 自动生成梯度？  
 
-我们可以通过观察\fig?中的正向传播图来粗略地描述反向传播算法的行为。
+我们可以通过观察图6.11中的正向传播图来粗略地描述反向传播算法的行为。
 为了训练，我们希望计算$\nabla_{W^{(1)}} J$和$\nabla_{W^{(2)}} J$。
 有两种不同的路径从$J$后退到权重：一条通过交叉熵代价，另一条通过权重衰减代价。
 权重衰减代价相对简单，它总是对$W^{(i)}$上的梯度贡献$2\lambda W^{(i)}$。
   
-<!-- % -- 212 -- -->
-  
 另一条通过交叉熵代价的路径稍微复杂一些。
-令$G$是由cross_entropy|操作提供的对未归一化对数概率$U^{(2)}$的梯度。
+令$G$是由cross_entropy操作提供的对未归一化对数概率$U^{(2)}$的梯度。
 反向传播算法现在需要探索两个不同的分支。
 在较短的分支上，它使用对矩阵乘法的第二个变量的反向传播规则，将$H^\top G$加到$W^{(2)}$的梯度上。
 另一条更长些的路径沿着网络逐步下降。
 首先，反向传播算法使用对矩阵乘法的第一个变量的反向传播规则，计算$\nabla_{H} J = GW^{(2)\top}$。
-接下来，relu|操作使用其反向传播规则对先前梯度的部分位置清零，这些位置对应着$U^{(1)}$中所有小于0的元素。记上述结果为$G'$。 
-反向传播算法的最后一步是使用对matmul|操作的第二个变量的反向传播规则，将$X^\top G'$加到$W^{(1)}$的梯度上。
+接下来，relu操作使用其反向传播规则对先前梯度的部分位置清零，这些位置对应着$U^{(1)}$中所有小于0的元素。记上述结果为$G'$。 
+反向传播算法的最后一步是使用对matmul操作的第二个变量的反向传播规则，将$X^\top G'$加到$W^{(1)}$的梯度上。  
+> **[warning]** 这一段没看懂？
 
 在计算了这些梯度以后，梯度下降算法或者其他优化算法所要做的就是使用这些梯度来更新参数。
 

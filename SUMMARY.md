@@ -23,6 +23,7 @@
         * [6.5.4 全连接MLP中的反向传播计算](Chapter6/5Backprop/4FullyConnectedMLP.md)
         * [6.5.5 符号到符号的导数](Chapter6/5Backprop/5Diveriation.md)
         * [6.5.6 一般化的反向传播](Chapter6/5Backprop/6-5-6.md)
+        * [6.5.7 实例：用于MLP 训练的反向传播](Chapter6/5Backprop/7MLPTraining.md)
 * [第7章 深度学习中的正则化](Chapter7/0Introduction.md)
     * [7.1 参数范数惩罚](Chapter7/1ParameterNormPenalties/0Introduction.md)
         * [7.1.1 L2参数正则化](Chapter7/1ParameterNormPenalties/1L2.md)

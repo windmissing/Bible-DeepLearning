@@ -3,7 +3,14 @@ Adam是另一种学习率自适应的优化算法，如算法8.7所示。
 在前述算法背景下，它也许最好被看作**结合了RMSProp和动量的具有一些重要区别的变种**。   
 > **[success]**  
 （1）将动量应用于缩放后的梯度。  
-（2）偏置修正，修正从原点初始化的一阶矩（动量项）和（非中心的）二阶矩的估计。 
+Adam = RMSProp + Momentum。  
+（2）偏置修正，修正从原点初始化的一阶矩（动量项）和（非中心的）二阶矩的估计。  
+$$
+\begin{aligned}
+\hat{s} \leftarrow \frac{s}{1-\rho_1^t} \\  
+\hat{r} \leftarrow \frac{r}{1-\rho_2^t}
+\end{aligned}
+$$
 
 　　  
 > **[warning]** 没有看出怎么结合动量变种？  
