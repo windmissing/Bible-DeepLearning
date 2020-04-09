@@ -44,3 +44,7 @@
     * [9.1 卷积运算](Chapter9/1Convolution.md)
     * [9.3 池化](Chapter9/Pooling.md)
     * [9.5 基本卷积函数的变体](Chapter9/Variant.md)
+* [第10章 序列建模：循环和递归网络](Chapter10/Introduction.md)
+    * [10.1 展开计算图](Chapter10/1Unfolding.md)
+    * [10.2 循环神经网络](Chapter10/2RNN/0RNN.md)
+    * [10.2.1 导师驱动过程和输出循环网络](Chapter10/2RNN/1TeacherForcing.md)
