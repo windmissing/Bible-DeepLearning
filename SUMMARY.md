@@ -48,3 +48,4 @@
     * [10.1 展开计算图](Chapter10/1Unfolding.md)
     * [10.2 循环神经网络](Chapter10/2RNN/0RNN.md)
     * [10.2.1 导师驱动过程和输出循环网络](Chapter10/2RNN/1TeacherForcing.md)
+    * [10.2.2 计算循环神经网络的梯度](Chapter10/2RNN/2BPTT.md)
