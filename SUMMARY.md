@@ -56,7 +56,7 @@
         * [10.2.4 基于上下文的RNN序列建模](Chapter10/2RNN/4.md)
     * [10.3 双向RNN](Chapter10/3Bidirectional.md)
     * [10.4 基于编码 - 解码的序列到序列架构](Chapter10/4EncoderDecoder.md)
-    * [10.5 深度循环网络](Chapter10/5.md)
+    * [10.5 深度循环网络](Chapter10/5Deep.md)
     * [10.6 递归神经网络](Chapter10/6.md)
     * [10.7 长期依赖的挑战](Chapter10/7.md)
     * [10.9 渗漏单元和其他多时间尺度的策略](Chapter10/9.md)
@@ -64,6 +64,6 @@
         * [10.10.1 LSTM](Chapter10/10Gate/1LSTM.md)
         * [10.10.2 其他门控RNN](Chapter10/10Gate/2OtherGates.md)
     * 10.11 优化长期依赖
-        * [10.11.1 梯度截断](Chapter10/11/1.md)
-        * [10.11.2 引导信息流的正则化](Chapter10/11/2.md)
+        * [10.11.1 梯度截断](Chapter10/11OptimizationLTD/1.md)
+        * [10.11.2 引导信息流的正则化](Chapter10/11OptimizationLTD/2.md)
     * [10.12 外显记忆](Chapter10/12.md)
