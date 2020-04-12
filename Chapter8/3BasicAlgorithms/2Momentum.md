@@ -78,14 +78,14 @@ $$
 \label{alg:momentum}
 \begin{algorithmic}
 \REQUIRE 学习率 $\epsilon$， 动量参数 $\alpha$
-\REQUIRE 初始参数 $\Vtheta$，初始速度 $\Vv$
+\REQUIRE 初始参数 $\theta$，初始速度 $v$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ \Vx^{(1)},\dots, \Vx^{(m)}\}$ 的小批量，对应目标为$\Vy^{(i)}$。
-    \STATE 计算梯度估计：$\Vg \leftarrow 
-         \frac{1}{m} \nabla_{\Vtheta} \sum_i L(f(\Vx^{(i)};\Vtheta),\Vy^{(i)})$
-    \STATE  计算速度更新：$\Vv \leftarrow \alpha \Vv - 
-    \epsilon \Vg$
-    \STATE 应用更新：$\Vtheta \leftarrow \Vtheta + \Vv$ 
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 计算梯度估计：$g \leftarrow 
+         \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$
+    \STATE  计算速度更新：$v \leftarrow \alpha v - 
+    \epsilon g$
+    \STATE 应用更新：$\theta \leftarrow \theta + v$ 
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}

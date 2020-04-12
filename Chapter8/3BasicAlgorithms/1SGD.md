@@ -13,12 +13,12 @@
 \label{alg:sgd}
 \begin{algorithmic}
 \REQUIRE 学习率 $\epsilon_k$
-\REQUIRE 初始参数$\Vtheta$
+\REQUIRE 初始参数$\theta$
 \WHILE{停止准则未满足}
-    \STATE 从训练集中采包含$m$个样本$\{ \Vx^{(1)},\dots, \Vx^{(m)}\}$ 的小批量，其中$\Vx^{(i)}$对应目标为$\Vy^{(i)}$。
-    \STATE 计算梯度估计： $\hat{\Vg} \leftarrow + 
-         \frac{1}{m} \nabla_{\Vtheta} \sum_i L(f(\Vx^{(i)};\Vtheta),\Vy^{(i)})$
-    \STATE 应用更新：$\Vtheta \leftarrow \Vtheta - \epsilon \hat{\Vg}$
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，其中$x^{(i)}$对应目标为$y^{(i)}$。
+    \STATE 计算梯度估计： $\hat{g} \leftarrow + 
+         \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$
+    \STATE 应用更新：$\theta \leftarrow \theta - \epsilon \hat{g}$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}

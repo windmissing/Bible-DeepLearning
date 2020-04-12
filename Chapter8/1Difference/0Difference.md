@@ -37,5 +37,5 @@ $$
 式（8.1）定义了训练集上的目标函数。
 通常，我们更希望最小化取自\emph{数据生成分布}\,$p_{\text{data}}$的期望，而不仅仅是有限训练集上的对应目标函数：
 \begin{aligned}
-    J^*(\theta) = \SetE_{(x, y) \sim p_\text{data}} L(f(x ;\theta),y). % ??
+    J^*(\theta) = \Bbb E_{(x, y) \sim p_\text{data}} L(f(x ;\theta),y). % ??
 \end{aligned}

@@ -37,15 +37,15 @@ Nesterov 动量中，梯度计算在施加当前速度之后。
 \label{alg:nesterov}
 \begin{algorithmic}
 \REQUIRE  学习率 $\epsilon$， 动量参数 $\alpha$
-\REQUIRE 初始参数 $\Vtheta$，初始速度 $\Vv$
+\REQUIRE 初始参数 $\theta$，初始速度 $v$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ \Vx^{(1)},\dots, \Vx^{(m)}\}$ 的小批量，对应目标为$\Vy^{(i)}$。
-    \STATE 应用临时更新： $\tilde{\Vtheta} \leftarrow \Vtheta  + \alpha \Vv$
-         \STATE 计算梯度（在临时点）：$\Vg \leftarrow 
-         \frac{1}{m} \nabla_{\tilde{\Vtheta}} \sum_i L(f(\Vx^{(i)};\tilde{\Vtheta}),\Vy^{(i)})$
-    \STATE 计算速度更新：$\Vv \leftarrow \alpha \Vv - 
-    \epsilon \Vg$
-    \STATE 应用更新：$\Vtheta \leftarrow \Vtheta + \Vv$ 
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 应用临时更新： $\tilde{\theta} \leftarrow \theta  + \alpha v$
+         \STATE 计算梯度（在临时点）：$g \leftarrow 
+         \frac{1}{m} \nabla_{\tilde{\theta}} \sum_i L(f(x^{(i)};\tilde{\theta}),y^{(i)})$
+    \STATE 计算速度更新：$v \leftarrow \alpha v - 
+    \epsilon g$
+    \STATE 应用更新：$\theta \leftarrow \theta + v$ 
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}

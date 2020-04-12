@@ -42,18 +42,18 @@ J = L(y_hat, y) + lambda * omega(theta)
 \caption{典型深度神经网络中的前向传播和代价函数的计算。
 损失函数$L(\hat{y}, y)$取决于输出$\hat{y}$和目标$y$（参考\sec?中损失函数的示例）。
 为了获得总代价$J$，损失函数可以加上正则项$\Omega(\theta)$，其中$\theta$包含所有参数（权重和偏置）。
-\alg?说明了如何计算$J$关于参数$\MW$和$b$的梯度。 为简单起见，该演示仅使用单个输入样本$x$。
+\alg?说明了如何计算$J$关于参数$W$和$b$的梯度。 为简单起见，该演示仅使用单个输入样本$x$。
 实际应用应该使用小批量。
 请参考\sec?以获得更加真实的演示。}
 \begin{algorithmic}
 \REQUIRE 网络深度， $l$
-\REQUIRE $\MW^{(i)}, i \in \{ 1, \dots, l\}$， 模型的权重矩阵
+\REQUIRE $W^{(i)}, i \in \{ 1, \dots, l\}$， 模型的权重矩阵
 \REQUIRE $b^{(i)}, i \in \{ 1, \dots, l\}$， 模型的偏置参数
 \REQUIRE $x$，程序的输入
 \REQUIRE $y$，目标输出
 \STATE $h^{(0)}=x$
 \FOR {$k=1, \ldots, l$}
- \STATE $a^{(k)} = b^{(k)} + \MW^{(k)} h^{(k-1)}$
+ \STATE $a^{(k)} = b^{(k)} + W^{(k)} h^{(k-1)}$
  \STATE $h^{(k)} = f(a^{(k)})$
 \ENDFOR
 \STATE $\hat{y} = h^{(l)}$
@@ -130,9 +130,9 @@ $$
   \STATE $g \leftarrow \nabla_{a^{(k)}} J = g \odot f'(a^{(k)})$
   \STATE 计算关于权重和偏置的梯度（如果需要的话，还要包括正则项）：
   \STATE $\nabla_{b^{(k)}} J = g + \lambda \nabla_{b^{(k)}} \Omega(\theta)$
-  \STATE $\nabla_{\MW^{(k)}} J = g \; h^{(k-1)\top} + \lambda \nabla_{\MW^{(k)}} \Omega(\theta)$
+  \STATE $\nabla_{W^{(k)}} J = g \; h^{(k-1)\top} + \lambda \nabla_{W^{(k)}} \Omega(\theta)$
   \STATE 关于下一更低层的隐藏层传播梯度：
-  \STATE $g \leftarrow \nabla_{h^{(k-1)}} J = \MW^{(k)\top} \; g$
+  \STATE $g \leftarrow \nabla_{h^{(k-1)}} J = W^{(k)\top} \; g$
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}

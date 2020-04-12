@@ -59,19 +59,19 @@ $t \leftarrow t + 1$
 \REQUIRE 矩估计的指数衰减速率， $\rho_1$ 和 $\rho_2$ 在区间 $[0, 1)$内。
 （建议默认为：分别为$0.9$ 和 $0.999$）
 \REQUIRE 用于数值稳定的小常数 $\delta$  （建议默认为： $10^{-8}$）
-\REQUIRE 初始参数 $\Vtheta$
-\STATE 初始化一阶和二阶矩变量 $\Vs = 0 $, $\Vr = 0$
+\REQUIRE 初始参数 $\theta$
+\STATE 初始化一阶和二阶矩变量 $s = 0 $, $r = 0$
 \STATE 初始化时间步 $t=0$ 
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ \Vx^{(1)},\dots, \Vx^{(m)}\}$ 的小批量，对应目标为$\Vy^{(i)}$。
-    \STATE 计算梯度：$\Vg \leftarrow \frac{1}{m} \nabla_{\Vtheta} \sum_i L(f(\Vx^{(i)};\Vtheta),\Vy^{(i)})$ 
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 计算梯度：$g \leftarrow \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE $t \leftarrow t + 1$
-    \STATE 更新有偏一阶矩估计： $\Vs \leftarrow \rho_1 \Vs + (1-\rho_1) \Vg$
-    \STATE 更新有偏二阶矩估计：$\Vr \leftarrow \rho_2 \Vr + (1-\rho_2) \Vg \odot \Vg$
-    \STATE 修正一阶矩的偏差：$\hat{\Vs} \leftarrow \frac{\Vs}{1-\rho_1^t}$
-    \STATE 修正二阶矩的偏差：$\hat{\Vr} \leftarrow \frac{\Vr}{1-\rho_2^t}$
-    \STATE 计算更新：$\Delta \Vtheta = - \epsilon \frac{\hat{\Vs}}{\sqrt{\hat{\Vr}} + \delta}$ \ \  （逐元素应用操作）
-    \STATE 应用更新：$\Vtheta \leftarrow \Vtheta + \Delta \Vtheta$
+    \STATE 更新有偏一阶矩估计： $s \leftarrow \rho_1 s + (1-\rho_1) g$
+    \STATE 更新有偏二阶矩估计：$r \leftarrow \rho_2 r + (1-\rho_2) g \odot g$
+    \STATE 修正一阶矩的偏差：$\hat{s} \leftarrow \frac{s}{1-\rho_1^t}$
+    \STATE 修正二阶矩的偏差：$\hat{r} \leftarrow \frac{r}{1-\rho_2^t}$
+    \STATE 计算更新：$\Delta \theta = - \epsilon \frac{\hat{s}}{\sqrt{\hat{r}} + \delta}$ \ \  （逐元素应用操作）
+    \STATE 应用更新：$\theta \leftarrow \theta + \Delta \theta$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}

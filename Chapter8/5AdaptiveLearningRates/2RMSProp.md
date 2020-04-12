@@ -51,18 +51,18 @@ Nesterov + RMSProp：RMSProp用于深度神经网络。而Nesterov对SGD没有�
 \label{alg:rms_prop}
 \begin{algorithmic}
 \REQUIRE 全局学习率 $\epsilon$，衰减速率$\rho$
-\REQUIRE  初始参数$\Vtheta$
+\REQUIRE  初始参数$\theta$
 \REQUIRE 小常数$\delta$，通常设为$10^{-6}$（用于被小数除时的数值稳定）
-\STATE 初始化累积变量 $\Vr = 0$
+\STATE 初始化累积变量 $r = 0$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ \Vx^{(1)},\dots, \Vx^{(m)}\}$ 的小批量，对应目标为$\Vy^{(i)}$。
-    \STATE 计算梯度：$\Vg \leftarrow  
-         \frac{1}{m} \nabla_{\Vtheta} \sum_i L(f(\Vx^{(i)};\Vtheta),\Vy^{(i)})$ 
-    \STATE 累积平方梯度：$\Vr \leftarrow \rho
-    \Vr + (1-\rho) \Vg \odot \Vg$
-    \STATE 计算参数更新：$\Delta \Vtheta =
-    -\frac{\epsilon}{\sqrt{\delta + \Vr}} \odot \Vg$  \ \  ($\frac{1}{\sqrt{\delta + \Vr}}$ 逐元素应用)
-    \STATE 应用更新：$\Vtheta \leftarrow \Vtheta + \Delta \Vtheta$
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 计算梯度：$g \leftarrow  
+         \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
+    \STATE 累积平方梯度：$r \leftarrow \rho
+    r + (1-\rho) g \odot g$
+    \STATE 计算参数更新：$\Delta \theta =
+    -\frac{\epsilon}{\sqrt{\delta + r}} \odot g$  \ \  ($\frac{1}{\sqrt{\delta + r}}$ 逐元素应用)
+    \STATE 应用更新：$\theta \leftarrow \theta + \Delta \theta$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}
@@ -72,18 +72,18 @@ Nesterov + RMSProp：RMSProp用于深度神经网络。而Nesterov对SGD没有�
 \label{alg:rms_nesterov}
 \begin{algorithmic}
 \REQUIRE 全局学习率 $\epsilon$，衰减速率$\rho$， 动量系数$\alpha$
-\REQUIRE 初始参数$\Vtheta$，初始参数$\Vv$
-\STATE 初始化累积变量 $\Vr = 0$
+\REQUIRE 初始参数$\theta$，初始参数$v$
+\STATE 初始化累积变量 $r = 0$
 \WHILE{没有达到停止准则} % NOTE: do not capitalize the condition
-    \STATE 从训练集中采包含$m$个样本$\{ \Vx^{(1)},\dots, \Vx^{(m)}\}$ 的小批量，对应目标为$\Vy^{(i)}$。
-    \STATE 计算临时更新：$\tilde{\Vtheta} \leftarrow \Vtheta + \alpha \Vv$
-    \STATE 计算梯度：$\Vg \leftarrow  
-         \frac{1}{m} \nabla_{\tilde{\Vtheta}} \sum_i L(f(\Vx^{(i)};\tilde{\Vtheta}),\Vy^{(i)})$ 
-    \STATE  累积梯度：$\Vr \leftarrow \rho
-    \Vr + (1-\rho) \Vg \odot \Vg$
-    \STATE  计算速度更新：$\Vv \leftarrow \alpha \Vv
-    -\frac{\epsilon}{\sqrt{\Vr}} \odot \Vg$ \ \  ($\frac{1}{\sqrt{\Vr}}$ 逐元素应用)
-    \STATE 应用更新：$\Vtheta \leftarrow \Vtheta + \Vv$
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 计算临时更新：$\tilde{\theta} \leftarrow \theta + \alpha v$
+    \STATE 计算梯度：$g \leftarrow  
+         \frac{1}{m} \nabla_{\tilde{\theta}} \sum_i L(f(x^{(i)};\tilde{\theta}),y^{(i)})$ 
+    \STATE  累积梯度：$r \leftarrow \rho
+    r + (1-\rho) g \odot g$
+    \STATE  计算速度更新：$v \leftarrow \alpha v
+    -\frac{\epsilon}{\sqrt{r}} \odot g$ \ \  ($\frac{1}{\sqrt{r}}$ 逐元素应用)
+    \STATE 应用更新：$\theta \leftarrow \theta + v$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}

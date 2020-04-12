@@ -97,7 +97,7 @@
 \centerline{\includegraphics{Chapter7/figures/learning_curve_color}}
 \fi
 \caption{学习曲线显示负对数似然损失如何随时间变化（表示为遍历数据集的训练迭代数，或轮数）。
-在这个例子中，我们在MNIST上训练了一个~maxout~网络。
+在这个例子中，我们在MNIST上训练了一个maxout网络。
 我们可以观察到训练目标随时间持续减小，但验证集上的平均损失最终会再次增加，形成不对称的U形曲线。
 }
 \label{fig:chap7_learning_curve}
