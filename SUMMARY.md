@@ -63,3 +63,7 @@
     * [10.10 长短期记忆和其他门控RNN](Chapter10/10Gate/0.md)
         * [10.10.1 LSTM](Chapter10/10Gate/1LSTM.md)
         * [10.10.2 其他门控RNN](Chapter10/10Gate/2OtherGates.md)
+    * 10.11 优化长期依赖
+        * [10.11.1 梯度截断](Chapter10/11/1.md)
+        * [10.11.2 引导信息流的正则化](Chapter10/11/2.md)
+    * [10.12 外显记忆](Chapter10/12.md)
