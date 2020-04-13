@@ -53,16 +53,16 @@
 正则化在深度学习的出现前就已经被使用了数十年。
 线性模型，如线性回归和逻辑回归可以使用简单、直接、有效的正则化策略。
 
-许多正则化方法通过对目标函数 $J$添加一个参数范数惩罚$\Omega(\Vtheta)$，限制模型（如神经网络、线性回归或逻辑回归）的学习能力。
+许多正则化方法通过对目标函数 $J$添加一个参数范数惩罚$\Omega(\theta)$，限制模型（如神经网络、线性回归或逻辑回归）的学习能力。
 我们将正则化后的目标函数记为$\tilde{J}$：
-\begin{align}
- \tilde{J}(\Vtheta;\MX, \Vy) = J(\Vtheta;\MX, \Vy) + \alpha \Omega(\Vtheta),
-\end{align}
-其中$\alpha \in [0, \infty)$是权衡范数惩罚项$\Omega$和标准目标函数 $J(\MX;\Vtheta)$相对贡献的超参数。
+\begin{aligned}
+ \tilde{J}(\theta;X, y) = J(\theta;X, y) + \alpha \Omega(\theta),
+\end{aligned}
+其中$\alpha \in [0, \infty)$是权衡范数惩罚项$\Omega$和标准目标函数 $J(X;\theta)$相对贡献的超参数。
 将$\alpha$设为0表示没有正则化。
 $\alpha$越大，对应正则化惩罚越大。
 
-当我们的训练算法最小化正则化后的目标函数 $\tilde{J}$时，它会降低原始目标$J$关于训练数据的误差并同时减小在某些衡量标准下参数$\Vtheta$（或参数子集）的规模。
+当我们的训练算法最小化正则化后的目标函数 $\tilde{J}$时，它会降低原始目标$J$关于训练数据的误差并同时减小在某些衡量标准下参数$\theta$（或参数子集）的规模。
 选择不同的参数范数$\Omega$会偏好不同的解。
 在本节中，我们会讨论各种范数惩罚对模型的影响。
 
@@ -73,7 +73,7 @@ $\alpha$越大，对应正则化惩罚越大。
 而每个偏置仅控制一个单变量。
 这意味着，我们不对其进行正则化也不会导致太大的方差。
 另外，正则化偏置参数可能会导致明显的欠拟合。
-因此，我们使用向量$\Vw$表示所有应受范数惩罚影响的权重，而向量$\Vtheta$表示所有参数(包括$\Vw$和无需正则化的参数)。
+因此，我们使用向量$w$表示所有应受范数惩罚影响的权重，而向量$\theta$表示所有参数(包括$w$和无需正则化的参数)。
 
 在神经网络的情况下，有时希望对网络的每一层使用单独的惩罚，并分配不同的$\alpha$系数。
 寻找合适的多个超参数的代价很大，因此为了减少搜索空间，我们会在所有层使用相同的权重衰减。
@@ -83,75 +83,75 @@ $\alpha$越大，对应正则化惩罚越大。
 \subsection{$L^2$参数正则化}
 \label{sec:l2_parameter_regularization}
 在\secref{sec:capacity_overfitting_and_underfitting}中我们已经看到过最简单而又最常见的参数范数惩罚，即通常被称为权重衰减的$L^2$参数范数惩罚。
-这个正则化策略通过向目标函数添加一个正则项$\Omega(\Vtheta) = \frac{1}{2} \norm{\Vw}_2^2$，使权重更加接近原点\footnote{更一般地，我们可以将参数正则化为接近空间中的任意特定点，令人惊讶的是这样也仍有正则化效果，但是特定点越接近真实值结果越好。
+这个正则化策略通过向目标函数添加一个正则项$\Omega(\theta) = \frac{1}{2} \norm{w}_2^2$，使权重更加接近原点\footnote{更一般地，我们可以将参数正则化为接近空间中的任意特定点，令人惊讶的是这样也仍有正则化效果，但是特定点越接近真实值结果越好。
 当我们不知道正确的值应该是正还是负时，零是有意义的默认值。
 由于模型参数正则化为零的情况更为常见，我们将只探讨这种特殊情况。}。
 在其他学术圈，$L^2$也被称为岭回归或~Tikhonov正则。
 
 我们可以通过研究正则化后目标函数的梯度，洞察一些权重衰减的正则化表现。
-为了简单起见，我们假定其中没有偏置参数，因此$\Vtheta$就是$\Vw$。
+为了简单起见，我们假定其中没有偏置参数，因此$\theta$就是$w$。
 这样一个模型具有以下总的目标函数：
-\begin{align}
-  \tilde{J}(\Vw;\MX, \Vy) =\frac{\alpha}{2} \Vw^\top \Vw +  J(\Vw;\MX, \Vy),
-\end{align}
+\begin{aligned}
+  \tilde{J}(w;X, y) =\frac{\alpha}{2} w^\top w +  J(w;X, y),
+\end{aligned}
 与之对应的梯度为
-\begin{align}
- \nabla_{\Vw} \tilde{J}(\Vw;\MX,\Vy) =\alpha \Vw +  \nabla_{\Vw} J(\Vw;\MX, \Vy).
-\end{align}
+\begin{aligned}
+ \nabla_{w} \tilde{J}(w;X,y) =\alpha w +  \nabla_{w} J(w;X, y).
+\end{aligned}
 使用单步梯度下降更新权重，即执行以下更新：
-\begin{align}
- \Vw \leftarrow \Vw - \epsilon(\alpha \Vw + \nabla_{\Vw} J(\Vw;\MX, \Vy)).
-\end{align}
+\begin{aligned}
+ w \leftarrow w - \epsilon(\alpha w + \nabla_{w} J(w;X, y)).
+\end{aligned}
 换种写法就是：
-\begin{align}
- \Vw \leftarrow (1-\epsilon \alpha)\Vw - \epsilon \nabla_{\Vw} J(\Vw;\MX, \Vy).
-\end{align}
+\begin{aligned}
+ w \leftarrow (1-\epsilon \alpha)w - \epsilon \nabla_{w} J(w;X, y).
+\end{aligned}
 我们可以看到，加入权重衰减后会引起学习规则的修改，即在每步执行通常的梯度更新之前先收缩权重向量（将权重向量乘以一个常数因子）。
 这是单个步骤发生的变化。
 但是，在训练的整个过程会发生什么呢？
 
 % -- 224 --
 
-我们进一步简化分析，令$\Vw^*$为未正则化的目标函数取得最小训练误差时的权重向量，即$\Vw^* = \argmin_{\Vw} J(\Vw)$， 并在$\Vw^*$的邻域对目标函数做二次近似。  
+我们进一步简化分析，令$w^*$为未正则化的目标函数取得最小训练误差时的权重向量，即$w^* = \arg\min_{w} J(w)$， 并在$w^*$的邻域对目标函数做二次近似。  
 如果目标函数确实是二次的(如以均方误差拟合线性回归模型的情况)，则该近似是完美的。
-近似的$\hat J(\Vtheta)$如下
-\begin{align}
- \hat J(\Vtheta) = J(\Vw^*) + \frac{1}{2}(\Vw - \Vw^*)^\top \MH (\Vw - \Vw^*),
-\end{align}
-其中$\MH$是$J$在$\Vw^*$处计算的~Hessian~矩阵(关于$\Vw$)。
-因为$\Vw^*$被定义为最优，即梯度消失为$0$，所以该二次近似中没有一阶项。
-同样地，因为$\Vw^*$是$J$的一个最优点，我们可以得出$\MH$是半正定的结论。
+近似的$\hat J(\theta)$如下
+\begin{aligned}
+ \hat J(\theta) = J(w^*) + \frac{1}{2}(w - w^*)^\top H (w - w^*),
+\end{aligned}
+其中$H$是$J$在$w^*$处计算的~Hessian~矩阵(关于$w$)。
+因为$w^*$被定义为最优，即梯度消失为$0$，所以该二次近似中没有一阶项。
+同样地，因为$w^*$是$J$的一个最优点，我们可以得出$H$是半正定的结论。
 
 当$\hat J$取得最小时，其梯度
-\begin{align}
+\begin{aligned}
 \label{eq:gradient}
-  \nabla_{\Vw} \hat{J}(\Vw) = \MH (\Vw - \Vw^*)
-\end{align}
+  \nabla_{w} \hat{J}(w) = H (w - w^*)
+\end{aligned}
 为$0$。
 
 为了研究权重衰减带来的影响，我们在\eqnref{eq:gradient}中添加权重衰减的梯度。 
 现在我们探讨最小化正则化后的$\hat J$。
-我们使用变量$\tilde{\Vw}$表示此时的最优点:
-\begin{align}
- \alpha \tilde{\Vw} + \MH (\tilde{\Vw} - \Vw^*) = 0 \\
- (\MH + \alpha \MI) \tilde{\Vw} = \MH \Vw^* \\
- \tilde{\Vw} = (\MH + \alpha \MI)^{-1} \MH \Vw^* \label{eq:final_w}
- \end{align}
+我们使用变量$\tilde{w}$表示此时的最优点:
+\begin{aligned}
+ \alpha \tilde{w} + H (\tilde{w} - w^*) = 0 \\
+ (H + \alpha I) \tilde{w} = H w^* \\
+ \tilde{w} = (H + \alpha I)^{-1} H w^* \label{eq:final_w}
+ \end{aligned}
 
-当$\alpha$趋向于$0$时，正则化的解$\tilde{\Vw}$会趋向$\Vw^*$。 
+当$\alpha$趋向于$0$时，正则化的解$\tilde{w}$会趋向$w^*$。 
 那么当$\alpha$增加时会发生什么呢？
-因为$\MH$是实对称的，所以我们可以将其分解为一个对角矩阵$\VLambda$和一组特征向量的标准正交基$\MQ$，并且有$\MH = \MQ \VLambda \MQ^\top$。
+因为$H$是实对称的，所以我们可以将其分解为一个对角矩阵$Lambda$和一组特征向量的标准正交基$Q$，并且有$H = Q Lambda Q^\top$。
 将其应用于\eqnref{eq:final_w}，可得：
-\begin{align}
- \tilde \Vw &= ( \MQ \VLambda \MQ^\top + \alpha \MI)^{-1} \MQ \VLambda \MQ^\top \Vw^* \\
-                 &=  [ \MQ( \VLambda+ \alpha \MI)  \MQ^\top ]^{-1} \MQ \VLambda \MQ^\top \Vw^* \\
-                 &= \MQ( \VLambda+ \alpha \MI)^{-1} \VLambda \MQ^\top \Vw^*. \label{eq:713L2}
-\end{align}
-我们可以看到权重衰减的效果是沿着由$\MH$的特征向量所定义的轴缩放$\Vw^*$。
-具体来说，我们会根据$\frac{\lambda_i}{\lambda_i + \alpha}$因子缩放与$\MH$第$i$个特征向量对齐的$\Vw^*$的分量。
+\begin{aligned}
+ \tilde w &= ( Q Lambda Q^\top + \alpha I)^{-1} Q Lambda Q^\top w^* \\
+                 &=  [ Q( Lambda+ \alpha I)  Q^\top ]^{-1} Q Lambda Q^\top w^* \\
+                 &= Q( Lambda+ \alpha I)^{-1} Lambda Q^\top w^*. \label{eq:713L2}
+\end{aligned}
+我们可以看到权重衰减的效果是沿着由$H$的特征向量所定义的轴缩放$w^*$。
+具体来说，我们会根据$\frac{\lambda_i}{\lambda_i + \alpha}$因子缩放与$H$第$i$个特征向量对齐的$w^*$的分量。
 （不妨查看\figref{fig:chap2_eigen_ellipse}回顾这种缩放的原理）。
 
-沿着$\MH$特征值较大的方向(如$\lambda_i \gg \alpha$)正则化的影响较小。
+沿着$H$特征值较大的方向(如$\lambda_i \gg \alpha$)正则化的影响较小。
 而$\lambda_i \ll \alpha$的分量将会收缩到几乎为零。
 这种效应如\figref{fig:chap7_reg_l2}所示。
 \begin{figure}[!htb]
@@ -160,15 +160,15 @@ $\alpha$越大，对应正则化惩罚越大。
 \else
 \centerline{\includegraphics{Chapter7/figures/reg_l2}}
 \fi
-\caption{$L^2$（或权重衰减）正则化对最佳$\Vw$值的影响。
+\caption{$L^2$（或权重衰减）正则化对最佳$w$值的影响。
 实线椭圆表示没有正则化目标的等值线。
 虚线圆圈表示$L^2$正则化项的等值线。
-在$\tilde{\Vw}$点，这两个竞争目标达到平衡。
+在$\tilde{w}$点，这两个竞争目标达到平衡。
 目标函数$J$的~Hessian~的第一维特征值很小。
-当从$\Vw^*$水平移动时，目标函数不会增加得太多。
+当从$w^*$水平移动时，目标函数不会增加得太多。
 因为目标函数对这个方向没有强烈的偏好，所以正则化项对该轴具有强烈的影响。
 正则化项将$w_1$拉向零。
-而目标函数对沿着第二维远离$\Vw^*$的移动非常敏感。
+而目标函数对沿着第二维远离$w^*$的移动非常敏感。
 对应的特征值较大，表示高曲率。
 因此，权重衰减对$w_2$的位置影响相对较小。
 }
@@ -187,85 +187,85 @@ $\alpha$越大，对应正则化惩罚越大。
 我们可以研究线性回归，它的真实代价函数是二次的，因此我们可以使用相同的方法分析。
 再次应用分析，我们会在这种情况下得到相同的结果，但这次我们使用训练数据的术语表述。
 线性回归的代价函数是平方误差之和：
-\begin{align}
- (\MX \Vw - \Vy)^\top (\MX \Vw - \Vy).
-\end{align}
+\begin{aligned}
+ (X w - y)^\top (X w - y).
+\end{aligned}
 我们添加$L^2$正则项后，目标函数变为
-\begin{align}
-  (\MX \Vw - \Vy)^\top (\MX \Vw - \Vy) + \frac{1}{2}\alpha \Vw^\top \Vw.
-\end{align}
+\begin{aligned}
+  (X w - y)^\top (X w - y) + \frac{1}{2}\alpha w^\top w.
+\end{aligned}
 这将普通方程的解从
-\begin{align}
+\begin{aligned}
 \label{eq:716w}
-  \Vw = (\MX^\top \MX)^{-1} \MX^\top \Vy
-\end{align}
+  w = (X^\top X)^{-1} X^\top y
+\end{aligned}
 变为
-\begin{align}
+\begin{aligned}
 \label{eq:717mw}
-   \Vw = (\MX^\top \MX + \alpha \MI)^{-1} \MX^\top \Vy .
-\end{align}
-\eqnref{eq:716w}中的矩阵$\MX^\top\MX$与协方差矩阵$\frac{1}{m}\MX^\top\MX$成正比。
-$L^2$正则项将这个矩阵替换为\eqnref{eq:717mw}中的$ (\MX^\top \MX + \alpha \MI)^{-1}$
+   w = (X^\top X + \alpha I)^{-1} X^\top y .
+\end{aligned}
+\eqnref{eq:716w}中的矩阵$X^\topX$与协方差矩阵$\frac{1}{m}X^\topX$成正比。
+$L^2$正则项将这个矩阵替换为\eqnref{eq:717mw}中的$ (X^\top X + \alpha I)^{-1}$
 这个新矩阵与原来的是一样的，不同的仅仅是在对角加了$\alpha$。
 这个矩阵的对角项对应每个输入特征的方差。
-我们可以看到，$L^2$正则化能让学习算法``感知''到输入$\Vx$具有较高的方差，这会使得学习算法压缩那些与输出目标的协方差较小（相对增加方差）的特征的权重。
+我们可以看到，$L^2$正则化能让学习算法``感知''到输入$x$具有较高的方差，这会使得学习算法压缩那些与输出目标的协方差较小（相对增加方差）的特征的权重。
 
 \subsection{$L^1$参数正则化}
 \label{sec:l1_regularization}
 $L^2$权重衰减是权重衰减最常见的形式，我们还可以使用其他的方法限制模型参数的规模。
 一个选择是使用$L^1$正则化。
 
-形式地，对模型参数$\Vw$的$L^1$正则化被定义为：
-\begin{align}
- \Omega(\Vtheta) = \norm{ \Vw }_1 = \sum_i | w_i |,
- \end{align}
-即各个参数的绝对值之和\footnote{如同$L^2$正则化，我们也可以将参数正则化到其他非零值$\Vw^{(o)}$。在这种情况下，$L^1$正则化将会引入不同的项$\Omega(\Vtheta)=
-\|\Vw - \Vw^{(o)} \|_1 = \sum_i | w_i - w_i^{(o)} |$。}。
+形式地，对模型参数$w$的$L^1$正则化被定义为：
+\begin{aligned}
+ \Omega(\theta) = \norm{ w }_1 = \sum_i | w_i |,
+ \end{aligned}
+即各个参数的绝对值之和\footnote{如同$L^2$正则化，我们也可以将参数正则化到其他非零值$w^{(o)}$。在这种情况下，$L^1$正则化将会引入不同的项$\Omega(\theta)=
+\|w - w^{(o)} \|_1 = \sum_i | w_i - w_i^{(o)} |$。}。
 接着我们将讨论$L^1$正则化对简单线性回归模型的影响，与分析$L^2$正则化时一样不考虑偏置参数。  
 我们尤其感兴趣的是找出$L^1$和$L^2$正则化之间的差异。
 与$L^2$权重衰减类似，我们也可以通过缩放惩罚项$\Omega$的正超参数$\alpha$来控制$L^1$权重衰减的强度。 
-因此，正则化的目标函数 $\tilde{J}(\Vw;\MX, \Vy)$如下所示
-\begin{align}
-\tilde{J}(\Vw;\MX, \Vy) = \alpha \| \Vw \|_1 +  J(\Vw;\MX, \Vy) ,
-\end{align}
+因此，正则化的目标函数 $\tilde{J}(w;X, y)$如下所示
+\begin{aligned}
+\tilde{J}(w;X, y) = \alpha \| w \|_1 +  J(w;X, y) ,
+\end{aligned}
 对应的梯度(实际上是次梯度)：
-\begin{align}
+\begin{aligned}
 \label{eq:subgradient}
-  \nabla_{\Vw} \tilde{J}(\Vw; \MX, \Vy) = \alpha \text{sign}(\Vw) + \nabla_{\Vw} J(\Vw; \MX, \Vy), % ?? may be wrong
-\end{align}
-其中$\text{sign}(\Vw)$只是简单地取$\Vw$各个元素的正负号。
+  \nabla_{w} \tilde{J}(w; X, y) = \alpha \text{sign}(w) + \nabla_{w} J(w; X, y), % ?? may be wrong
+\end{aligned}
+其中$\text{sign}(w)$只是简单地取$w$各个元素的正负号。
 
 % -- 227 --
 
 观察\eqnref{eq:subgradient}，我们立刻发现$L^1$的正则化效果与$L^2$大不一样。
 具体来说，我们可以看到正则化对梯度的影响不再是线性地缩放每个$w_i$；而是添加了一项与$\text{sign}(w_i)$同号的常数。
-使用这种形式的梯度之后，我们不一定能得到$J(\MX, \Vy;\Vw)$二次近似的直接算术解（$L^2$正则化时可以）。 
+使用这种形式的梯度之后，我们不一定能得到$J(X, y;w)$二次近似的直接算术解（$L^2$正则化时可以）。 
  
 简单线性模型具有二次代价函数，我们可以通过泰勒级数表示。
 或者我们可以设想，这是逼近更复杂模型的代价函数的截断泰勒级数。
 在这个设定下，梯度由下式给出
-\begin{align}
-  \nabla_{\Vw} \hat{J}(\Vw) = \MH (\Vw - \Vw^*),
-\end{align}
-同样，$\MH$是$J$在$\Vw^*$处的Hessian矩阵(关于$\Vw$)。
+\begin{aligned}
+  \nabla_{w} \hat{J}(w) = H (w - w^*),
+\end{aligned}
+同样，$H$是$J$在$w^*$处的Hessian矩阵(关于$w$)。
 
-由于$L^1$惩罚项在完全一般化的~Hessian~的情况下，无法得到直接清晰的代数表达式，因此我们将进一步简化假设~Hessian~是对角的，即$\MH = \text{diag}([H_{1,1},\dots, H_{n,n}])$，其中每个$H_{i,i}>0$。
+由于$L^1$惩罚项在完全一般化的~Hessian~的情况下，无法得到直接清晰的代数表达式，因此我们将进一步简化假设~Hessian~是对角的，即$H = \text{diag}([H_{1,1},\cdots, H_{n,n}])$，其中每个$H_{i,i}>0$。
 如果线性回归问题中的数据已被预处理（如可以使用PCA），去除了输入特征之间的相关性，那么这一假设成立。
 
 我们可以将$L^1$正则化目标函数的二次近似分解成关于参数的求和：
-\begin{align}
- \hat J(\Vw; \MX, \Vy) = J(\Vw^*; \MX, \Vy) + \sum_i \Bigg [\frac{1}{2} H_{i,i} (w_i - w_i^*)^2 
+\begin{aligned}
+ \hat J(w; X, y) = J(w^*; X, y) + \sum_i \Bigg [\frac{1}{2} H_{i,i} (w_i - w_i^*)^2 
  + \alpha |w_i| \Bigg].  % I think this is correct
-\end{align}
+\end{aligned}
 如下列形式的解析解（对每一维$i$）可以最小化这个近似代价函数：
-\begin{align}
+\begin{aligned}
 w_i = \text{sign}(w_i^*) \max\Big\{ |w_i^*| - \frac{\alpha}{H_{i,i}} , 0\Big\} .
-\end{align}
+\end{aligned}
 对每个$i$,考虑$w_i^* > 0$的情形，会有两种可能结果：
 \begin{enumerate}
 \item $w_i^* \leq \frac{\alpha}{H_{i,i}}$的情况。
 正则化后目标中的$w_i$最优值是$w_i = 0$。
-这是因为在方向$i$上$J(\Vw; \MX, \Vy) $对$ \hat J(\Vw; \MX, \Vy)$的贡献被抵消，$L^1$正则化项将$w_i$推至$0$。
+这是因为在方向$i$上$J(w; X, y) $对$ \hat J(w; X, y)$的贡献被抵消，$L^1$正则化项将$w_i$推至$0$。
 \item  $w_i^* > \frac{\alpha}{H_{i,i}}$的情况。在这种情况下，正则化不会将$w_i$的最优值推至0，而仅仅在那个方向上移动$\frac{\alpha}{H_{i,i}}$的距离。
 \end{enumerate}
 $w_i^* < 0$的情况与之类似，但是$L^1$惩罚项使$w_i$更接近0(增加$ \frac{\alpha}{H_{i,i}}$)或者为0。
@@ -273,8 +273,8 @@ $w_i^* < 0$的情况与之类似，但是$L^1$惩罚项使$w_i$更接近0(增加
 相比$L^2$正则化，$L^1$正则化会产生更稀疏的解。
 此处稀疏性指的是最优值中的一些参数为$0$。
 和$L^2$正则化相比，$L^1$正则化的稀疏性具有本质的不同。
-\eqnref{eq:713L2}给出了$L^2$正则化的解$\tilde \Vw$。 
-如果我们使用~Hessian~矩阵$\MH$为对角正定矩阵的假设（与$L^1$正则化分析时一样），重新考虑这个等式，我们发现
+\eqnref{eq:713L2}给出了$L^2$正则化的解$\tilde w$。 
+如果我们使用~Hessian~矩阵$H$为对角正定矩阵的假设（与$L^1$正则化分析时一样），重新考虑这个等式，我们发现
 $\tilde{w_i} = \frac{H_{i,i}}{H_{i,i} + \alpha} w_i^*$。
 如果$w_i^*$不是零，那么$\tilde{w_i}$也会保持非零。 
 这表明$L^2$正则化不会使参数变得稀疏，而$L^1$正则化有可能通过足够大的$\alpha$实现稀疏。
@@ -287,46 +287,46 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
  
 在\secref{sec:maximum_a_posteriori_map_estimation}，我们看到许多正则化策略可以被解释为~MAP~贝叶斯推断，
 特别是$L^2$正则化相当于权重是高斯先验的~MAP~贝叶斯推断。
-对于$L^1$正则化，用于正则化代价函数的惩罚项$\alpha \Omega(\Vw) =  \alpha \sum_i |w_i |$与通过~MAP~贝叶斯推断最大化的对数先验项是等价的（$\Vw \in \SetR^n$并且权重先验是各向同性的拉普拉斯分布（\eqnref{eq:chap3_laplace}））：
-\begin{align}
-\log p(\Vw) = \sum_i \log \text{Laplace}(w_i;0,\frac{1}{\alpha}) = 
-  -\alpha \norm{\Vw}_1 + n \log \alpha - n \log 2.
-\end{align}
-因为是关于$\Vw$最大化进行学习，我们可以忽略$\log \alpha - \log 2$项，因为它们与$\Vw$无关。
+对于$L^1$正则化，用于正则化代价函数的惩罚项$\alpha \Omega(w) =  \alpha \sum_i |w_i |$与通过~MAP~贝叶斯推断最大化的对数先验项是等价的（$w \in \SetR^n$并且权重先验是各向同性的拉普拉斯分布（\eqnref{eq:chap3_laplace}））：
+\begin{aligned}
+\log p(w) = \sum_i \log \text{Laplace}(w_i;0,\frac{1}{\alpha}) = 
+  -\alpha \norm{w}_1 + n \log \alpha - n \log 2.
+\end{aligned}
+因为是关于$w$最大化进行学习，我们可以忽略$\log \alpha - \log 2$项，因为它们与$w$无关。
  
  % -- 229 --
  
  \section{作为约束的范数惩罚}
  \label{sec:7.2}
 考虑经过参数范数正则化的代价函数：
-\begin{align}
- \tilde{J}(\Vtheta;\MX, \Vy) = J(\Vtheta;\MX, \Vy) + \alpha \Omega(\Vtheta) .
-\end{align}
+\begin{aligned}
+ \tilde{J}(\theta;X, y) = J(\theta;X, y) + \alpha \Omega(\theta) .
+\end{aligned}
 
 回顾\secref{sec:constrained_optimization}我们可以构造一个广义Lagrange函数来最小化带约束的函数，即在原始目标函数上添加一系列惩罚项。
 每个惩罚是一个被称为Karush–Kuhn–Tucker乘子的系数以及一个表示约束是否满足的函数之间的乘积。
-如果我们想约束$\Omega(\Vtheta)$小于某个常数$k$，我们可以构建广义Lagrange函数
-\begin{align}
- \CalL(\Vtheta, \alpha; \MX, \Vy) = J(\Vtheta; \MX, \Vy) + \alpha (\Omega(\Vtheta) - k).
-\end{align}
+如果我们想约束$\Omega(\theta)$小于某个常数$k$，我们可以构建广义Lagrange函数
+\begin{aligned}
+ \Bbb L(\theta, \alpha; X, y) = J(\theta; X, y) + \alpha (\Omega(\theta) - k).
+\end{aligned}
 
 这个约束问题的解由下式给出
-\begin{align}
- \Vtheta^* = \underset{\Vtheta}{ \argmin} \underset{\alpha, \alpha \geq 0}{\max} \CalL(\Vtheta, \alpha).
-\end{align}
+\begin{aligned}
+ \theta^* = \underset{\theta}{ \arg\min} \underset{\alpha, \alpha \geq 0}{\max} \Bbb L(\theta, \alpha).
+\end{aligned}
 
-如\secref{sec:constrained_optimization}中描述的，解决这个问题我们需要对$\Vtheta$和$\alpha$都做出调整。
+如\secref{sec:constrained_optimization}中描述的，解决这个问题我们需要对$\theta$和$\alpha$都做出调整。
 \secref{sec:example_linear_least_squares}给出了一个带$L^2$约束的线性回归实例。
-还有许多不同的优化方法，有些可能会使用梯度下降而其他可能会使用梯度为0的解析解，但在所有过程中$\alpha$在$\Omega(\Vtheta) > k$时必须增加，在$\Omega(\Vtheta) < k$时必须减小。
-所有正值的$\alpha$都鼓励$\Omega(\Vtheta)$收缩。
-最优值$\alpha^*$也将鼓励$\Omega(\Vtheta)$收缩，但不会强到使得$\Omega(\Vtheta)$小于$k$。
+还有许多不同的优化方法，有些可能会使用梯度下降而其他可能会使用梯度为0的解析解，但在所有过程中$\alpha$在$\Omega(\theta) > k$时必须增加，在$\Omega(\theta) < k$时必须减小。
+所有正值的$\alpha$都鼓励$\Omega(\theta)$收缩。
+最优值$\alpha^*$也将鼓励$\Omega(\theta)$收缩，但不会强到使得$\Omega(\theta)$小于$k$。
 
-为了洞察约束的影响，我们可以固定$\alpha^*$，把这个问题看成只跟$\Vtheta$有关的函数：
-\begin{align}
- \Vtheta^* =  \underset{\Vtheta}{ \argmin} ~\CalL(\Vtheta, \alpha^*) = 
- \underset{\Vtheta}{ \argmin}~
- J(\Vtheta; \MX, \Vy) + \alpha^* \Omega(\Vtheta).
-\end{align}
+为了洞察约束的影响，我们可以固定$\alpha^*$，把这个问题看成只跟$\theta$有关的函数：
+\begin{aligned}
+ \theta^* =  \underset{\theta}{ \arg\min} ~\Bbb L(\theta, \alpha^*) = 
+ \underset{\theta}{ \arg\min}~
+ J(\theta; X, y) + \alpha^* \Omega(\theta).
+\end{aligned}
 这和最小化$\tilde J$的正则化训练问题是完全一样的。
 因此，我们可以把参数范数惩罚看作对权重强加的约束。
 如果$\Omega$是$L^2$范数，那么权重就是被约束在一个$L^2$球中。
@@ -340,10 +340,10 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 % -- 230 --
 
 有时候，我们希望使用显式的限制，而不是惩罚。
-如\secref{sec:constrained_optimization}所述，我们可以修改下降算法（如随机梯度下降算法），使其先计算$J(\Vtheta)$的下降步，然后将$\Vtheta$投影到满足$\Omega(\Vtheta) < k$的最近点。
+如\secref{sec:constrained_optimization}所述，我们可以修改下降算法（如随机梯度下降算法），使其先计算$J(\theta)$的下降步，然后将$\theta$投影到满足$\Omega(\theta) < k$的最近点。
 如果我们知道什么样的$k$是合适的，而不想花时间寻找对应于此$k$处的$\alpha$值，这会非常有用。
 
-另一个使用显式约束和重投影而不是使用惩罚强加约束的原因是惩罚可能会导致目标函数非凸而使算法陷入局部极小(对应于小的$\Vtheta$）。
+另一个使用显式约束和重投影而不是使用惩罚强加约束的原因是惩罚可能会导致目标函数非凸而使算法陷入局部极小(对应于小的$\theta$）。
 当训练神经网络时，这通常表现为训练带有几个``死亡单元''的神经网络。
 这些单元不会对网络学到的函数有太大影响，因为进入或离开它们的权重都非常小。
 当使用权重范数的惩罚训练时，即使可以通过增加权重以显著减少$J$，这些配置也可能是局部最优的。
@@ -352,7 +352,7 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 
 最后，因为重投影的显式约束还对优化过程增加了一定的稳定性，所以这是另一个好处。
 当使用较高的学习率时，很可能进入正反馈，即大的权重诱导大梯度，然后使得权重获得较大更新。
-如果这些更新持续增加权重的大小，$\Vtheta$就会迅速增大，直到离原点很远而发生溢出。
+如果这些更新持续增加权重的大小，$\theta$就会迅速增大，直到离原点很远而发生溢出。
 重投影的显式约束可以防止这种反馈环引起权重无限制地持续增加。
 \cite{Hinton-et-al-arxiv2012}建议结合使用约束和高学习速率，这样能更快地探索参数空间，并保持一定的稳定性。
 
@@ -367,17 +367,17 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 \section{正则化和欠约束问题}
 \label{sec:regularization_and_under_constrained_problems}
 在某些情况下，为了正确定义机器学习问题，正则化是必要的。
-机器学习中许多线性模型，包括线性回归和PCA，都依赖于对矩阵$\MX^\top\MX$求逆。
-只要$\MX^\top\MX$是奇异的，这些方法就会失效。
+机器学习中许多线性模型，包括线性回归和PCA，都依赖于对矩阵$X^\topX$求逆。
+只要$X^\topX$是奇异的，这些方法就会失效。
 当数据生成分布在一些方向上确实没有差异时，或因为例子较少（即相对输入特征的维数来说）而在一些方向上没有观察到方差时，这个矩阵就是奇异的。
-在这种情况下，（人们往往使得）正则化的许多形式对应求逆$\MX^\top\MX + \alpha \MI$。
+在这种情况下，（人们往往使得）正则化的许多形式对应求逆$X^\topX + \alpha I$。
 （因为）这个正则化矩阵可以保证是可逆的。
 
 相关矩阵可逆时，这些线性问题有闭式解。
 没有闭式解的问题也可能是欠定的。
 一个例子是应用于线性可分问题的逻辑回归。
-如果权重向量$\Vw$能够实现完美分类，那么$2 \Vw$也会以更高似然实现完美分类。
-类似随机梯度下降的迭代优化算法将持续增加$\Vw$的大小，理论上永远不会停止。
+如果权重向量$w$能够实现完美分类，那么$2 w$也会以更高似然实现完美分类。
+类似随机梯度下降的迭代优化算法将持续增加$w$的大小，理论上永远不会停止。
 在实践中，数值实现的梯度下降最终会达到导致数值溢出的超大权重，此时的行为将取决于程序员如何处理这些不是真正数字的值。
 
 大多数形式的正则化能够保证应用于欠定问题的迭代方法收敛。
@@ -389,11 +389,11 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 % -- 232 --
 
 正如我们在\secref{sec:the_moore_penrose_pseudoinverse}看到的，我们可以使用~\ENNAME{Moore-Penrose}~求解欠定线性方程。 
-回想$\MX$伪逆$\MX^+$的一个定义：
-\begin{align} 
+回想$X$伪逆$X^+$的一个定义：
+\begin{aligned} 
 \label{eq:729pseudo}
- \MX^+ = \lim_{\alpha \searrow 0} (\MX^\top \MX + \alpha \MI)^{-1}\MX^\top.
-\end{align}
+ X^+ = \lim_{\alpha \searrow 0} (X^\top X + \alpha I)^{-1}X^\top.
+\end{aligned}
 现在我们可以将\secref{eq:729pseudo}看作进行具有权重衰减的线性回归。
 具体来说，当正则化系数趋向0时，\eqnref{eq:729pseudo}是\eqnref{eq:717mw}的极限。
 因此，我们可以将伪逆解释为使用正则化来稳定欠定问题。
@@ -407,9 +407,9 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 对于一些机器学习任务，创建新的假数据相当简单。
 
 对分类来说这种方法是最简单的。
-分类器需要一个复杂的高维输入$\Vx$，并用单个类别标识$y$概括$\Vx$。
+分类器需要一个复杂的高维输入$x$，并用单个类别标识$y$概括$x$。
 这意味着分类面临的一个主要任务是要对各种各样的变换保持不变。
-我们可以轻易通过转换训练集中的$\Vx$来生成新的$(\Vx, y)$对。
+我们可以轻易通过转换训练集中的$x$来生成新的$(x, y)$对。
 
 这种方法对于其他许多任务来说并不那么容易。
 例如，除非我们已经解决了密度估计问题，否则在密度估计任务中生成新的假数据是很困难的。
@@ -466,35 +466,35 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 向权重添加噪声是反映这种不确定性的一种实用的随机方法。
 
 在某些假设下，施加于权重的噪声可以被解释为与更传统的正则化形式等同，鼓励要学习的函数保持稳定。
-我们研究回归的情形，也就是训练将一组特征$\Vx$映射成一个标量的函数$\hat y(\Vx)$，并使用最小二乘代价函数衡量模型预测值$\hat y(\Vx)$与真实值$y$的误差：
-\begin{align}
- J = \SetE_{p(x,y)}[(\hat y(\Vx) - y)^2].
-\end{align}
-训练集包含$m$对标注样例$\{(\Vx^{(1)}, y^{(1)}),\dots,(\Vx^{(m)}, y^{(m)})\}$。
+我们研究回归的情形，也就是训练将一组特征$x$映射成一个标量的函数$\hat y(x)$，并使用最小二乘代价函数衡量模型预测值$\hat y(x)$与真实值$y$的误差：
+\begin{aligned}
+ J = \SetE_{p(x,y)}[(\hat y(x) - y)^2].
+\end{aligned}
+训练集包含$m$对标注样例$\{(x^{(1)}, y^{(1)}),\cdots,(x^{(m)}, y^{(m)})\}$。
 
-现在我们假设对每个输入表示，网络权重添加随机扰动$\epsilon_{\Vw} \sim \CalN(\Vepsilon;0, \eta\MI \, )$。
+现在我们假设对每个输入表示，网络权重添加随机扰动$\epsilon_{w} \sim \Bbb N(epsilon;0, \etaI \, )$。
 想象我们有一个标准的$l$层MLP。
-我们将扰动模型记为$\hat y_{\epsilon_{\MW}} (\Vx)$。
+我们将扰动模型记为$\hat y_{\epsilon_{W}} (x)$。
 尽管有噪声注入，我们仍然希望减少网络输出误差的平方。
 因此目标函数变为：
-\begin{align}
- \tilde J_{\MW} &= \SetE_{p(\Vx,y,\epsilon_{\MW})}[(\hat y_{\epsilon_{\MW}}(\Vx) - y)^2] \\
-   &=  \SetE_{p(\Vx,y,\epsilon_{\MW})}[\hat y_{\epsilon_{\MW}}^2(\Vx) -  2y\hat y_{\epsilon_{\MW}}
-   (\Vx)+ y^2] .
-\end{align}
+\begin{aligned}
+ \tilde J_{W} &= \SetE_{p(x,y,\epsilon_{W})}[(\hat y_{\epsilon_{W}}(x) - y)^2] \\
+   &=  \SetE_{p(x,y,\epsilon_{W})}[\hat y_{\epsilon_{W}}^2(x) -  2y\hat y_{\epsilon_{W}}
+   (x)+ y^2] .
+\end{aligned}
 
-对于小的$\eta$，最小化带权重噪声（方差为$\eta \MI$\,）的$J$等同于最小化附加正则化项：
-$ \eta \SetE_{p(\Vx,y)}[\norm{\nabla_{\MW}~\hat y(\Vx)}^2]$的$J$。
+对于小的$\eta$，最小化带权重噪声（方差为$\eta I$\,）的$J$等同于最小化附加正则化项：
+$ \eta \SetE_{p(x,y)}[\norm{\nabla_{W}~\hat y(x)}^2]$的$J$。
 这种形式的正则化鼓励参数进入权重小扰动对输出相对影响较小的参数空间区域。
 换句话说，它推动模型进入对权重小的变化相对不敏感的区域，找到的点不只是极小点，还是由平坦区域所包围的极小点\citep{Hochreiter95}。
-在简化的线性回归中（例如，$\hat y(\Vx) = \Vw^\top \Vx + b$），正则项退化为$ \eta \SetE_{p(\Vx)}[\norm{\Vx}^2]$，这与函数的参数无关，因此不会对$\tilde J_{\Vw}$关于模型参数的梯度有影响。
+在简化的线性回归中（例如，$\hat y(x) = w^\top x + b$），正则项退化为$ \eta \SetE_{p(x)}[\norm{x}^2]$，这与函数的参数无关，因此不会对$\tilde J_{w}$关于模型参数的梯度有影响。
 
 % -- 235 --
 
 \subsection{向输出目标注入噪声}
 \label{sec:injecting_noise_at_the_output_targets}
 大多数数据集的$y$标签都有一定错误。
-错误的$y$不利于最大化$\log p(y \mid \Vx)$。
+错误的$y$不利于最大化$\log p(y \mid x)$。
 避免这种情况的一种方法是显式地对标签上的噪声进行建模。
 例如，我们可以假设，对于一些小常数$\epsilon$，训练集标记$y$是正确的概率是$1-\epsilon$，（以$\epsilon$的概率）任何其他可能的标签也可能是正确的。
 这个假设很容易就能解析地与代价函数结合，而不用显式地抽取噪声样本。
@@ -512,7 +512,7 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 \label{sec:semi_supervised_learning}
 在半监督学习的框架下，$P(\RVx)$产生的未标记样本和$P(\RVx, \RVy)$中的标记样本都用于估计$P(\RVy \mid \RVx)$或者根据$\RVx$预测$\RVy$。
 
-在深度学习的背景下，半监督学习通常指的是学习一个表示 $\Vh = f(\Vx)$。 
+在深度学习的背景下，半监督学习通常指的是学习一个表示 $h = f(x)$。 
 学习表示的目的是使相同类中的样本有类似的表示。
 无监督学习可以为如何在表示空间聚集样本提供有用线索。
 在输入空间紧密聚集的样本应该被映射到类似的表示。
@@ -533,7 +533,7 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 多任务学习~\citep{caruana93a}是通过合并几个任务中的样例（可以视为对参数施加的软约束）来提高泛化的一种方式。
 正如额外的训练样本能够将模型参数推向具有更好泛化能力的值一样，当模型的一部分被多个额外的任务共享时，这部分将被约束为良好的值（如果共享合理），通常会带来更好的泛化能力。
 
-\figref{fig:chap7_multi_factor_output}展示了多任务学习中非常普遍的一种形式，其中不同的监督任务（给定$\RVx$预测$\RVy^{(i)}$）共享相同的输入$\RVx$以及一些中间层表示$\Vh^{(\text{share})}$，能学习共同的因素池。
+\figref{fig:chap7_multi_factor_output}展示了多任务学习中非常普遍的一种形式，其中不同的监督任务（给定$\RVx$预测$\RVy^{(i)}$）共享相同的输入$\RVx$以及一些中间层表示$h^{(\text{share})}$，能学习共同的因素池。
 该模型通常可以分为两类相关的参数：
 \begin{enumerate}
  \item 具体任务的参数 （只能从各自任务的样本中实现良好的泛化）。如\figref{fig:chap7_multi_factor_output}中的上层。
@@ -546,10 +546,10 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 \centerline{\includegraphics{Chapter7/figures/multi_factor_output}}
 \fi
 \caption{多任务学习在深度学习框架中可以以多种方式进行，该图说明了任务共享相同输入但涉及不同目标随机变量的常见情况。
-深度网络的较低层（无论是监督前馈的，还是包括向下箭头的生成组件）可以跨这样的任务共享，而任务特定的参数（分别关联于从$\Vh^{(1)}$和$\Vh^{(2)}$进入和发出的权重）可以在共享表示$\Vh^{(\text{shared})}$之上学习。
+深度网络的较低层（无论是监督前馈的，还是包括向下箭头的生成组件）可以跨这样的任务共享，而任务特定的参数（分别关联于从$h^{(1)}$和$h^{(2)}$进入和发出的权重）可以在共享表示$h^{(\text{shared})}$之上学习。
 这里的基本假设是存在解释输入$\RVx$变化的共同因素池，而每个任务与这些因素的子集相关联。
-在该示例中，额外假设顶层隐藏单元 $\Vh^{(1)}$和$\Vh^{(2)}$专用于每个任务（分别预测$\RVy^{(1)}$和$\RVy^{(2)}$），而一些中间层表示$\Vh^{(\text{shared})}$在所有任务之间共享。
-在无监督学习情况下，一些顶层因素不与输出任务$(\Vh^{(3)})$的任意一个关联是有意义的：这些因素可以解释一些输入变化但与预测$\RVy^{(1)}$或$\RVy^{(2)}$不相关。
+在该示例中，额外假设顶层隐藏单元 $h^{(1)}$和$h^{(2)}$专用于每个任务（分别预测$\RVy^{(1)}$和$\RVy^{(2)}$），而一些中间层表示$h^{(\text{shared})}$在所有任务之间共享。
+在无监督学习情况下，一些顶层因素不与输出任务$(h^{(3)})$的任意一个关联是有意义的：这些因素可以解释一些输入变化但与预测$\RVy^{(1)}$或$\RVy^{(2)}$不相关。
 }
 \label{fig:chap7_multi_factor_output}
 \end{figure}
@@ -588,20 +588,20 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 \begin{algorithmic}
 \STATE 令 $n$ 为评估间隔的步数。
 \STATE 令 $p$ 为 ``耐心(patience)''，即观察到较坏的验证集表现$p$次后终止。 
-\STATE 令 $\Vtheta_{o}$ 为初始参数。
-\STATE $\Vtheta \leftarrow \Vtheta_{o}$
+\STATE 令 $\theta_{o}$ 为初始参数。
+\STATE $\theta \leftarrow \theta_{o}$
 \STATE $i \leftarrow 0$
 \STATE $j \leftarrow 0$
 \STATE $v \leftarrow \infty$
-\STATE $\Vtheta^* \leftarrow \Vtheta$
+\STATE $\theta^* \leftarrow \theta$
 \STATE $i^* \leftarrow i$
 \WHILE{$j < p$}
-    \STATE 运行训练算法$n$步，更新 $\Vtheta$ 。
+    \STATE 运行训练算法$n$步，更新 $\theta$ 。
     \STATE $i \leftarrow i + n$
-    \STATE $v' \leftarrow \text{ValidationSetError}(\Vtheta)$
+    \STATE $v' \leftarrow \text{ValidationSetError}(\theta)$
     \IF{$v' < v$}
         \STATE $j \leftarrow 0$
-        \STATE $\Vtheta^* \leftarrow \Vtheta$
+        \STATE $\theta^* \leftarrow \theta$
         \STATE $i^* \leftarrow i$
         \STATE $v \leftarrow v'$
     \ELSE
@@ -609,7 +609,7 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
     \ENDIF
 \ENDWHILE
 % pdflatex told me \RETURN was not recognized, wtf
-\STATE 最佳参数为 $\Vtheta^*$，最佳训练步数为$i^*$
+\STATE 最佳参数为 $\theta^*$，最佳训练步数为$i^*$
 \end{algorithmic}
 \end{algorithm}
 
@@ -679,11 +679,11 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 }
 \label{alg:early_stopping_retrain}
 \begin{algorithmic}
-\STATE 令 $\MX^{(\text{train})}$ 和 $\Vy^{(\text{train})}$ 为训练集。
-\STATE 将 $\MX^{(\text{train})}$ 和 $\Vy^{(\text{train})}$ 分别分割为 $(\MX^{(\text{subtrain})}$, $\MX^{(\text{valid})})$ 和 $(\Vy^{(\text{subtrain})}$, $\Vy^{(\text{valid})})$。
-\STATE 从随机 $\Vtheta$开始，使用$\MX^{(\text{subtrain})}$ 和 $\Vy^{(\text{subtrain})}$作为训练集，$\MX^{(\text{valid})}$ 和 $\Vy^{(\text{valid})}$ 作为验证集，运行 (\algref{alg:early_stopping})。这将返回最佳训练步数$i^*$。
-\STATE 将 $\Vtheta$ 再次设为随机值。
-\STATE 在 $\MX^{(\text{train})}$ 和 $\Vy^{(\text{train})}$ 上训练 $i^*$ 步。  
+\STATE 令 $X^{(\text{train})}$ 和 $y^{(\text{train})}$ 为训练集。
+\STATE 将 $X^{(\text{train})}$ 和 $y^{(\text{train})}$ 分别分割为 $(X^{(\text{subtrain})}$, $X^{(\text{valid})})$ 和 $(y^{(\text{subtrain})}$, $y^{(\text{valid})})$。
+\STATE 从随机 $\theta$开始，使用$X^{(\text{subtrain})}$ 和 $y^{(\text{subtrain})}$作为训练集，$X^{(\text{valid})}$ 和 $y^{(\text{valid})}$ 作为验证集，运行 (\algref{alg:early_stopping})。这将返回最佳训练步数$i^*$。
+\STATE 将 $\theta$ 再次设为随机值。
+\STATE 在 $X^{(\text{train})}$ 和 $y^{(\text{train})}$ 上训练 $i^*$ 步。  
 \end{algorithmic}
 \end{algorithm}
 
@@ -694,12 +694,12 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 }
 \label{alg:early_stopping_continue}
 \begin{algorithmic}
-\STATE 令 $\MX^{(\text{train})}$ 和 $\Vy^{(\text{train})}$ 为训练集。
-\STATE 将 $\MX^{(\text{train})}$ 和 $\Vy^{(\text{train})}$ 分别分割为 $(\MX^{(\text{subtrain})}$, $\MX^{(\text{valid})})$ 和 $(\Vy^{(\text{subtrain})}$, $\Vy^{(\text{valid})})$。
-\STATE 从随机 $\Vtheta$开始，使用$\MX^{(\text{subtrain})}$ 和 $\Vy^{(\text{subtrain})}$作为训练集，$\MX^{(\text{valid})}$ 和 $\Vy^{(\text{valid})}$ 作为验证集，运行 (\algref{alg:early_stopping})。这会更新$\Vtheta$。
-\STATE $\epsilon \leftarrow J(\Vtheta, \MX^{(\text{subtrain})},\Vy^{(\text{subtrain})})$
-\WHILE{$J(\Vtheta, \MX^{(\text{valid})}, \Vy^{(\text{valid})}) > \epsilon$}
-\STATE 在 $\MX^{(\text{train})}$ 和 $\Vy^{(\text{train})}$ 上训练 $n$ 步。  
+\STATE 令 $X^{(\text{train})}$ 和 $y^{(\text{train})}$ 为训练集。
+\STATE 将 $X^{(\text{train})}$ 和 $y^{(\text{train})}$ 分别分割为 $(X^{(\text{subtrain})}$, $X^{(\text{valid})})$ 和 $(y^{(\text{subtrain})}$, $y^{(\text{valid})})$。
+\STATE 从随机 $\theta$开始，使用$X^{(\text{subtrain})}$ 和 $y^{(\text{subtrain})}$作为训练集，$X^{(\text{valid})}$ 和 $y^{(\text{valid})}$ 作为验证集，运行 (\algref{alg:early_stopping})。这会更新$\theta$。
+\STATE $\epsilon \leftarrow J(\theta, X^{(\text{subtrain})},y^{(\text{subtrain})})$
+\WHILE{$J(\theta, X^{(\text{valid})}, y^{(\text{valid})}) > \epsilon$}
+\STATE 在 $X^{(\text{train})}$ 和 $y^{(\text{train})}$ 上训练 $n$ 步。  
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}
@@ -710,10 +710,10 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 \paragraph{提前终止为何具有正则化效果:}
 目前为止，我们已经声明提前终止是一种正则化策略，但我们只通过展示验证集误差的学习曲线是一个U型曲线来支持这种说法。
 提前终止正则化模型的真正机制是什么呢？ 
-\cite{Bishop1995}和~\cite{Sjoberg95}认为提前终止可以将优化过程的参数空间限制在初始参数值$\Vtheta_0$的小邻域内。
+\cite{Bishop1995}和~\cite{Sjoberg95}认为提前终止可以将优化过程的参数空间限制在初始参数值$\theta_0$的小邻域内。
 更具体地，想象用学习率$\epsilon$进行$\tau$个优化步骤（对应于$\tau$个训练迭代）。
 我们可以将$\epsilon \tau$作为有效容量的度量。
-假设梯度有界，限制迭代的次数和学习速率能够限制从$\Vtheta_0$到达的参数空间的大小，如\figref{fig:chap7_reg_l1_vs_l2_mistake}所示。
+假设梯度有界，限制迭代的次数和学习速率能够限制从$\theta_0$到达的参数空间的大小，如\figref{fig:chap7_reg_l1_vs_l2_mistake}所示。
 在这个意义上，$\epsilon \tau$的效果就好像是权重衰减系数的倒数。
 
 \begin{figure}[!htb]
@@ -725,7 +725,7 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 \caption{提前终止效果的示意图。
 \emph{(左)}实线轮廓线表示负对数似然的轮廓。
 虚线表示从原点开始的~SGD~所经过的轨迹。 % ??
-提前终止的轨迹在较早的点$\tilde \Vw$处停止，而不是停止在最小化代价的点$\Vw^*$处。
+提前终止的轨迹在较早的点$\tilde w$处停止，而不是停止在最小化代价的点$w^*$处。
 \emph{(右)}为了对比，使用$L^2$正则化效果的示意图。
 虚线圆圈表示$L^2$惩罚的轮廓，$L^2$惩罚使得总代价的最小值比非正则化代价的最小值更靠近原点。
 }
@@ -734,54 +734,54 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 
 事实上，在二次误差的简单线性模型和简单的梯度下降情况下，我们可以展示提前终止相当于$L^2$正则化。
 
-为了与经典$L^2$正则化比较，我们只考察唯一的参数是线性权重（$\Vtheta = \Vw$）的简单情形。
-我们在权重$\Vw$的经验最佳值$\Vw^*$附近以二次近似建模代价函数 $J$：
-\begin{align}
- \hat J(\Vtheta) = J(\Vw^*) + \frac{1}{2}  (\Vw- \Vw^*)^\top \MH  (\Vw - \Vw^*),
-\end{align}
-其中$\MH$是$J$关于$\Vw$在$\Vw^*$点的Hessian。
-鉴于假设$\Vw^*$是$J(\Vw)$的最小点，我们知道$\MH$为半正定。
+为了与经典$L^2$正则化比较，我们只考察唯一的参数是线性权重（$\theta = w$）的简单情形。
+我们在权重$w$的经验最佳值$w^*$附近以二次近似建模代价函数 $J$：
+\begin{aligned}
+ \hat J(\theta) = J(w^*) + \frac{1}{2}  (w- w^*)^\top H  (w - w^*),
+\end{aligned}
+其中$H$是$J$关于$w$在$w^*$点的Hessian。
+鉴于假设$w^*$是$J(w)$的最小点，我们知道$H$为半正定。
 在局部泰勒级数逼近下，梯度由下式给出：
-\begin{align}
- \nabla_{\Vw} \hat J (\Vw) = \MH (\Vw - \Vw^*).
-\end{align}
+\begin{aligned}
+ \nabla_{w} \hat J (w) = H (w - w^*).
+\end{aligned}
 
 % -- 243 --
 
 接下来我们研究训练时参数向量的轨迹。
 为简化起见，我们将参数向量初始化为原点\footnote{对于神经网络，我们需要打破隐藏单元间的对称平衡因此不能将所有参数都初始化为$\mathbf{0}$（如\secref{sec:gradient_based_learning}所讨论的）。
-然而，对于其他任何初始值$\Vw_{(0)}$该论证都成立}，也就是$\Vw^{(0)} = 0$。
+然而，对于其他任何初始值$w_{(0)}$该论证都成立}，也就是$w^{(0)} = 0$。
 我们通过分析$\hat{J}$上的梯度下降来研究$J$上近似的梯度下降的效果：
-\begin{align}
-\Vw^{(\tau)} &= \Vw^{(\tau-1)} -\epsilon \nabla_{\Vw} \hat{J}( \Vw^{(\tau-1)} ) \\
-&=  \Vw^{(\tau-1)}  - \epsilon  \MH ( \Vw^{(\tau-1)} -  \Vw^* ), \\
-\Vw^{(\tau)}  -  \Vw^* &= (\MI - \epsilon  \MH) ( \Vw^{(\tau-1)} -  \Vw^* ).
- \end{align}
-现在让我们在$\MH$特征向量的空间中改写表达式，利用$\MH$的特征分解：$\MH = \MQ \VLambda \MQ^\top$，其中$\VLambda$是对角矩阵，$\MQ$是特征向量的一组标准正交基。
-\begin{align}
-\Vw^{(\tau)}  -  \Vw^* &= (\MI - \epsilon \MQ \VLambda \MQ^\top) ( \Vw^{(\tau-1)} -  \Vw^* ) \\
-\MQ^\top (\Vw^{(\tau)}  -  \Vw^*) &= (\MI - \epsilon \VLambda)\MQ^\top ( \Vw^{(\tau-1)} -  \Vw^* )
-\end{align}
-假定$\Vw^{(0)} = 0$并且$\epsilon$选择得足够小以保证$|1 - \epsilon \lambda_i |<1$，经过$\tau$次参数更新后轨迹如下：
-\begin{align} \label{eq:740qw}
-\MQ^\top  \Vw^{(\tau)} = [\MI - (\MI - \epsilon \VLambda)^\tau] \MQ^\top  \Vw^* .
-\end{align}
-现在，\eqnref{eq:713L2}中$\MQ^\top \tilde \Vw$的表达式能被重写为：
-\begin{align}
-\MQ^\top  \tilde \Vw &= (\VLambda + \alpha \MI)^{-1} \VLambda \MQ^\top  \Vw^*, \\
-\MQ^\top  \tilde \Vw &= [\MI - (\VLambda + \alpha \MI)^{-1} \alpha] \MQ^\top  \Vw^*. 
+\begin{aligned}
+w^{(\tau)} &= w^{(\tau-1)} -\epsilon \nabla_{w} \hat{J}( w^{(\tau-1)} ) \\
+&=  w^{(\tau-1)}  - \epsilon  H ( w^{(\tau-1)} -  w^* ), \\
+w^{(\tau)}  -  w^* &= (I - \epsilon  H) ( w^{(\tau-1)} -  w^* ).
+ \end{aligned}
+现在让我们在$H$特征向量的空间中改写表达式，利用$H$的特征分解：$H = Q Lambda Q^\top$，其中$Lambda$是对角矩阵，$Q$是特征向量的一组标准正交基。
+\begin{aligned}
+w^{(\tau)}  -  w^* &= (I - \epsilon Q Lambda Q^\top) ( w^{(\tau-1)} -  w^* ) \\
+Q^\top (w^{(\tau)}  -  w^*) &= (I - \epsilon Lambda)Q^\top ( w^{(\tau-1)} -  w^* )
+\end{aligned}
+假定$w^{(0)} = 0$并且$\epsilon$选择得足够小以保证$|1 - \epsilon \lambda_i |<1$，经过$\tau$次参数更新后轨迹如下：
+\begin{aligned} \label{eq:740qw}
+Q^\top  w^{(\tau)} = [I - (I - \epsilon Lambda)^\tau] Q^\top  w^* .
+\end{aligned}
+现在，\eqnref{eq:713L2}中$Q^\top \tilde w$的表达式能被重写为：
+\begin{aligned}
+Q^\top  \tilde w &= (Lambda + \alpha I)^{-1} Lambda Q^\top  w^*, \\
+Q^\top  \tilde w &= [I - (Lambda + \alpha I)^{-1} \alpha] Q^\top  w^*. 
 \label{eq:742qw}
-\end{align}
+\end{aligned}
 比较\eqnref{eq:740qw}和\eqnref{eq:742qw}，我们能够发现，如果超参数$\epsilon,\alpha$和$\tau$满足如下：
-\begin{align}
-(\MI - \epsilon \VLambda)^\tau =  (\VLambda + \alpha \MI)^{-1} \alpha,
-\end{align}
+\begin{aligned}
+(I - \epsilon Lambda)^\tau =  (Lambda + \alpha I)^{-1} \alpha,
+\end{aligned}
 那么$L^2~$正则化和提前终止可以被看作是等价的（至少在目标函数的二次近似下）。
 进一步取对数，使用$\log~(1+x)$的级数展开，我们可以得出结论：如果所有$\lambda_i$是小的（即$\epsilon \lambda_i \ll 1$且$\lambda_i / \alpha \ll 1$），那么
-\begin{align}
+\begin{aligned}
 \tau \approx \frac{1}{\epsilon \alpha}, \\
 \alpha \approx \frac{1}{\tau \epsilon}.
-\end{align}
+\end{aligned}
 也就是说，在这些假设下，训练迭代次数$\tau$起着与$L^2$参数成反比的作用，$\tau \epsilon$的倒数与权重衰减系数的作用类似。
 
 在大曲率（目标函数）方向上的参数值受正则化影响小于小曲率方向。
@@ -802,14 +802,14 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 
 我们经常想要表达的一种常见依赖是某些参数应当彼此接近。
 考虑以下情形：我们有两个模型执行相同的分类任务（具有相同类别），但输入分布稍有不同。
-形式地，我们有参数为$\Vw^{(A)}$的模型$A$和参数为$\Vw^{(B)}$的模型$B$。
-这两种模型将输入映射到两个不同但相关的输出：$\hat y^{(A)} = f(\Vw^{(A)}, \Vx)$和$\hat y^{(B)} = f(\Vw^{(B)}, \Vx)$。
+形式地，我们有参数为$w^{(A)}$的模型$A$和参数为$w^{(B)}$的模型$B$。
+这两种模型将输入映射到两个不同但相关的输出：$\hat y^{(A)} = f(w^{(A)}, x)$和$\hat y^{(B)} = f(w^{(B)}, x)$。
 
 我们可以想象，这些任务会足够相似（或许具有相似的输入和输出分布），因此我们认为模型参数应彼此靠近：
 $\forall i, w_i^{(A)}$应该与$ w_i^{(B)}$接近。
 我们可以通过正则化利用此信息。
 具体来说，我们可以使用以下形式的参数范数惩罚：
-$\Omega(\Vw^{(A)}, \Vw^{(B)}) = \norm{\Vw^{(A)}-\Vw^{(B)}}_2^2$。
+$\Omega(w^{(A)}, w^{(B)}) = \norm{w^{(A)}-w^{(B)}}_2^2$。
 在这里我们使用$L^2$惩罚，但也可以使用其他选择。
 
 这种方法由\cite{LasserreJ2006}提出，正则化一个模型（监督模式下训练的分类器）的参数，使其接近另一个无监督模式下训练的模型（捕捉观察到的输入数据的分布）的参数。
@@ -845,12 +845,12 @@ CNN通过在图像多个位置共享参数来考虑这个特性。
 我们已经讨论过（在\secref{sec:l1_regularization}中）$L^1$惩罚如何诱导稀疏的参数，即许多参数为零（或接近于零）。
 另一方面，表示的稀疏性描述了一个表示中许多元素是零（或接近零）的情况。
 我们可以线性回归的情况下简单说明这种区别：
-\begin{align}
-\underset{\Vy ~\in~ \SetR^m}{
+\begin{aligned}
+\underset{y ~\in~ \SetR^m}{
  \begin{bmatrix}
   18 \\  5 \\ 15 \\ -9 \\ -3
  \end{bmatrix}} = 
- \underset{\MA ~\in~ \SetR^{m \times n}}{
+ \underset{A ~\in~ \SetR^{m \times n}}{
  \begin{bmatrix}
   4 & 0 & 0 & -2 & 0 & 0 \\
   0 & 0 & -1 & 0 & 3 & 0 \\
@@ -858,15 +858,15 @@ CNN通过在图像多个位置共享参数来考虑这个特性。
   1 & 0 & 0 & -1 & 0 & -4 \\
   1 & 0 & 0 & 0 & -5 & 0
  \end{bmatrix}} 
-  \underset{\Vx ~\in~ \SetR^n}{
+  \underset{x ~\in~ \SetR^n}{
   \begin{bmatrix}
  2 \\ 3\\ -2\\ -5 \\ 1 \\ 4
  \end{bmatrix} }\\
- \underset{\Vy ~\in~ \SetR^m}{
+ \underset{y ~\in~ \SetR^m}{
  \begin{bmatrix}
   -14 \\  1 \\ 19 \\  2 \\ 23
  \end{bmatrix}} = 
- \underset{\MB ~\in~ \SetR^{m \times n}}{
+ \underset{B ~\in~ \SetR^{m \times n}}{
  \begin{bmatrix}
   3 & -1 & 2 & -5 & 4 & 1 \\
   4 & 2 & -3 & -1 & 1 & 3 \\
@@ -874,41 +874,41 @@ CNN通过在图像多个位置共享参数来考虑这个特性。
   3 & 1 & 2 & -3 & 0 & -3 \\
   -5 & 4 & -2 & 2 & -5 & -1
  \end{bmatrix}} 
-  \underset{\Vh ~\in~ \SetR^n}{
+  \underset{h ~\in~ \SetR^n}{
   \begin{bmatrix}
  0 \\ 2 \\ 0 \\ 0 \\ -3 \\ 0
  \end{bmatrix} }
-\end{align}
+\end{aligned}
 
 % -- 247 --
 
 第一个表达式是参数稀疏的线性回归模型的例子。
-第二个表达式是数据$\Vx$具有稀疏表示 $\Vh$的线性回归。
-也就是说，$\Vh$是$\Vx$的一个函数，在某种意义上表示存在于$\Vx$中的信息，但只是用一个稀疏向量表示。
+第二个表达式是数据$x$具有稀疏表示 $h$的线性回归。
+也就是说，$h$是$x$的一个函数，在某种意义上表示存在于$x$中的信息，但只是用一个稀疏向量表示。
 
 表示的正则化可以使用参数正则化中同种类型的机制实现。
 
 表示的范数惩罚正则化是通过向损失函数 $J$添加对表示的范数惩罚来实现的。
-我们将这个惩罚记作$\Omega(\Vh)$。
+我们将这个惩罚记作$\Omega(h)$。
 和以前一样，我们将正则化后的损失函数记作$\tilde J$：
-\begin{align}
- \tilde J(\Vtheta; \MX, \Vy) =  J(\Vtheta; \MX, \Vy)  + \alpha \Omega(\Vh),
-\end{align}
+\begin{aligned}
+ \tilde J(\theta; X, y) =  J(\theta; X, y)  + \alpha \Omega(h),
+\end{aligned}
 其中$\alpha \in [0, \infty]$ 权衡范数惩罚项的相对贡献，越大的$\alpha$对应越多的正则化。
 
 正如对参数的$L^1$惩罚诱导参数稀疏性，对表示元素的$L^1$惩罚诱导稀疏的表示：
-$\Omega(\Vh) = \norm{\Vh}_1 = \sum_i |h_i|$。
+$\Omega(h) = \norm{h}_1 = \sum_i |h_i|$。
 当然$L^1$惩罚是使表示稀疏的方法之一。
 其他方法还包括从表示上的\ENNAME{Student}-$t$先验导出的惩罚\citep{Olshausen+Field-1996,Bergstra-Phd-2011}和KL散度惩罚\citep{Larochelle+Bengio-2008}，这些方法对于将表示中的元素约束于单位区间上特别有用。
-\cite{HonglakL2008-small}和\cite{Goodfellow2009}都提供了正则化几个样本平均激活的例子，即令$\frac{1}{m}\sum_i \Vh^{(i)}$接近某些目标值（如每项都是$.01$的向量）。
+\cite{HonglakL2008-small}和\cite{Goodfellow2009}都提供了正则化几个样本平均激活的例子，即令$\frac{1}{m}\sum_i h^{(i)}$接近某些目标值（如每项都是$.01$的向量）。
 
 还有一些其他方法通过激活值的硬性约束来获得表示稀疏。
-例如，\textbf{正交匹配追踪}(orthogonal matching pursuit)\citep{pati93orthogonal}通过解决以下约束优化问题将输入值$\Vx$编码成表示 $\Vh$
-\begin{align}
- \underset{\Vh, \norm{\Vh}_0 < k}{\argmin} \norm{\Vx - \MW \Vh}^2,
-\end{align}
-其中$\norm{\Vh}_0 $是$\Vh$中非零项的个数。
-当$\MW$被约束为正交时，我们可以高效地解决这个问题。
+例如，\textbf{正交匹配追踪}(orthogonal matching pursuit)\citep{pati93orthogonal}通过解决以下约束优化问题将输入值$x$编码成表示 $h$
+\begin{aligned}
+ \underset{h, \norm{h}_0 < k}{\arg\min} \norm{x - W h}^2,
+\end{aligned}
+其中$\norm{h}_0 $是$h$中非零项的个数。
+当$W$被约束为正交时，我们可以高效地解决这个问题。
 这种方法通常被称为\ENNAME{OMP}-$k$，通过$k$指定允许的非零特征数量。
 \cite{Coates2011b}证明\ENNAME{OMP}-$1$可以成为深度架构中非常有效的特征提取器。
 
@@ -930,11 +930,11 @@ Bagging是通过结合几个模型降低泛化误差的技术\citep{ML:Breiman:b
 假设每个模型在每个例子上的误差是$\epsilon_i$，这个误差服从零均值方差为$\SetE[\epsilon_i^2] = v$且协方差为$\SetE[\epsilon_i \epsilon_j] = c$的多维正态分布。
 通过所有集成模型的平均预测所得误差是$\frac{1}{k} \sum_i \epsilon_i$。 
 集成预测器平方误差的期望是
-\begin{align}
+\begin{aligned}
  \SetE \Bigg[\Bigg(\frac{1}{k} \sum_i \epsilon_i \Bigg)^2\Bigg] &= \frac{1}{k^2} 
  \SetE \Bigg[\sum_i \Bigg(\epsilon_i^2 + \sum_{j \neq i} \epsilon_i \epsilon_j\Bigg)\Bigg], \\
 &= \frac{1}{k} v + \frac{k-1}{k} c .                             
-\end{align}
+\end{aligned}
 在误差完全相关即$c=v$的情况下，均方误差减少到$v$，所以模型平均没有任何帮助。
 在错误完全不相关即$c =0$的情况下，该集成平方误差的期望仅为$\frac{1}{k}v$。
 这意味着集成平方误差的期望会随着集成规模增大而线性减小。
@@ -1036,8 +1036,8 @@ Dropout的目标是在指数级数量的神经网络上近似这个过程。
 \fi
 \caption{在使用Dropout的前馈网络中前向传播的示例。
 (顶部)在此示例中，我们使用具有两个输入单元，具有两个隐藏单元的隐藏层以及一个输出单元的前馈网络。
-(底部)为了执行具有Dropout的前向传播，我们随机地对向量$\Vmu$进行采样，其中网络中的每个输入或隐藏单元对应一项。
-$\Vmu$中的每项都是二值的且独立于其他项采样。
+(底部)为了执行具有Dropout的前向传播，我们随机地对向量$mu$进行采样，其中网络中的每个输入或隐藏单元对应一项。
+$mu$中的每项都是二值的且独立于其他项采样。
 超参数的采样概率为$1$，隐藏层的采样概率通常为$0.5$，输入的采样概率通常为$0.8$。
 网络中的每个单元乘以相应的掩码，然后正常地继续沿着网络的其余部分前向传播。
 这相当于从\figref{fig:chap7_subnetworks}中随机选择一个子网络并沿着前向传播。
@@ -1046,9 +1046,9 @@ $\Vmu$中的每项都是二值的且独立于其他项采样。
 \end{figure}
 % -- 252 --
 
-更正式地说，假设一个掩码向量$\Vmu$指定被包括的单元，$J(\Vtheta, \Vmu)$是由参数$\Vtheta$和掩码 $\Vmu$定义的模型代价。
-那么Dropout训练的目标是最小化$\SetE_{\Vmu} J(\Vtheta, \Vmu)$。 
-这个期望包含多达指数级的项，但我们可以通过抽样$\Vmu$获得梯度的无偏估计。
+更正式地说，假设一个掩码向量$mu$指定被包括的单元，$J(\theta, mu)$是由参数$\theta$和掩码 $mu$定义的模型代价。
+那么Dropout训练的目标是最小化$\SetE_{mu} J(\theta, mu)$。 
+这个期望包含多达指数级的项，但我们可以通过抽样$mu$获得梯度的无偏估计。
 
 Dropout训练与Bagging训练不太一样。
 在Bagging的情况下，所有模型都是独立的。
@@ -1065,18 +1065,18 @@ Bagging集成必须根据所有成员的累积投票做一个预测。
 在这种背景下，我们将这个过程称为推断。
 目前为止，我们在介绍Bagging和Dropout时没有要求模型具有明确的概率。
 现在，我们假定该模型的作用是输出一个概率分布。
-在Bagging的情况下，每个模型$i$产生一个概率分布$p^{(i)}(y \mid \Vx)$。 
+在Bagging的情况下，每个模型$i$产生一个概率分布$p^{(i)}(y \mid x)$。 
 集成的预测由这些分布的算术平均值给出，
-\begin{align}
- \frac{1}{k} \sum_{i=1}^k p^{(i)}(y \mid \Vx).
-\end{align}
+\begin{aligned}
+ \frac{1}{k} \sum_{i=1}^k p^{(i)}(y \mid x).
+\end{aligned}
 
-在Dropout的情况下，通过掩码 $\Vmu$定义每个子模型的概率分布$p(y \mid \Vx, \Vmu)$。
+在Dropout的情况下，通过掩码 $mu$定义每个子模型的概率分布$p(y \mid x, mu)$。
 所有掩码的算术平均值由下式给出
-\begin{align}
-  \sum_{\Vmu} p(\Vmu) p(y \mid \Vx, \Vmu),
-\end{align}
-其中$p(\Vmu)$是训练时采样$\Vmu$的概率分布。
+\begin{aligned}
+  \sum_{mu} p(mu) p(y \mid x, mu),
+\end{aligned}
+其中$p(mu)$是训练时采样$mu$的概率分布。
 
 % -- 254 --
 
@@ -1092,18 +1092,18 @@ Bagging集成必须根据所有成员的累积投票做一个预测。
 多个概率分布的几何平均不能保证是一个概率分布。
 为了保证结果是一个概率分布，我们要求没有子模型给某一事件分配概率0，并重新标准化所得分布。
 通过几何平均直接定义的非标准化概率分布由下式给出
-\begin{align}
-\tilde{p}_{\text{ensemble}}(y \mid \Vx) = \sqrt[2^d]{\prod_{\Vmu} p(y \mid \Vx, \Vmu)},
-\end{align}
+\begin{aligned}
+\tilde{p}_{\text{ensemble}}(y \mid x) = \sqrt[2^d]{\prod_{mu} p(y \mid x, mu)},
+\end{aligned}
 其中$d$是可被丢弃的单元数。
-这里为简化介绍，我们使用均匀分布的$\Vmu$，但非均匀分布也是可以的。
+这里为简化介绍，我们使用均匀分布的$mu$，但非均匀分布也是可以的。
 为了作出预测，我们必须重新标准化集成：
-\begin{align}
-p_{\text{ensemble}}(y \mid \Vx)  = \frac{\tilde{p}_{\text{ensemble}}(y \mid \Vx)}
- {\sum_{y'}\tilde{p}_{\text{ensemble}}(y' \mid \Vx) }.
-\end{align}
+\begin{aligned}
+p_{\text{ensemble}}(y \mid x)  = \frac{\tilde{p}_{\text{ensemble}}(y \mid x)}
+ {\sum_{y'}\tilde{p}_{\text{ensemble}}(y' \mid x) }.
+\end{aligned}
  
-涉及Dropout的一个重要观点\citep{Hinton-et-al-arxiv2012}是，我们可以通过评估模型中$p(y \mid \Vx)$来近似$ p_{\text{ensemble}}$：
+涉及Dropout的一个重要观点\citep{Hinton-et-al-arxiv2012}是，我们可以通过评估模型中$p(y \mid x)$来近似$ p_{\text{ensemble}}$：
 该模型具有所有单元，但我们将单元$i$的输出的权重乘以单元$i$的被包含概率。
 这个修改的动机是得到从该单元输出的正确期望值。
 我们把这种方法称为权重比例推断规则。
@@ -1117,42 +1117,42 @@ p_{\text{ensemble}}(y \mid \Vx)  = \frac{\tilde{p}_{\text{ensemble}}(y \mid \Vx)
 
 对许多不具有非线性隐藏单元的模型族而言，权重比例推断规则是精确的。
 举个简单的例子，考虑softmax函数回归分类，其中由向量$\RVv$表示$n$个输入变量：
-\begin{align}
- P(\RSy = \Sy \mid \RVv) = \text{softmax}\big(\MW^\top\RVv + \Vb\big)_y.
-\end{align}
-我们可以根据二值向量$\Vd$逐元素的乘法将一类子模型进行索引：
-\begin{align}
-P(\RSy = \Sy \mid \RVv; \Vd) = \text{softmax}\big(\MW^\top(\Vd \odot \RVv) + \Vb \big)_y.
-\end{align}
+\begin{aligned}
+ P(\RSy = \Sy \mid \RVv) = \text{softmax}\big(W^\top\RVv + b\big)_y.
+\end{aligned}
+我们可以根据二值向量$d$逐元素的乘法将一类子模型进行索引：
+\begin{aligned}
+P(\RSy = \Sy \mid \RVv; d) = \text{softmax}\big(W^\top(d \odot \RVv) + b \big)_y.
+\end{aligned}
 集成预测器被定义为重新标准化所有集成成员预测的几何平均：
-\begin{align} \label{eq:758pe}
+\begin{aligned} \label{eq:758pe}
 P_{\text{ensemble}}(\RSy = \Sy \mid \RVv)  = \frac{\tilde{P}_{\text{ensemble}}(\RSy = \Sy \mid \RVv)}
  {\sum_{y'}\tilde{P}_{\text{ensemble}}(\RSy = \Sy' \mid \RVv) },
-\end{align}
+\end{aligned}
 其中
-\begin{align}
+\begin{aligned}
 \tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid \RVv) =
-\sqrt[2^n]{\prod_{\Vd \in \{0,1\}^n} P(\RSy = \Sy \mid \RVv; \Vd)}.
-\end{align}
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid \RVv; d)}.
+\end{aligned}
 
 为了证明权重比例推断规则是精确的，我们简化$ \tilde{P}_{\text{ensemble}}$：
-\begin{align}
+\begin{aligned}
 \tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid \RVv) =
-\sqrt[2^n]{\prod_{\Vd \in \{0,1\}^n} P(\RSy = \Sy \mid \RVv; \Vd)} \\
-= \sqrt[2^n]{\prod_{\Vd \in \{0,1\}^n} \text{softmax}(\MW^\top(\Vd \odot \RVv) + \Vb)_y} \\
-= \sqrt[2^n]{\prod_{\Vd \in \{0,1\}^n} \frac{\exp (\MW_{y,:}^\top(\Vd \odot \RVv) + \Vb_y)}
-{\sum_{y'}\exp (\MW_{y',;}^\top(\Vd \odot \RVv) + \Vb_{y'})}}\\
-=  \frac{\sqrt[2^n]{\prod_{\Vd \in \{0,1\}^n}\exp (\MW_{y,:}^\top(\Vd \odot \RVv) + \Vb_y)}}
-{ \sqrt[2^n] \prod_{\Vd \in \{0,1\}^n} \sum_{y'}\exp (\MW_{y',:}^\top(\Vd \odot \RVv) + \Vb_{y'})}
-\end{align}
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid \RVv; d)} \\
+= \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \text{softmax}(W^\top(d \odot \RVv) + b)_y} \\
+= \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \frac{\exp (W_{y,:}^\top(d \odot \RVv) + b_y)}
+{\sum_{y'}\exp (W_{y',;}^\top(d \odot \RVv) + b_{y'})}}\\
+=  \frac{\sqrt[2^n]{\prod_{d \in \{0,1\}^n}\exp (W_{y,:}^\top(d \odot \RVv) + b_y)}}
+{ \sqrt[2^n] \prod_{d \in \{0,1\}^n} \sum_{y'}\exp (W_{y',:}^\top(d \odot \RVv) + b_{y'})}
+\end{aligned}
 由于$\tilde P$将被标准化，我们可以放心地忽略那些相对$y$不变的乘法：
-\begin{align}
+\begin{aligned}
 \tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid \RVv) &\propto 
-\sqrt[2^n]{\prod_{\Vd \in \{0,1\}^n} \exp (\MW_{y,:}^\top(\Vd \odot \RVv) + \Vb_y)} \\
-& = \exp \Bigg(\frac{1}{2^n} \sum_{\Vd \in \{0,1\}^n} \MW_{y,;}^\top(\Vd \odot \RVv) + \Vb_y \Bigg) \\
-& = \exp \Big(\frac{1}{2}\MW_{y,:}^\top \RVv + \Vb_y \Big) .
-\end{align}
-将其代入\eqnref{eq:758pe}，我们得到了一个权重为$\frac{1}{2}\MW$的softmax函数分类器。
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} \exp (W_{y,:}^\top(d \odot \RVv) + b_y)} \\
+& = \exp \Bigg(\frac{1}{2^n} \sum_{d \in \{0,1\}^n} W_{y,;}^\top(d \odot \RVv) + b_y \Bigg) \\
+& = \exp \Big(\frac{1}{2}W_{y,:}^\top \RVv + b_y \Big) .
+\end{aligned}
+将其代入\eqnref{eq:758pe}，我们得到了一个权重为$\frac{1}{2}W$的softmax函数分类器。
 
 % -- 256 --
 
@@ -1168,8 +1168,8 @@ P_{\text{ensemble}}(\RSy = \Sy \mid \RVv)  = \frac{\tilde{P}_{\text{ensemble}}(\
 Dropout也可以与其他形式的正则化合并，得到进一步的提升。
 
 计算方便是Dropout的一个优点。
-训练过程中使用Dropout产生$n$个随机二进制数与状态相乘，每个样本每次更新只需$\CalO(n)$的计算复杂度。
-根据实现，也可能需要$\CalO(n)$的存储空间来持续保存这些二进制数（直到反向传播阶段）。
+训练过程中使用Dropout产生$n$个随机二进制数与状态相乘，每个样本每次更新只需$\Bbb O(n)$的计算复杂度。
+根据实现，也可能需要$\Bbb O(n)$的存储空间来持续保存这些二进制数（直到反向传播阶段）。
 使用训练好的模型推断时，计算每个样本的代价与不使用Dropout是一样的，尽管我们必须在开始运行推断前将权重除以2。
 
 % -- 257 --
@@ -1225,11 +1225,11 @@ Dropout的一个特殊情况，其中一个标量权重和单个隐藏单元状�
 原则上，任何一种随机的修改都是可接受的。
 在实践中，我们必须选择让神经网络能够学习对抗的修改类型。
 在理想情况下，我们也应该使用可以快速近似推断的模型族。
-我们可以认为由向量$\Vmu$参数化的任何形式的修改，是对$\Vmu$所有可能的值训练$p(y \mid \Vx, \Vmu)$的集成。
-注意，这里不要求$\Vmu$具有有限数量的值。
-例如，$\Vmu$可以是实值。
-\cite{Srivastava14}表明，权重乘以$\Vmu \sim \CalN(\mathbf{1}, \MI)$比基于二值掩码Dropout表现得更好。
-由于$\SetE[\Vmu] = 1$，标准网络自动实现集成的近似推断，而不需要权重比例推断规则。
+我们可以认为由向量$mu$参数化的任何形式的修改，是对$mu$所有可能的值训练$p(y \mid x, mu)$的集成。
+注意，这里不要求$mu$具有有限数量的值。
+例如，$mu$可以是实值。
+\cite{Srivastava14}表明，权重乘以$mu \sim \Bbb N(\mathbf{1}, I)$比基于二值掩码Dropout表现得更好。
+由于$\SetE[mu] = 1$，标准网络自动实现集成的近似推断，而不需要权重比例推断规则。
 
 % -- 259 --
 
@@ -1268,8 +1268,8 @@ Dropout的另一个重要方面是噪声是乘性的。
 在许多情况下，神经网络在独立同分布的测试集上进行评估已经达到了人类表现。
 因此，我们自然要怀疑这些模型在这些任务上是否获得了真正的人类层次的理解。
 为了探索网络对底层任务的理解层次，我们可以探索这个模型错误分类的例子。
-\cite{Szegedy-ICLR2014}发现，在精度达到人类水平的神经网络上通过优化过程故意构造数据点，其上的误差率接近\NUMTEXT{100\%}，模型在这个输入点$\Vx'$的输出与附近的数据点$\Vx$非常不同。
-在许多情况下，$\Vx'$与$\Vx$非常近似，人类观察者不会察觉原始样本和对抗样本之间的差异，但是网络会作出非常不同的预测。
+\cite{Szegedy-ICLR2014}发现，在精度达到人类水平的神经网络上通过优化过程故意构造数据点，其上的误差率接近\NUMTEXT{100\%}，模型在这个输入点$x'$的输出与附近的数据点$x$非常不同。
+在许多情况下，$x'$与$x$非常近似，人类观察者不会察觉原始样本和对抗样本之间的差异，但是网络会作出非常不同的预测。
 见\figref{fig:chap7_panda_577}中的例子。
 \begin{figure}[!htb]
 \ifOpenSource
@@ -1285,8 +1285,8 @@ $\ +\ .007\ \times$ &%
     \includegraphics[width=.2\figwidth]{Chapter7/figures/nematode_082.png} &%
     $=$ & %
     \includegraphics[width=.2\figwidth]{Chapter7/figures/gibbon_993.png} \\
-    $\centering \Vx$     &%
-    & $\text{sign} (\nabla_{\Vx} J(\Vtheta, \Vx, y) )$ & & $\Vx + \epsilon \text{sign} (\nabla_{\Vx} J(\Vtheta, \Vx, y) )$ \\
+    $\centering x$     &%
+    & $\text{sign} (\nabla_{x} J(\theta, x, y) )$ & & $x + \epsilon \text{sign} (\nabla_{x} J(\theta, x, y) )$ \\
     $y=$``panda'' &                & ``nematode''     &   & ``gibbon'' \\
     w/ 57.7\% confidence &        &   w/ 8.2\% confidence & & w/ 99.3 \% confidence
 \end{tabular}    
@@ -1310,7 +1310,7 @@ $\ +\ .007\ \times$ &%
 因此在一些实验中，它们实现的整体函数被证明是高度线性的。
 这些线性函数很容易优化。
 不幸的是，如果一个线性函数具有许多输入，那么它的值可以非常迅速地改变。
-如果我们用$\epsilon$改变每个输入，那么权重为$\Vw$的线性函数可以改变$\epsilon \norm{\Vw}_1$之多，如果$\Vw$是高维的这会是一个非常大的数。
+如果我们用$\epsilon$改变每个输入，那么权重为$w$的线性函数可以改变$\epsilon \norm{w}_1$之多，如果$w$是高维的这会是一个非常大的数。
 对抗训练通过鼓励网络在训练数据附近的局部区域恒定来限制这一高度敏感的局部线性行为。
 这可以被看作是一种明确地向监督神经网络引入局部恒定先验的方法。
 
@@ -1319,11 +1319,11 @@ $\ +\ .007\ \times$ &%
 神经网络能够表示范围广泛的函数，从接近线性到局部近似恒定，从而可以灵活地捕获到训练数据中的线性趋势同时学习抵抗局部扰动。
 
 对抗样本也提供了一种实现半监督学习的方法。
-在数据集中没有分配标签的点$\Vx$处，模型自己为其分配一些标签$\hat y$。
+在数据集中没有分配标签的点$x$处，模型自己为其分配一些标签$\hat y$。
 模型的标记$\hat y$未必是真正的标签，但如果模型是高品质的，那么$\hat y$提供正确标签的可能性很大。
-我们可以搜索一个对抗样本 $\Vx'$，导致分类器输出一个标签$y'$且$y' \neq \hat y$。
+我们可以搜索一个对抗样本 $x'$，导致分类器输出一个标签$y'$且$y' \neq \hat y$。
 不使用真正的标签，而是由训练好的模型提供标签产生的对抗样本被称为虚拟对抗样本\citep{miyato2015distributional}。
-我们可以训练分类器为$\Vx$和$\Vx'$分配相同的标签。
+我们可以训练分类器为$x$和$x'$分配相同的标签。
 这鼓励分类器学习一个沿着未标签数据所在流形上任意微小变化都很鲁棒的函数。
 驱动这种方法的假设是，不同的类通常位于分离的流形上，并且小扰动不会使数据点从一个类的流形跳到另一个类的流形上。
 
@@ -1339,18 +1339,18 @@ $\ +\ .007\ \times$ &%
 一个利用流形假设的早期尝试是切面距离算法\citep{Simard93-small,Simard98}。
 它是一种非参数的最近邻算法，其中使用的度量不是通用的欧几里德距离，而是根据邻近流形关于聚集概率的知识导出的。
 这个算法假设我们尝试分类的样本和同一流形上的样本具有相同的类别。
-由于分类器应该对局部因素（对应于流形上的移动）的变化保持不变，一种合理的度量是将点$\Vx_1$和$\Vx_2$各自所在流形$M_1$和$M_2$的距离作为点$\Vx_1$和$\Vx_2$之间的最近邻距离。
-然而这可能在计算上是困难的（它需要解决一个寻找$M_1$和$M_2$最近点对的优化问题），一种局部合理的廉价替代是使用$\Vx_i$点处切平面近似$M_i$，并测量两条切平面或一个切平面和点之间的距离。
+由于分类器应该对局部因素（对应于流形上的移动）的变化保持不变，一种合理的度量是将点$x_1$和$x_2$各自所在流形$M_1$和$M_2$的距离作为点$x_1$和$x_2$之间的最近邻距离。
+然而这可能在计算上是困难的（它需要解决一个寻找$M_1$和$M_2$最近点对的优化问题），一种局部合理的廉价替代是使用$x_i$点处切平面近似$M_i$，并测量两条切平面或一个切平面和点之间的距离。
 这可以通过求解一个低维线性系统（就流形的维数而言）来实现。
 当然，这种算法需要指定那些切向量。
 
-受相关启发，正切传播算法\citep{Simard92-short}（\figref{fig:chap7_mtc_color}）训练带有额外惩罚的神经网络分类器，使神经网络的每个输出$f(\Vx)$对已知的变化因素是局部不变的。
+受相关启发，正切传播算法\citep{Simard92-short}（\figref{fig:chap7_mtc_color}）训练带有额外惩罚的神经网络分类器，使神经网络的每个输出$f(x)$对已知的变化因素是局部不变的。
 这些变化因素对应于沿着的相同样本聚集的流形的移动。
-这里实现局部不变性的方法是要求$\nabla_{\Vx} f(\Vx)$与已知流形的切向$\Vv^{(i)}$正交，或者等价地通过正则化惩罚$\Omega$使$f$在$\Vx$的$\Vv^{(i)}$方向的导数较小：
-\begin{align} \label{eq:767}
- \Omega(f) = \sum_i \Big((\nabla_{\Vx} f(\Vx)^\top \Vv^{(i)}) \Big)^2 .
-\end{align}
-这个正则化项当然可以通过适当的超参数缩放，并且对于大多数神经网络，我们需要对许多输出求和(此处为描述简单，$f(\Vx)$为唯一输出)。
+这里实现局部不变性的方法是要求$\nabla_{x} f(x)$与已知流形的切向$v^{(i)}$正交，或者等价地通过正则化惩罚$\Omega$使$f$在$x$的$v^{(i)}$方向的导数较小：
+\begin{aligned} \label{eq:767}
+ \Omega(f) = \sum_i \Big((\nabla_{x} f(x)^\top v^{(i)}) \Big)^2 .
+\end{aligned}
+这个正则化项当然可以通过适当的超参数缩放，并且对于大多数神经网络，我们需要对许多输出求和(此处为描述简单，$f(x)$为唯一输出)。
 与切面距离算法一样，切向量是从先验知识推导的，通常是从变换（如平移、旋转和缩放图像）的效果获得的形式知识。
 正切传播不仅用于监督学习\citep{Simard92-short}，还在强化学习\citep{Thrun-NIPS1994}中有所应用。
 \begin{figure}[!htb]
@@ -1359,12 +1359,12 @@ $\ +\ .007\ \times$ &%
 \else
 \centerline{\includegraphics{Chapter7/figures/mtc_color}}
 \fi
-\caption{正切传播算法\citep{Simard92-short}和流形正切分类器主要思想的示意图\citep{Dauphin-et-al-NIPS2011-small}，它们都正则化分类器的输出函数$f(\Vx)$。
+\caption{正切传播算法\citep{Simard92-short}和流形正切分类器主要思想的示意图\citep{Dauphin-et-al-NIPS2011-small}，它们都正则化分类器的输出函数$f(x)$。
 每条曲线表示不同类别的流形，这里表示嵌入二维空间中的一维流形。
 在一条曲线上，我们选择单个点并绘制一个与类别流形相切（平行并接触流形）的向量以及与类别流形垂直（与流形正交）的向量。
 在多维情况下，可以存在许多切线方向和法线方向。
 我们希望分类函数在垂直于流形方向上快速改变，并且在类别流形的方向上保持不变。
-正切传播和流形正切分类器都会正则化 $f(\Vx)$，使其不随$\Vx$沿流形的移动而剧烈变化。
+正切传播和流形正切分类器都会正则化 $f(x)$，使其不随$x$沿流形的移动而剧烈变化。
 正切传播需要用户手动指定正切方向的计算函数（例如指定小平移后的图像保留在相同类别的流形中），而流形正切分类器通过训练自编码器拟合训练数据来估计流形的正切方向 。
 我们将在\chapref{chap:autoencoders}中讨论使用自编码器来估计流形。
 }

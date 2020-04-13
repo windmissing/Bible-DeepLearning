@@ -39,7 +39,7 @@ Nesterov 动量中，梯度计算在施加当前速度之后。
 \REQUIRE  学习率 $\epsilon$， 动量参数 $\alpha$
 \REQUIRE 初始参数 $\theta$，初始速度 $v$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 应用临时更新： $\tilde{\theta} \leftarrow \theta  + \alpha v$
          \STATE 计算梯度（在临时点）：$g \leftarrow 
          \frac{1}{m} \nabla_{\tilde{\theta}} \sum_i L(f(x^{(i)};\tilde{\theta}),y^{(i)})$

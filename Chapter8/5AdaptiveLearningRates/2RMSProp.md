@@ -55,7 +55,7 @@ Nesterov + RMSProp：RMSProp用于深度神经网络。而Nesterov对SGD没有�
 \REQUIRE 小常数$\delta$，通常设为$10^{-6}$（用于被小数除时的数值稳定）
 \STATE 初始化累积变量 $r = 0$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度：$g \leftarrow  
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE 累积平方梯度：$r \leftarrow \rho
@@ -75,7 +75,7 @@ Nesterov + RMSProp：RMSProp用于深度神经网络。而Nesterov对SGD没有�
 \REQUIRE 初始参数$\theta$，初始参数$v$
 \STATE 初始化累积变量 $r = 0$
 \WHILE{没有达到停止准则} % NOTE: do not capitalize the condition
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算临时更新：$\tilde{\theta} \leftarrow \theta + \alpha v$
     \STATE 计算梯度：$g \leftarrow  
          \frac{1}{m} \nabla_{\tilde{\theta}} \sum_i L(f(x^{(i)};\tilde{\theta}),y^{(i)})$ 

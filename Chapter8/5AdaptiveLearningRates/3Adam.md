@@ -63,7 +63,7 @@ $t \leftarrow t + 1$
 \STATE 初始化一阶和二阶矩变量 $s = 0 $, $r = 0$
 \STATE 初始化时间步 $t=0$ 
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度：$g \leftarrow \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE $t \leftarrow t + 1$
     \STATE 更新有偏一阶矩估计： $s \leftarrow \rho_1 s + (1-\rho_1) g$

@@ -15,7 +15,7 @@
 \REQUIRE 学习率 $\epsilon_k$
 \REQUIRE 初始参数$\theta$
 \WHILE{停止准则未满足}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，其中$x^{(i)}$对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，其中$x^{(i)}$对应目标为$y^{(i)}$。
     \STATE 计算梯度估计： $\hat{g} \leftarrow + 
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$
     \STATE 应用更新：$\theta \leftarrow \theta - \epsilon \hat{g}$

@@ -47,8 +47,8 @@ J = L(y_hat, y) + lambda * omega(theta)
 请参考\sec?以获得更加真实的演示。}
 \begin{algorithmic}
 \REQUIRE 网络深度， $l$
-\REQUIRE $W^{(i)}, i \in \{ 1, \dots, l\}$， 模型的权重矩阵
-\REQUIRE $b^{(i)}, i \in \{ 1, \dots, l\}$， 模型的偏置参数
+\REQUIRE $W^{(i)}, i \in \{ 1, \cdots, l\}$， 模型的权重矩阵
+\REQUIRE $b^{(i)}, i \in \{ 1, \cdots, l\}$， 模型的偏置参数
 \REQUIRE $x$，程序的输入
 \REQUIRE $y$，目标输出
 \STATE $h^{(0)}=x$
@@ -125,7 +125,7 @@ $$
 \begin{algorithmic}
 \STATE 在前向计算完成后，计算顶层的梯度：
 \STATE $g \leftarrow \nabla_{\hat{y}} J = \nabla_{\hat{y}} L(\hat{y},y)$
-\FOR {$k=l, l-1, \dots, 1$}
+\FOR {$k=l, l-1, \cdots, 1$}
 \STATE 将关于层输出的梯度转换为非线性激活输入前的梯度（如果 $f$ 是逐元素的，则逐元素地相乘）：
   \STATE $g \leftarrow \nabla_{a^{(k)}} J = g \odot f'(a^{(k)})$
   \STATE 计算关于权重和偏置的梯度（如果需要的话，还要包括正则项）：

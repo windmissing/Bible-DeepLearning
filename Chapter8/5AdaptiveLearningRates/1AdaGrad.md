@@ -39,7 +39,7 @@ AdaGrad在某些深度学习模型上效果不错，但不是全部。
 \REQUIRE 小常数$\delta$，为了数值稳定大约设为$10^{-7}$
 \STATE 初始化梯度累积变量$r = 0$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度： $g \leftarrow  
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE 累积平方梯度：$r \leftarrow r + g \odot g$

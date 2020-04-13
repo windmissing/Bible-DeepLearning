@@ -257,7 +257,7 @@ $$
 \sum_{i: j \in Pa(u^{(i)})} {\tt grad\_table}[u^{(i)}]
 \frac{\partial u^{(i)}}{\partial u^{(j)}}$
 \ENDFOR
-\STATE {\bf return} $\{ {\tt grad\_table}[ u^{(i)}] \mid i=1, \dots, n_i \} $
+\STATE {\bf return} $\{ {\tt grad\_table}[ u^{(i)}] \mid i=1, \cdots, n_i \} $
 \end{algorithmic}
 \end{algorithm}
 {% endraw %}
