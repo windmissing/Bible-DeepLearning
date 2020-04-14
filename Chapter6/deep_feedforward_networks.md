@@ -104,7 +104,7 @@ XOR函数提供了我们想要学习的目标函数$y = f^*(x)$。
 我们的模型给出了一个函数$y=f(x; \theta)$并且我们的学习算法会不断调整参数$\theta$来使得$f$尽可能接近$f^*$。
 
 在这个简单的例子中，我们不会关心统计泛化。
-我们希望网络在这四个点$\SetX =\{[0, 0]^\top, [0, 1]^\top, [1, 0]^\top, [1, 1]^\top\}$上表现正确。
+我们希望网络在这四个点$\Bbb X =\{[0, 0]^\top, [0, 1]^\top, [1, 0]^\top, [1, 1]^\top\}$上表现正确。
 我们会用全部这四个点来训练我们的网络，唯一的挑战是拟合训练集。
 
 我们可以把这个问题当作是回归问题，并使用均方误差损失函数。
@@ -116,7 +116,7 @@ XOR函数提供了我们想要学习的目标函数$y = f^*(x)$。
 
 评估整个训练集上表现的~MSE~损失函数为
 \begin{equation}
-J(\theta) = \frac{1}{4} \sum_{x\in \SetX} (f^*(x) - f(x; \theta))^2.
+J(\theta) = \frac{1}{4} \sum_{x\in \Bbb X} (f^*(x) - f(x; \theta))^2.
 \end{equation}
 
 我们现在必须要选择我们模型$f(x; \theta)$的形式。
@@ -353,14 +353,14 @@ n## 代价函数n
 这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。
 这个代价函数表示为
 \begin{equation}
-J(\theta) = -\SetE_{\RVx, \RVy \sim \hat{p}_\text{data}} \log p_\text{model} (y \mid x).
+J(\theta) = -\Bbb E_{x, y \sim \hat{p}_\text{data}} \log p_\text{model} (y \mid x).
 \end{equation}
 
 代价函数的具体形式随着模型而改变，取决于$\log p_\text{model}$的具体形式。
 上述方程的展开形式通常会有一些项不依赖于模型的参数，我们可以舍去。
 例如，正如我们在\sec?中看到的，如果$p_\text{model}(y\midx) = \Bbb N(y;f(x;\theta), I)$，那么我们就重新得到了均方误差代价，
 \begin{equation}
-J(\theta) = \frac{1}{2} \SetE_{\RVx, \RVy \sim  \hat{p}_\text{data}} || y - f(x; \theta) ||^2 + \text{const},
+J(\theta) = \frac{1}{2} \Bbb E_{x, y \sim  \hat{p}_\text{data}} || y - f(x; \theta) ||^2 + \text{const},
 \end{equation}
 至少系数$\frac{1}{2}$和常数项不依赖于$\theta$。
 舍弃的常数是基于高斯分布的方差，在这种情况下我们选择不把它参数化。
@@ -403,11 +403,11 @@ J(\theta) = \frac{1}{2} \SetE_{\RVx, \RVy \sim  \hat{p}_\text{data}} || y - f(x;
 
 我们使用变分法导出的第一个结果是解优化问题
 \begin{equation}
-f^* = \underset{f}{\arg\min}  \ \SetE_{\RVx, \RVy \sim  p_\text{data}} ||y-f(x)||^2
+f^* = \underset{f}{\arg\min}  \ \Bbb E_{x, y \sim  p_\text{data}} ||y-f(x)||^2
 \end{equation}
 得到
 \begin{equation}
-f^*(x) = \SetE_{\RVy\sim p_\text{data}(y|x)} [y],
+f^*(x) = \Bbb E_{y\sim p_\text{data}(y|x)} [y],
 \end{equation}
 要求这个函数处在我们要优化的类里。
 换句话说，如果我们能够用无穷多的、来源于真实的数据生成分布的样本进行训练，最小化均方误差代价函数将得到一个函数，它可以用来对每个$x$的值预测出$y$的均值。
@@ -415,7 +415,7 @@ f^*(x) = \SetE_{\RVy\sim p_\text{data}(y|x)} [y],
 不同的代价函数给出不同的统计量。
 第二个使用变分法得到的结果是
 \begin{equation}
-f^* = \underset{f}{\arg\min} \ \SetE_{\RVx, \RVy \sim  p_\text{data}} ||y - f(x)||_1
+f^* = \underset{f}{\arg\min} \ \Bbb E_{x, y \sim  p_\text{data}} ||y - f(x)||_1
 \end{equation}
 将得到一个函数可以对每个$x$预测$y$取值的\emph{中位数}，只要这个函数在我们要优化的函数族里。
 这个代价函数通常被称为平均绝对误差。
@@ -659,17 +659,17 @@ softmax函数因此提供了argmax的"软化"版本。max函数相应的软化�
 一般来说，我们可以认为神经网络表示函数$f(x;\theta)$。
 这个函数的输出不是对$y$值的直接预测。
 相反，$f(x;\theta)=omega$提供了$y$分布的参数。
-我们的损失函数就可以表示成$-\log p(\RVy; omega(x))$。
+我们的损失函数就可以表示成$-\log p(y; omega(x))$。
 
-例如，我们想要学习在给定$\RVx$时，$\RVy$的条件高斯分布的方差。
-简单情况下，方差$\sigma^2$是一个常数，此时有一个解析表达式，这是因为方差的最大似然估计量仅仅是观测值$\RVy$与它们的期望值的差值的平方平均。
-一种计算上代价更加高但是不需要写特殊情况代码的方法是简单地将方差作为分布$p(\RVy\midx)$的其中一个属性，这个分布由$omega=f(x;\theta)$控制。
+例如，我们想要学习在给定$x$时，$y$的条件高斯分布的方差。
+简单情况下，方差$\sigma^2$是一个常数，此时有一个解析表达式，这是因为方差的最大似然估计量仅仅是观测值$y$与它们的期望值的差值的平方平均。
+一种计算上代价更加高但是不需要写特殊情况代码的方法是简单地将方差作为分布$p(y\midx)$的其中一个属性，这个分布由$omega=f(x;\theta)$控制。
 负对数似然$-\log p(y;omega(x))$将为代价函数提供一个必要的合适项来使我们的优化过程可以逐渐地学到方差。
 在标准差不依赖于输入的简单情况下，我们可以在网络中创建一个直接复制到$omega$中的新参数。
 这个新参数可以是$\sigma$本身，或者可以是表示$\sigma^2$的参数$v$，或者可以是表示$\frac{1}{\sigma^2}$的参数$\beta$，取决于我们怎样对分布参数化。
-我们可能希望模型对不同的$\RVx$值预测出$\RVy$不同的方差。
+我们可能希望模型对不同的$x$值预测出$y$不同的方差。
 这被称为异方差模型。
-在异方差情况下，我们简单地把方差指定为$f(\RVx;\theta)$其中一个输出值。
+在异方差情况下，我们简单地把方差指定为$f(x;\theta)$其中一个输出值。
 实现它的典型方法是使用精度而不是方差来表示高斯分布，就像\eqn?所描述的。
 在多维变量的情况下，最常见的是使用一个对角精度矩阵
 \begin{equation}
@@ -707,11 +707,11 @@ p(y\midx) = \sum_{i=1}^n p(\RSc = i \mid x) \Bbb N(y; mu^{(i)}(x), Sigma^{(i)}(x
 神经网络必须有三个输出：定义$p(\RSc=i\midx)$的向量，对所有的$i$给出$mu^{(i)}(x)$的矩阵，以及对所有的$i$给出$Sigma^{(i)}(x)$的张量。
 这些输出必须满足不同的约束：
 \begin{enumerate}
-+ 混合组件$p(\RSc=i\midx)$：它们由潜变量\footnote{我们之所以认为$\RSc$是潜在的，是因为我们不能直接在数据中观测到它：给定输入$\RVx$和目标$\RVy$，不可能确切地知道是哪个高斯组件产生$\RVy$，但我们可以想象$\RVy$是通过选择其中一个来产生的，并且将那个未被观测到的选择作为随机变量。}~$\RSc$关联着，在$n$个不同组件上形成~Multinoulli分布。
++ 混合组件$p(\RSc=i\midx)$：它们由潜变量\footnote{我们之所以认为$\RSc$是潜在的，是因为我们不能直接在数据中观测到它：给定输入$x$和目标$y$，不可能确切地知道是哪个高斯组件产生$y$，但我们可以想象$y$是通过选择其中一个来产生的，并且将那个未被观测到的选择作为随机变量。}~$\RSc$关联着，在$n$个不同组件上形成~Multinoulli分布。
 这个分布通常可以由$n$维向量的softmax来获得，以确保这些输出是正的并且和为1。
 
 + 均值$mu^{(i)}(x)$：它们指明了与第$i$个高斯组件相关联的中心或者均值，并且是无约束的（通常对于这些输出单元完全没有非线性）。
-如果$\RVy$是个$d$维向量，那么网络必须输出一个由$n$个这种$d$维向量组成的$n\times d$ 的矩阵。
+如果$y$是个$d$维向量，那么网络必须输出一个由$n$个这种$d$维向量组成的$n\times d$ 的矩阵。
 用最大似然来学习这些均值要比学习只有一个输出模式的分布的均值稍稍复杂一些。我们只想更新那个真正产生观测数据的组件的均值。
 在实践中，我们并不知道是哪个组件产生了观测数据。
 负对数似然表达式将每个样本对每个组件的贡献进行赋权，权重的大小由相应的组件产生这个样本的概率来决定。
@@ -825,9 +825,9 @@ maxout单元{cite?}进一步扩展了整流线性单元。
 maxout单元将$z$划分为每组具有$k$个值的组，而不是使用作用于每个元素的函数$g(z)$。
 每个maxout单元则输出每组中的最大元素：
 \begin{equation}
-g(z)_i = \underset{j\in \SetG^{(i)}}{\max} z_j
+g(z)_i = \underset{j\in \Bbb G^{(i)}}{\max} z_j
 \end{equation}
-这里$\SetG^{(i)}$是组$i$的输入索引集$\{(i-1)k+1, \ldots, ik\}$。
+这里$\Bbb G^{(i)}$是组$i$的输入索引集$\{(i-1)k+1, \ldots, ik\}$。
 这提供了一种方法来学习对输入$x$空间中多个方向响应的分段线性函数。
 
 maxout单元可以学习具有多达$k$段的分段线性的凸函数。
@@ -970,7 +970,7 @@ n## 万能近似性质和深度n
 幸运的是，具有隐藏层的前馈网络提供了一种万能近似框架。
 具体来说，万能近似定理, %万能逼近定理{cite?}表明，一个前馈神经网络如果具有线性输出层和至少一层具有任何一种"挤压"性质的激活函数（例如logistic sigmoid激活函数）的隐藏层，只要给予网络足够数量的隐藏单元，它可以以任意的精度来近似任何从一个有限维空间到另一个有限维空间的Borel可测函数。
 前馈网络的导数也可以任意好地来近似函数的导数{cite?}。
-Borel可测的概念超出了本书的范畴；对于我们想要实现的目标，只需要知道定义在$\SetR^n$的有界闭集上的任意连续函数是Borel可测的，因此可以用神经网络来近似。
+Borel可测的概念超出了本书的范畴；对于我们想要实现的目标，只需要知道定义在$\Bbb R^n$的有界闭集上的任意连续函数是Borel可测的，因此可以用神经网络来近似。
 神经网络也可以近似从任何有限维离散空间映射到另一个的任意函数。
 虽然原始定理最初以具有特殊激活函数的单元的形式来描述，这个激活函数当变量取绝对值非常大的正值和负值时都会饱和，万能近似定理, %万能逼近定理也已经被证明对于更广泛类别的激活函数也是适用的，其中就包括现在常用的整流线性单元~{cite?}。
 
@@ -1182,7 +1182,7 @@ n## 微积分中的链式法则n
 \end{equation}
 
 我们可以将这种标量情况进行扩展。
-假设$x\in \SetR^m, y\in \SetR^n$，$g$是从$\SetR^m$到$\SetR^n$的映射，$f$是从$\SetR^n$到$\SetR$的映射。
+假设$x\in \Bbb R^m, y\in \Bbb R^n$，$g$是从$\Bbb R^m$到$\Bbb R^n$的映射，$f$是从$\Bbb R^n$到$\Bbb R$的映射。
 如果$y=g(x)$并且$z=f(y)$，那么
 \begin{equation}
 \frac{\partial z}{\partial x_i} = \sum_j \frac{\partial z}{\partial y_j} \frac{\partial y_j}{\partial x_i}.
@@ -1244,21 +1244,21 @@ n## 递归地使用链式法则来实现反向传播n
 我们假设图的节点已经以一种特殊的方式被排序，使得我们可以一个接一个地计算他们的输出，从$u^{(n_i+1)}$开始，一直上升到$u^{(n)}$。
 如\alg?中所定义的，每个节点$u^{(i)}$与操作$f^{(i)}$相关联，并且通过对以下函数求值来得到
 \begin{equation}
-  u^{(i)} = f(\SetA^{(i)}),
+  u^{(i)} = f(\Bbb A^{(i)}),
 \end{equation}
-其中$\SetA^{(i)}$是$u^{(i)}$所有父节点的集合。
+其中$\Bbb A^{(i)}$是$u^{(i)}$所有父节点的集合。
 <!-- % alg 6.1 -->
 \begin{algorithm}[htbp]
 \caption{计算将$n_i$个输入$u^{(1)}$到$u^{(n_i)}$映射到一个输出$u^{(n)}$的程序。
-这定义了一个计算图，其中每个节点通过将函数$f^{(i)}$应用到变量集合$\SetA^{(i)}$上来计算$u^{(i)}$的值，$\SetA^{(i)}$包含先前节点$u^{(j)}$的值满足$j<i$且$j \in Pa(u^{(i)})$。
+这定义了一个计算图，其中每个节点通过将函数$f^{(i)}$应用到变量集合$\Bbb A^{(i)}$上来计算$u^{(i)}$的值，$\Bbb A^{(i)}$包含先前节点$u^{(j)}$的值满足$j<i$且$j \in Pa(u^{(i)})$。
 计算图的输入是向量$x$，并且被分配给前$n_i$个节点$u^{(1)}$到$u^{(n_i)}$。计算图的输出可以从最后一个（输出）节点$u^{(n)}$读出。}
 \begin{algorithmic}
 \FOR {$i=1, \ldots, n_i$}
  \STATE $u^{(i)} \leftarrow x_i$
 \ENDFOR
 \FOR {$i=n_i+1, \ldots, n$}
- \STATE $\SetA^{(i)} \leftarrow \{ u^{(j)} \mid j \in Pa(u^{(i)}) \}$
- \STATE $u^{(i)} \leftarrow f^{(i)}(\SetA^{(i)})$
+ \STATE $\Bbb A^{(i)} \leftarrow \{ u^{(j)} \mid j \in Pa(u^{(i)}) \}$
+ \STATE $u^{(i)} \leftarrow f^{(i)}(\Bbb A^{(i)})$
 \ENDFOR
 \STATE {\bf return} $u^{(n)}$
 \end{algorithmic}
@@ -1290,8 +1290,8 @@ $\Bbb B$中的计算和$\Bbb G$中的计算顺序完全相反，而且$\Bbb B$�
 \captionsetup{singlelinecheck=off}
 \caption[.]{
 计算梯度时导致重复子表达式的计算图。
-令$w \in \SetR$为图的输入。
-我们对链中的每一步使用相同的操作函数$f: \SetR \to \SetR$，这样$x=f(w), y=f(x), z=f(y)$。
+令$w \in \Bbb R$为图的输入。
+我们对链中的每一步使用相同的操作函数$f: \Bbb R \to \Bbb R$，这样$x=f(w), y=f(x), z=f(y)$。
 为了计算$\frac{\partial z}{\partial w}$，我们应用\eqn?得到：
 \begin{aligned}
 & \frac{\partial z}{\partial w}\\
@@ -1509,16 +1509,16 @@ erb|op.bprop|方法应该总是假装它的所有输入彼此不同，即使它�
 大多数重要的工作发生在\alg?的子程序{\tt build\_grad}中。
 }
 \begin{algorithmic}
-\REQUIRE $\SetT$，需要计算梯度的目标变量集
+\REQUIRE $\Bbb T$，需要计算梯度的目标变量集
 \REQUIRE $\Bbb G$，计算图
 \REQUIRE $z$， 要微分的变量
-\STATE 令 $\Bbb G'$ 为$\Bbb G$剪枝后的计算图，其中仅包括$z$的祖先以及$\SetT$中节点的后代。
+\STATE 令 $\Bbb G'$ 为$\Bbb G$剪枝后的计算图，其中仅包括$z$的祖先以及$\Bbb T$中节点的后代。
 \STATE 初始化 {\tt grad\_table}，它是关联张量和对应导数的数据结构。
 \STATE ${\tt grad\_table}[z] \leftarrow 1$
-\FOR{$\TSV$ in $\SetT$}
+\FOR{$\TSV$ in $\Bbb T$}
 \STATE ${\tt build\_grad}(\TSV, \Bbb G, \Bbb G', {\tt grad\_table})$
 \ENDFOR
-\STATE Return {\tt grad\_table} restricted to $\SetT$
+\STATE Return {\tt grad\_table} restricted to $\Bbb T$
 \end{algorithmic}
 \end{algorithm}
 
@@ -1531,7 +1531,7 @@ erb|op.bprop|方法应该总是假装它的所有输入彼此不同，即使它�
 \REQUIRE $\Bbb G$，要修改的图。
 \REQUIRE $\Bbb G'$，根据参与梯度的节点$\Bbb G$的受限图。
 \REQUIRE {\tt grad\_table}，将节点映射到对应梯度的数据结构。
-\IF{$\SetV$ is in {\tt grad\_table} }
+\IF{$\Bbb V$ is in {\tt grad\_table} }
  \STATE Return ${\tt grad\_table}[\TSV]$
 \ENDIF
 \STATE $i \leftarrow 1$
@@ -1723,7 +1723,7 @@ n## 高阶微分n
 
 在深度学习的相关领域，很少会计算标量函数的单个二阶导数。
 相反，我们通常对Hessian矩阵的性质比较感兴趣。
-如果我们有函数$f:\SetR^n \to \SetR$，那么Hessian矩阵的大小是$n\times n$。
+如果我们有函数$f:\Bbb R^n \to \Bbb R$，那么Hessian矩阵的大小是$n\times n$。
 在典型的深度学习应用中，$n$将是模型的参数数量，可能很容易达到数十亿。
 因此，完整的Hessian矩阵甚至不能表示。
 

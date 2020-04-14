@@ -204,7 +204,7 @@ $\alpha$越大，对应正则化惩罚越大。
 \label{eq:717mw}
    w = (X^\top X + \alpha I)^{-1} X^\top y .
 \end{aligned}
-\eqnref{eq:716w}中的矩阵$X^\topX$与协方差矩阵$\frac{1}{m}X^\topX$成正比。
+\eqnref{eq:716w}中的矩阵$X^\top X$与协方差矩阵$\frac{1}{m}X^\top X$成正比。
 $L^2$正则项将这个矩阵替换为\eqnref{eq:717mw}中的$ (X^\top X + \alpha I)^{-1}$
 这个新矩阵与原来的是一样的，不同的仅仅是在对角加了$\alpha$。
 这个矩阵的对角项对应每个输入特征的方差。
@@ -287,7 +287,7 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
  
 在\secref{sec:maximum_a_posteriori_map_estimation}，我们看到许多正则化策略可以被解释为~MAP~贝叶斯推断，
 特别是$L^2$正则化相当于权重是高斯先验的~MAP~贝叶斯推断。
-对于$L^1$正则化，用于正则化代价函数的惩罚项$\alpha \Omega(w) =  \alpha \sum_i |w_i |$与通过~MAP~贝叶斯推断最大化的对数先验项是等价的（$w \in \SetR^n$并且权重先验是各向同性的拉普拉斯分布（\eqnref{eq:chap3_laplace}））：
+对于$L^1$正则化，用于正则化代价函数的惩罚项$\alpha \Omega(w) =  \alpha \sum_i |w_i |$与通过~MAP~贝叶斯推断最大化的对数先验项是等价的（$w \in \Bbb R^n$并且权重先验是各向同性的拉普拉斯分布（\eqnref{eq:chap3_laplace}））：
 \begin{aligned}
 \log p(w) = \sum_i \log \text{Laplace}(w_i;0,\frac{1}{\alpha}) = 
   -\alpha \norm{w}_1 + n \log \alpha - n \log 2.
@@ -367,10 +367,10 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 \section{正则化和欠约束问题}
 \label{sec:regularization_and_under_constrained_problems}
 在某些情况下，为了正确定义机器学习问题，正则化是必要的。
-机器学习中许多线性模型，包括线性回归和PCA，都依赖于对矩阵$X^\topX$求逆。
-只要$X^\topX$是奇异的，这些方法就会失效。
+机器学习中许多线性模型，包括线性回归和PCA，都依赖于对矩阵$X^\top X$求逆。
+只要$X^\top X$是奇异的，这些方法就会失效。
 当数据生成分布在一些方向上确实没有差异时，或因为例子较少（即相对输入特征的维数来说）而在一些方向上没有观察到方差时，这个矩阵就是奇异的。
-在这种情况下，（人们往往使得）正则化的许多形式对应求逆$X^\topX + \alpha I$。
+在这种情况下，（人们往往使得）正则化的许多形式对应求逆$X^\top X + \alpha I$。
 （因为）这个正则化矩阵可以保证是可逆的。
 
 相关矩阵可逆时，这些线性问题有闭式解。
@@ -468,7 +468,7 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 在某些假设下，施加于权重的噪声可以被解释为与更传统的正则化形式等同，鼓励要学习的函数保持稳定。
 我们研究回归的情形，也就是训练将一组特征$x$映射成一个标量的函数$\hat y(x)$，并使用最小二乘代价函数衡量模型预测值$\hat y(x)$与真实值$y$的误差：
 \begin{aligned}
- J = \SetE_{p(x,y)}[(\hat y(x) - y)^2].
+ J = \Bbb E_{p(x,y)}[(\hat y(x) - y)^2].
 \end{aligned}
 训练集包含$m$对标注样例$\{(x^{(1)}, y^{(1)}),\cdots,(x^{(m)}, y^{(m)})\}$。
 
@@ -478,16 +478,16 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 尽管有噪声注入，我们仍然希望减少网络输出误差的平方。
 因此目标函数变为：
 \begin{aligned}
- \tilde J_{W} &= \SetE_{p(x,y,\epsilon_{W})}[(\hat y_{\epsilon_{W}}(x) - y)^2] \\
-   &=  \SetE_{p(x,y,\epsilon_{W})}[\hat y_{\epsilon_{W}}^2(x) -  2y\hat y_{\epsilon_{W}}
+ \tilde J_{W} &= \Bbb E_{p(x,y,\epsilon_{W})}[(\hat y_{\epsilon_{W}}(x) - y)^2] \\
+   &=  \Bbb E_{p(x,y,\epsilon_{W})}[\hat y_{\epsilon_{W}}^2(x) -  2y\hat y_{\epsilon_{W}}
    (x)+ y^2] .
 \end{aligned}
 
 对于小的$\eta$，最小化带权重噪声（方差为$\eta I$\,）的$J$等同于最小化附加正则化项：
-$ \eta \SetE_{p(x,y)}[\norm{\nabla_{W}~\hat y(x)}^2]$的$J$。
+$ \eta \Bbb E_{p(x,y)}[\norm{\nabla_{W}~\hat y(x)}^2]$的$J$。
 这种形式的正则化鼓励参数进入权重小扰动对输出相对影响较小的参数空间区域。
 换句话说，它推动模型进入对权重小的变化相对不敏感的区域，找到的点不只是极小点，还是由平坦区域所包围的极小点\citep{Hochreiter95}。
-在简化的线性回归中（例如，$\hat y(x) = w^\top x + b$），正则项退化为$ \eta \SetE_{p(x)}[\norm{x}^2]$，这与函数的参数无关，因此不会对$\tilde J_{w}$关于模型参数的梯度有影响。
+在简化的线性回归中（例如，$\hat y(x) = w^\top x + b$），正则项退化为$ \eta \Bbb E_{p(x)}[\norm{x}^2]$，这与函数的参数无关，因此不会对$\tilde J_{w}$关于模型参数的梯度有影响。
 
 % -- 235 --
 
@@ -510,7 +510,7 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 
 \section{半监督学习}
 \label{sec:semi_supervised_learning}
-在半监督学习的框架下，$P(\RVx)$产生的未标记样本和$P(\RVx, \RVy)$中的标记样本都用于估计$P(\RVy \mid \RVx)$或者根据$\RVx$预测$\RVy$。
+在半监督学习的框架下，$P(x)$产生的未标记样本和$P(x, y)$中的标记样本都用于估计$P(y \mid x)$或者根据$x$预测$y$。
 
 在深度学习的背景下，半监督学习通常指的是学习一个表示 $h = f(x)$。 
 学习表示的目的是使相同类中的样本有类似的表示。
@@ -519,12 +519,12 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 在许多情况下，新空间上的线性分类器可以达到较好的泛化\citep{Belkin+Niyogi-2002,Chapelle+al-2003}。
 这种方法的一个经典变种是使用主成分分析作为分类前（在投影后的数据上分类）的预处理步骤。
 
-我们可以构建这样一个模型，其中生成模型$P(\RVx)$或$P(\RVx, \RVy)$与判别模型$P(\RVy \mid \RVx)$共享参数，而不用分离无监督和监督部分。
-我们权衡监督模型准则 $-\log P(\RVy \mid \RVx)$和无监督或生成模型准则（如$-\log P(\RVx)$或$-\log P(\RVx, \RVy)$）。
-生成模型准则表达了对监督学习问题解的特殊形式的先验知识\citep{LasserreJ2006}，即$P(\RVx)$的结构通过某种共享参数的方式连接到$P(\RVy \mid \RVx)$。
+我们可以构建这样一个模型，其中生成模型$P(x)$或$P(x, y)$与判别模型$P(y \mid x)$共享参数，而不用分离无监督和监督部分。
+我们权衡监督模型准则 $-\log P(y \mid x)$和无监督或生成模型准则（如$-\log P(x)$或$-\log P(x, y)$）。
+生成模型准则表达了对监督学习问题解的特殊形式的先验知识\citep{LasserreJ2006}，即$P(x)$的结构通过某种共享参数的方式连接到$P(y \mid x)$。
 通过控制在总准则中的生成准则，我们可以获得比纯生成或纯判别训练准则更好的权衡\citep{LasserreJ2006,Larochelle+Bengio-2008-small}。
 
-\cite{Russ+Geoff-nips-2007}描述了一种学习回归核机器中核函数的方法，其中建模$P(\RVx)$时使用的未标记样本大大提高了$P(\RVy \mid \RVx)$的效果。
+\cite{Russ+Geoff-nips-2007}描述了一种学习回归核机器中核函数的方法，其中建模$P(x)$时使用的未标记样本大大提高了$P(y \mid x)$的效果。
 
 更多半监督学习的信息，请参阅~\cite{Chapelle-2006}。
 
@@ -533,7 +533,7 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 多任务学习~\citep{caruana93a}是通过合并几个任务中的样例（可以视为对参数施加的软约束）来提高泛化的一种方式。
 正如额外的训练样本能够将模型参数推向具有更好泛化能力的值一样，当模型的一部分被多个额外的任务共享时，这部分将被约束为良好的值（如果共享合理），通常会带来更好的泛化能力。
 
-\figref{fig:chap7_multi_factor_output}展示了多任务学习中非常普遍的一种形式，其中不同的监督任务（给定$\RVx$预测$\RVy^{(i)}$）共享相同的输入$\RVx$以及一些中间层表示$h^{(\text{share})}$，能学习共同的因素池。
+\figref{fig:chap7_multi_factor_output}展示了多任务学习中非常普遍的一种形式，其中不同的监督任务（给定$x$预测$y^{(i)}$）共享相同的输入$x$以及一些中间层表示$h^{(\text{share})}$，能学习共同的因素池。
 该模型通常可以分为两类相关的参数：
 \begin{enumerate}
  \item 具体任务的参数 （只能从各自任务的样本中实现良好的泛化）。如\figref{fig:chap7_multi_factor_output}中的上层。
@@ -547,9 +547,9 @@ softmax函数~永远无法真正预测0概率或1概率，因此它会继续学�
 \fi
 \caption{多任务学习在深度学习框架中可以以多种方式进行，该图说明了任务共享相同输入但涉及不同目标随机变量的常见情况。
 深度网络的较低层（无论是监督前馈的，还是包括向下箭头的生成组件）可以跨这样的任务共享，而任务特定的参数（分别关联于从$h^{(1)}$和$h^{(2)}$进入和发出的权重）可以在共享表示$h^{(\text{shared})}$之上学习。
-这里的基本假设是存在解释输入$\RVx$变化的共同因素池，而每个任务与这些因素的子集相关联。
-在该示例中，额外假设顶层隐藏单元 $h^{(1)}$和$h^{(2)}$专用于每个任务（分别预测$\RVy^{(1)}$和$\RVy^{(2)}$），而一些中间层表示$h^{(\text{shared})}$在所有任务之间共享。
-在无监督学习情况下，一些顶层因素不与输出任务$(h^{(3)})$的任意一个关联是有意义的：这些因素可以解释一些输入变化但与预测$\RVy^{(1)}$或$\RVy^{(2)}$不相关。
+这里的基本假设是存在解释输入$x$变化的共同因素池，而每个任务与这些因素的子集相关联。
+在该示例中，额外假设顶层隐藏单元 $h^{(1)}$和$h^{(2)}$专用于每个任务（分别预测$y^{(1)}$和$y^{(2)}$），而一些中间层表示$h^{(\text{shared})}$在所有任务之间共享。
+在无监督学习情况下，一些顶层因素不与输出任务$(h^{(3)})$的任意一个关联是有意义的：这些因素可以解释一些输入变化但与预测$y^{(1)}$或$y^{(2)}$不相关。
 }
 \label{fig:chap7_multi_factor_output}
 \end{figure}
@@ -846,11 +846,11 @@ CNN通过在图像多个位置共享参数来考虑这个特性。
 另一方面，表示的稀疏性描述了一个表示中许多元素是零（或接近零）的情况。
 我们可以线性回归的情况下简单说明这种区别：
 \begin{aligned}
-\underset{y ~\in~ \SetR^m}{
+\underset{y ~\in~ \Bbb R^m}{
  \begin{bmatrix}
   18 \\  5 \\ 15 \\ -9 \\ -3
  \end{bmatrix}} = 
- \underset{A ~\in~ \SetR^{m \times n}}{
+ \underset{A ~\in~ \Bbb R^{m \times n}}{
  \begin{bmatrix}
   4 & 0 & 0 & -2 & 0 & 0 \\
   0 & 0 & -1 & 0 & 3 & 0 \\
@@ -858,15 +858,15 @@ CNN通过在图像多个位置共享参数来考虑这个特性。
   1 & 0 & 0 & -1 & 0 & -4 \\
   1 & 0 & 0 & 0 & -5 & 0
  \end{bmatrix}} 
-  \underset{x ~\in~ \SetR^n}{
+  \underset{x ~\in~ \Bbb R^n}{
   \begin{bmatrix}
  2 \\ 3\\ -2\\ -5 \\ 1 \\ 4
  \end{bmatrix} }\\
- \underset{y ~\in~ \SetR^m}{
+ \underset{y ~\in~ \Bbb R^m}{
  \begin{bmatrix}
   -14 \\  1 \\ 19 \\  2 \\ 23
  \end{bmatrix}} = 
- \underset{B ~\in~ \SetR^{m \times n}}{
+ \underset{B ~\in~ \Bbb R^{m \times n}}{
  \begin{bmatrix}
   3 & -1 & 2 & -5 & 4 & 1 \\
   4 & 2 & -3 & -1 & 1 & 3 \\
@@ -874,7 +874,7 @@ CNN通过在图像多个位置共享参数来考虑这个特性。
   3 & 1 & 2 & -3 & 0 & -3 \\
   -5 & 4 & -2 & 2 & -5 & -1
  \end{bmatrix}} 
-  \underset{h ~\in~ \SetR^n}{
+  \underset{h ~\in~ \Bbb R^n}{
   \begin{bmatrix}
  0 \\ 2 \\ 0 \\ 0 \\ -3 \\ 0
  \end{bmatrix} }
@@ -927,12 +927,12 @@ Bagging是通过结合几个模型降低泛化误差的技术\citep{ML:Breiman:b
 模型平均奏效的原因是不同的模型通常不会在测试集上产生完全相同的误差。
 
 假设我们有$k$个回归模型。
-假设每个模型在每个例子上的误差是$\epsilon_i$，这个误差服从零均值方差为$\SetE[\epsilon_i^2] = v$且协方差为$\SetE[\epsilon_i \epsilon_j] = c$的多维正态分布。
+假设每个模型在每个例子上的误差是$\epsilon_i$，这个误差服从零均值方差为$\Bbb E[\epsilon_i^2] = v$且协方差为$\Bbb E[\epsilon_i \epsilon_j] = c$的多维正态分布。
 通过所有集成模型的平均预测所得误差是$\frac{1}{k} \sum_i \epsilon_i$。 
 集成预测器平方误差的期望是
 \begin{aligned}
- \SetE \Bigg[\Bigg(\frac{1}{k} \sum_i \epsilon_i \Bigg)^2\Bigg] &= \frac{1}{k^2} 
- \SetE \Bigg[\sum_i \Bigg(\epsilon_i^2 + \sum_{j \neq i} \epsilon_i \epsilon_j\Bigg)\Bigg], \\
+ \Bbb E \Bigg[\Bigg(\frac{1}{k} \sum_i \epsilon_i \Bigg)^2\Bigg] &= \frac{1}{k^2} 
+ \Bbb E \Bigg[\sum_i \Bigg(\epsilon_i^2 + \sum_{j \neq i} \epsilon_i \epsilon_j\Bigg)\Bigg], \\
 &= \frac{1}{k} v + \frac{k-1}{k} c .                             
 \end{aligned}
 在误差完全相关即$c=v$的情况下，均方误差减少到$v$，所以模型平均没有任何帮助。
@@ -1047,7 +1047,7 @@ $mu$中的每项都是二值的且独立于其他项采样。
 % -- 252 --
 
 更正式地说，假设一个掩码向量$mu$指定被包括的单元，$J(\theta, mu)$是由参数$\theta$和掩码 $mu$定义的模型代价。
-那么Dropout训练的目标是最小化$\SetE_{mu} J(\theta, mu)$。 
+那么Dropout训练的目标是最小化$\Bbb E_{mu} J(\theta, mu)$。 
 这个期望包含多达指数级的项，但我们可以通过抽样$mu$获得梯度的无偏估计。
 
 Dropout训练与Bagging训练不太一样。
@@ -1116,41 +1116,41 @@ p_{\text{ensemble}}(y \mid x)  = \frac{\tilde{p}_{\text{ensemble}}(y \mid x)}
 无论哪种方式，我们的目标是确保在测试时一个单元的期望总输入与在训练时该单元的期望总输入是大致相同的（即使近半单位在训练时丢失）。
 
 对许多不具有非线性隐藏单元的模型族而言，权重比例推断规则是精确的。
-举个简单的例子，考虑softmax函数回归分类，其中由向量$\RVv$表示$n$个输入变量：
+举个简单的例子，考虑softmax函数回归分类，其中由向量$v$表示$n$个输入变量：
 \begin{aligned}
- P(\RSy = \Sy \mid \RVv) = \text{softmax}\big(W^\top\RVv + b\big)_y.
+ P(\RSy = \Sy \mid v) = \text{softmax}\big(W^\topv + b\big)_y.
 \end{aligned}
 我们可以根据二值向量$d$逐元素的乘法将一类子模型进行索引：
 \begin{aligned}
-P(\RSy = \Sy \mid \RVv; d) = \text{softmax}\big(W^\top(d \odot \RVv) + b \big)_y.
+P(\RSy = \Sy \mid v; d) = \text{softmax}\big(W^\top(d \odot v) + b \big)_y.
 \end{aligned}
 集成预测器被定义为重新标准化所有集成成员预测的几何平均：
 \begin{aligned} \label{eq:758pe}
-P_{\text{ensemble}}(\RSy = \Sy \mid \RVv)  = \frac{\tilde{P}_{\text{ensemble}}(\RSy = \Sy \mid \RVv)}
- {\sum_{y'}\tilde{P}_{\text{ensemble}}(\RSy = \Sy' \mid \RVv) },
+P_{\text{ensemble}}(\RSy = \Sy \mid v)  = \frac{\tilde{P}_{\text{ensemble}}(\RSy = \Sy \mid v)}
+ {\sum_{y'}\tilde{P}_{\text{ensemble}}(\RSy = \Sy' \mid v) },
 \end{aligned}
 其中
 \begin{aligned}
-\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid \RVv) =
-\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid \RVv; d)}.
+\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid v) =
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid v; d)}.
 \end{aligned}
 
 为了证明权重比例推断规则是精确的，我们简化$ \tilde{P}_{\text{ensemble}}$：
 \begin{aligned}
-\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid \RVv) =
-\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid \RVv; d)} \\
-= \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \text{softmax}(W^\top(d \odot \RVv) + b)_y} \\
-= \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \frac{\exp (W_{y,:}^\top(d \odot \RVv) + b_y)}
-{\sum_{y'}\exp (W_{y',;}^\top(d \odot \RVv) + b_{y'})}}\\
-=  \frac{\sqrt[2^n]{\prod_{d \in \{0,1\}^n}\exp (W_{y,:}^\top(d \odot \RVv) + b_y)}}
-{ \sqrt[2^n] \prod_{d \in \{0,1\}^n} \sum_{y'}\exp (W_{y',:}^\top(d \odot \RVv) + b_{y'})}
+\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid v) =
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid v; d)} \\
+= \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \text{softmax}(W^\top(d \odot v) + b)_y} \\
+= \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \frac{\exp (W_{y,:}^\top(d \odot v) + b_y)}
+{\sum_{y'}\exp (W_{y',;}^\top(d \odot v) + b_{y'})}}\\
+=  \frac{\sqrt[2^n]{\prod_{d \in \{0,1\}^n}\exp (W_{y,:}^\top(d \odot v) + b_y)}}
+{ \sqrt[2^n] \prod_{d \in \{0,1\}^n} \sum_{y'}\exp (W_{y',:}^\top(d \odot v) + b_{y'})}
 \end{aligned}
 由于$\tilde P$将被标准化，我们可以放心地忽略那些相对$y$不变的乘法：
 \begin{aligned}
-\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid \RVv) &\propto 
-\sqrt[2^n]{\prod_{d \in \{0,1\}^n} \exp (W_{y,:}^\top(d \odot \RVv) + b_y)} \\
-& = \exp \Bigg(\frac{1}{2^n} \sum_{d \in \{0,1\}^n} W_{y,;}^\top(d \odot \RVv) + b_y \Bigg) \\
-& = \exp \Big(\frac{1}{2}W_{y,:}^\top \RVv + b_y \Big) .
+\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid v) &\propto 
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} \exp (W_{y,:}^\top(d \odot v) + b_y)} \\
+& = \exp \Bigg(\frac{1}{2^n} \sum_{d \in \{0,1\}^n} W_{y,;}^\top(d \odot v) + b_y \Bigg) \\
+& = \exp \Big(\frac{1}{2}W_{y,:}^\top v + b_y \Big) .
 \end{aligned}
 将其代入\eqnref{eq:758pe}，我们得到了一个权重为$\frac{1}{2}W$的softmax函数分类器。
 
@@ -1229,7 +1229,7 @@ Dropout的一个特殊情况，其中一个标量权重和单个隐藏单元状�
 注意，这里不要求$mu$具有有限数量的值。
 例如，$mu$可以是实值。
 \cite{Srivastava14}表明，权重乘以$mu \sim \Bbb N(\mathbf{1}, I)$比基于二值掩码Dropout表现得更好。
-由于$\SetE[mu] = 1$，标准网络自动实现集成的近似推断，而不需要权重比例推断规则。
+由于$\Bbb E[mu] = 1$，标准网络自动实现集成的近似推断，而不需要权重比例推断规则。
 
 % -- 259 --
 

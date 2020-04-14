@@ -38,7 +38,7 @@ n# 学习和纯优化有什么不同n
 
 通常，代价函数可写为训练集上的平均，如
 \begin{equation}
-    J(\theta) = \SetE_{(\RVx, \RSy) \sim\hat{p}_\text{data}} L(f(x ; \theta), y), % ??
+    J(\theta) = \Bbb E_{(x, \RSy) \sim\hat{p}_\text{data}} L(f(x ; \theta), y), % ??
 \end{equation}
 其中$L$是每个样本的损失函数，$f(x;\theta)$是输入$x$时所预测的输出，$\hat{p}_{\text{data}}$是经验分布。
 监督学习中，$y$是目标输出。
@@ -50,7 +50,7 @@ n# 学习和纯优化有什么不同n
 \eqn?定义了训练集上的目标函数。
 通常，我们更希望最小化取自\emph{数据生成分布}\,$p_{\text{data}}$的期望，而不仅仅是有限训练集上的对应目标函数：
 \begin{equation}
-    J^*(\theta) = \SetE_{(\RVx, \RSy) \sim p_\text{data}} L(f(x ;\theta),y). % ??
+    J^*(\theta) = \Bbb E_{(x, \RSy) \sim p_\text{data}} L(f(x ;\theta),y). % ??
 \end{equation}
 <!-- % 268 end -->
 
@@ -68,7 +68,7 @@ n## 经验风险最小化n
 这意味着用训练集上的经验分布\,$\hat{p}(x,y)$替代真实分布$p(x,y)$。
 现在，我们将最小化经验风险：
 \begin{equation}
-    \SetE_{\RVx, \RSy \sim \hat{p}_\text{data}} [L(f(x ; \theta), y)] % ?? \RVx
+    \Bbb E_{x, \RSy \sim \hat{p}_\text{data}} [L(f(x ; \theta), y)] % ?? x
     = \frac{1}{m} \sum_{i=1}^m L( f(x^{(i)}; \theta), y^{(i)}) ,
 \end{equation}
 其中$m$表示训练样本的数目。
@@ -131,7 +131,7 @@ n## 批量算法和小批量算法n
 
 最大化这个总和等价于最大化训练集在经验分布上的期望：
 \begin{equation}
-    J(\theta) = \SetE_{\RVx, \RSy \sim\hat{p}_\text{data}} 
+    J(\theta) = \Bbb E_{x, \RSy \sim\hat{p}_\text{data}} 
     \log p_{\text{model}} (x,y ; \theta) .
 \end{equation}
 <!-- %  270 end -->
@@ -140,7 +140,7 @@ n## 批量算法和小批量算法n
 优化算法用到的目标函数$J$中的大多数属性也是训练集上的期望。
 例如，最常用的属性是梯度：
 \begin{equation}
-    \nabla_{\theta} J(\theta) = \SetE_{\RVx, \RSy \sim\hat{p}_{\text{data}}} 
+    \nabla_{\theta} J(\theta) = \Bbb E_{x, \RSy \sim\hat{p}_{\text{data}}} 
     \nabla_{\theta} \log p_{\text{model}} (x,y; \theta) .
 \end{equation}
 <!-- %  271 head -->
@@ -425,7 +425,7 @@ n## 高原、鞍点和其他平坦区域n
 
 多类随机函数表现出以下性质：低维空间中，局部极小值很普遍。
 在更高维空间中，局部极小值很罕见，而鞍点则很常见。
-对于这类函数$f:\SetR^n \to \SetR$而言，鞍点和局部极小值的数目比率的期望随$n$指数级增长。
+对于这类函数$f:\Bbb R^n \to \Bbb R$而言，鞍点和局部极小值的数目比率的期望随$n$指数级增长。
 我们可以从直觉上理解这种现象——Hessian\,矩阵在局部极小点处只有正特征值。
 而在鞍点处，Hessian\,矩阵则同时具有正负特征值。
 试想一下，每个特征值的正负号由抛硬币决定。
@@ -1322,7 +1322,7 @@ n# 二阶近似方法n
 参考{LeCun+98backprop}了解该问题的早期处理方法。
 为表述简单起见，我们只考察目标函数为经验风险：
 \begin{equation}
-    J(\theta) = \SetE_{\RVx, \RSy \sim \hat{p}_{\text{data}}(x,y) } [ L(f(x; \theta), y) ] =
+    J(\theta) = \Bbb E_{x, \RSy \sim \hat{p}_{\text{data}}(x,y) } [ L(f(x; \theta), y) ] =
 \frac{1}{m} \sum_{i=1}^m L(f(x^{(i)}; \theta), y^{(i)}).
 \end{equation}
 然而，我们在这里讨论的方法很容易扩展到更一般的目标函数，例如，\chap?讨论的包括参数正则项的函数。
@@ -1819,7 +1819,7 @@ n## 延拓法和课程学习n
 这些连续方法会通过"模糊"原来的代价函数来构建更容易的代价函数。
 这些模糊操作可以是用采样来近似
 \begin{equation}
-    J^{(i)}(\theta) = \SetE_{\theta' \sim \mathcal{N}(\theta'; \theta, \sigma^{(i)2})} J(\theta')
+    J^{(i)}(\theta) = \Bbb E_{\theta' \sim \mathcal{N}(\theta'; \theta, \sigma^{(i)2})} J(\theta')
 \end{equation}
 这个方法的直觉是有些非凸函数在模糊后会近似凸的。
 在许多情况下，这种模糊保留了关于全局极小值的足够信息，我们可以通过逐步求解模糊更少的问题来求解全局极小值。
