@@ -1118,27 +1118,27 @@ p_{\text{ensemble}}(y \mid x)  = \frac{\tilde{p}_{\text{ensemble}}(y \mid x)}
 对许多不具有非线性隐藏单元的模型族而言，权重比例推断规则是精确的。
 举个简单的例子，考虑softmax函数回归分类，其中由向量$v$表示$n$个输入变量：
 \begin{aligned}
- P(\RSy = \Sy \mid v) = \text{softmax}\big(W^\topv + b\big)_y.
+ P(y = \Sy \mid v) = \text{softmax}\big(W^\topv + b\big)_y.
 \end{aligned}
 我们可以根据二值向量$d$逐元素的乘法将一类子模型进行索引：
 \begin{aligned}
-P(\RSy = \Sy \mid v; d) = \text{softmax}\big(W^\top(d \odot v) + b \big)_y.
+P(y = \Sy \mid v; d) = \text{softmax}\big(W^\top(d \odot v) + b \big)_y.
 \end{aligned}
 集成预测器被定义为重新标准化所有集成成员预测的几何平均：
 \begin{aligned} \label{eq:758pe}
-P_{\text{ensemble}}(\RSy = \Sy \mid v)  = \frac{\tilde{P}_{\text{ensemble}}(\RSy = \Sy \mid v)}
- {\sum_{y'}\tilde{P}_{\text{ensemble}}(\RSy = \Sy' \mid v) },
+P_{\text{ensemble}}(y = \Sy \mid v)  = \frac{\tilde{P}_{\text{ensemble}}(y = \Sy \mid v)}
+ {\sum_{y'}\tilde{P}_{\text{ensemble}}(y = \Sy' \mid v) },
 \end{aligned}
 其中
 \begin{aligned}
-\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid v) =
-\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid v; d)}.
+\tilde{P}_{\text{ensemble}}(y=\Sy \mid v) =
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(y = \Sy \mid v; d)}.
 \end{aligned}
 
 为了证明权重比例推断规则是精确的，我们简化$ \tilde{P}_{\text{ensemble}}$：
 \begin{aligned}
-\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid v) =
-\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(\RSy = \Sy \mid v; d)} \\
+\tilde{P}_{\text{ensemble}}(y=\Sy \mid v) =
+\sqrt[2^n]{\prod_{d \in \{0,1\}^n} P(y = \Sy \mid v; d)} \\
 = \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \text{softmax}(W^\top(d \odot v) + b)_y} \\
 = \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \frac{\exp (W_{y,:}^\top(d \odot v) + b_y)}
 {\sum_{y'}\exp (W_{y',;}^\top(d \odot v) + b_{y'})}}\\
@@ -1147,7 +1147,7 @@ P_{\text{ensemble}}(\RSy = \Sy \mid v)  = \frac{\tilde{P}_{\text{ensemble}}(\RSy
 \end{aligned}
 由于$\tilde P$将被标准化，我们可以放心地忽略那些相对$y$不变的乘法：
 \begin{aligned}
-\tilde{P}_{\text{ensemble}}(\RSy=\Sy \mid v) &\propto 
+\tilde{P}_{\text{ensemble}}(y=\Sy \mid v) &\propto 
 \sqrt[2^n]{\prod_{d \in \{0,1\}^n} \exp (W_{y,:}^\top(d \odot v) + b_y)} \\
 & = \exp \Bigg(\frac{1}{2^n} \sum_{d \in \{0,1\}^n} W_{y,;}^\top(d \odot v) + b_y \Bigg) \\
 & = \exp \Big(\frac{1}{2}W_{y,:}^\top v + b_y \Big) .

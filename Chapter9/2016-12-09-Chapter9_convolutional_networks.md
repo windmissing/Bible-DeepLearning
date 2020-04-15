@@ -37,15 +37,15 @@ $x$和$t$都是实值的，这意味着我们可以在任意时刻从传感器�
 显然，时间上越近的测量结果越相关，所以我们采用一种加权平均的方法，对于最近的测量结果赋予更高的权重。
 我们可以采用一个加权函数$w(a)$ 来实现，其中$a$表示测量结果距当前时刻的时间间隔。
 如果我们对任意时刻都采用这种加权平均的操作，就得到了一个新的对于飞船位置的平滑估计函数$s$：
-\begin{equation}
+\begin{aligned}
 s(t) = \int x(a)w(t-a)da.
-\end{equation}
+\end{aligned}
 
 这种运算就叫做卷积。
 卷积运算通常用星号表示：
-\begin{equation}
+\begin{aligned}
 s(t) = (x*w)(t).
-\end{equation}
+\end{aligned}
 
 在我们的例子中，$w$必须是一个有效的概率密度函数，否则输出就不再是一个加权平均。
 另外，在参数为负值时，$w$的取值必须为0，否则它会预测到未来，这不是我们能够推测得了的。
@@ -62,9 +62,9 @@ s(t) = (x*w)(t).
 所以在我们的例子中，假设传感器每秒反馈一次测量结果是比较现实的。
 这样，时刻$t$只能取整数值。
 如果我们假设$x$和$w$都定义在整数时刻$t$上，就可以定义离散形式的卷积：
-\begin{equation}
+\begin{aligned}
 s(t) = (x*w)(t) = \sum_{a = -\infty}^{\infty} x(a)w(t-a).
-\end{equation}
+\end{aligned}
 
 在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。
 我们把这些多维数组叫做张量。
@@ -73,14 +73,14 @@ s(t) = (x*w)(t) = \sum_{a = -\infty}^{\infty} x(a)w(t-a).
 
 最后，我们经常一次在多个维度上进行卷积运算。
 例如，如果把一张二维的图像$I$作为输入，我们也许也想要使用一个二维的核$K$：
-\begin{equation}
+\begin{aligned}
 S(i,j) = (I*K)(i,j) = \sum_m \sum_n I(m,n) K(i-m, j-n).
-\end{equation}
+\end{aligned}
 
 卷积是可交换的(commutative)，我们可以等价地写作：
-\begin{equation}
+\begin{aligned}
 S(i, j) = (K*I)(i,j) = \sum_m \sum_n I(i-m, j-n) K(m, n).
-\end{equation}
+\end{aligned}
 
 通常，下面的公式在机器学习库中实现更为简单，因为$m$和$n$的有效取值范围相对较小。
 
@@ -90,9 +90,9 @@ S(i, j) = (K*I)(i,j) = \sum_m \sum_n I(i-m, j-n) K(m, n).
 我们将核翻转的唯一目的是实现可交换性。
 尽管可交换性在证明时很有用，但在神经网络的应用中却不是一个重要的性质。
 与之不同的是，许多神经网络库会实现一个相关的函数，称为互相关函数，和卷积运算几乎一样但是并没有对核进行翻转：
-\begin{equation}
+\begin{aligned}
 S(i, j) = (I*K)(i, j) = \sum_m \sum_n I(i+m, j+n) K(m, n).
-\end{equation}
+\end{aligned}
 许多机器学习的库实现的是互相关函数但是称之为卷积。
 在这本书中我们遵循把两种运算都叫做卷积的这个传统，在与核翻转有关的上下文中，我们会特别指明是否对核进行了翻转。
 在机器学习中，学习算法会在核合适的位置学得恰当的值， 所以一个基于核翻转的卷积运算的学习算法所学得的核，是对未进行翻转的算法学得的核的翻转。
@@ -457,9 +457,9 @@ n# 基本卷积函数的变体n
 假定我们的输入由观测数据$\TSV$组成，它的每一个元素是$\TEV_{i,j,k}$，表示处在通道$i$中第$j$行第$k$列的值。
 假定我们的输出$\TSZ$和输入$\TSV$具有相同的形式。
 如果输出$\TSZ$是通过对$\TSK$和$\TSV$进行卷积而不涉及翻转$\TSK$得到的，那么
-\begin{equation}
+\begin{aligned}
 \TEZ_{i,j,k} = \sum_{l,m,n} \TEV_{l, j+m-1, k+n-1} \TEK_{i,l,m,n},
-\end{equation}
+\end{aligned}
 这里对所有的$l$，$m$和$n$进行求和是对所有（在求和式中）有效的张量索引的值进行求和。
 在线性代数中，向量的索引通常从1开始，这就是上述公式中$-1$的由来。
 但是像C或Python这类编程语言索引通常从0开始，这使得上述公式可以更加简洁。
@@ -469,10 +469,10 @@ n# 基本卷积函数的变体n
 我们有时会希望跳过核中的一些位置来降低计算的开销（相应的代价是提取特征没有先前那么好了）。
 我们可以把这一过程看作是对全卷积函数输出的下采样(downsampling)。
 如果我们只想在输出的每个方向上每间隔$s$个像素进行采样，那么我们可以定义一个下采样卷积函数$c$使得
-\begin{equation}
+\begin{aligned}
 \TEZ_{i,j,k} = c(\TSK, \TSV, s)_{i,j,k} = \sum_{l,m,n} [\TEV_{l,(j-1)\times s+m, (k-1)\times s +n,}
  \TEK_{i,l,m,n}].
-\end{equation}
+\end{aligned}
 我们把$s$称为下采样卷积的步幅。
 当然也可以对每个移动方向定义不同的步幅。
 \fig?演示了一个实例。
@@ -541,9 +541,9 @@ n# 基本卷积函数的变体n
 在这种情况下，我们的多层感知机对应的邻接矩阵是相同的，但每一个连接都有它自己的权重，用一个6维的张量$\TSW$来表示。
 $\TSW$的索引分别是：输出的通道$i$，输出的行$j$和列$k$，输入的通道$l$，输入的行偏置$m$和列偏置$n$。
 局部连接层的线性部分可以表示为
-\begin{equation}
+\begin{aligned}
 \TEZ_{i,j,k} = \sum_{l,m,n} [\TEV_{l, j+m-1, k+n-1} w_{i, j, k, l, m, n}]. %这里应该是$\TEW$?
-\end{equation}
+\end{aligned}
 这有时也被称为非共享卷积，因为它和具有一个小核的离散卷积运算很像，但并不横跨位置来共享参数。
 图\?比较了局部连接、卷积和全连接的区别。
 <!-- % fig 9.14 -->
@@ -618,9 +618,9 @@ $\TSW$的索引分别是：输出的通道$i$，输出的行$j$和列$k$，输�
 为了用代数的方法定义平铺卷积，令$\TSK$是一个6维的张量\footnote{译者注：原文将$\TSK$误写成了$k$。}，其中的两维对应着输出映射中的不同位置。
 $\TSK$在这里并没有对输出映射中的每一个位置使用单独的索引，输出的位置在每个方向上在$t$个不同的核组成的集合中进行循环。
 如果$t$等于输出的宽度，这就是局部连接层了。
-\begin{equation}
+\begin{aligned}
 \TEZ_{i, j, k} = \sum_{l, m, n} \TEV_{l, j+m-1, k+n-1} \TEK_{i, l, m, n, j\% t +1, k\% t+1},
-\end{equation}
+\end{aligned}
 这里百分号是取模运算，它的性质包括$t\% t =0, (t+1)\% t = 1$等等。
 在每一维上使用不同的$t$可以很容易对这个方程进行扩展。
  
@@ -666,9 +666,9 @@ $\TSK$在这里并没有对输出映射中的每一个位置使用单独的索�
 
 为了训练网络，我们需要对核中的权重求导。
 为了实现这个目的，我们可以使用一个函数
-\begin{equation}
+\begin{aligned}
 g(\TSG, \TSV, s)_{i, j, k, l} = \frac{\partial}{\partial \TEK_{i, j, k, l}} J(\TSV, \TSK) = \sum_{m, n} \TEG_{i, m, n} \TEV_{j, (m-1)\times s+k, (n-1)\times s+l}.
-\end{equation}
+\end{aligned}
 
 如果这一层不是网络的底层，我们需要对$\TSV$求梯度来使得误差进一步反向传播。
 我们可以使用如下的函数
@@ -687,9 +687,9 @@ h(\TSK, \TSG, s)_{i, j, k} &=& \frac{\partial }{\partial \TEV_{i, j, k}} J(\TSV,
 使用权重矩阵转置的乘法，就像\,PCA\,算法这种，在一般的自编码器中是很常见的。
 为了使这些模型卷积化，我们可以用函数$h$来实现卷积运算的转置。
 假定我们有和$\TSZ$相同形式的隐藏单元$\TSH$，并且我们定义一种重构运算
-\begin{equation}
+\begin{aligned}
 \TSR = h(\TSK, \TSH, s).
-\end{equation}
+\end{aligned}
 
 为了训练自编码器，我们会得到关于$\TSR$的梯度，表示为一个张量$\TSE$。
 为了训练解码器，我们需要获得对于$\TSK$的梯度，这通过$g(\TSH, \TSE, s)$来得到。
@@ -983,21 +983,21 @@ V1是大脑对视觉输入开始执行显著高级处理的第一个区域。
 Gabor函数描述在图像中的2维点处的权重。我们可以认为图像是2维坐标$I(x,y)$的函数。
 类似地，我们可以认为简单细胞是在图像中的一组位置采样，这组位置由一组$x$坐标$\Bbb X$和一组$y$坐标$\Bbb Y$来定义，并且使用的权重$w(x,y)$也是位置的函数。
 从这个观点来看，简单细胞对于图像的响应由下式给出
-\begin{equation}
+\begin{aligned}
   s(I)=\sum_{x\in \Bbb X} \sum_{y\in \Bbb Y} w(x, y)I(x,y).
-\end{equation}
+\end{aligned}
 特别地，$w(x,y)$采用Gabor函数的形式：
-\begin{equation}
+\begin{aligned}
   w(x, y; \alpha, \beta_x, \beta_y, f, \phi, x_0, y_0, \tau) = \alpha \exp(-\beta_x x'^2 - \beta_y y'^2) \cos (fx' + \phi),
-\end{equation}
+\end{aligned}
 其中
-\begin{equation}
+\begin{aligned}
   x' = (x-x_0)\cos(\tau) + (y-y_0)\sin(\tau)
-\end{equation}
+\end{aligned}
 以及
-\begin{equation}
+\begin{aligned}
   y' = -(x-x_0) \sin(\tau) + (y-y_0)\cos(\tau).
-\end{equation}
+\end{aligned}
 
 这里$\alpha, \beta_x, \beta_y, f, \phi, x_0, y_0, \tau$都是控制~Gabor函数性质的参数。
 \fig?给出了Gabor函数在不同参数集上的一些例子。
