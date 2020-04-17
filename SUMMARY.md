@@ -68,6 +68,13 @@
     * 8.6 二阶近似方法
         * [8.6.1 牛顿法](https://windmissing.github.io/mathematics_basic_for_ML/NumericalComputation/Newton.html)
         * [8.6.2 共轭梯度](Chapter8/6ApproximateSecondOrder/2Conjugate.md)
+        * [8.6.3 BFGS](Chapter8/6ApproximateSecondOrder/3BFGS.md)
+    * 8.7 优化策略和元算法
+        * [8.7.1 批标准化](Chapter8/7Strategies/1BatchNormalization.md)
+        * [8.7.2 坐标下降](Chapter8/7Strategies/2CoordinateDescent.md)
+        * [8.7.3 Polyak 平均](Chapter8/7Strategies/3PolyakAveraging.md)
+        * [8.7.4 监督预训练](Chapter8/7Strategies/4SupervisedPretraining.md)
+        * [8.7.5 设计有助于优化的模型](Chapter8/7Strategies/5AidOptimization.md)
 * [第9章 卷积网络](Chapter9/0cnn.md)
     * [9.1 卷积运算](Chapter9/1Convolution.md)
     * [9.3 池化](Chapter9/Pooling.md)
