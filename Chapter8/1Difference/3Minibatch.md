@@ -11,7 +11,7 @@
 例如，最大似然估计问题可以在对数空间中分解成各个样本的总和：  
 $$
 \begin{aligned}
-    \theta_{\text{ML}} = \underset{\theta}{\arg\max} \sum_{i=1}^m
+    \theta_{\text{ML}} = {\arg\max}_{\theta} \sum_{i=1}^m
     \log p_{\text{model}} (x^{(i)}, y^{(i)}; \theta) .
 \end{aligned}
 $$

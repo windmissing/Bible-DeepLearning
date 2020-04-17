@@ -54,6 +54,8 @@
         * [8.2.1 病态](Chapter8/2Challenges/1IllConditioning.md)
         * [8.2.2 局部极小值](Chapter8/2Challenges/2LocalMinima.md)
         * [8.2.3 - 8.2.8](Chapter8/2Challenges/345678.md)
+        * [8.2.7 局部和全局结构间的弱对应](Chapter8/2Challenges/7PoorCorrespondence.md)
+        * 8.2.8 优化的理论限制
     * 8.3 基本算法
         * [8.3.1 随机梯度下降](Chapter8/3BasicAlgorithms/1SGD.md)
         * [8.3.2 动量](Chapter8/3BasicAlgorithms/2Momentum.md)

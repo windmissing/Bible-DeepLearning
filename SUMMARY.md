@@ -49,16 +49,25 @@
         * [8.1.2 代理损失函数和提前终止](Chapter8/1Difference/2SurrogateLossFunctions.md)
         * [8.1.3 批量算法和小批量算法](Chapter8/1Difference/3Minibatch.md)
     * 8.2 神经网络优化中的挑战
-        * [8.2.4 悬崖和梯度爆炸](Chapter8/2Challenges/4.md)
-        * [8.2.5 长期依赖](Chapter8/2Challenges/5.md)
+        * [8.2.1 病态](Chapter8/2Challenges/1IllConditioning.md)
+        * [8.2.2 局部极小值](Chapter8/2Challenges/2LocalMinima.md)
+        * [8.2.3 8.2.3 高原、鞍点和其他平坦区域](Chapter8/2Challenges/3.md)
+        * [8.2.4 悬崖和梯度爆炸](Chapter8/2Challenges/4ExplodingGradients.md)
+        * [8.2.5 长期依赖](Chapter8/2Challenges/5LongTermDependencies.md)
+        * [8.2.6 非精确梯度](Chapter8/2Challenges/6InexactGradients.md)
     * 8.3 基本算法
         * [8.3.1 随机梯度下降](Chapter8/3BasicAlgorithms/1SGD.md)
         * [8.3.2 动量](Chapter8/3BasicAlgorithms/2Momentum.md)
         * [8.3.3 Nesterov 动量](Chapter8/3BasicAlgorithms/3Nesterov.md)
+    * [8.4 参数初始化策略](Chapter8/4ParameterInitialization.md)
     * 8.5 自适应学习率算法
         * [8.5.1 AdaGrad](Chapter8/5AdaptiveLearningRates/1AdaGrad.md)
         * [8.5.2 RMSProp](Chapter8/5AdaptiveLearningRates/2RMSProp.md)
         * [8.5.3 Adam](Chapter8/5AdaptiveLearningRates/3Adam.md)
+        * [8.5.4 选择正确的优化算法](Chapter8/5AdaptiveLearningRates/4Choose.md)
+    * 8.6 二阶近似方法
+        * [8.6.1 牛顿法](https://windmissing.github.io/mathematics_basic_for_ML/NumericalComputation/Newton.html)
+        * [8.6.2 共轭梯度](Chapter8/6ApproximateSecondOrder/2Conjugate.md)
 * [第9章 卷积网络](Chapter9/0cnn.md)
     * [9.1 卷积运算](Chapter9/1Convolution.md)
     * [9.3 池化](Chapter9/Pooling.md)
