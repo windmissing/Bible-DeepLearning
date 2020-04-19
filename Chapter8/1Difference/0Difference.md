@@ -15,7 +15,7 @@
 通常，代价函数可写为训练集上的平均，如  
 $$
 \begin{aligned}
-    J(\theta) = E_{(x, y) \sim\hat{p}_\text{data}} L(f(x ; \theta), y) && （8.1）
+    J(\theta) = E_{(x, y) \sim\hat{p}_\text{data}} L(f(x ; \theta), y) && (8.1)
 \end{aligned}
 $$
 
@@ -35,7 +35,9 @@ $$
 不难将这种监督学习扩展成其他形式，如包括$\theta$或者$x$作为参数，或是去掉参数$y$，以发展不同形式的正则化或是无监督学习。
 
 式（8.1）定义了训练集上的目标函数。
-通常，我们更希望最小化取自\emph{数据生成分布}\,$p_{\text{data}}$的期望，而不仅仅是有限训练集上的对应目标函数：
+通常，我们更希望最小化取自\emph{数据生成分布}\,$p_{\text{data}}$的期望，而不仅仅是有限训练集上的对应目标函数：  
+$$
 \begin{aligned}
-    J^*(\theta) = \Bbb E_{(x, y) \sim p_\text{data}} L(f(x ;\theta),y). % ??
+    J^*(\theta) = \Bbb E_{(x, y) \sim p_\text{data}} L(f(x ;\theta),y)
 \end{aligned}
+$$

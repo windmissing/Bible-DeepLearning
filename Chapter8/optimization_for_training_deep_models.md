@@ -37,9 +37,9 @@ n# 学习和纯优化有什么不同n
 
 
 通常，代价函数可写为训练集上的平均，如
-\begin{equation}
-    J(\theta) = \SetE_{(\RVx, \RSy) \sim\hat{p}_\text{data}} L(f(x ; \theta), y), % ??
-\end{equation}
+\begin{aligned}
+    J(\theta) = \Bbb E_{(x, y) \sim\hat{p}_\text{data}} L(f(x ; \theta), y), % ??
+\end{aligned}
 其中$L$是每个样本的损失函数，$f(x;\theta)$是输入$x$时所预测的输出，$\hat{p}_{\text{data}}$是经验分布。
 监督学习中，$y$是目标输出。
 在本章中，我们会介绍不带正则化的监督学习，$L$的变量是$f(x;\theta)$和$y$。
@@ -49,9 +49,9 @@ n# 学习和纯优化有什么不同n
 
 \eqn?定义了训练集上的目标函数。
 通常，我们更希望最小化取自\emph{数据生成分布}\,$p_{\text{data}}$的期望，而不仅仅是有限训练集上的对应目标函数：
-\begin{equation}
-    J^*(\theta) = \SetE_{(\RVx, \RSy) \sim p_\text{data}} L(f(x ;\theta),y). % ??
-\end{equation}
+\begin{aligned}
+    J^*(\theta) = \Bbb E_{(x, y) \sim p_\text{data}} L(f(x ;\theta),y). % ??
+\end{aligned}
 <!-- % 268 end -->
 
 
@@ -67,10 +67,10 @@ n## 经验风险最小化n
 将机器学习问题转化回一个优化问题的最简单方法是最小化训练集上的期望损失。
 这意味着用训练集上的经验分布\,$\hat{p}(x,y)$替代真实分布$p(x,y)$。
 现在，我们将最小化经验风险：
-\begin{equation}
-    \SetE_{\RVx, \RSy \sim \hat{p}_\text{data}} [L(f(x ; \theta), y)] % ?? \RVx
+\begin{aligned}
+    \Bbb E_{x, y \sim \hat{p}_\text{data}} [L(f(x ; \theta), y)] % ?? x
     = \frac{1}{m} \sum_{i=1}^m L( f(x^{(i)}; \theta), y^{(i)}) ,
-\end{equation}
+\end{aligned}
 其中$m$表示训练样本的数目。
 <!-- % 269 mid -->
 
@@ -122,27 +122,27 @@ n## 批量算法和小批量算法n
 <!-- % 270 mid -->
 
 例如，最大似然估计问题可以在对数空间中分解成各个样本的总和：
-\begin{equation}
-    \theta_{\text{ML}} = \underset{\theta}{\argmax} \sum_{i=1}^m
+\begin{aligned}
+    \theta_{\text{ML}} = \underset{\theta}{\arg\max} \sum_{i=1}^m
     \log p_{\text{model}} (x^{(i)}, y^{(i)}; \theta) .
-\end{equation}
+\end{aligned}
 <!-- % 270 mid -->
 
 
 最大化这个总和等价于最大化训练集在经验分布上的期望：
-\begin{equation}
-    J(\theta) = \SetE_{\RVx, \RSy \sim\hat{p}_\text{data}} 
+\begin{aligned}
+    J(\theta) = \Bbb E_{x, y \sim\hat{p}_\text{data}} 
     \log p_{\text{model}} (x,y ; \theta) .
-\end{equation}
+\end{aligned}
 <!-- %  270 end -->
 
 
 优化算法用到的目标函数$J$中的大多数属性也是训练集上的期望。
 例如，最常用的属性是梯度：
-\begin{equation}
-    \nabla_{\theta} J(\theta) = \SetE_{\RVx, \RSy \sim\hat{p}_{\text{data}}} 
+\begin{aligned}
+    \nabla_{\theta} J(\theta) = \Bbb E_{x, y \sim\hat{p}_{\text{data}}} 
     \nabla_{\theta} \log p_{\text{model}} (x,y; \theta) .
-\end{equation}
+\end{aligned}
 <!-- %  271 head -->
 
 
@@ -260,23 +260,23 @@ n## 批量算法和小批量算法n
 
 在$x$和$y$是离散时，以上的等价性最容易被看出来。
 在这种情况下，泛化误差（\eqn?）可以表示为
-\begin{equation}
+\begin{aligned}
     J^*(\theta) = \sum_{x} \sum_y p_{\text{data}}(x, y) L(f(x; \theta),y),
-\end{equation}
+\end{aligned}
 上式的准确梯度为
-\begin{equation}
+\begin{aligned}
     g = \nabla_{\theta} J^*(\theta) = \sum_{x} \sum_y p_{\text{data}}
     (x, y) \nabla_{\theta} L(f(x;\theta),y) .
-\end{equation}
+\end{aligned}
 在\eqn?和\eqn?中，我们已经在对数似然中看到了同样的结果；现在我们发现这一点在似然之外的其他函数$L$上也是成立的。
 在一些关于$p_\text{data}$和$L$的温和假设下，在$x$和$y$是连续时也能得到类似的结果。
 <!-- %  274 mid -->
 
 
 因此，我们可以从数据生成分布~$p_\text{data}$抽取小批量样本$\{ x^{(1)}, \dots,x^{(m)} \}$以及对应的目标$y^{(i)}$，然后计算该小批量上损失函数关于对应参数的梯度
-\begin{equation}
+\begin{aligned}
     \hat{g} = \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)} ).
-\end{equation}
+\end{aligned}
 以此获得泛化误差准确梯度的无偏估计。
 最后，在方向$\hat{g}$上更新$\theta$也就意味着以（真实）泛化误差为目标进行\,SGD\,。
 <!-- %  274 end -->
@@ -316,14 +316,14 @@ n## 病态n
 病态体现在随机梯度下降会"卡"在某些地方，此时即使很小的更新步长也会增加代价函数。
 <!-- % -- 275 mid -->
 
-回顾\eqn?，代价函数的二阶泰勒级数展开预测梯度下降中的$-\epsilong$步骤会增加
-\begin{equation}
-    \frac{1}{2} \epsilon^2 g^\top Hg - \epsilong^\topg
-\end{equation}
+回顾\eqn?，代价函数的二阶泰勒级数展开预测梯度下降中的$-\epsilon g$步骤会增加
+\begin{aligned}
+    \frac{1}{2} \epsilon^2 g^\top Hg - \epsilon g^\top g
+\end{aligned}
 到代价中。
-当$\frac{1}{2} \epsilon^2 g^\topHg$超过$\epsilong^\topg$时，梯度的病态会成为问题。
-我们可以通过监测平方梯度范数$g^\topg$和$g^\top Hg$，来判断病态是否不利于神经网络训练任务。
-在很多情况中，梯度范数不会在训练过程中显著缩小，但是$g^\topHg$的增长会超过一个数量级。
+当$\frac{1}{2} \epsilon^2 g^\top Hg$超过$\epsilon g^\top g$时，梯度的病态会成为问题。
+我们可以通过监测平方梯度范数$g^\top g$和$g^\top Hg$，来判断病态是否不利于神经网络训练任务。
+在很多情况中，梯度范数不会在训练过程中显著缩小，但是$g^\top Hg$的增长会超过一个数量级。
 其结果是尽管梯度很强，学习会变得非常缓慢，因为学习率必须收缩以弥补更强的曲率。
 如\fig?所示，成功训练的神经网络中，梯度显著增加。
 <!-- % -- 276 head -->
@@ -425,7 +425,7 @@ n## 高原、鞍点和其他平坦区域n
 
 多类随机函数表现出以下性质：低维空间中，局部极小值很普遍。
 在更高维空间中，局部极小值很罕见，而鞍点则很常见。
-对于这类函数$f:\SetR^n \to \SetR$而言，鞍点和局部极小值的数目比率的期望随$n$指数级增长。
+对于这类函数$f:\Bbb R^n \to \Bbb R$而言，鞍点和局部极小值的数目比率的期望随$n$指数级增长。
 我们可以从直觉上理解这种现象——Hessian\,矩阵在局部极小点处只有正特征值。
 而在鞍点处，Hessian\,矩阵则同时具有正负特征值。
 试想一下，每个特征值的正负号由抛硬币决定。
@@ -554,9 +554,9 @@ n## 长期依赖n
 那么$t$步后，相当于乘以$W^t$。
 假设$W$有特征值分解$W = V \text{diag}(lambda) V^{-1}$。
 在这种简单的情况下，很容易看出
-\begin{equation}
+\begin{aligned}
   W^t = (V \text{diag}(lambda) V^{-1})^t = V\text{diag}(lambda)^t  V^{-1}.
-\end{equation}
+\end{aligned}
 当特征值$\lambda_i$的绝对值不在$1$附近时，若绝对值大于$1$则会爆炸；若小于$1$时则会消失。
 梯度消失与爆炸问题是指该计算图上的梯度也会因为$\text{diag}(lambda)^t$大幅度变化。
 梯度消失使得我们难以知道参数朝哪个方向移动能够改进代价函数，而梯度爆炸会使得学习不稳定。
@@ -731,20 +731,20 @@ SGD\,算法中的一个关键参数是学习率。
 这是因为\,SGD\,中梯度估计引入的噪声源（$m$个训练样本的随机采样）并不会在极小点处消失。
 相比之下，当我们使用批量梯度下降到达极小点时，整个代价函数的真实梯度会变得很小，之后为$\mathbf{0}$，因此批量梯度下降可以使用固定的学习率。
 保证\,SGD\,收敛的一个充分条件是
-\begin{equation}
+\begin{aligned}
     \sum_{k=1}^\infty \epsilon_k = \infty,
-\end{equation}
+\end{aligned}
 且
-\begin{equation}
+\begin{aligned}
     \sum_{k=1}^\infty \epsilon_k^2 < \infty.
-\end{equation}
+\end{aligned}
 
 <!-- % 287 head -->
 
 实践中，一般会线性衰减学习率直到第$\tau$次迭代：
-\begin{equation}
+\begin{aligned}
     \epsilon_k = (1-\alpha) \epsilon_0 + \alpha \epsilon_\tau
-\end{equation}
+\end{aligned}
 其中$\alpha = \frac{k}{\tau}$。
 在$\tau$步迭代之后，一般使$\epsilon$保持常数。
 
@@ -862,9 +862,9 @@ v & \leftarrow \alpha v - \epsilon \nabla_{\theta} \left( \frac{1}{m} \sum_{i=1}
 现在，步长取决于梯度\emph{序列}的大小和排列。
 当许多连续的梯度指向相同的方向时，步长最大。
 如果动量算法总是观测到梯度$g$，那么它会在方向$-g$上不停加速，直到达到最终速度，其中步长大小为
-\begin{equation}
+\begin{aligned}
     \frac{\epsilon \norm{g}}{1-\alpha} .
-\end{equation}
+\end{aligned}
 因此将动量的超参数视为$\frac{1}{1-\alpha}$有助于理解。
 例如，$\alpha=0.9$对应着最大速度$10$倍于梯度下降算法。
 
@@ -885,9 +885,9 @@ v & \leftarrow \alpha v - \epsilon \nabla_{\theta} \left( \frac{1}{m} \sum_{i=1}
 粒子在任意时间点的位置由$\theta(t)$给定。
 粒子会受到净力$f(t)$。
 该力会导致粒子加速：
-\begin{equation}
+\begin{aligned}
     f(t) = \frac{\partial^2}{\partial t^2} \theta(t) .
-\end{equation}
+\end{aligned}
 与其将其视为位置的二阶微分方程，我们不如引入表示粒子在时间$t$处速度的变量$v(t)$，将牛顿动力学重写为一阶微分方程：
 \begin{aligned}
     v(t) &= \frac{\partial}{\partial t} \theta(t) , \\
@@ -1045,9 +1045,9 @@ n# 参数初始化策略n
 有些启发式方法可用于选择权重的初始大小。
 一种初始化$m$个输入和$n$输出的全连接层的权重的启发式方法是从分布$U(-\frac{1}{\sqrt{m}}, \frac{1}{\sqrt{m}})$中采样权重，
 而~{GlorotAISTATS2010-small}建议使用标准初始化, % ?
-\begin{equation}
+\begin{aligned}
     W_{i,j} \sim U \left(-\sqrt{\frac{6}{m+n}}, \sqrt{\frac{6}{m+n}}\right) .
-\end{equation}
+\end{aligned}
 后一种启发式方法初始化所有的层，折衷于使其具有相同激活方差和使其具有相同梯度方差之间。
 这假设网络是不含非线性的链式矩阵乘法，据此推导得出。
 现实的神经网络显然会违反这个假设，但很多设计于线性模型的策略在其非线性对应中的效果也不错。
@@ -1136,9 +1136,9 @@ n# 参数初始化策略n
 
 另一种常见类型的参数是方差或精确度参数。
 例如，我们用以下模型进行带条件方差估计的线性回归
-\begin{equation}
+\begin{aligned}
     p(y\midx) = \mathcal{N} (y \mid w^\top x + b, 1/\beta) ,
-\end{equation}
+\end{aligned}
 其中$\beta$是精确度参数。
 通常我们能安全地初始化方差或精确度参数为$1$。
 另一种方法假设初始权重足够接近零，设置偏置可以忽略权重的影响，然后设定偏置以产生输出的正确边缘均值，并将方差参数设置为训练集输出的边缘方差。
@@ -1321,10 +1321,10 @@ n# 二阶近似方法n
 在本节中，我们会讨论训练深度神经网络的二阶方法。
 参考{LeCun+98backprop}了解该问题的早期处理方法。
 为表述简单起见，我们只考察目标函数为经验风险：
-\begin{equation}
-    J(\theta) = \SetE_{\RVx, \RSy \sim \hat{p}_{\text{data}}(x,y) } [ L(f(x; \theta), y) ] =
+\begin{aligned}
+    J(\theta) = \Bbb E_{x, y \sim \hat{p}_{\text{data}}(x,y) } [ L(f(x; \theta), y) ] =
 \frac{1}{m} \sum_{i=1}^m L(f(x^{(i)}; \theta), y^{(i)}).
-\end{equation}
+\end{aligned}
 然而，我们在这里讨论的方法很容易扩展到更一般的目标函数，例如，\chap?讨论的包括参数正则项的函数。
 
 <!-- % -- 302 -- -->
@@ -1336,15 +1336,15 @@ n## 牛顿法n
 我们现在更详细地描述牛顿法，重点在其应用于神经网络的训练。
 
 牛顿法是基于二阶泰勒级数展开在某点$\theta_0$附近来近似$J(\theta)$的优化方法，其忽略了高阶导数：
-\begin{equation}
+\begin{aligned}
     J(\theta) \approx J(\theta_0) + (\theta - \theta_0)^\top \nabla_{\theta}   
     J(\theta_0) + \frac{1}{2} (\theta - \theta_0)^\top H(\theta - \theta_0),
-\end{equation}
+\end{aligned}
 最速下降法中$H$是$J$相对于$\theta$的\,Hessian\,矩阵在$\theta_0$处的估计。
 如果我们再求解这个函数的临界点，我们将得到牛顿参数更新规则：
-\begin{equation}
+\begin{aligned}
     \theta^* = \theta_0 - H^{-1}\nabla_{\theta} J(\theta_0).
-\end{equation}
+\end{aligned}
 因此，对于局部的二次函数（具有正定的$H$\,），用$H^{-1}$重新调整梯度，牛顿法会直接跳到极小值。
 如果目标函数是凸的但非二次的（有高阶项），该更新将是迭代的，得到和牛顿法相关的算法，如\alg?所示。
 
@@ -1362,9 +1362,9 @@ n## 牛顿法n
 这种情况可以通过正则化\,Hessian\,矩阵来避免。
 常用的正则化策略包括在\,Hessian\,矩阵对角线上增加常数$\alpha$。
 正则化更新变为
-\begin{equation}
+\begin{aligned}
     \theta^* = \theta_0 - [ H( f(\theta_0)) + \alpha I  ]^{-1} \nabla_{\theta} f(\theta_0).
-\end{equation}
+\end{aligned}
 这个正则化策略用于牛顿法的近似，例如Levenberg-Marquardt算法{cite?}，只要\,Hessian\,矩阵的负特征值仍然相对接近零，效果就会很好。
 在曲率方向更极端的情况下，$\alpha$的值必须足够大，以抵消负特征值。
 然而，如果$\alpha$持续增加，Hessian\,矩阵会变得由对角矩阵$\alpha I$主导，通过牛顿法所选择的方向会收敛到普通梯度除以$\alpha$。
@@ -1429,9 +1429,9 @@ n## 共轭梯度法n
 
 在共轭梯度法中，我们寻求一个和先前线搜索方向共轭的搜索方向，即它不会撤销该方向上的进展。
 在训练迭代$t$时，下一步的搜索方向$d_t$的形式如下：
-\begin{equation}
+\begin{aligned}
     d_t = \nabla_{\theta} J(\theta) + \beta_t d_{t-1},
-\end{equation}
+\end{aligned}
 其中，系数$\beta_t$的大小控制我们应沿方向$d_{t-1}$加回多少到当前搜索方向上。
 
 <!-- % -- 305 -- -->
@@ -1446,16 +1446,16 @@ n## 共轭梯度法n
 两种用于计算$\beta_t$的流行方法是：
 \begin{enumerate}
 + Fletcher-Reeves:
-\begin{equation}
+\begin{aligned}
     \beta_t = \frac{ \nabla_{\theta} J(\theta_t)^\top \nabla_{\theta} J(\theta_t) }
 { \nabla_{\theta} J(\theta_{t-1})^\top \nabla_{\theta} J(\theta_{t-1}) }
-\end{equation}
+\end{aligned}
 
 + Polak-Ribi\`{e}re:
-\begin{equation}
+\begin{aligned}
     \beta_t = \frac{ (\nabla_{\theta} J(\theta_t) - \nabla_{\theta} J(\theta_{t-1}))^\top \nabla_{\theta} J(\theta_t) }
 { \nabla_{\theta} J(\theta_{t-1})^\top \nabla_{\theta} J(\theta_{t-1}) }
-\end{equation}
+\end{aligned}
 \end{enumerate}
 对于二次曲面而言，共轭方向确保梯度沿着前一方向幅度不会变大。
 因此，我们在前一方向上仍然处于极小值。
@@ -1505,9 +1505,9 @@ n## BFGSn
 \textbf{Broyden-Fletcher-Goldfarb-Shanno}（\textbf{BFGS}）算法具有牛顿法的一些优点，但没有牛顿法的计算负担。
 在这方面，BFGS\,和共轭梯度法很像。
 然而，BFGS\,使用了一个更直接的方法近似牛顿更新。回顾牛顿更新由下式给出
-\begin{equation}
+\begin{aligned}
     \theta^* = \theta_0 - H^{-1} \nabla_{\theta} J(\theta_0),
-\end{equation}
+\end{aligned}
 其中，$H$是$J$相对于$\theta$的\,Hessian\,矩阵在$\theta_0$处的估计。
 运用牛顿法的主要计算难点在于计算\,Hessian\,逆$H^{-1}$。
 拟牛顿法所采用的方法（BFGS\,是其中最突出的）是使用矩阵$M_t$近似逆，迭代地低秩更新精度以更好地近似$H^{-1}$。
@@ -1519,9 +1519,9 @@ BFGS\,近似的说明和推导出现在很多关于优化的教科书中，包�
 当\,Hessian\,逆的近似$M_t$更新时，下降方向$rho_t$为$rho_t = M_t g_t$。
 该方向上的线搜索用于决定该方向上的步长$\epsilon^*$。
 参数的最后更新为：
-\begin{equation}
+\begin{aligned}
     \theta_{t+1} = \theta_t + \epsilon^* rho_t.
-\end{equation}
+\end{aligned}
 
 和共轭梯度法相似，BFGS\,算法迭代一系列线搜索，其方向含二阶信息。
 然而和共轭梯度法不同的是，该方法的成功并不严重依赖于线搜索找到该方向上和真正极小值很近的一点。
@@ -1558,9 +1558,9 @@ n## 批标准化n
 如果我们希望$\hat{y}$下降$0.1$，那么梯度中的一阶信息表明我们应设置学习率$\epsilon$为$\frac{0.1}{g^\top g}$。
 然而，实际的更新将包括二阶，三阶，直到$l$阶的影响。
 $\hat{y}$的更新值为
-\begin{equation}
+\begin{aligned}
     x(w_1-\epsilon g_1)(w_2-\epsilon g_2)\dots(w_l-\epsilon g_l),
-\end{equation}
+\end{aligned}
 这个更新中所产生的一个二阶项示例是$\epsilon^2 g_1 g_2 \prod_{i=3}^l w_i$ 。
 如果 $\prod_{i=3}^l w_i$很小，那么该项可以忽略不计。而如果层$3$到层$l$的权重都比$1$大时，该项可能会指数级大。
 这使得我们很难选择一个合适的学习率，因为某一层中参数更新的效果很大程度上取决于其他所有层。
@@ -1576,22 +1576,22 @@ $\hat{y}$的更新值为
 批标准化可应用于网络的任何输入层或隐藏层。
 设$H$是需要标准化的某层的小批量激活函数，排布为设计矩阵，每个样本的激活出现在矩阵的每一行中。
 为了标准化$H$，我们将其替换为
-\begin{equation}
+\begin{aligned}
 H' = \frac{H - mu}{sigma},
-\end{equation}
-其中$mu$是包含每个单元均值的向量，$sigma$是包含每个单元标准差的向量。
-此处的算术是基于广播向量$mu$和向量$sigma$应用于矩阵$H$的每一行。
+\end{aligned}
+其中$\mu$是包含每个单元均值的向量，$\sigma$是包含每个单元标准差的向量。
+此处的算术是基于广播向量$\mu$和向量$\sigma$应用于矩阵$H$的每一行。
 在每一行内，运算是逐元素的，因此$H_{i,j}$标准化为减去$\mu_j$再除以$\sigma_j$。
 网络的其余部分操作$H'$的方式和原网络操作$H$的方式一样。
 
 在训练阶段，
-\begin{equation}
+\begin{aligned}
     mu = \frac{1}{m} \sum_i H_{i,:}
-\end{equation}
+\end{aligned}
 和
-\begin{equation}
+\begin{aligned}
     sigma = \sqrt{ \delta + \frac{1}{m} \sum_i (H - mu)_i^2 },
-\end{equation}
+\end{aligned}
 其中$\delta$是个很小的正值，比如$10^{-8}$，以强制避免遇到$\sqrt{z}$的梯度在$z=0$处未定义的问题。
 至关重要的是，\emph{我们反向传播这些操作}，来计算均值和标准差，并应用它们于标准化$H$。
 这意味着，梯度不会再简单地增加$h_i$的标准差或均值；标准化操作会除掉这一操作的影响，归零其在梯度中的元素。
@@ -1602,8 +1602,8 @@ H' = \frac{H - mu}{sigma},
 
 <!-- % -- 310 -- -->
 
-在测试阶段，$mu$和$sigma$可以被替换为训练阶段收集的运行均值。
-这使得模型可以对单一样本评估，而无需使用定义于整个小批量的$mu$和$sigma$。
+在测试阶段，$\mu$和$\sigma$可以被替换为训练阶段收集的运行均值。
+这使得模型可以对单一样本评估，而无需使用定义于整个小批量的$\mu$和$\sigma$。
 
 回顾例子$\hat{y} = x w_1 w_2 \dots w_l$，我们看到，我们可以通过标准化$h_{l-1}$很大程度地解决了学习这个模型的问题。
 假设$x$采样自一个单位高斯分布，
@@ -1632,22 +1632,22 @@ H' = \frac{H - mu}{sigma},
 
 标准化一个单元的均值和标准差会降低包含该单元的神经网络的表达能力。
 为了保持网络的表现力，通常会将批量隐藏单元激活$H$替换为$\gamma H' + beta$，而不是简单地使用标准化的$H'$。
-变量$gamma$和$beta$是允许新变量有任意均值和标准差的学习参数。
-乍一看，这似乎是无用的——为什么我们将均值设为$0$，然后又引入参数允许它被重设为任意值$beta$？
+变量$\gamma$和$\beta$是允许新变量有任意均值和标准差的学习参数。
+乍一看，这似乎是无用的——为什么我们将均值设为$0$，然后又引入参数允许它被重设为任意值$\beta$？
 答案是新的参数可以表示旧参数作为输入的同一族函数，但是新参数有不同的学习动态。
 在旧参数中，$H$的均值取决于$H$下层中参数的复杂关联。
-在新参数中，$gamma H' + beta$的均值仅由$beta$确定。
+在新参数中，$\gamma H' + beta$的均值仅由$\beta$确定。
 新参数很容易通过梯度下降来学习。
 
 大多数神经网络层会采取$\phi(XW+ b)$的形式，其中$\phi$是某个固定的非线性激活函数，如整流线性变换。
 自然想到我们应该将批标准化应用于输入$X$还是变换后的值$XW+b$。
 {Ioffe+Szegedy-2015}推荐后者。
 更具体地，$XW+b$应替换为$XW$的标准化形式。
-偏置项应被忽略，因为参数$beta$会加入批标准化重参数化，它是冗余的。
+偏置项应被忽略，因为参数$\beta$会加入批标准化重参数化，它是冗余的。
 一层的输入通常是前一层的非线性激活函数（如整流线性函数）的输出。
 因此，输入的统计量更符合非高斯分布，而更不服从线性操作的标准化。
 
-\chap?所述的卷积网络，在特征映射中每个空间位置同样地标准化$mu$和$sigma$是很重要的，能使特征映射的统计量在不同的空间位置，仍然保持相同。
+\chap?所述的卷积网络，在特征映射中每个空间位置同样地标准化$\mu$和$\sigma$是很重要的，能使特征映射的统计量在不同的空间位置，仍然保持相同。
 
 n## 坐标下降n
 在某些情况下，将一个优化问题分解成几个部分，可以更快地解决原问题。
@@ -1660,9 +1660,9 @@ n## 坐标下降n
 
 当优化问题中的不同变量能够清楚地分成相对独立的组，或是当优化一组变量明显比优化所有变量效率更高时，坐标下降最有意义。
 例如，考虑代价函数
-\begin{equation}
+\begin{aligned}
     J(H, W) = \sum_{i,j} |H_{i,j}| + \sum_{i,j} \left( X - W^\top H \right)_{i,j}^2 .
-\end{equation}
+\end{aligned}
 该函数描述了一种被称为稀疏编码的学习问题，其目标是寻求一个权重矩阵$W$，可以线性解码激活值矩阵$H$以重构训练集$X$。
 稀疏编码的大多数应用还涉及到权重衰减或$W$列范数的约束，以避免极小$H$和极大$W$的病态解。
 
@@ -1691,9 +1691,9 @@ Polyak平均{cite?}会平均优化算法在参数空间访问轨迹中的几个�
 在非凸问题中，优化轨迹的路径可以非常复杂，并且经过了许多不同的区域。
 包括参数空间中遥远过去的点，可能与当前点在代价函数上相隔很大的障碍，看上去不像一个有用的行为。
 其结果是，当应用Polyak平均于非凸问题时，通常会使用指数衰减计算平均值：
-\begin{equation}
+\begin{aligned}
     \hat{\theta}^{(t)} = \alpha \hat{\theta}^{(t-1)} + (1-\alpha) \theta^{(t)} .
-\end{equation}
+\end{aligned}
 
 这个计算平均值的方法被用于大量数值应用中。最近的例子请查看{Szegedy-et-al-2015}。
 
@@ -1818,9 +1818,9 @@ n## 延拓法和课程学习n
 具体地，它被设计来在有很多局部极小值的情况下，求解一个全局最小点。
 这些连续方法会通过"模糊"原来的代价函数来构建更容易的代价函数。
 这些模糊操作可以是用采样来近似
-\begin{equation}
-    J^{(i)}(\theta) = \SetE_{\theta' \sim \mathcal{N}(\theta'; \theta, \sigma^{(i)2})} J(\theta')
-\end{equation}
+\begin{aligned}
+    J^{(i)}(\theta) = \Bbb E_{\theta' \sim \mathcal{N}(\theta'; \theta, \sigma^{(i)2})} J(\theta')
+\end{aligned}
 这个方法的直觉是有些非凸函数在模糊后会近似凸的。
 在许多情况下，这种模糊保留了关于全局极小值的足够信息，我们可以通过逐步求解模糊更少的问题来求解全局极小值。
 这种方法有三种可能失败的方式。

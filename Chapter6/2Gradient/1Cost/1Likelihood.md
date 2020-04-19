@@ -36,9 +36,9 @@ $$
         （6.12）
 {% reveal %}
 ```
-\begin{equation}
+\begin{aligned}
 J(\theta) = -{\Bbb E}_{X,y \sim \hat{p}_\text{data}} \log p_\text{model} (y \mid x) \tag {6.12}
-\end{equation}
+\end{aligned}
 ```
 {% endreveal %}
 
@@ -71,9 +71,9 @@ $$
     （6.13）
 {% reveal %}
 ```
-\begin{equation}
+\begin{aligned}
 J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \theta) ||^2 + \text{const} \tag {6.13}
-\end{equation}
+\end{aligned}
 ```
 {% endreveal %}
 
