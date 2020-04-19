@@ -16,6 +16,8 @@ long是short-term memory的形式词。
 > “自循环的权重”是指s->s所用到的参数。  
 > “上下文”是指RNN的输入。  
 > “自循环的权重视上下文而定”是指s->s的参数不是固定的，而是x有关，这点从s的公式中也可以看出。  
+> ![](/assets/images/Chapter10/2.png)  
+> 图中Memory Cell和Forget Gate之间的循环就是内环。 
 
 门控此自循环（由另一个隐藏单元控制）的权重，累积的时间尺度可以动态地改变。  
 > **[success] 问：为什么门控可以改动时间尺度？**    
@@ -112,7 +114,10 @@ $$
 LSTM网络比简单的循环架构**更易于学习长期依赖**，先是用于测试长期依赖学习能力的人工数据集{cite?}，然后是在具有挑战性的序列处理任务上获得最先进的表现{cite?}。
 LSTM的变体和替代也已经被研究和使用，这将在下文进行讨论。
 
----------------------
-![](/assets/images/Chapter10/2.png)  
-![](/assets/images/Chapter10/3.png)  
-![](/assets/images/Chapter10/4.png)  
+> **[success]**  
+> t时刻的LSTM的计算过程  
+> ![](/assets/images/Chapter10/12.png)  
+> 相邻两个时刻的LSTM联结到一起，图上的红线连接可以没有  
+> ![](/assets/images/Chapter10/13.png)  
+> 深度的LSTM  
+> ![](/assets/images/Chapter10/14.png)  
