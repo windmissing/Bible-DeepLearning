@@ -1,8 +1,3 @@
-# 11.1 性能度量  
-
-在某个基准下讨论哪个算法更好，不允许多收集数据。  
-[性能度量]()  
-
 # 11.2 默认的基准模型  
 
 简单问题：逻辑回归 [link](https://play-with-handwritten-digits.netlify.com/logisticregression.html)    

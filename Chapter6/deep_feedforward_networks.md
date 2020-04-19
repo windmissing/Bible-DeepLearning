@@ -1206,15 +1206,15 @@ n## 微积分中的链式法则n
 
 <!-- % -- 200 -- -->
 
-为了表示值$z$关于张量$\TSX$的梯度，我们记为$\nabla_\TSX z$，就像$\TSX$是向量一样。
-$\TSX$的索引现在有多个坐标——例如，一个3维的张量由三个坐标索引。
+为了表示值$z$关于张量$X$的梯度，我们记为$\nabla_X z$，就像$X$是向量一样。
+$X$的索引现在有多个坐标——例如，一个3维的张量由三个坐标索引。
 我们可以通过使用单个变量$i$来表示完整的索引元组，从而完全抽象出来。
-对所有可能的元组$i$，$(\nabla_\TSX z)_i$给出$\frac{\partial z}{\partial \TEX_i}$。
+对所有可能的元组$i$，$(\nabla_X z)_i$给出$\frac{\partial z}{\partial X_i}$。
 这与向量中索引的方式完全一致，$(\nabla_{x} z)_i$给出$\frac{\partial z}{\partial x_i}$。
 使用这种记法，我们可以写出适用于张量的链式法则。
-如果$\TSY=g(\TSX)$并且$z=f(\TSY)$，那么
+如果$Y=g(X)$并且$z=f(Y)$，那么
 \begin{aligned}
-  \nabla_\TSX z = \sum_j (\nabla_\TSX \TEY_j)\frac{\partial z}{\partial \TEY_j}.
+  \nabla_X z = \sum_j (\nabla_X Y_j)\frac{\partial z}{\partial Y_j}.
 \end{aligned}
 
 n## 递归地使用链式法则来实现反向传播n
@@ -1457,19 +1457,19 @@ n## 一般化的反向传播n
 对于从$z$出发可以经过两个或更多路径向后行进而到达的任意节点，我们简单地对该节点来自不同路径上的梯度进行求和。
 
 更正式地，图$\Bbb G$中的每个节点对应着一个变量。
-为了实现最大的一般化，我们将这个变量描述为一个张量$\TSV$。
+为了实现最大的一般化，我们将这个变量描述为一个张量$V$。
 张量通常可以具有任意维度，并且包含标量、向量和矩阵。
 
-我们假设每个变量$\TSV$与下列子程序相关联：
+我们假设每个变量$V$与下列子程序相关联：
 
-+ erb|get_operation|($\TSV$)：它返回用于计算$\TSV$的操作，代表了在计算图中流入$\TSV$的边。
++ erb|get_operation|($V$)：它返回用于计算$V$的操作，代表了在计算图中流入$V$的边。
     例如，可能有一个Python或者C++的类表示矩阵乘法操作，以及~erb|get_operation|函数。
     假设我们的一个变量是由矩阵乘法产生的，$C=AB$。
-    那么，erb|get_operation|($\TSV$)返回一个指向相应C++类的实例的指针。
+    那么，erb|get_operation|($V$)返回一个指向相应C++类的实例的指针。
 
-+ erb|get_consumers|($\TSV, \Bbb G$)：它返回一组变量，是计算图$\Bbb G$中$\TSV$的子节点。
++ erb|get_consumers|($V, \Bbb G$)：它返回一组变量，是计算图$\Bbb G$中$V$的子节点。
 
-+ erb|get_inputs|($\TSV, \Bbb G$)：它返回一组变量，是计算图$\Bbb G$中$\TSV$的父节点。
++ erb|get_inputs|($V, \Bbb G$)：它返回一组变量，是计算图$\Bbb G$中$V$的父节点。
 
 
 <!-- % -- 208 -- -->
@@ -1485,12 +1485,12 @@ n## 一般化的反向传播n
 类似的，如果我们调用~erb|bprop|方法来请求关于$B$的梯度，那么矩阵操作负责实现~erb|bprop|方法并指定希望的梯度是$A^\topG$。
 反向传播算法本身并不需要知道任何微分法则。
 它只需要使用正确的参数调用每个操作的~erb|bprop|方法即可。
-正式地，~erb|op.bprop(inputs|$, \TSX, \TSG)$必须返回
+正式地，~erb|op.bprop(inputs|$, X, G)$必须返回
 \begin{aligned}
-  \sum_i (\nabla_{\TSX} erb|op.f(inputs|)_i) \textsf{G}_i,
+  \sum_i (\nabla_{X} erb|op.f(inputs|)_i) \textsf{G}_i,
 \end{aligned}
 这只是如\eqn?所表达的链式法则的实现。
-这里，erb|inputs|是提供给操作的一组输入，erb|op.f|是操作实现的数学函数，$\TSX$是输入，我们想要计算关于它的梯度，$\TSG$是操作对于输出的梯度。
+这里，erb|inputs|是提供给操作的一组输入，erb|op.f|是操作实现的数学函数，$X$是输入，我们想要计算关于它的梯度，$G$是操作对于输出的梯度。
 
 erb|op.bprop|方法应该总是假装它的所有输入彼此不同，即使它们不是。
 例如，如果~erb|mul|操作传递两个$x$来计算$x^2$，erb|op.bprop|方法应该仍然返回$x$作为对于两个输入的导数。
@@ -1515,36 +1515,36 @@ erb|op.bprop|方法应该总是假装它的所有输入彼此不同，即使它�
 \STATE 令 $\Bbb G'$ 为$\Bbb G$剪枝后的计算图，其中仅包括$z$的祖先以及$\Bbb T$中节点的后代。
 \STATE 初始化 {\tt grad\_table}，它是关联张量和对应导数的数据结构。
 \STATE ${\tt grad\_table}[z] \leftarrow 1$
-\FOR{$\TSV$ in $\Bbb T$}
-\STATE ${\tt build\_grad}(\TSV, \Bbb G, \Bbb G', {\tt grad\_table})$
+\FOR{$V$ in $\Bbb T$}
+\STATE ${\tt build\_grad}(V, \Bbb G, \Bbb G', {\tt grad\_table})$
 \ENDFOR
 \STATE Return {\tt grad\_table} restricted to $\Bbb T$
 \end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}[ht]
-\caption{反向传播算法的内循环子程序${\tt build\_grad}(\TSV, \Bbb G, \Bbb G', {\tt grad\_table})$，
+\caption{反向传播算法的内循环子程序${\tt build\_grad}(V, \Bbb G, \Bbb G', {\tt grad\_table})$，
 由\alg?中定义的反向传播算法调用。
 }
 \begin{algorithmic}
-\REQUIRE $\TSV$，应该被加到$\Bbb G$和{\tt grad\_table}的变量。
+\REQUIRE $V$，应该被加到$\Bbb G$和{\tt grad\_table}的变量。
 \REQUIRE $\Bbb G$，要修改的图。
 \REQUIRE $\Bbb G'$，根据参与梯度的节点$\Bbb G$的受限图。
 \REQUIRE {\tt grad\_table}，将节点映射到对应梯度的数据结构。
 \IF{$\Bbb V$ is in {\tt grad\_table} }
- \STATE Return ${\tt grad\_table}[\TSV]$
+ \STATE Return ${\tt grad\_table}[V]$
 \ENDIF
 \STATE $i \leftarrow 1$
-\FOR{$\TSC$ in ${\tt get\_consumers}(\TSV, \Bbb G')$ }
-\STATE ${\tt op} \leftarrow {\tt get\_operation}(\TSC)$
-\STATE $\TSD \leftarrow {\tt build\_grad}(\TSC, \Bbb G, \Bbb G', {\tt grad\_table})$
-\STATE $\TSG^{(i)} \leftarrow {\tt op.bprop}({\tt get\_inputs}(\TSC, \Bbb G'), \TSV, \TSD)$ 
+\FOR{$C$ in ${\tt get\_consumers}(V, \Bbb G')$ }
+\STATE ${\tt op} \leftarrow {\tt get\_operation}(C)$
+\STATE $D \leftarrow {\tt build\_grad}(C, \Bbb G, \Bbb G', {\tt grad\_table})$
+\STATE $G^{(i)} \leftarrow {\tt op.bprop}({\tt get\_inputs}(C, \Bbb G'), V, D)$ 
 \STATE $i \leftarrow i + 1$
 \ENDFOR
-\STATE $\TSG \leftarrow \sum_i \TSG^{(i)}$
-\STATE ${\tt grad\_table}[\TSV] = \TSG$
-\STATE 插入 $\TSG$ 和将其生成到$\Bbb G$中的操作
-\STATE Return $\TSG$
+\STATE $G \leftarrow \sum_i G^{(i)}$
+\STATE ${\tt grad\_table}[V] = G$
+\STATE 插入 $G$ 和将其生成到$\Bbb G$中的操作
+\STATE Return $G$
 \end{algorithmic}
 \end{algorithm}
 
