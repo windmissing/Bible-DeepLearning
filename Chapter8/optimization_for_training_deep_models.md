@@ -273,7 +273,7 @@ n## 批量算法和小批量算法n
 <!-- %  274 mid -->
 
 
-因此，我们可以从数据生成分布~$p_\text{data}$抽取小批量样本$\{ x^{(1)}, \dots,x^{(m)} \}$以及对应的目标$y^{(i)}$，然后计算该小批量上损失函数关于对应参数的梯度
+因此，我们可以从数据生成分布~$p_\text{data}$抽取小批量样本$\{ x^{(1)}, \cdots,x^{(m)} \}$以及对应的目标$y^{(i)}$，然后计算该小批量上损失函数关于对应参数的梯度
 \begin{aligned}
     \hat{g} = \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)} ).
 \end{aligned}
@@ -615,9 +615,9 @@ n## 局部和全局结构间的弱对应n
 大多数优化研究的难点集中于训练是否找到了全局最小点、局部极小点或是鞍点，但在实践中神经网络不会到达任何一种临界点。
 \fig?表明神经网络通常不会到达梯度很小的区域。
 甚至，这些临界点不一定存在。
-例如，损失函数 $-\log p(y\midx;\theta)$ 可以没有全局最小点，而是当随着训练模型逐渐稳定后，渐近地收敛于某个值。    
-对于具有离散的$y$和~softmax~分布$p(y\midx)$的分类器而言，若模型能够正确分类训练集上的每个样本，则负对数似然可以无限趋近但不会等于零。
-同样地，实值模型$p(y\midx) = \mathcal{N}(y;f(\theta),\beta^{-1})$的负对数似然会趋向于负无穷——如果$f(\theta)$能够正确预测所有训练集中的目标$y$，学习算法会无限制地增加$\beta$。
+例如，损失函数 $-\log p(y\mid x;\theta)$ 可以没有全局最小点，而是当随着训练模型逐渐稳定后，渐近地收敛于某个值。    
+对于具有离散的$y$和~softmax~分布$p(y\mid x)$的分类器而言，若模型能够正确分类训练集上的每个样本，则负对数似然可以无限趋近但不会等于零。
+同样地，实值模型$p(y\mid x) = \mathcal{N}(y;f(\theta),\beta^{-1})$的负对数似然会趋向于负无穷——如果$f(\theta)$能够正确预测所有训练集中的目标$y$，学习算法会无限制地增加$\beta$。
 \fig?给出了一个失败的例子，即使没有局部极小值和鞍点，该例还是不能从局部优化中找到一个良好的代价函数值。
 
 <!-- % 283 end -->
@@ -710,7 +710,7 @@ n## 随机梯度下降n
 \REQUIRE 学习率 $\epsilon_k$
 \REQUIRE 初始参数$\theta$
 \WHILE{停止准则未满足}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，其中$x^{(i)}$对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，其中$x^{(i)}$对应目标为$y^{(i)}$。
     \STATE 计算梯度估计： $\hat{g} \leftarrow + 
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$
     \STATE 应用更新：$\theta \leftarrow \theta - \epsilon \hat{g}$
@@ -844,7 +844,7 @@ v & \leftarrow \alpha v - \epsilon \nabla_{\theta} \left( \frac{1}{m} \sum_{i=1}
 \REQUIRE 学习率 $\epsilon$， 动量参数 $\alpha$
 \REQUIRE 初始参数 $\theta$，初始速度 $v$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度估计：$g \leftarrow 
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$
     \STATE  计算速度更新：$v \leftarrow \alpha v - 
@@ -955,7 +955,7 @@ Nesterov 动量中，梯度计算在施加当前速度之后。
 \REQUIRE  学习率 $\epsilon$， 动量参数 $\alpha$
 \REQUIRE 初始参数 $\theta$，初始速度 $v$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 应用临时更新： $\tilde{\theta} \leftarrow \theta  + \alpha v$
          \STATE 计算梯度（在临时点）：$g \leftarrow 
          \frac{1}{m} \nabla_{\tilde{\theta}} \sum_i L(f(x^{(i)};\tilde{\theta}),y^{(i)})$
@@ -1137,7 +1137,7 @@ n# 参数初始化策略n
 另一种常见类型的参数是方差或精确度参数。
 例如，我们用以下模型进行带条件方差估计的线性回归
 \begin{aligned}
-    p(y\midx) = \mathcal{N} (y \mid w^\top x + b, 1/\beta) ,
+    p(y\mid x) = \mathcal{N} (y \mid w^\top x + b, 1/\beta) ,
 \end{aligned}
 其中$\beta$是精确度参数。
 通常我们能安全地初始化方差或精确度参数为$1$。
@@ -1195,7 +1195,7 @@ AdaGrad\,在某些深度学习模型上效果不错，但不是全部。
 \REQUIRE 小常数$\delta$，为了数值稳定大约设为$10^{-7}$
 \STATE 初始化梯度累积变量$r = 0$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度： $g \leftarrow  
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE 累积平方梯度：$r \leftarrow r + g \odot g$
@@ -1234,7 +1234,7 @@ RMSProp的标准形式如\alg?所示，结合Nesterov动量的形式如\alg?所�
 \REQUIRE 小常数$\delta$，通常设为$10^{-6}$（用于被小数除时的数值稳定）
 \STATE 初始化累积变量 $r = 0$
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度：$g \leftarrow  
          \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE 累积平方梯度：$r \leftarrow \rho
@@ -1253,7 +1253,7 @@ RMSProp的标准形式如\alg?所示，结合Nesterov动量的形式如\alg?所�
 \REQUIRE 初始参数$\theta$，初始参数$v$
 \STATE 初始化累积变量 $r = 0$
 \WHILE{没有达到停止准则} % NOTE: do not capitalize the condition
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算临时更新：$\tilde{\theta} \leftarrow \theta + \alpha v$
     \STATE 计算梯度：$g \leftarrow  
          \frac{1}{m} \nabla_{\tilde{\theta}} \sum_i L(f(x^{(i)};\tilde{\theta}),y^{(i)})$ 
@@ -1290,7 +1290,7 @@ Adam通常被认为对超参数的选择相当鲁棒，尽管学习率有时需�
 \STATE 初始化一阶和二阶矩变量 $s = 0 $, $r = 0$
 \STATE 初始化时间步 $t=0$ 
 \WHILE{没有达到停止准则}
-    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\dots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
+    \STATE 从训练集中采包含$m$个样本$\{ x^{(1)},\cdots, x^{(m)}\}$ 的小批量，对应目标为$y^{(i)}$。
     \STATE 计算梯度：$g \leftarrow \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$ 
     \STATE $t \leftarrow t + 1$
     \STATE 更新有偏一阶矩估计： $s \leftarrow \rho_1 s + (1-\rho_1) g$
@@ -1548,7 +1548,7 @@ n## 批标准化n
 在其他层不改变的假设下，梯度用于如何更新每一个参数。
 在实践中，我们同时更新所有层。
 当我们进行更新时，可能会发生一些意想不到的结果，这是因为许多组合在一起的函数同时改变时，计算更新的假设是其他函数保持不变。
-举一个简单的例子，假设我们有一个深度神经网络，每一层只有一个单元，并且在每个隐藏层不使用激活函数：$\hat{y} = xw_1 w_2 w_3 \dots w_l$。
+举一个简单的例子，假设我们有一个深度神经网络，每一层只有一个单元，并且在每个隐藏层不使用激活函数：$\hat{y} = xw_1 w_2 w_3 \cdots w_l$。
 此处，$w_i$表示用于层$i$的权重。层$i$的输出是$h_i = h_{i-1} w_i$。
 输出$\hat{y}$是输入$x$的线性函数，但是权重$w_i$的非线性函数。
 假设我们的代价函数 $\hat{y}$上的梯度为$1$，所以我们希望稍稍降低$\hat{y}$。
@@ -1559,7 +1559,7 @@ n## 批标准化n
 然而，实际的更新将包括二阶，三阶，直到$l$阶的影响。
 $\hat{y}$的更新值为
 \begin{aligned}
-    x(w_1-\epsilon g_1)(w_2-\epsilon g_2)\dots(w_l-\epsilon g_l),
+    x(w_1-\epsilon g_1)(w_2-\epsilon g_2)\cdots(w_l-\epsilon g_l),
 \end{aligned}
 这个更新中所产生的一个二阶项示例是$\epsilon^2 g_1 g_2 \prod_{i=3}^l w_i$ 。
 如果 $\prod_{i=3}^l w_i$很小，那么该项可以忽略不计。而如果层$3$到层$l$的权重都比$1$大时，该项可能会指数级大。
@@ -1605,7 +1605,7 @@ H' = \frac{H - mu}{sigma},
 在测试阶段，$\mu$和$\sigma$可以被替换为训练阶段收集的运行均值。
 这使得模型可以对单一样本评估，而无需使用定义于整个小批量的$\mu$和$\sigma$。
 
-回顾例子$\hat{y} = x w_1 w_2 \dots w_l$，我们看到，我们可以通过标准化$h_{l-1}$很大程度地解决了学习这个模型的问题。
+回顾例子$\hat{y} = x w_1 w_2 \cdots w_l$，我们看到，我们可以通过标准化$h_{l-1}$很大程度地解决了学习这个模型的问题。
 假设$x$采样自一个单位高斯分布，
 那么$h_{l-1}$也是来自高斯分布，因为从$x$到$h_l$的变换是线性的。
 然而，$h_{l-1}$不再有零均值和单位方差。
@@ -1680,7 +1680,7 @@ n## 坐标下降n
 
 n## Polyak平均n
 Polyak平均{cite?}会平均优化算法在参数空间访问轨迹中的几个点。
-如果$t$次迭代梯度下降访问了点$\theta^{(1)},\dots,\theta^{(t)}$，那么Polyak平均算法的输出是$\hat{\theta}^{(t)} = \frac{1}{t} \sum_i \theta^{(i)}$。
+如果$t$次迭代梯度下降访问了点$\theta^{(1)},\cdots,\theta^{(t)}$，那么Polyak平均算法的输出是$\hat{\theta}^{(t)} = \frac{1}{t} \sum_i \theta^{(i)}$。
 在某些问题中，如梯度下降应用于凸问题时，这种方法具有较强的收敛保证。
 当应用于神经网络时，其验证更多是启发式的，但在实践中表现良好。
 基本想法是，优化算法可能会来回穿过山谷好几次而没经过山谷底部附近的点。
@@ -1799,7 +1799,7 @@ n## 延拓法和课程学习n
 
 延拓法是一族通过挑选初始点使优化更容易的方法，以确保局部优化花费大部分时间在表现良好的空间。
 延拓法的背后想法是构造一系列具有相同参数的目标函数。
-为了最小化代价函数 $J(\theta)$，我们构建新的代价函数 $\{J^{(0)},\dots,J^{(n)}\}$。
+为了最小化代价函数 $J(\theta)$，我们构建新的代价函数 $\{J^{(0)},\cdots,J^{(n)}\}$。
 这些代价函数的难度逐步提高，其中$J^{(0)}$是最容易最小化的，$J^{(n)}$是最难的，真正的代价函数驱动整个过程。
 当我们说$J^{(i)}$比$J^{(i+1)}$更容易时，是指其在更多的$\theta$空间上表现良好。
 随机初始化更有可能落入局部下降可以成功最小化代价函数的区域，因为其良好区域更大。

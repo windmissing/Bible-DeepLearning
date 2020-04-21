@@ -47,7 +47,7 @@ $$
 \end{aligned}
 $$
 
-> **[warning]**  
+> **[warning]** 这个公式怎么推出来的？  
 $$
 \begin{aligned}
 \Big( \frac{\partial h^{(t+1)}}{ \partial h^{(t)}}  \Big)^\top = W^\top  \\

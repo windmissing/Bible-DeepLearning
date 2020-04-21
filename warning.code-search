@@ -1,0 +1,364 @@
+# Query: warning
+# Flags: CaseSensitive
+
+301 results - 86 files
+
+Bible-DeepLearning • Chapter10\0Introduction.md:
+  47: > **[warning]** 后面的数据只使用前面的数据，为什么前提是完整的序列？  
+
+Bible-DeepLearning • Chapter10\1Unfolding.md:
+  63: > **[warning]** 单个时间步延时所发生的交互?  
+  80: > **[warning]** 为什么说这是“展开”的优点？图左不展开这也有这些优点呀？
+
+Bible-DeepLearning • Chapter10\3Bidirectional.md:
+  39: > **[warning]** 允许同一特征图的特征之间存在长期横向的相互作用  
+  42: > **[warning]** [?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter10\5Deep.md:
+  24: > **[warning]** 这三块的分别变深有什么区别？不都是增加隐藏层数吗？  
+  28: > **[warning]** 为什么会路径变长呢？展开不是这样吗？  
+  32: > **[warning]** “隐藏层用于状态到状态的转换”是什么意思？  
+  35: > **[warning]** 怎么看出跳跃连接的？  
+
+Bible-DeepLearning • Chapter10\6.md:
+  36: > **[warning]** 最后一段没看懂。  
+
+Bible-DeepLearning • Chapter10\7.md:
+   24: > **[warning]** 可存储记忆可解决梯度消失问题。既然假设梯度消失已解决，梯度爆炸不存在，还讨论啥？“比短期相互作用指数小的权重”是什么？
+  118: > **[warning]** 这一整段看不懂
+
+Bible-DeepLearning • Chapter10\8.md:
+   1: > **[warning]**  
+  11: > **[warning]** 回声状态网络?流体状态机?  
+  14: > **[warning]** 脉冲神经元?连续隐藏单元?
+  17: > **[warning]** 储层计算?输入历史不同方面的临时特征池?
+
+Bible-DeepLearning • Chapter10\9.md:
+  15: > **[warning]** 为什么这里会提到前馈网络？  
+  72: > **[warning]** 这一段没看懂。  
+
+Bible-DeepLearning • Chapter10\12.md:
+  24: > **[warning]** 后面只知道大概要干什么，具体原理不懂。  
+
+Bible-DeepLearning • Chapter10\10Gate\1LSTM.md:
+   7: > **[warning]** 这句话读不通，把“以”改成“通过”貌似通顺一点。  [?]如何让梯度长时间持续流动？  
+  29: > **[warning]** 固定参数的LSTM?  时间常数是模型本身的输出?  
+
+Bible-DeepLearning • Chapter10\10Gate\2OtherGates.md:
+  42: > **[warning]** [?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter10\11OptimizationLTD\2.md:
+   4: > **[warning]**  
+  15: > **[warning]** 后面的公式看不懂  
+
+Bible-DeepLearning • Chapter10\2RNN\0RNN.md:
+  72: > **[warning]** 图灵机这一段没看懂  
+  96: > **[warning]** 非标准化的对数概率怎么是这么算的？  
+
+Bible-DeepLearning • Chapter10\2RNN\1TeacherForcing.md:
+  40: > **[warning]** 这里的y是对应上一节非归一化的对数概率o还是归一化的对数概率$\hat y$？  
+  65: > **[warning]** [?]在缺乏隐藏到隐藏连接的模型中避免通过时间反向传播  
+  76: > **[warning]** 训练时使用y->h，预测时使用$\hat y$ -> h，这样会出什么问题？  
+  87: > **[warning]** 结合方式1，没看懂。  
+
+Bible-DeepLearning • Chapter10\2RNN\2BPTT.md:
+  15: > **[warning]** 这个公式不知道怎么推出来的？  
+  50: > **[warning]** 这个公式怎么推出来的？  
+  61: > **[warning]** 双曲正切的Jacobian?  
+
+Bible-DeepLearning • Chapter10\2RNN\3.md:
+    1: > **[warning]** “作为有向图模型”是什么意思？  
+   40: > **[warning]** [?]输出$y$与给定的$x$序列是条件独立的  
+  104: > **[warning]** 从这里开始看不懂了。 
+
+Bible-DeepLearning • Chapter10\2RNN\4.md:
+   9: > **[warning]** $P(y \mid \omega)$和$P(y \mid x)$是什么关系？  
+  20: > **[warning]** 这种方法和“使用序列作为输入”有什么区别？  
+  25: > **[warning]** R和U有什么区别？  
+
+Bible-DeepLearning • Chapter6\1Examples.md:
+  24: > **[warning]**[?]怎么通过闭解形式计算出$$J(\theta)$$
+
+Bible-DeepLearning • Chapter6\2Gradient\1Cost\1Likelihood.md:
+   92: > **[warning]** 不把它参数化是什么意思？  
+   95: > **[warning]** 还适用于什么分面？如何证明？肯定不是对全部模型都适用，至少对sigmoid unit是不适用的。  
+  111: > **[warning]** 什么叫有足够的预测性？  
+  165: > **[warning]** [?]不是趋向于0吗？
+
+Bible-DeepLearning • Chapter6\2Gradient\1Cost\2.md:
+  17: > **[warning]** 变分法？后面的结论也看不懂。    
+
+Bible-DeepLearning • Chapter6\2Gradient\2OutputUnit\1Linear.md:
+  21: > **[warning]** 公式p(y|x)是怎么推导出来的？  
+  34: > **[warning]** [?] 这一段看不懂   
+  37: > **[warning]** [?] 这一段看不懂   
+  41: > **[warning]** [?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter6\2Gradient\2OutputUnit\2Sigmoid.md:
+   63: > **[warning]** 为什么要假设$$\log \tilde{P} = yz$$，是否可以有别的假设？  
+  155: > **[warning]** “sigmoid的对数总是确定和有限的”是什么意思？  
+  158: > **[warning]** [?] 这一段看不懂    
+  161: > **[warning]** $$\hat{y}$$不就是$$\sigma(z)$$吗？怎么会得到负无穷呢？ 
+
+Bible-DeepLearning • Chapter6\2Gradient\2OutputUnit\3Softmax.md:
+   58: > **[warning]** [?] 为什么要最大化$$\log P(y =i; z)$$？此处假设y=i是正确答案？  
+   72: > **[warning]** [?] [?] 这一段看不懂   
+   98: > **[warning]** 也许MSE效果不好，但为什么说它没有作用呢？  
+  141: > **[warning]** [?]  [?] 这一段看不懂   
+  145: > **[warning]** [?]  [?] 这一段看不懂   
+  163: > **[warning]** soft版本是怎么计算的？  
+
+Bible-DeepLearning • Chapter6\3Hidden\1ReLU.md:
+    9: > **[warning]** [?]线性单元易于计算我还可以理解，易于优化是什么意思呢？  
+  117: > **[warning]** 怎么证明？  
+  129: > **[warning]** 这段话说的啥？我是这么理解的，不知道对不对。  
+  135: > **[warning]** [?] 什么是灾难遗忘？跟maxout有什么关系？
+  145: > **[warning]** 循环网络、序列、状态序列、输出序列。  
+  148: > **[warning]** 时间步、线性计算  
+  152: > **[warning]** LSTM
+
+Bible-DeepLearning • Chapter6\3Hidden\2SigmoidTanh.md:
+  39: > **[warning]** [?]一堆还没学到的术语。  
+
+Bible-DeepLearning • Chapter6\3Hidden\3Other.md:
+  43: > **[warning]** 第10.12节关于softmax的部分没看懂
+
+Bible-DeepLearning • Chapter6\5Backprop\2ChainRule.md:
+  55: > **[warning]** 为什么跳过了变量是矩阵  
+  66: > **[warning]** ?[?] 这一段看不懂   
+  80: > **[warning]** ?[?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter6\5Backprop\3Recursively.md:
+  112: > **[warning]** ?[?] 这一段看不懂   
+  175: > **[warning]** 图B和图G在哪？  
+  179: > **[warning]** 这个公式是不是有点总是？i怎么会属于$Pa(u^{(i)})$呢？  
+
+Bible-DeepLearning • Chapter6\5Backprop\5Diveriation.md:
+  12: > **[warning]** [?][?] 这一段看不懂   
+  38: > **[warning]** 图计算引擎?  
+
+Bible-DeepLearning • Chapter6\5Backprop\6-5-6.md:
+  27: > **[warning]** bprop操作？  
+  33: > **[warning]** [?]  [?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter6\5Backprop\7MLPTraining.md:
+  76: > **[warning]** 自动生成梯度？  
+  91: > **[warning]** 这一段没看懂？
+
+Bible-DeepLearning • Chapter7\2ConstrainedOptimization.md:
+   71: > **[warning]** 怎么求$\theta^*$？也有梯度下降法？  
+   88: > **[warning]** "将$\theta$投影到满足$\Omega(\theta) < k$的最近点"是什么意思？  
+   96: > **[warning]** [?]重投影是什么意思？  
+  116: > **[warning]** 这一段没看懂。  
+
+Bible-DeepLearning • Chapter7\3UnderConstrainedProblems.md:
+  42: > **[warning]** [?][?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter7\5NoiseRobustness.md:
+  33: > **[warning]** [?] 关于权重的贝叶斯推断的随机实现  
+  64: > **[warning]** 上面公式中，${\epsilon_{W}}$体现在哪？  
+
+Bible-DeepLearning • Chapter7\6SemiSupervised.md:
+  23: > **[warning]**  具体过程没看懂。  后面全部没看懂。  
+
+Bible-DeepLearning • Chapter7\7Multitask.md:
+  7: > **[warning]** 模型的共享就是指模型参数的共享？  
+
+Bible-DeepLearning • Chapter7\8EarlyStopping.md:
+  115: > **[warning]** 这一句话想说明什么？鼓励结合其它正则化？  
+  293: > **[warning]** 怎么从7.41推导出7.42？  
+  307: > **[warning]** [?]对谁取对数？怎么展开？  
+  310: > **[warning]** [?] 如果条件不满足会怎样？  
+  322: > **[warning]** 大曲率方向？小曲率方向？  
+
+Bible-DeepLearning • Chapter7\10SparseRepresentations.md:
+  55: > **[warning]** [?] Student-t先验导出的惩罚?  [?] [KL散度](https://windmissing.github.io/mathematics_basic_for_ML/Information/KL.html)惩罚?  
+  69: > **[warning]**  怎么将W约束为正交？  
+  76: > **[warning]**  例子在哪？ 
+
+Bible-DeepLearning • Chapter7\11Bagging.md:
+   15: > **[warning]** [?] 这一段看不懂   
+   52: > **[warning]** 为什么“误差完全相关”即c=v?  
+  109: > **[warning]** 只学过机器学习另的boosting，神经网络中的boosting是怎样的？  
+
+Bible-DeepLearning • Chapter7\12Dropout.md:
+   20: > **[warning]** [?] 径向基函数网络 [?] 单元的状态和参考值
+   23: > **[warning]** [?] 移除单元的其他操作
+   33: > **[warning]**  采样概率，是当前Unit的掩码为1（不被删除）的概率？还是Unit掩码为1的情况下不被删除的概率？  
+  131: > **[warning]** [?]采样近似推断, 平均许多掩码的输出?
+  134: > **[warning]** 怎么把指数级的项简化到10-20个的？  
+  145: > **[warning]** [?] 这个情况下是指什么？  
+  149: > **[warning]** 如果某一子模式给某一事件分布概率0，会导致这个事件的平均概率变成0.  
+  160: > **[warning]** 问：根号里面的内容为什么不是$\prod_u p(\mu)p(y|x,\mu)$?  
+  169: > **[warning]** [?] 如果使用非均匀分布，公式怎么写？  
+  200: > **[warning]** 单元i的输出计算为h，被包含的概率即这一层的dropout值，是一个超参数。  
+  208: > **[warning]** [?][?] 这一段看不懂   
+  211: > **[warning]**  这两种训练方式是什么关系？  
+  216: > **[warning]** [?] 单元是状态是什么？
+  221: > **[warning]** 不具有非线性的隐藏单元？  
+  224: > **[warning]**  [?] softmax用于多分类？怎么成了回归分类？  
+  295: > **[warning]** 6.54到7.66是怎么推出来的？  
+  311: > **[warning]** [?] 蒙特卡罗近似? 
+  334: > **[warning]**  [?]概率模型、受限玻尔兹曼机、循环神经网络  
+  339: > **[warning]**  其他正则化策略对模型结构有什么限制？  
+  365: > **[warning]**  什么时候用呢？  
+  372: > **[warning]**  [?]贝叶斯神经网络、有其他未分类的数据可用、无监督特征学习   
+  379: > **[warning]** ?  [?] 这一段看不懂   
+  389: > **[warning]** ?   [?] 这一段看不懂   
+  398: > **[warning]** ? [?] 这一段看不懂    
+  405: > **[warning]** ?  [?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter7\13AdversarialTraining.md:
+  56: > **[warning]**  什么是对抗训练？  后面看不懂？  
+
+Bible-DeepLearning • Chapter7\14Tangent.md:
+    2: > **[warning]**  低维流形？  维数灾难？  
+    8: > **[warning]** 流形：局部具有欧几里德空间性质的空间。  [?] 邻近流形聚集概率  
+   14: > **[warning]** 流形上的移动?  
+   17: > **[warning]** x点处切平面近似M？  
+   20: > **[warning]** 低维线性系统？切向量？  
+   47: > **[warning]**  推导先验？形式知识？  
+   94: > **[warning]** 缺点没看懂  
+  108: > **[warning]** 这一段不懂    
+
+Bible-DeepLearning • Chapter7\1ParameterNormPenalties\1L2.md:
+  111: > **[warning]** $$\hat{J}(w)$$的梯度$$\nabla_{w} \hat{J}(w)$$是怎么推导出来的？  
+  164: > **[warning]** “显著减小目标函数方向”与"$$\lambda$$很大的方向"怎么联系？  
+  176: > **[warning]** 对于线性回归来说，cross-entropy代价函数与MSE代价函数是等价的。  
+  214: > **[warning]** [?]与输出目标的协方差?  
+
+Bible-DeepLearning • Chapter7\1ParameterNormPenalties\2L1.md:
+   43: > **[warning]** 为什么不能得到$$J(X, y;w)$$二次近似的直接算术解？使用什么形式的$$\tilde J$$不应该影响J的计算。  
+   47: > **[warning]** [?]截断泰勒级数？
+   57: > **[warning]** 这个公式与上一节是一样的。为什么这次有个前提设定？  
+   62: > **[warning]** Hessian矩阵是关于导数的矩阵，而L1正则项不是处处可导，所以在某些情况下求不到Hessian需要的导数。  
+   73: > **[warning]** 是不是意味着L1正则化之前最好先对数据做PCA？  
+   98: > **[warning]** [?]分别对每个wi求导并令导数为0？我没推出这个结果。  
+  132: > **[warning]** 最小二乘代价函数？  
+  137: > **[warning]** 5.6.1节，最大后验（MAP）估计，我没看懂。所以这一整段我也没看懂。  
+  141: > **[warning]** [?] 各向同性的拉普拉斯分布?  
+
+Bible-DeepLearning • Chapter8\4ParameterInitialization.md:
+   50: > **[warning]** Gram-Schmidt正交化?  
+   53: > **[warning]** 高熵分布?  
+   57: > **[warning]** 用于编码预测条件方差的参数?  
+   82: > **[warning]** ?[?] 这一段看不懂   
+  103: > **[warning]**  缩放因子？增益因子？  
+  115: > **[warning]**  ？  [?] 这一段看不懂   
+  133: > **[warning]**  怎样的先验？  
+  173: > **[warning]** ？  [?] 这一段看不懂   
+  179: > **[warning]** 随机游走初始化？  
+
+Bible-DeepLearning • Chapter8\1Difference\2SurrogateLossFunctions.md:
+  14: > **[warning]**  [?] 这一段看不懂   
+
+Bible-DeepLearning • Chapter8\1Difference\3Minibatch.md:
+  147: > **[warning]** 不太懂  
+
+Bible-DeepLearning • Chapter8\2Challenges\1IllConditioning.md:
+  10: > **[warning]**  到底什么是病态？  
+  39: > **[warning]**  梯度范数是$g^\top g$和$g^\top Hg$各自的梯度范数？还是公式8.10的梯度范数？与$g^\top Hg$是什么关系？    
+  66: > **[warning]**  牛顿法为什么能解决病态问题？  
+
+Bible-DeepLearning • Chapter8\2Challenges\6InexactGradients.md:
+  10: > **[warning]**  对比散度?玻尔兹曼机?
+
+Bible-DeepLearning • Chapter8\3BasicAlgorithms\1SGD.md:
+   37: > **[warning]** 噪声源不变而真实梯度变小，那么SGD的梯度的可靠性降低，应该使用逐渐降低的学习率才对，怎么结论是使用固定学习率呢？  
+   40: > **[warning]** 8.12、8.13公式怎么推的？有什么指导意义？  
+   65: > **[warning]** 如果$\epsilon$保持常数，就不满足8.13了。  
+   83: > **[warning]** 就是说，如果学习率选择得好，迭代100次左右就可以了？  
+   95: > **[warning]** 什么是收敛率？与“额外误差”有什么关系？  
+   98: > **[warning]** 强凸问题？  
+  108: > **[warning]** 这一段不知道在讲啥，反正结论是随机梯度下降优于批量梯度下降。  
+
+Bible-DeepLearning • Chapter8\3BasicAlgorithms\2Momentum.md:
+  15: > **[warning]** [?]指数级衰减的移动平均  
+  31: > **[warning]** [?]具有病态条件的Hessian矩阵、随机梯度的方差  
+  44: > **[warning]** [?]指数衰减平均?  
+
+Bible-DeepLearning • Chapter8\3BasicAlgorithms\3Nesterov.md:
+   4: > **[warning]** Nesterov加速梯度算法?  
+  21: > **[warning]** 怎样理解把“这一步临时更新”看作是添加一个校正因子？  
+
+Bible-DeepLearning • Chapter8\5AdaptiveLearningRates\1AdaGrad.md:
+  12: > **[warning]** 根据算法中的公式，偏导大->g大->r大->$\frac{\epsilon}{\delta+ \sqrt{r}}$小->$\Delta \theta$->下降慢。与上面的结论相反。  
+
+Bible-DeepLearning • Chapter8\5AdaptiveLearningRates\2RMSProp.md:
+   6: > **[warning]** 想像不出来？
+   9: > **[warning]** 整个历史的收缩学习率为什么会造成这样的效果。  
+  12: > **[warning]** 指数衰减平均是什么意思？算法中没有体现出指数。  
+  15: > **[warning]** [?]初始化于该碗状结构的AdaGrad算法实例?
+
+Bible-DeepLearning • Chapter8\5AdaptiveLearningRates\3Adam.md:
+  16: > **[warning]** 没有看出怎么结合动量变种？  
+  20: > **[warning]** 原理完全没看懂  
+  23: > **[warning]** 什么是“梯度一阶矩（指数加权）”？从公式上看没有看到跟指数有什么关系。  
+  26: > **[warning]** 算法过程中没有看到计算v这一步？  
+  30: > **[warning]** 一阶矩?二阶矩?  
+  33: > **[warning]** 修改因子？  
+
+Bible-DeepLearning • Chapter8\5AdaptiveLearningRates\4Choose.md:
+  7: > **[warning]** AdaDelta  
+
+Bible-DeepLearning • Chapter8\6ApproximateSecondOrder\2Conjugate.md:
+    2: > **[warning]** 共轭方向？  
+    5: > **[warning]**  [?] 最速下降法是什么？4.3节说最速下降法就是梯度下降法？  
+   10: > **[warning]** 正交于上一个线搜索方向？  
+   54: > **[warning]** [?]共轭矩阵？  
+   57: > **[warning]** $\beta_t$和H矩阵是什么关系？  
+   64: > **[warning]** 这两个公式都看不懂  
+   84: > **[warning]** 为什么梯度方向不变就仍是极小值？  
+  121: > **[warning]** 是否二次对共轭梯度算法有什么影响？  
+  126: > **[warning]** 非线性共轭梯度法？
+  131: > **[warning]** 缩放的共轭梯度法？  
+
+Bible-DeepLearning • Chapter8\6ApproximateSecondOrder\3BFGS.md:
+  45: > **[warning]** 最后几段没看懂  
+
+Bible-DeepLearning • Chapter8\7Strategies\1BatchNormalization.md:
+   55: > **[warning]**  H的每个元素都是函数，函数怎么会有均值和标准差？  
+   85: > **[warning]** ?  [?] 这一段看不懂   
+   90: > **[warning]** 后者和现在的方法有什么区别？  
+   97: > **[warning]** 关于这个例子的解释没看懂？  
+  113: > **[warning]** 使得底层网络没有用?  
+  122: > **[warning]** 移除一层内单元之间的所有线性关系?  
+  124: > **[warning]** 后面全部没看懂？  
+
+Bible-DeepLearning • Chapter8\7Strategies\2CoordinateDescent.md:
+  21: > **[warning]** 稀疏编码的学习问题？  
+
+Bible-DeepLearning • Chapter8\7Strategies\3PolyakAveraging.md:
+  25: > **[warning]**  不懂，感觉是第5节的意思用在于更新参数上。  
+
+Bible-DeepLearning • Chapter8\7Strategies\4SupervisedPretraining.md:
+   8: > **[warning]** 具体过程不懂  
+  52: > **[warning]** 什么迁移学习？  
+  60: > **[warning]** 具体过程不懂，浅宽模型 -> 深窄模型  
+
+Bible-DeepLearning • Chapter9\1Convolution.md:
+   95: > **[warning]** 图9.1算是互相关卷积吗？核翻转卷积是怎样的？  
+   99: > **[warning]** 举个例子？  
+  103: > **[warning]** 只对核完全处在图像中的位置进行输出?  
+  114: > **[warning]** 这里不是很理解双重分块循环矩阵?
+  117: > **[warning]** “非常稀疏的矩阵”在哪？  
+  120: > **[warning]** 不依赖矩阵结构的特殊性质的神经网络算法？  
+
+Bible-DeepLearning • Chapter9\2Motivation.md:
+  145: > **[warning]** ?  [?] 这一段看不懂   
+  152:  > **[warning]** 后面没看懂  
+
+Bible-DeepLearning • Chapter9\3Pooling.md:
+  13: > **[warning]** 卷积操作和仿射变换是什么关系？  
+  70: > **[warning]** 这一段没看懂  
+
+Bible-DeepLearning • Chapter9\4Prior.md:
+   2: > **[warning]** 先验概率分布？  
+  28: > **[warning]** 平移不变性 VS 平移等变性？  
+  48: > **[warning]** 最后一段不懂  
+
+Bible-DeepLearning • Chapter9\5Variant.md:
+   26: > **[warning]** 不可交换会有什么影响？  
+   29: > **[warning]** 为什么输入和输出的通道数不同？  
+   41: > **[warning]**  什么是两个通道的强度连接？  
+  159: > **[warning]** 从这里开始后面的就完全看不懂了  
