@@ -9,27 +9,6 @@
 1. 具体任务的参数 （只能从各自任务的样本中实现良好的泛化）。如\figref{fig:chap7_multi_factor_output}中的上层。
 2. 所有任务共享的通用参数（从所有任务的汇集数据中获益）。如\figref{fig:chap7_multi_factor_output}中的下层。 
 
-{% reveal %}
-```
-{% raw %}
-\begin{figure}[!htb]
-\ifOpenSource
-\centerline{\includegraphics{figure.pdf}}
-\else
-\centerline{\includegraphics{Chapter7/figures/multi_factor_output}}
-\fi
-\caption{多任务学习在深度学习框架中可以以多种方式进行，该图说明了任务共享相同输入但涉及不同目标随机变量的常见情况。
-深度网络的较低层（无论是监督前馈的，还是包括向下箭头的生成组件）可以跨这样的任务共享，而任务特定的参数（分别关联于从$h^{(1)}$和$h^{(2)}$进入和发出的权重）可以在共享表示$h^{(\text{shared})}$之上学习。
-这里的基本假设是存在解释输入$x$变化的共同因素池，而每个任务与这些因素的子集相关联。
-在该示例中，额外假设顶层隐藏单元 $h^{(1)}$和$h^{(2)}$专用于每个任务（分别预测$y^{(1)}$和$y^{(2)}$），而一些中间层表示$h^{(\text{shared})}$在所有任务之间共享。
-在无监督学习情况下，一些顶层因素不与输出任务$(h^{(3)})$的任意一个关联是有意义的：这些因素可以解释一些输入变化但与预测$y^{(1)}$或$y^{(2)}$不相关。
-}
-\label{fig:chap7_multi_factor_output}
-\end{figure}
-{% endraw %}
-```
-{% endreveal %}
-
 因为共享参数，其统计强度可大大提高（共享参数的样本数量相对于单任务模式增加的比例），并能改善泛化和泛化误差的范围\citep{baxter95a}。
 当然，仅当不同的任务之间存在某些统计关系的假设是合理（意味着某些参数能通过不同任务共享）时才会发生这种情况。
 
