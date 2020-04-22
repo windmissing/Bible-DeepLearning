@@ -4,12 +4,10 @@
 
 \figref{fig:chap7_multi_factor_output}展示了多任务学习中非常普遍的一种形式，其中不同的监督任务（给定$x$预测$y^{(i)}$）共享相同的输入$x$以及一些中间层表示$h^{(\text{share})}$，能学习共同的因素池。
 该模型通常可以分为两类相关的参数：  
-> **[warning]**  
-模型的共享就是指模型参数的共享？  
+> **[warning]** 模型的共享就是指模型参数的共享？  
 
 1. 具体任务的参数 （只能从各自任务的样本中实现良好的泛化）。如\figref{fig:chap7_multi_factor_output}中的上层。
-2. 所有任务共享的通用参数（从所有任务的汇集数据中获益）。如\figref{fig:chap7_multi_factor_output}中的下层。
-\end{enumerate}  
+2. 所有任务共享的通用参数（从所有任务的汇集数据中获益）。如\figref{fig:chap7_multi_factor_output}中的下层。 
 
 {% reveal %}
 ```
