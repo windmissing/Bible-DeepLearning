@@ -12,7 +12,7 @@ averaging）。
 
 假设我们有$$k$$个回归模型。
 假设每个模型在每个例子上的误差是$$\epsilon_i$$，这个误差服从零均值方差为$$E[\epsilon_i^2] = v$$且协方差为$$E[\epsilon_i \epsilon_j] = c$$的多维正态分布。  
-> **[warning]**   
+> **[warning]** [?] 这一段看不懂   
 这一段没看懂。  
 理解1：$$\epsilon_i$$代表第i个模型在所有样本上的误差，因此$$\epsilon_i$$是一个向量，向量是元素个数为样本数。  
 理解2：$$\epsilon_i$$代表第i个模型在某个样本上的误差 ，因此$$\epsilon_i$$是一个数。  
@@ -106,6 +106,23 @@ Bagging训练程序通过有放回采样构建这些数据集。
 
 通过向集成逐步添加神经网络，Boosting已经被应用于构建神经网络的集成。
 通过逐渐增加神经网络的隐藏单元，Boosting也可以将单个神经网络解释为一个集成。  
-> **[warning]** 只学过机器学习另的boosting，神经网络中的boosting是怎样的？  
+> **[success] bagging VS boosting**  
+bagging:  
+![](/assets/images/Chapter7/10.png)   
+boosting:  
+![](/assets/images/Chapter7/11.png)   
+区别1： 样本  
+bagging: 样本有放回取样，样本权重不变  
+boosting: 不取样，使用所有样本，每一轮会调整样本权重。  
+区别2：分类器  
+bagging：每个分类器权重相等。虽然在做最终决策时也有加权，但那是基于分类器对这个样本的确定度的加权。对分类器本身是没有偏见的。  
+boosting：每个分类器生成以后，根据它在训练样本上的正确率得到一个针对分类器的权重。权重影响它的最终决策中的话语权。  
+区别3：训练过程  
+bagging：每个分类器是各自独立的，可以并行计算   
+boosting：样本权重 --- 分类器 --- 样本权重 --- 分类器。。。这是一个串行的过程  
+弱分类器可以是各种算法。例如ML中的决策树：  
+bagging + 决策树 = [随机森林](https://windmising.gitbook.io/liu-yu-bo-play-with-machine-learning/13-1/13-5)   
+boosting + 决策树 = [提升树](https://github.com/windmissing/MachineLearningInAction/tree/master/Chapter7)  
+gradient + 决策树 = GDBT[?]  
 
 
