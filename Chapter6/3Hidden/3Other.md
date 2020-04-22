@@ -46,7 +46,17 @@ softmax单元很自然地表示具有$k$个可能值的离散型随机变量的�
 
 + 径向基函数：$h_i = \exp \left (-\frac{1}{\sigma_i^2}|| W_{:,i}-x||^2 \right )$。
 这个函数在$x$接近模板$W_{:,i}$时更加活跃。
-因为它对大部分$x$都饱和到0，因此很难优化。
+因为它对大部分$x$都饱和到0，因此很难优化。  
+> **[success]**  
+[径向基函数](https://windmissing.github.io/mathematics_basic_for_ML/Probability/functions.html)  
+径向基函数神经网络：  
+三层的神经网络，第一层为输入层。第三层为输出层。第二层为隐藏层，使用高斯径向基函数作为激活函数函数：  
+$$
+\phi(x) = \exp(-\frac{||x-\mu_t||^2}{\sigma_t^2})
+$$
+
+> t代表隐藏层中的第t个unit。$\mu_t$决定中心点，$\sigma_t$决定宽度。  
+
 
 + \textbf{softplus}函数：$g(a)=\zeta(a)=\log(1+e^a)$。
 这是整流线性单元的平滑版本，由{Dugas01}引入用于函数近似，由{Nair-2010-small}引入用于无向概率模型的条件分布。

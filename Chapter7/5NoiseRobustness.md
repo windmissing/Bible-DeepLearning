@@ -61,8 +61,7 @@ $$
 \end{aligned}
 $$
 
-> **[warning]**  
-上面公式中，${\epsilon_{W}}$体现在哪？  
+> **[warning]** 上面公式中，${\epsilon_{W}}$体现在哪？  
 
 对于小的$\eta$，最小化带权重噪声（方差为$\eta I$\,）的$J$等同于最小化附加正则化项：
 $ \eta \Bbb E_{p(x,y)}[||\nabla_{W}\hat y(x)||^2]$的$J$。

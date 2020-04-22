@@ -52,9 +52,7 @@ $$
 $\Omega(h) = ||h||_1 = \sum_i |h_i|$。
 当然$L^1$惩罚是使表示稀疏的方法之一。
 其他方法还包括从表示上的Student-t先验导出的惩罚\citep{Olshausen+Field-1996,Bergstra-Phd-2011}和KL散度惩罚\citep{Larochelle+Bengio-2008}，这些方法对于将表示中的元素约束于单位区间上特别有用。  
-> **[warning]**  
-[?] Student-t先验导出的惩罚?  
-[?] [KL散度](https://windmissing.github.io/mathematics_basic_for_ML/Information/KL.html)惩罚?  
+> **[warning]** [?] Student-t先验导出的惩罚?  [?] [KL散度](https://windmissing.github.io/mathematics_basic_for_ML/Information/KL.html)惩罚?  
 
 \cite{HonglakL2008-small}和\cite{Goodfellow2009}都提供了正则化几个样本平均激活的例子，即令$\frac{1}{m}\sum_i h^{(i)}$接近某些目标值（如每项都是$.01$的向量）。
 
@@ -68,16 +66,14 @@ $$
 
 其中$||h||_0 $是$h$中非零项的个数。
 当$W$被约束为正交时，我们可以高效地解决这个问题。  
-> **[warning]**  
-怎么将W约束为正交？  
+> **[warning]**  怎么将W约束为正交？  
 
 这种方法通常被称为\ENNAME{OMP}-$k$，通过$k$指定允许的非零特征数量。
 \cite{Coates2011b}证明\ENNAME{OMP}-$1$可以成为深度架构中非常有效的特征提取器。
 
 含有隐藏单元的模型在本质上都能变得稀疏。
 在本书中，我们将看到在各种情况下使用稀疏正则化的例子。  
-> **[warning]**  
-例子在哪？ 
+> **[warning]**  例子在哪？ 
 
 
 
