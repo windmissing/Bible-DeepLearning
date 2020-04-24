@@ -332,9 +332,9 @@ Dropout的另一个显著优点是不怎么限制适用的模型或训练过程�
 > **[success]** [?]使用分布式表示  
 
 包括前馈神经网络、概率模型，如受限玻尔兹曼机，以及循环神经网络。  
-> **[warning]**  [?]概率模型、受限玻尔兹曼机、循环神经网络  
-> [前馈神经网络](https://windmissing.github.io/Bible-DeepLearning/Chapter6/0Introduction.html)  
-> 
+> **[warning]**  [?]概率模型、受限玻尔兹曼机、  
+> [前馈神经网络](https://windmissing.github.io/Bible-DeepLearning/Chapter6/0Introduction.html)   
+> [循环神经网络](https://windmissing.github.io/Bible-DeepLearning/Chapter10/2RNN/0RNN.html)  
 
 许多效果差不多的其他正则化策略对模型结构的限制更严格。  
 > **[warning]**  其他正则化策略对模型结构有什么限制？  

@@ -456,10 +456,10 @@ n## 随机搜索n
 随机搜索过程如下。
 首先，我们为每个超参数定义一个边缘分布，例如，Bernoulli分布或范畴分布（分别对应着二元超参数或离散超参数），或者对数尺度上的均匀分布（对应着正实值超参数）。
 例如，
-\begin{align}
+\begin{aligned}
 	\texttt{log\_learning\_rate} &\sim u(-1, -5), \\
 	\texttt{learning\_rate} &= 10^{\texttt{log\_learning\_rate}},
-\end{align}
+\end{aligned}
 其中，$u(a,b)$表示区间$(a,b)$上均匀采样的样本。
 类似地，$\texttt{log\_number\_of\_hidden\_units}$可以从$u(\log(50), \log(2000))$上采样。
 <!-- % 422 mid -->
@@ -616,10 +616,10 @@ n# 调试策略n
 
 如果我们可以在复数上进行数值计算，那么使用复数作为函数的输入会有非常高效的数值方法估算梯度{cite?}。
 该方法基于如下观察
-\begin{align}
+\begin{aligned}
 	f(x + i\epsilon) &= f(x) + i\epsilon f'(x) + O(\epsilon^2) ,\\
 	\text{real}( f(x+i\epsilon) ) &= f(x) + O(\epsilon^2), \quad \text{image}( \frac{f(x+i\epsilon)}{ \epsilon } ) = f'(x) + O(\epsilon^2),
-\end{align}
+\end{aligned}
 其中$i=\sqrt{-1}$。
 和上面的实值情况不同，这里不存在消除影响，因为我们对$f$在不同点上计算差分。
 因此我们可以使用很小的$\epsilon$，比如$\epsilon = 10^{-150}$，其中误差$O(\epsilon^2)$对所有实用目标都是微不足道的。
