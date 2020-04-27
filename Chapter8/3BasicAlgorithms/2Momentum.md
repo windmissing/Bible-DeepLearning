@@ -28,14 +28,16 @@
 ![](/assets/images/Chapter8/2.png)  
 
 　　  
-> **[warning]** [?]具有病态条件的Hessian矩阵、随机梯度的方差  
-个人认为，ill-conditioning中的condition不应该翻译为条件，而应该翻译为状态。即Hessian矩阵的病态问题。  
+> **[warning]** [?]随机梯度的方差   
 
 　　  
 > **[success]** 关于Hessian矩阵病态问题。  
-在窄轴上梯度大，因此陷入H矩阵病态问题。但它的梯度方向是在震荡的，即图中的回来移动。  
-在轴上梯度小，在一开始看不出它的效果。但它的梯度方向是一致的，能够积累动量，逐渐地表现出效果。  
-这是动量算法解决H矩阵病态问题的原理。    
+[具有病态问题的Hessian矩阵](https://windmissing.github.io/mathematics_basic_for_ML/LinearAlgebra/Hessian.html)  
+[DL中的病态问题](https://windmissing.github.io/Bible-DeepLearning/Chapter8/2Challenges/1IllConditioning.html)   
+$\Delta \theta = \epsilon g$  
+病态的Hessian矩阵对DL训练会产生问题，是因为上图中椭圆的长轴和短轴差别太大。而同样的学习率，在长轴方向上$\Delta \theta$效果不够，而难以收敛。在短轴方向上$\Delta \theta$用力过猛而来回震荡。  
+[牛顿法](https://windmissing.github.io/mathematics_basic_for_ML/NumericalComputation/Newton.html)根据椭圆的曲率自适应地计算出合适的学习率，从而使得$\Delta \theta$在每个方向的表现都是合适的。  
+动量算法从另一个角度来解决问题，它保持学习率不变而调整g。在长轴方向上，g因积累而越来越大，加速收敛。在短轴方向是，g因来回震荡而萎缩，抑制了震荡。  
 
 # 动量算法
 
