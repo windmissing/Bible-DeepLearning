@@ -34,7 +34,9 @@ SGD算法中的一个关键参数是学习率。
 
 这是因为SGD中梯度估计引入的噪声源（$m$个训练样本的随机采样）并不会在极小点处消失。
 相比之下，当我们使用批量梯度下降到达极小点时，整个代价函数的真实梯度会变得很小，之后为$\mathbf{0}$，因此批量梯度下降可以使用固定的学习率。  
-> **[warning]** 噪声源不变而真实梯度变小，那么SGD的梯度的可靠性降低，应该使用逐渐降低的学习率才对，怎么结论是使用固定学习率呢？  
+> **[success]**  
+SGD引入的噪声不变而真实梯度变小，那么SGD的梯度的可靠性降低，因此使用逐渐降低的学习率。  
+[BGD](https://windmissing.github.io/Bible-DeepLearning/Chapter8/1Difference/3Minibatch.html#%E6%9C%AF%E8%AF%AD)使用有真实梯度没有噪声，因此可以使用固定学习率。  
 
 保证SGD收敛的一个充分条件是  
 > **[warning]** 8.12、8.13公式怎么推的？有什么指导意义？  
@@ -95,7 +97,7 @@ SGD及相关的小批量亦或更广义的基于梯度优化的在线学习算�
 > **[warning]** 什么是收敛率？与“额外误差”有什么关系？  
 
 SGD应用于凸问题时，$k$步迭代后的额外误差量级是$O(\frac{1}{\sqrt{k}})$，在强凸情况下是$O(\frac{1}{k})$。  
-> **[warning]** 强凸问题？  
+> **[warning]** [强凸问题](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/convex.html)？  
 
 除非假定额外的条件，否则这些界限不能进一步改进。
 批量梯度下降在理论上比随机梯度下降有更好的收敛率。

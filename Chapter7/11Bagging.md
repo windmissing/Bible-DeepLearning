@@ -120,6 +120,9 @@ boosting：每个分类器生成以后，根据它在训练样本上的正确率
 区别3：训练过程  
 bagging：每个分类器是各自独立的，可以并行计算   
 boosting：样本权重 --- 分类器 --- 样本权重 --- 分类器。。。这是一个串行的过程  
+区别4：集成的目的
+bagging：将一组过拟合的分类器集成成一个泛化能力强的分类器  
+boosting：将一组弱分类器拟合成一个强分类器。  
 弱分类器可以是各种算法。例如ML中的决策树：  
 bagging + 决策树 = [随机森林](https://windmising.gitbook.io/liu-yu-bo-play-with-machine-learning/13-1/13-5)   
 boosting + 决策树 = [提升树](https://github.com/windmissing/MachineLearningInAction/tree/master/Chapter7)  

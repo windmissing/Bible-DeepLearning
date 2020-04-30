@@ -9,7 +9,7 @@ $\theta^{t+1} \leftarrow \theta^t - \frac{\eta}{\sqrt{(\sum_{i=0}^t(g^i)^2)}}\od
 应用更新：$\theta \leftarrow \theta + \Delta \theta$  
 
 具有损失最大偏导的参数相应地有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。  
-> **[warning]** 根据算法中的公式，偏导大->g大->r大->$\frac{\epsilon}{\delta+ \sqrt{r}}$小->$\Delta \theta$->下降慢。与上面的结论相反。  
+> **[warning]** "具有损失最大偏导的参数"是什么意思？   
 
 净效果是在参数空间中更为平缓的倾斜方向会取得更大的进步。  
 > **[success]**  
