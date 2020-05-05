@@ -98,9 +98,9 @@ n# 性能度量n
 通过调整阈值，我们能权衡精度和召回率。
 在很多情况下，我们希望用一个数而不是曲线来概括分类器的性能。
 要做到这一点，我们可以将精度 $p$和召回率 $r$转换为F分数
-\begin{equation}
+\begin{aligned}
 	F = \frac{2pr}{p+r}.
-\end{equation}
+\end{aligned}
 另一种方法是报告\,PR曲线下方的总面积。
 <!-- % -- 412 head -->
 
@@ -527,9 +527,9 @@ n# 调试策略n
 例如，假设我们正在训练多层神经网络，其中参数为权重$\MW$和偏置 $b$。
 进一步假设，我们单独手动实现了每个参数的梯度下降规则。
 而我们在偏置更新时犯了一个错误：
-\begin{equation}
+\begin{aligned}
 	b \leftarrow b - \alpha,
-\end{equation}
+\end{aligned}
 其中$\alpha$是学习率。
 这个错误更新没有使用梯度。
 它会导致偏置在整个学习中不断变为负值，对于一个学习算法来说这显然是错误的。 
@@ -590,22 +590,22 @@ n# 调试策略n
 如果读者正在使用一个需要实现梯度计算的软件框架，或者在添加一个新操作到求导库中，必须定义它的\texttt{bprop}方法，那么常见的错误原因是没能正确地实现梯度表达。
 验证这些求导正确性的一种方法是比较实现的自动求导和通过有限差分计算的导数。
 因为
-\begin{equation}
+\begin{aligned}
 	f'(x) = \lim_{\epsilon \to 0} \frac{f(x+\epsilon) - f(x)}{\epsilon},
-\end{equation}
+\end{aligned}
 我们可以使用小的、有限的$\epsilon$近似导数：
-\begin{equation}
+\begin{aligned}
 	f'(x) \approx \frac{f(x+\epsilon) - f(x)}{\epsilon}.
-\end{equation}
+\end{aligned}
 我们可以使用中心差分提高近似的准确率：
-\begin{equation}
+\begin{aligned}
 	f'(x) \approx \frac{ f(x+\frac{1}{2}\epsilon) - f(x-\frac{1}{2}\epsilon) }{\epsilon}.
-\end{equation}
+\end{aligned}
 扰动大小$\epsilon$必须足够大，以确保该扰动不会由于数值计算的有限精度问题产生舍入误差。
 
 <!-- % 426 end -->
 
-通常，我们会测试向量值函数$g:\SetR^m \to \SetR^n$的梯度或\,Jacobian\,矩阵。
+通常，我们会测试向量值函数$g:\Bbb R^m \to \Bbb R^n$的梯度或\,Jacobian\,矩阵。
 令人遗憾的是，有限差分只允许我们每次计算一个导数。
 我们可以使用有限差分 $mn$次评估$g$的所有偏导数，也可以将该测试应用于一个新函数（在函数$g$的输入输出都加上随机投影）。%??  后面这句好像不对？  g的输入输出都使用随机投影的
 例如，我们可以将导数实现的测试用于函数$f(x) = u^T g(v x)$，其中$u$和$v$是随机向量。%??  这句也不对

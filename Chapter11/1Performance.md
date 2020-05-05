@@ -61,9 +61,9 @@
 通过调整阈值，我们能权衡精度和召回率。
 在很多情况下，我们希望用一个数而不是曲线来概括分类器的性能。
 要做到这一点，我们可以将精度 $p$和召回率 $r$转换为F分数
-\begin{equation}
+\begin{aligned}
 	F = \frac{2pr}{p+r}.
-\end{equation}
+\end{aligned}
 另一种方法是报告\,PR曲线下方的总面积。
 <!-- % -- 412 head -->
 
