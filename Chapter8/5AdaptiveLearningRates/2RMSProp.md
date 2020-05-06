@@ -9,7 +9,8 @@ AdaGrad根据平方梯度的整个历史收缩学习率，可能使得学习率�
 > **[warning]** 整个历史的收缩学习率为什么会造成这样的效果。  
 
 RMSProp使用**指数衰减平均以丢弃遥远过去的历史，使其能够在找到碗状凸结构后快速收敛**，  
-> **[warning]** [指数衰减](https://blog.csdn.net/zhufenghao/article/details/80879260)平均?算法中没有体现出指数。  
+> **[success]**  
+[指数衰减平均](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/ExponentialDecay.html)  
 
 它就像一个初始化于该碗状结构的AdaGrad算法实例。  
 > **[warning]** [?]初始化于该碗状结构的AdaGrad算法实例?
@@ -29,9 +30,10 @@ $$
 \end{aligned}
 $$
 
-> r代表积累的历史梯度。g代表当时的梯度。  
-> $\rho r + (1-\rho) g$代表历史梯度与当前梯度的权衡。  
-> $\rho$代表倾向于相信历史梯度。$\rho$小代表倾向于相信当前梯度。  
+> r代表以$\rho$为参数的$g\odot g$的指数衰减平均。积累的历史梯度。g代表当时的梯度。  
+> $\Delta \theta \leftarrow - \frac{\epsilon g}{\sqrt {\delta+ r}}$  
+> 短轴方向上，r小，因此$\Delta \theta$小。长轴方向是r大，因此$\Delta \theta$大。  
+> $\delta$用于保证分母不为0。   
 
 # RMSProp 效果
 
@@ -40,7 +42,7 @@ $$
 
 > **[success]** 
 Adagrad：在某些深度学习模型上效果不错  
-RMSProp：有效且实用的深度神经网络优化算法  
+RMSProp：有效且实用的深度神经网络优化算法。优点：可以用大一点的学习加快学习，而不用担心在短轴方向上的偏离。    
 Nesterov + RMSProp：RMSProp用于深度神经网络。而Nesterov对SGD没有效果，这两个合在一起想干吗？
 
 {% reveal %}

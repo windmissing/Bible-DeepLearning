@@ -51,7 +51,7 @@
     * 8.2 神经网络优化中的挑战
         * [8.2.1 病态](Chapter8/2Challenges/1IllConditioning.md)
         * [8.2.2 局部极小值](Chapter8/2Challenges/2LocalMinima.md)
-        * [8.2.3 8.2.3 高原、鞍点和其他平坦区域](Chapter8/2Challenges/3.md)
+        * [8.2.3 8.2.3 高原、鞍点和其他平坦区域](Chapter8/2Challenges/3Saddle.md)
         * [8.2.4 悬崖和梯度爆炸](Chapter8/2Challenges/4ExplodingGradients.md)
         * [8.2.5 长期依赖](Chapter8/2Challenges/5LongTermDependencies.md)
         * [8.2.6 非精确梯度](Chapter8/2Challenges/6InexactGradients.md)

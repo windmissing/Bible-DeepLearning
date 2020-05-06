@@ -12,25 +12,21 @@ $$
 \end{aligned}
 $$
 
-　　  
-> **[warning]** 没有看出怎么结合动量变种？  
-
 # Adam算法原理  
 
-> **[warning]** 原理完全没看懂  
-
 首先，在Adam中，动量直接并入了梯度一阶矩（指数加权）的估计。  
-> **[warning]** 什么是“梯度一阶矩（指数加权）”？从公式上看没有看到跟指数有什么关系。  
-
 将动量加入RMSProp最直观的方法是将动量应用于缩放后的梯度。  
-> **[warning]** 算法过程中没有看到计算v这一步？  
+> **[success]**  
+动量算法对导数（一阶）做了指数衰减平均。  
+RMSProp对导数的平方（二阶）做了指数衰减平均。  
+将这两种方法的结合即同时计算导数和导数平方的指数衰减平均。   
 
 结合缩放的动量使用没有明确的理论动机。
 其次，Adam包括偏置修正，修正从原点初始化的一阶矩（动量项）和（非中心的）二阶矩的估计（\algref{alg:adam}）。  
-> **[warning]** 一阶矩?二阶矩?  
-
 RMSProp也采用了（非中心的）二阶矩估计，然而缺失了修正因子。  
-> **[warning]** 修改因子？  
+> **[success]** 使用指数衰减平均需要做[偏差修正](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/ExponentialDecay.html)  
+RMSProp算法计算了梯度平方（二阶）的指数衰减平均，但没有对这个平均做修正。  
+Adam算法计算了梯度（一阶）的指数衰减平均和梯度平方（二阶）的指数衰减平均，并对这两个平均都做了修正。  
 
 因此，不像Adam，RMSProp二阶矩估计可能在训练初期有很高的偏置。  
 
@@ -47,10 +43,12 @@ $t \leftarrow t + 1$
 修正二阶矩的偏差：$\hat{r} \leftarrow \frac{r}{1-\rho_2^t}$  
 计算更新：$\Delta \theta = - \epsilon \frac{\hat{s}}{\sqrt{\hat{r}} + \delta}$  
 应用更新：$\theta \leftarrow \theta + \Delta \theta$  
+**Ag建议参数：**：  
+$\rho_1$ = 0.9  
+$\rho_2$ = 0.999  
+$\delta$不重要。  
 
-{% reveal %}
 ```
-{% raw %}
 \begin{algorithm}[ht]
 \caption{Adam算法}
 \label{alg:adam}
@@ -75,6 +73,6 @@ $t \leftarrow t + 1$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}
-{% endraw %}
 ```
-{% endreveal %}
+
+

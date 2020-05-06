@@ -12,7 +12,8 @@
 > ![](/assets/images/Chapter8/5.png)  
 
 动量算法积累了之前梯度指数级衰减的移动平均，并且继续沿该方向移动。  
-> **[warning]** [?]指数级衰减的移动平均  
+> **[success]** 
+[指数级衰减的移动平均](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/ExponentialDecay.html)  
 
 动量的效果如图8.5所示。  
 ![](/assets/images/Chapter8/1.png)  
@@ -43,12 +44,16 @@ $\Delta \theta = \epsilon g$
 
 从形式上看，动量算法引入了变量$v$充当速度角色——它代表参数在参数空间移动的方向和速率。
 速度被设为负梯度的指数衰减平均。  
-> **[warning]** [指数衰减](https://blog.csdn.net/zhufenghao/article/details/80879260)平均? 
+> **[success]**  
+[指数衰减平均](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/ExponentialDecay.html)  
+
 
 名称动量来自物理类比，根据牛顿运动定律，负梯度是移动参数空间中粒子的力。
 动量在物理学上定义为质量乘以速度。
 在动量学习算法中，我们假设是单位质量，因此速度向量$v$也可以看作是粒子的动量。
-超参数$\alpha\in[0,1)$决定了之前梯度的贡献衰减得有多快。
+超参数$\alpha\in[0,1)$决定了之前梯度的贡献衰减得有多快。  
+> **[success]** Ag说$\alpha$通常设置为0.9  
+
 更新规则如下：  
 $$
 \begin{aligned}
@@ -61,6 +66,8 @@ $$
 > **[success]**  
 对比原始的随机梯度下降算法$v \leftarrow - \epsilon \nabla_{\theta} \left( \frac{1}{m} \sum_{i=1}^m  L(f(x^{(i)}; \theta), y^{(i)}   )  \right)$  
 相当于$\alpha=0$，计算新速度时不考虑原速度。  
+> 一张图解释动量算法的过程：  
+> ![](/assets/images/Chapter8/4.png)  
 
 相对于$\epsilon$，$\alpha$越大，之前梯度对现在方向的影响也越大。
 带动量的SGD算法如算法8.2所示。  
@@ -69,12 +76,15 @@ $$
 计算梯度：$g \leftarrow \frac{1}{m} \nabla_{\theta} \sum_i L(f(x^{(i)};\theta),y^{(i)})$  
 更新速度：$v \leftarrow \alpha v - \epsilon g$    
 更新参数：$\theta \leftarrow \theta + v$  
-> 一张图解释动量算法的过程：  
-> ![](/assets/images/Chapter8/4.png)  
+以上过程中，“更新速度”这一步利用了[指数衰减平均](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/ExponentialDecay.html)的原理。  
+指数衰减平均：  
+更新速度：$v = \alpha v + (1-\alpha)g$  
+更新参数：$\theta \leftarrow \theta + \epsilon v$  
+在现在标准版本中，将“更新参数”中的$\epsilon$代替“更新速度”中的$(1-\alpha)$  
+这样做的好处是：调度$\alpha$不影响$\epsilon$。  
 
-{% reveal %}
+
 ```
-{% raw %}
 \begin{algorithm}[ht]
 \caption{使用动量的随机梯度下降（SGD）}
 \label{alg:momentum}
@@ -91,9 +101,7 @@ $$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}
-{% endraw %}
 ```
-{% endreveal %}
 
 之前，步长只是梯度范数乘以学习率。
 现在，步长取决于梯度**序列**的大小和排列。
