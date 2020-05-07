@@ -108,4 +108,6 @@
     * [11.3 决定是否收集更多数据](Chapter11/3MoreData.md)
     * [11.4 选择超参数](Chapter11/4Hyperparameters/0Hyperparameters.md)
         * [11.4.1 手动选择超参数](Chapter11/4Hyperparameters/1Manual.md)
+        * [11.4.3 网络搜索](Chapter11/4Hyperparameters/1Manual.md)
+        * [11.4.4 随机搜索](Chapter11/4Hyperparameters/1Manual.md)
     * [11.5 调试策略](Chapter11/5Debug.md)

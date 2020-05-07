@@ -37,6 +37,18 @@ SGD算法中的一个关键参数是学习率。
 > **[success]**  
 SGD引入的噪声不变而真实梯度变小，那么SGD的梯度的可靠性降低，因此使用逐渐降低的学习率。  
 [BGD](https://windmissing.github.io/Bible-DeepLearning/Chapter8/1Difference/3Minibatch.html#%E6%9C%AF%E8%AF%AD)使用有真实梯度没有噪声，因此可以使用固定学习率。  
+> **学习率衰减算法 from Ag**  
+$$
+\begin{aligned}
+a = \frac{1}{1 + \text{衰减率} \times\text{epoch}} && (1) \\
+a = 0.95^{\text{epoch}} && (2) \\
+a = \frac{k}{\sqrt{\text{epoch}}}a_0 && (3) \\
+\end{aligned}
+$$  
+
+> 说明：  
+epoch是一次代码完整过一遍，不是一个batch跑一遍  
+有时会手动设置衰减，这是在跑模型的过程中，根据当时的状况调整参数。  
 
 保证SGD收敛的一个充分条件是  
 > **[warning]** 8.12、8.13公式怎么推的？有什么指导意义？  
