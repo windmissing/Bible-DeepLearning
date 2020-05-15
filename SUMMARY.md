@@ -82,6 +82,7 @@
     * [9.4 卷积与池化作为一种无限强的先验](Chapter9/4Prior.md)
     * [9.5 基本卷积函数的变体](Chapter9/5Variant.md)
     * [9.6 结构化输出](Chapter9/6StructuredOutputs.md)
+    * [Ag补充 经典网络](Chapter9/ClassicNetwork.md)
 * [第10章 序列建模：循环和递归网络](Chapter10/Introduction.md)
     * [10.1 展开计算图](Chapter10/1Unfolding.md)
     * [10.2 循环神经网络](Chapter10/2RNN/0RNN.md)

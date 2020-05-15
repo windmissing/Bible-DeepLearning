@@ -69,6 +69,15 @@ S(i,j) = (I*K)(i,j) = \sum_m \sum_n I(m,n) K(i-m, j-n).
 \end{aligned}
 $$
 
+> **[success]**  
+前面讲的都是单通道的卷积，现在是多通道的卷积。  
+多通道卷积的原图像是三维的，例如RGB图像是三通道的图像。  
+多通道图像做卷积，图像的通道数与核的通道必须相同。即输入为$W\times H\times C$，核的大小应该为$f_W \times f_H \times C$。卷积的结果为$W-f_W+1\times H-f_H+1$。  
+多通道的原图像 * 多通道的核 = 单通道的图像  
+多通道的原图像 * n个多通道的核 = n个通道的图像 = 1个n通道的图像。  
+> ![](/assets/images/Chapter9/7.png)   
+> ![](/assets/images/Chapter9/8.png)   
+
 # 核翻转与互相关卷积
 
 > **[success]**  
