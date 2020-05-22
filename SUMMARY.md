@@ -88,6 +88,8 @@
     * [Ag补充 1*1卷积](Chapter9/SpecialConv.md)
     * [Ag补充 Inception网络](Chapter9/Inception.md)
     * [Ag补充  图像的定位分类问题](Chapter9/ClassificationWithLocalization.md)
+    * [Ag补充 人脸识别问题](Chapter9/FaceDetection.md)
+    * [Ag补充 风格迁移](Chapter9/Style.md)
 * [第10章 序列建模：循环和递归网络](Chapter10/Introduction.md)
     * [10.1 展开计算图](Chapter10/1Unfolding.md)
     * [10.2 循环神经网络](Chapter10/2RNN/0RNN.md)
