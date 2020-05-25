@@ -57,4 +57,22 @@ $$
 定义一个图像的style为:**correlation between activationas accross channels**  
 
 怎样评价两个通道的correlation？  
+![](/assets/images/Chapter9/29.png)  
+例如这张图，当某个通道的filter关注某种样式时，另一通道一定关注另一种某个样式，则认为两个通道是high correlation的。  
+如果一个通道filter关注的样式和另一个通道没有什么关系，则认为是low correlation的。  
 
+$J_\text{style}$定义如下：  
+已知S的每个channel的filter，评价G中how often出现同样的filter组合。  
+定义：  
+$a_{i,j,k}^l$S中H=i, W=j, C=k的点处的activation。  
+$G^{l,s}$为图像S的第l层的gram matrix/style matrix。  
+$$
+\begin{aligned}
+G^{l,s}_{kk'} &=& \sum_i\sum_j a_{ijk}^{ls} * a_{ijk'}^{ls}  \\ 
+G^{l,G}_{kk'} &=& \sum_i\sum_j a_{ijk}^{lG} * a_{ijk'}^{lG}  \\
+J_\text{style}^l(S, G) &=& ||G^{ls} - G^{lG}||^2_F   \\
+&=& \frac{1}{(\cdots)}\sum_k\sum_{k'}(G^{l,s}_{kk'} - G^{l,G}_{kk'})^2  && \text{分母用于Normalize}  \\
+J_\text{style}(S, G) &=& \sum_l \lambda^l J_\text{style}^l(S, G) \\
+J(G) &=& \alpha J_\text{content}(C, G) + \beta J_\text{style}(S, G)
+\end{aligned}
+$$
