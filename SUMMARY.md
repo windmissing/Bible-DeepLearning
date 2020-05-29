@@ -119,6 +119,8 @@
     * [Ag补充 类比推理](Chapter10/ReasonableAnalogies.md)
     * [Ag补充 情绪分类](Chapter10/SentimentClassification.md)
     * [Ag补充 Seq2Seq](Chapter10/Seq2Seq.md)
+    * [Ag补充 语音辨识](Chapter10/Speech.md)
+    * [Ag补充 触发字检测](Chapter10/TriggerWord.md)
 * [第11章 实践方法论](Chapter11/0PracticalMethodology.md)
     * [11.1 性能度量](Chapter11/1Performance.md)
     * [11.2 默认的基准模型](Chapter11/2Baseline.md)
