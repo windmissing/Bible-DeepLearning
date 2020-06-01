@@ -39,10 +39,11 @@ From Ag
 
 # encoder  
 使用双向RNN来计算每个单词的特征。双向RNN的unit可以是GRU或LSTM或其它类型的Unit。  
-每个单词通过双向RNN会得到2个activition，分别定义为$\overrightarrow{a^t}$和$\overleftarrow{a^t}$。并用一个符号来表现这两个activation。    
-$$
+每个单词通过双向RNN会得到2个activition，分别定义为`\overrightarrow{a^t}`和`\overleftarrow{a^t}`。并用一个符号来表现这两个activation。    
+
+```
 a^t = (\overrightarrow{a^t}, \overleftarrow{a^t})
-$$
+```
 
 ![](/assets/images/Chapter10/57.png)   
 

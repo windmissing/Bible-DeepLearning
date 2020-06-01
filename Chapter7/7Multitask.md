@@ -1,5 +1,6 @@
 多任务学习\citep{caruana93a}是通过合并几个任务中的样例（可以视为对参数施加的软约束）来提高泛化的一种方式。  
 > **[success]**  
+![](/assets/images/Chapter7/14.png)   
 y是一个向量。有n个task就是n*1的向量。  
 $$
 \begin{aligned}
@@ -38,3 +39,9 @@ softmax的y只有1个1。
 > **[success]**  
 multi-task不如迁移学习使用频率高。  
 常用于CV的物体检测问题。  
+**李宏毅补充**    
+多任务模型的结构：  
+![](/assets/images/Chapter7/15.png)   
+多任务模型的一种应用：  
+多语言的语言辨识，同时辨识多种语言。  
+![](/assets/images/Chapter7/16.png)   
