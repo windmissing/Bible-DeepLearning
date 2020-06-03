@@ -127,6 +127,7 @@
     * [Ag补充 语音辨识](Chapter10/Speech.md)
     * [Ag补充 触发字检测](Chapter10/TriggerWord.md)
     * [李宏毅补充 Embedding](Chapter10/Embedding.md)
+    * [李宏毅补充 指针网络](Chapter10/PointerNetwork.md)
 * [第11章 实践方法论](Chapter11/0PracticalMethodology.md)
     * [11.1 性能度量](Chapter11/1Performance.md)
     * [11.2 默认的基准模型](Chapter11/2Baseline.md)

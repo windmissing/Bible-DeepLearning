@@ -49,11 +49,11 @@ DL方法使用共享参数，而不用分离无监督和监督部分。
 
 先回顾一个监督学习中的生成模型  
 假设有这样一组二分类的labelled data。  
-![](/assets/Chapter13/1.png)  
+![](/assets/images/Chapter7/29.png)    
 1. 计算先验估计$P(C_i)$  
 2. 假设条件函数$P(x|C_i) \sim \Bbb N(\mu_i, \Sigma)$，$\Bbb N$代表高斯分布  
 3. 计算$\mu_i, \Sigma$，例如本例中得出这样的分布：  
-![](/assets/Chapter13/2.png)  
+![](/assets/images/Chapter7/30.png)  
 4. 评估新数据属于Ci的概率：  
 $$
 P(C_i|x) = \frac{P(x|C_i)P(C_i)}{\sum_iP(x|C_i)P(C_i)}
@@ -64,7 +64,7 @@ $$
 将由监督学习生成的模型参数定义为$\theta$  
 此时又来了一组unlabelled data，用$x^u$表示。原来的labelled data则用$x^r$表示。  
 基于unlabelled data校正模型。    
-![](/assets/Chapter13/3.png)   
+![](/assets/images/Chapter7/31.png)  
 1. 根据参数$\theta$，评估每个unlabelled data属于每个类别的概率$P_\theta(C_i|x^u)$  
 2. 更新模型参数  
 $$
@@ -99,7 +99,7 @@ hard label：在self-training算法中，unlabelled data的label一但确定了�
 soft label：在generative model算法中，unlabelled data的label一直在调整。  
 
 上面的第1步“基于labelled data得到模型f*”可以使用NN来做。，此时必须用hard label。  
-![](/assets/Chapter13/4.png)   
+![](/assets/images/Chapter7/32.png)  
 
 ## 算法二：Entropy-based Regularization
 
@@ -128,7 +128,7 @@ E用于计算一个分布的熵，m为类别。$y_m^u$为$x^u$属于类别m的�
 1. 穷举unlabell data所有可能的label组合。  
 2. 对每个结果做一个SVM  
 3. 找到margin最大且error最小的版本  
-![](/assets/Chapter13/5.png)   
+![](/assets/images/Chapter7/33.png)  
 
 # 假设二：Smoothness Assumption 近朱者赤，近墨者黑  
 
@@ -136,17 +136,17 @@ E用于计算一个分布的熵，m为类别。$y_m^u$为$x^u$属于类别m的�
 1. x的分布是不平均的  
 2. x1、x2在**high density region**很接近，或者说，x1和x2 connected by a high density path，则y1=y2。   
 例如：  
-![](/assets/Chapter13/6.png)   
+![](/assets/images/Chapter7/34.png)  
 x2和x3更接近，但它们之间没有high density path。  
 x1和x2之间有high density path，因此认为y1=y2。  
 真实例子：  
-![](/assets/Chapter13/7.png)   
+![](/assets/images/Chapter7/35.png)  
 
 ## 算法一：Clustering  
 
 1. 对数据做cluster  
 2. 每个cluster的data分作一类（数据量大才有用）  
-![](/assets/Chapter13/8.png)   
+![](/assets/images/Chapter7/36.png)  
 
 ## 算法二：Graph-based Approach
 
@@ -154,10 +154,10 @@ x1和x2之间有high density path，因此认为y1=y2。
 例如利用网页间的超链接来描述网页间的关系  
 利用论文间的引用关系来描述论文  
 或者自己定义xi、xj之间的相似度。  
-![](/assets/Chapter13/9.png)   
+![](/assets/images/Chapter7/37.png)  
 2. 建边  
 例如KNN、e-Neighbour  
-![](/assets/Chapter13/10.png)   
+![](/assets/images/Chapter7/38.png)  
 3. 定义边的权重  
 例如高斯径向基函数：  
 $$
@@ -166,7 +166,7 @@ $$
 
 4. 给unlabelled data分类  
 分类依据：labelled data通过Edge的weight影响附近unlabelled data的分类。  
-![](/assets/Chapter13/11.png)   
+![](/assets/images/Chapter7/39.png)  
 5. 通过对分类结果的评价（代价函数）调整NN有参数  
 根据算法的假设前提，认为分类结果越smooth说明算法越好。  
 定义smoothness:  
@@ -188,6 +188,6 @@ $$
 
 Note:  
 在NN模型中，S的计算不一定要放在lost function上，也可以放在NN的任意一层。  
-![](/assets/Chapter13/12.png)   
+![](/assets/images/Chapter7/40.png)  
 
 ## 算法三：Better Representation 去芜存菁 化繁为简
