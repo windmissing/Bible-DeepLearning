@@ -1,8 +1,37 @@
 From 李宏毅
 
-# Attention based mode
+# Attention-based Model基础版（只读模型）
 
-只读模型，57'36''  
+![](/assets/images/Chapter10/88.png)   
+
+## 应用
+
+1. seq2seq  
+2. 阅读理解 squad比赛  
+
+## 基于Attention-based技术的Memory Network  
+
+![](/assets/images/Chapter10/89.png)   
+1. 把Document中的每个句子转成向量，N个句子得到N个高维向量  
+2. 降维，N个高维向量降到N个低维向量x  
+3. 将Query转成向量q  
+4. 计算q与x的match score，每个x对应一个score，定义为$\alpha$  
+5. 根据$\alpha$对x做加权求和$\sum_i\alpha_i x_i$  
+6. 5的结果和q一起进入一个DNN  
+7. 由DNN产生answer  
+
+# Attention-based Model进阶版
+
+Sentence to vector can be jointly trained.  
+
+## 改进1
+
+![](/assets/images/Chapter10/90.png)   
+Document产生2个向量，分别是x和h。  
+第4步使用x计算match score，用于决定从哪些向量抽取信息。  
+第5步使用h生成最终被抽取的信息。  
+
+## 改进2
 可读可写模型，58'21''，又叫Neural Turing Machine  
 
 ## 阅读理解

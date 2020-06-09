@@ -14,7 +14,9 @@
 2. 翻译
 
 有些人名、地名不需要翻译，使用pointer Network机制从原文中拿出单词直接贴到output中  
+![](/assets/images/Chapter10/81.png)   
 
 3. Chat-Bot
 
-直接从input中copy关键词汇到output中
+直接从input中copy关键词汇到output中  
+![](/assets/images/Chapter10/82.png)   
