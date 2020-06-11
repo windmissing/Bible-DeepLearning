@@ -23,38 +23,72 @@ From 李宏毅
 # Attention-based Model进阶版
 
 Sentence to vector can be jointly trained.  
+![](/assets/images/Chapter10/90.png)   
 
 ## 改进1
 
-![](/assets/images/Chapter10/90.png)   
 Document产生2个向量，分别是x和h。  
 第4步使用x计算match score，用于决定从哪些向量抽取信息。  
-第5步使用h生成最终被抽取的信息。  
+第5步使用h生成最终被抽取的信息。$\sum_i\alpha_i h_i$   
 
-## 改进2
-可读可写模型，58'21''，又叫Neural Turing Machine  
+## 改进2 hopping
 
-## 阅读理解
+根据当前的结果生成新的问题向量q  
+基于新的q再计算答案  
 
-### 文本QA
-1. 通过Semantic分析，将每个句子转成一个向量  
-2. 输入一个问题，由reading head controller决定，哪个句子与问题相关  
-3. 把相关的句子读进模型，产生output
-59'59''
+hopping可以做多次，hopping的次数可以是人为决定，也可以Machine自己决定ReasoNet。  
 
-### 视觉QA
+## 应用
 
+视觉问答  
 1. 模型读入一张图  
 2. 通过CNN，将每个小区域转成一个向量  
 3. 输入一个问题，由reading head controller决定，哪个区域与问题相关  
 4. 读入相关的区域，产生output
-1:02'36''
 
-### 语音QA
+文本QA
+1. 通过Semantic分析，将每个句子转成一个向量  
+2. 输入一个问题，由reading head controller决定，哪个句子与问题相关  
+3. 把相关的句子读进模型，产生output
 
-例如托福听力测试  
-1:04'17''  
-将语音识别、句义分析、attention的综合运用
+语音QA
+1. 例如托福听力测试  
+2. 将语音识别、句义分析、attention的综合运用  
+
+# Attention-based Model升级版（可读可写）
+
+![](/assets/images/Chapter10/91.png)   
+
+## Turing简化版
+
+![](/assets/images/Chapter10/92.png)   
+k: attention weight  
+e: 要清空的东西，attention越多的地方，清得越多  
+m：原来database里面的值  
+a：要放入的新的信息  
+$$
+m_2^i = m_1^i - \hat \alpha^i e \odot m_1 ^i + \hat \alpha^ia
+$$
+
+## Truing完整版
+
+又叫Neural Turing Machine  
+太复杂了，不想看  
+
+## Stack RNN
+
+![](/assets/images/Chapter10/93.png)   
+1. 假设memory中的值都以stack的形式存储  
+2. 读入stack的前几个值（相当于默认attention在前几个值上）  
+3. f输出三个值a1, a2, a3  
+另对原信息定义以下三个操作，每个操作分别基于原始信息做改变，分别得到向量v1, v2, v3  
+- Push：把Information放入Stack  
+- Pop：把stack顶值丢掉  
+- Nothing：不变
+v = v1 * a1 + v2 * a2 + v3 * a3  
+
+
+
 
 ---------------------------------------------------------
 
