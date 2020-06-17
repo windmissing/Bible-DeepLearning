@@ -111,32 +111,40 @@ $$
 
 ### 方法三：t-SNE
 
-T-distributed Stochastic Neighbour Embedding
+T-distributed Stochastic Neighbour Embedding  
+https://blog.csdn.net/scott198510/article/details/76099700
 
 方法一、二存在的问题：  
 只要求相似的点靠近，没有要求不同的点分开，所以最后所有的点都挤到一起。  
 ![](/assets/images/Chapter10/74.png)   
 T-SNE可以解决这样的问题。  
 
-1. 计算所有点对的相似度： S(xi, xj)  
+训练步骤：  
+1. 计算所有点对的相似度： S(xi, xj)，两个点之间距离越近，相似度越大。    
 2. Normalization  
 $$
-P(x^j|x^i) = \frac{S(x^i, x^j)}{sum_{k\neq i}S(x^i, x^k)}
+P(x^j|x^i) = \frac{S(x^i, x^j)}{\sum_{k\neq i}S(x^i, x^k)}
 $$
 
-3. 假设xi, xj对应的转换结果为zi, zj，计算S'(zi, zj)  
+3. 在低维空间随机生成同样多的点z，假设zi, zj就是xi, xj对应的转换结果，计算S'(zi, zj)  
 4. Normalization  
 $$
-Q(z^j|z^i) = \frac{S'(z^i, z^j)}{sum_{k\neq i}S(z^i, z^k)}
+Q(z^j|z^i) = \frac{S'(z^i, z^j)}{\sum_{k\neq i}S(z^i, z^k)}
 $$
-
-5. 计算分布P与分布Q的相似度，使用的指示是KL divergence(KL散度)  
+![](/assets/images/Chapter10/97.png)   
+假设上图中左图为高维空间的点x1计算出来的归一化之后的相似度。右图是低维空间点z1计算出来的归一化之后的相似度。  
+每一组相似度都可以看作是一个Multinomial分布。  
+5. 计算分布P与分布Q的相似度，使用的指示是KL divergence(KL散度)   
+对每个点“在高维空间的相似度分布P”和“低维空间的相似度分布Q”之间的相似度（KL散度）。  
+所有点计算出的KL散度之和就是这个模型的Loss Function。  
 $$
 \begin{aligned}
 L &=& \sum_i KL\left(P(*|x^i)||Q(*|z^i)\right)  \\
 &=& \sum_i \sum_j P(x^j|x^i)\log \frac{P(x^j|x^i)}{Q(x^j|x^i)}
 \end{aligned}
 $$
+
+6. 通过不断迭代调整z的位置降低Loss。  
 
 缺点：
 （1）计算量大  
@@ -155,7 +163,8 @@ $$
 
 S与S'的关系如图所示：  
 ![](/assets/images/Chapter10/75.png)   
-当xi与xj接近时，zi与zj也比较接近。  
+图中蓝线是高维空间数据的S公式。绿线为低维空间数据的S'公式。  
+当xi与xj接近时，zi与zj之间的距离更近。  
 当xi与xj比较远时，zi与zj的间隔更远（强化gap）。  
 效果：  
 ![](/assets/images/Chapter10/76.png)   
