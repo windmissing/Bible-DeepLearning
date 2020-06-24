@@ -162,7 +162,110 @@ $\theta'$是固定的，因此同一组sample data可以用多次。
 
 ### Importance Sampling
 
+已知：  
+$$
+E_{x\sim p}[f(x)] \approx \frac{1}{N}\sum f(x)
+$$
 
+公式要求的x是从P中sample出的data，但我们只有从Q sample出的data。如何基于Q中的Data计算以上公式？经过公式推导得：  
+$$
+E_{x\sim p}[f(x)] = E_{x\sim q}[f(x)\frac{p(x)}{q(x)}]
+$$
+
+这样就转成了基于Q的data的计算公式。这个技巧叫做Importance Sampling，不只上用于这里，在很多地方都有应用。  
+公式中的$\frac{p(x)}{q(x)}$称为Important Weight。  
+
+以上等式是用积分的形式推导出来的，实际计算的时候是使用sample data来计算的，所以计算结果只是近似。如果sample的点数太少，可能结果差别会比较大。只有sample的数据足够大，才能得到近似的结果。  
+![](/assets/images/Chapter7/64.png)    
+
+### 回到Reinforce Learning
+
+offline policy是指用$\theta'$与环境做互动来更新$\theta$。  
+$x\sim p$相当于$\tau \sim p_\theta(\tau)$，$x \sim q$相当于$\tau\sim p_{\theta'}(\tau)$，得：  
+$$
+\begin{aligned}
+\nabla \bar R_\theta &=& E_{\tau\sim p_{\theta}(\tau)}\left[R(\tau)\nabla \log p_{\theta(\tau)}\right]   \\
+&=& E_{\tau\sim p_{\theta'}(\tau)}\left[\frac{p_{\theta}(\tau)}{p_{\theta'}(\tau)}R(\tau)\nabla \log p_{\theta(\tau)}\right]
+\end{aligned}
+$$
+
+再结合上面提到的“公式改进”，得：  
+$$
+\begin{aligned}
+\nabla \bar R_\theta &=& E_{(s_t,a_t)\sim \pi_{\theta'}}\left[\frac{p_{\theta}(s_t,a_t)}{p_{\theta'}(s_t,a_t)}A^{\theta'}(s_t,a_t)\nabla \log p_{\theta(a_t^n|s_t^n)}\right]
+\end{aligned}
+$$
+
+反推出object function：  
+$$
+J^{\theta'}(\theta) = E_{(s_t,a_t)\sim \pi_{\theta'}}\left[\frac{p_{\theta}(s_t,a_t)}{p_{\theta'}(s_t,a_t)}A^{\theta'}(s_t,a_t)\right]
+$$
+
+### 近端优化策略
+
+使用off policy代替on policy的前提是，$p_\theta$和$p_{\theta'}$不能差太多，否则效果不好。  
+问：如何保证“$p_\theta$和$p_{\theta'}$不能差太多”？  
+答：近端优化策略 PPO/TRPO  
+
+#### PPO 正则化
+
+对$J^{\theta'}(\theta)$增加一个正则化项：  
+$$
+J^{\theta'}_{PPO}(\theta) = J^{\theta'}(\theta) - \beta KL(\theta, \theta')
+$$
+
+#### TRPO 带限制最优化
+
+$$
+\begin{aligned}
+J^{\theta'}_{TRPO}(\theta) = J^{\theta'}(\theta)   \\
+s.t. && KL(\theta, \theta') < S
+\end{aligned}
+$$
+
+#### $KL(\theta, \theta')$
+
+$KL(\theta, \theta')$代表参数$\theta$和$\theta'$的距离。但不是它们的欧式距离或者KL散度。  
+而是这两个参数对某个state产生的action的分布的KL散度。  
+
+#### PPO算法过程  
+
+1. 初始化$\theta^0$  
+2. 使用$\theta^k$与环境互动，收集$\{s_t, a_t\}$，计算$A^\theta{s_t, a_t}$  
+3. 更新$\theta$，优化以下目标，可进行多次迭代：  
+$$
+\begin{aligned}
+J^{\theta^k}_{PPO}(\theta) = J^{\theta^k}(\theta) - \beta KL(\theta, \theta^k)  \\
+J^{\theta^k}(\theta) \approx \sum_{s_t,a_t} \frac{p_\theta(a_t|s_t)}{p^k_\theta(a_t|s_t)}A^{\theta^k}(s_t, a_t)
+\end{aligned}
+$$
+4. 多次迭代后调整$\beta$：  
+if $KL(\theta, \theta^k)$ > threshold_max, then $\beta \uparrow$  
+if $KL(\theta, \theta^k)$ < threshold_min, then $\beta \downarrow$  
+
+#### PPO2算法过程
+
+1. 同上  
+2. 同上  
+3. 目标函数替换为：  
+$
+\begin{aligned}
+J^{\theta^k}_{PPO2}(\theta) &=& \sum_{s_t,a_t} \min 
+\left(PA, \text{clip} \left(P, 1-\epsilon, 1+\epsilon\right)A \right)   \\
+P &=& \frac{p_\theta(a_t|s_t)}{p^k_\theta(a_t|s_t)}  \\
+A &=& A^{\theta^k}(s_t, a_t)
+\end{aligned}
+$$
+
+P、A是我为了简化表达自己加的变量。这个公式的直观解释如下：  
+![](/assets/images/Chapter7/65.png)    
+图中绿色虚线代表P，蓝色虚线代表$\text{clip} (P, 1-\epsilon, 1+\epsilon)$  
+结合上后面的A：  
+当A>0时，实际生效的是P是左图红色部分。当A<0时，实际生效的是右图红色部分。这是min的效果。  
+假设A>0，  
+希望$p_\theta(a_t|s_t)$越大越好 ---> 沿红线上移   
+不希望P太大 ---> 移到$1+\epsilon$就没有benefit了，就不会动了。  
+A<0情况同理。  
 
 
 # value based算法 --- learning a critic
