@@ -49,7 +49,6 @@
     * [Ag补充 一些能用于提升比赛成绩的方法](Chapter7/Contest.md)
     * [李宏毅补充 Domain-Adversarial Training](Chapter7/DomainAdversarial.md)
     * [李宏毅补充 Zero-Shot Training](Chapter7/ZeroShot.md)
-    * [李宏毅补充 深度强化学习](Chapter7/Reinforce.md)
     * [李宏毅补充 深度自编码器](Chapter7/AutoEncoder.md)
 * [第8章 深度模型中的优化](Chapter8/0Optimization.md)
     * [8.1 学习和纯优化有什么不同](Chapter8/1Difference/0Difference.md)
@@ -157,3 +156,21 @@
     * [照片编辑应用](GAN/Phote.md)
     * [序列生成的应用](GAN/Sequence.md)
     * [GAN的估计](GAN/Evaluation.md)
+* 李宏毅补充 RL
+    * [增强学习](RL/Reinforce.md)
+    * Policy Based
+        * [Basic Version](RL/Policy1.md)
+        * [公式改进](RL/Policy2.md)
+        * [off-policy](RL/Policy3.md)
+        * [近端优化策略](RL/Policy4.md)
+    * Value Based
+        * [value function](RL/Value1.md)
+        * [Q-Learning](RL/Value2.md)
+        * [Q-Learning的改进算法](RL/Value3.md)
+    * [Q-Learning Vs Policy Based](RL/Compare.md)
+    * Q-Learning结合Policy Based
+        * [复习](RL/A3C1.md)
+        * [A3C](RL/A3C2.md)
+        * [Pathwise Derivative Policy Gradient](RL/A3C3.md)
+    * [稀疏奖励](RL/Sparse.md)
+    * [模仿学习](RL/Imitation.md)
