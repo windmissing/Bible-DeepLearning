@@ -174,3 +174,6 @@
         * [Pathwise Derivative Policy Gradient](RL/A3C3.md)
     * [稀疏奖励](RL/Sparse.md)
     * [模仿学习](RL/Imitation.md)
+* 李宏毅补充 异常侦测
+    * [异常侦测](Anomaly/Anomaly.md)
+    * [case 1：labelled data](Anomaly/Labelled.md)
