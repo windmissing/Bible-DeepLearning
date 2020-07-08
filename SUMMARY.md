@@ -181,3 +181,6 @@
     * 对抗模型 attack ML models
         * [攻击](1209400866/Attack.md)
         * [防御](1209400866/Defense.md)
+    * [模型的可解释性 Explainable ML](1209400866/Explainable.md)
+    * [Life Long Learning.md](1209400866/LLL.md)
+    * [Meta Learning](1209400866/Meta.md)
