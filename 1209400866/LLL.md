@@ -87,3 +87,30 @@ g * gi > 0 ==> g' = g
 g * gi < 0 ==> 调整g'，使g' * gi > 0 且 g和g'尽量接近 
 3. 更新  
 基于g'更新
+
+# Model Expansion, but Parameter Efficiency
+
+## Progressive Neural Networks
+
+![](/assets/images/1209400866/23.png)   
+
+## Expert Gate
+
+![](/assets/images/1209400866/24.png)   
+
+## Net2Net
+
+![](/assets/images/1209400866/25.png)   
+
+前两种方法每次有新的Task就要扩展模型，参数的增加速度与task成正比  
+第三种只在当前模型难以提升时才增加结点  
+
+# Curriculum Learning
+
+还是上面例子中的task1和task 2  
+![](/assets/images/1209400866/15.png)   
+如果先学task 1，再学task 2，task 1会忘掉  
+如果先学task 2，再学task 1，task 2不会忘掉  
+![](/assets/images/1209400866/26.png)   
+说明task的顺序很重要。怎样排序最合适？  
+

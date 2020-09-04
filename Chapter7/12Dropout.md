@@ -146,8 +146,7 @@ $$
 然而，一个更好的方法能不错地近似整个集成的预测，且只需一个前向传播的代价。
 要做到这一点，我们改用集成成员预测分布的几何平均而不是算术平均。  
 > **[success]**  
-> 算术平均：$average = \frac{1}{4}(a+b+c+d)$  
-> [几何平均](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E5%B9%B3%E5%9D%87%E6%95%B0/5557084?fr=aladdin)：$average = \sqrt[4](abcd)$
+> [算术平均、几何平均](https://windmissing.github.io/mathematics_basic_for_ML/Mathematics/average.html)
 
 WardeFarley提出的论点和经验证据表明，在这个情况下几何平均与算术平均表现得差不多。  
 > **[warning]** [?] 这个情况下是指什么？  
