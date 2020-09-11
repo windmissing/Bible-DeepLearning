@@ -12,19 +12,19 @@
 卷积运行用于多通道数据时，通道数必须相等。  
 **1D**：  
 ![](/assets/images/Chapter9/33.png)    
-14 * 5 = 10  
+$14 * 5 = 10$  
 **1D + 多通道**：  
-$14\times 3$ * 7个$5\times3$ = $10\times7$  
+$14\times 3 * 7$个$5\times3 = 10\times7$  
 **2D**：  
-$14\times 14$ * $5\times 5$ = $10\times10$  
+$14\times 14 * 5\times 5 = 10\times10$  
 **2D + 多通道**：  
-$14\times 14\times 3$ * 7个$5\times 5\times 3$ = $10\times10\times7$  
+$14\times 14\times 3 * 7$个$5\times 5\times 3 = 10\times10\times7$  
 彩色图像不是3D，是2D+多通道。  
 **3D**：  
-$14\times 14\times 14$ * $5\times 5\times 5$ = $10\times 10\times 10$  
+$14\times 14\times 14 * 5\times 5\times 5 = 10\times 10\times 10$  
 CT影响或者move可以看作是3D。  
 **3D + 多通道**：  
-$14\times 14\times 14\times 3$ * 7个$5\times 5\times 5\times 3$ = $10\times10\times 10\times7$  
+$14\times 14\times 14\times 3 * 7$个$5\times 5\times 5\times 3 = 10\times10\times 10\times7$  
 
 卷积网络用于视频的例子，可以参考~{Chen-Ting-2010}。
 
