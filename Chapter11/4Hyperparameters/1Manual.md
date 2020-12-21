@@ -44,11 +44,22 @@
 
 
 学习率可能是最重要的超参数。  
-> **[success] Ag建议的超参数优先级**  
-（1）学习率  
-（2）Momentum中的$\rho$、一个隐藏层的unit数、mini-batch size    
+> **[success] Ng补充：超参数重要性排序**  
+（1）学习率$\alpha$  
+（2）Momentum中的$\rho$(0.9)、一个隐藏层的unit数、mini-batch size(2^6,2^7,2^8,2^9)    
 （3）层数、学习率衰减率  
-（4）Adam算法中的$\rho_1, \rho_2, \delta$  
+（4）Adam算法中的$\rho_1(0.9), \rho_2(0.999), \delta(1e-8)$  
+**Ng补充：学习率衰减的一些方法**  
+1 epoch = 1 pass through data  
+
+$$
+\begin{aligned}
+\alpha = \frac{1}{1 + \text{decay_rate} * \text{epoch}} * \alpha_0    \\
+\alpha = 0.95^{\text{epoch}} * \alpha_0    \\
+\alpha = \frac{K}{\sqrt{\text{epoch}}} * \alpha_0    \\
+\text{分段函数}
+\end{aligned}
+$$
 
 如果你只有时间调整一个超参数，那就调整学习率。
 相比其他超参数，它以一种更复杂的方式控制模型的有效容量——当学习率适合优化问题时，模型的有效容量最高，此时学习率是\emph{正确}的，既不是特别大也不是特别小。

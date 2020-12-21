@@ -119,6 +119,16 @@ SGD应用于凸问题时，$k$步迭代后的额外误差量级是$O(\frac{1}{\s
 对于大数据集，SGD只需非常少量样本计算梯度从而实现初始快速更新，其好处超过了其缓慢的渐近收敛带来的坏处。
 本章剩余部分介绍的大多数算法致力于追求实践中有价值的好处，而不在意它的学习率有常数级别的额外误差（在渐进分析上比不上$O(\frac{1}{k})$的额外误差）。
 我们也可以在学习过程中**逐渐增大小批量的大小，以此权衡批量梯度下降和随机梯度下降两者的优点**。
-> **[warning]** 这一段不知道在讲啥，反正结论是随机梯度下降优于批量梯度下降。  
 
-了解SGD更多的信息，请查看Bottou98。
+了解SGD更多的信息，请查看Bottou98。  
+
+> **[success] Ng补充：SGD和BGD的比较**  
+一个epoch是把所有样本pass through一遍  
+一个iteration是把一个batch pass through一遍  
+![](/assets/images/Chapter8/6.png)   
+BGD每一步都是更接近最小值点，SGD的趋势是接近最小值点，但不一定每一次都是   
+BGD会无限接近最小值点，SGD会在最小值点附近徘徊，迭代的过程中逐渐调小lr，最后徘徊的区域会较小。    
+![](/assets/images/Chapter8/11.png)  
+![](/assets/images/Chapter8/7.png)
+SGD的loss有noise，可以通过减少lr来缓解这个问题。  
+SGD loss speedup from向量化。而BGD make pross without waiting entire training。通过选择合适的batch size，得到收敛最快。  
