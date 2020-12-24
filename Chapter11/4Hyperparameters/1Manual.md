@@ -54,7 +54,7 @@
 
 $$
 \begin{aligned}
-\alpha = \frac{1}{1 + \text{decay_rate} * \text{epoch}} * \alpha_0    \\
+\alpha = \frac{1}{1 + \text{DecayRate} * \text{epoch}} * \alpha_0    \\
 \alpha = 0.95^{\text{epoch}} * \alpha_0    \\
 \alpha = \frac{K}{\sqrt{\text{epoch}}} * \alpha_0    \\
 \text{分段函数}
