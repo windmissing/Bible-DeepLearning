@@ -147,7 +147,7 @@ $\tilde{z}_{norm} = \gamma z + \beta$
 （5）有一点点对抗overfitting的效果（顺便的作用）。  
 > **[success] Ng补充：为什么BN能加速训练**   
 > 原因一：  
-> ![](/assets/images/Chapter8/11.png)  
+> ![](/assets/images/Chapter8/13.png)  
 > 让所有维度的输入数据（输入层的X或者隐藏层的z）都处于同一scale，缓解“不同维度lr不同”的问题，不用因为照顾某一维度而把lr调低。因此能够speed up training。  
 > 原因二：  
 > it makes weight in later deep layer(例如第10层) more rebunst to changes to weight in earlier layers(例如第0层)  
