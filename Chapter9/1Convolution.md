@@ -69,15 +69,6 @@ S(i,j) = (I*K)(i,j) = \sum_m \sum_n I(m,n) K(i-m, j-n).
 \end{aligned}
 $$
 
-> **[success]**  
-前面讲的都是单通道的卷积，现在是多通道的卷积。  
-多通道卷积的原图像是三维的，例如RGB图像是三通道的图像。  
-多通道图像做卷积，图像的通道数与核的通道必须相同。即输入为$W\times H\times C$，核的大小应该为$f_W \times f_H \times C$。卷积的结果为$W-f_W+1\times H-f_H+1$。  
-多通道的原图像 * 多通道的核 = 单通道的图像  
-多通道的原图像 * n个多通道的核 = n个通道的图像 = 1个n通道的图像。  
-> ![](/assets/images/Chapter9/7.png)   
-> ![](/assets/images/Chapter9/8.png)   
-
 # 核翻转与互相关卷积
 
 > **[success]**  
@@ -156,16 +147,21 @@ $$
 
 ------------------------
 
-> **[success]**  
-> 每个kernel定义一个小的矩阵用于侦测一个patten，例如下图使用3*3的kernel分别做左亮右暗和左暗右亮的垂直边缘检测。  
-> ![](/assets/images/Chapter9/6.png)  
-> Ag还列了其它一些kernel，不记了。DL的kernel是自己学出来的。  
-> 图像一块同样大小的区域与kernel的内积，得到一个数值。  
-> 全部数值组合到一起，是一个小一点的矩阵，称为feature map。  
-> 矩阵中的值越大，说明原图像对应位置与patten越相似。  
-> 每个filter会得到一个feature map。  
-> 如果原始图像是彩色的，那么原始图像是3维的张图，kernel也是3维的张量。  
-> **卷积网络层与全链接网络层的区别**：  
+> **[success]** 单变量卷积  
+图像一块同样大小的区域与kernel的内积，得到一个数值。  
+全部数值组合到一起，是一个小一点的矩阵，称为feature map。  
+每个filter会得到一个feature map。  
+如果原始图像是彩色的，那么原始图像是3维的张图，kernel也是3维的张量。 
+
+卷积的实现：  
+python: `conv_forward`  
+tensorflow：`tf.nn.conv2d`  
+keras：`Conv2D`  
+
+CNN上的卷积计算：  
+![](/assets/images/Chapter9/38.png)  
+CNN中的kernal不是预先定义好的，而是自己计算出来的。  
+> **[success] 卷积网络层与全链接网络层的区别**：  
 > （1）full connect -> 只连接部分input  
 > ![](/assets/images/Chapter9/3.png)  
 > （2）每个连接使用不同参数 -> 参数共享  
