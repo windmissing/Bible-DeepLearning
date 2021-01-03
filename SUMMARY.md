@@ -90,7 +90,6 @@
     * [9.5 基本卷积函数的变体](Chapter9/5Variant.md)
     * [9.6 结构化输出](Chapter9/6StructuredOutputs.md)
     * [9.7 数据类型](Chapter9/7Data.md)
-    * [Ag补充  图像的定位分类问题](Chapter9/ClassificationWithLocalization.md)
     * [Ag补充 人脸识别问题](Chapter9/FaceDetection.md)
     * 
     * [李宏毅补充 Highway Network](Chapter9/Highway.md)
