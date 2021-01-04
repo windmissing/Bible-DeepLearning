@@ -4,6 +4,7 @@
 github地址：https://github.com/windmissing/Bible-DeepLearning  
 前五章数学部分：https://windmising.gitbook.io/mathematics-basic-for-ml/  
 第11、12章等我有一些实践经验之后再来看。  
+以前放在这里的Ng课程笔记和李宏毅课程笔记移动这里了：https://windmissing.github.io/DeepLearningNotes/
 
 这不是deep learning book的中文版电子书！  
 这不是deep learning book的中文版电子书！！  
