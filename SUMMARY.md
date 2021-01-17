@@ -114,8 +114,6 @@
     * [李宏毅/Ag补充 RNN的各种应用](Chapter10/Applications.md)
     * [李宏毅/Ag补充 注意力模型](Chapter10/Attention.md)
     * [李宏毅补充 Deep Learing VS Structured Learning](Chapter10/Structured.md)
-    * [Ag补充 类比推理](Chapter10/ReasonableAnalogies.md)
-    * [Ag补充 情绪分类](Chapter10/SentimentClassification.md)
     * [Ag补充 Seq2Seq](Chapter10/Seq2Seq.md)
     * [Ag补充 语音辨识](Chapter10/Speech.md)
     * [Ag补充 触发字检测](Chapter10/TriggerWord.md)
