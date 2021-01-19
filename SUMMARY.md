@@ -90,8 +90,6 @@
     * [9.5 基本卷积函数的变体](Chapter9/5Variant.md)
     * [9.6 结构化输出](Chapter9/6StructuredOutputs.md)
     * [9.7 数据类型](Chapter9/7Data.md)
-    * [Ag补充 人脸识别问题](Chapter9/FaceDetection.md)
-    * 
     * [李宏毅补充 Highway Network](Chapter9/Highway.md)
 * [第10章 序列建模：循环和递归网络](Chapter10/Introduction.md)
     * [10.1 展开计算图](Chapter10/1Unfolding.md)
@@ -116,6 +114,10 @@
     * [李宏毅/Ag补充 RNN的各种应用](Chapter10/Applications.md)
     * [李宏毅/Ag补充 注意力模型](Chapter10/Attention.md)
     * [李宏毅补充 Deep Learing VS Structured Learning](Chapter10/Structured.md)
+<<<<<<< HEAD
+=======
+    * [Ag补充 Seq2Seq](Chapter10/Seq2Seq.md)
+>>>>>>> afdda20080aca8130176910ae726f7af8923d5b3
     * [Ag补充 语音辨识](Chapter10/Speech.md)
     * [Ag补充 触发字检测](Chapter10/TriggerWord.md)
     * [李宏毅补充 Embedding](Chapter10/Embedding.md)
