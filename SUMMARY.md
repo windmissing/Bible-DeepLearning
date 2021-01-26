@@ -114,8 +114,6 @@
     * [李宏毅/Ag补充 RNN的各种应用](Chapter10/Applications.md)
     * [李宏毅/Ag补充 注意力模型](Chapter10/Attention.md)
     * [李宏毅补充 Deep Learing VS Structured Learning](Chapter10/Structured.md)
-    * [Ag补充 语音辨识](Chapter10/Speech.md)
-    * [Ag补充 触发字检测](Chapter10/TriggerWord.md)
     * [李宏毅补充 Embedding](Chapter10/Embedding.md)
     * [李宏毅补充 指针网络](Chapter10/PointerNetwork.md)
     * [李宏毅补充 循环网络](Chapter10/Recursive.md)
