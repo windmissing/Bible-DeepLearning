@@ -112,7 +112,6 @@
         * [10.11.2 引导信息流的正则化](Chapter10/11OptimizationLTD/2.md)
     * [10.12 外显记忆](Chapter10/12.md)
     * [李宏毅/Ag补充 RNN的各种应用](Chapter10/Applications.md)
-    * [李宏毅/Ag补充 注意力模型](Chapter10/Attention.md)
     * [李宏毅补充 Deep Learing VS Structured Learning](Chapter10/Structured.md)
     * [李宏毅补充 Embedding](Chapter10/Embedding.md)
     * [李宏毅补充 指针网络](Chapter10/PointerNetwork.md)
