@@ -114,8 +114,6 @@
     * [李宏毅/Ag补充 RNN的各种应用](Chapter10/Applications.md)
     * [李宏毅补充 Deep Learing VS Structured Learning](Chapter10/Structured.md)
     * [李宏毅补充 Embedding](Chapter10/Embedding.md)
-    * [李宏毅补充 指针网络](Chapter10/PointerNetwork.md)
-    * [李宏毅补充 循环网络](Chapter10/Recursive.md)
 * [第11章 实践方法论](Chapter11/0PracticalMethodology.md)
     * [11.1 性能度量](Chapter11/1Performance.md)
     * [11.2 默认的基准模型](Chapter11/2Baseline.md)
