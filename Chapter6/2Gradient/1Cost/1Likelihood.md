@@ -1,5 +1,3 @@
-<!--sec data-title="something" data-id="section0" data-show=false ces-->
-
 大多数神经网络使用[最大似然估计](https://windmising.gitbook.io/mathematics-basic-for-ml/gai-shuai-lun/likelihood)来训练，由此推导出来的代价函数为：  
 $$
 J(\theta) = -E_{X,y \sim \hat P_{data}}\log p_{model}(y|x)
@@ -9,8 +7,6 @@ $$
 1. 不用为每个模型设计代价函数，p(y|x)定了代价函数就这了。  
 2. log的形式可以消除某些单元的指数效果，避免神经元饱和。  
 3. [?]应用于实践中时通常没有最小值
-
-<!--endsec-->
 
 # 使用最大似然导出代价函数  
 
@@ -31,16 +27,11 @@ $$
 
 这个代价函数表示为  
 $$
-J(\theta) = -{\Bbb E}_{X,y \sim \hat{p}_\text{data}} \log p_\text{model} (y \mid x)
-$$
-        （6.12）
-{% reveal %}
-```
 \begin{aligned}
-J(\theta) = -{\Bbb E}_{X,y \sim \hat{p}_\text{data}} \log p_\text{model} (y \mid x) \tag {6.12}
+J(\theta) = -{\Bbb E}_{X,y \sim \hat{p}_\text{data}} \log p_\text{model} (y \mid x) && (6.12)
 \end{aligned}
-```
-{% endreveal %}
+$$
+
 
 > **[success]问：公式6.12怎么来的？**  
 答：前面说过，使用负的对数似然作为代价函数。负对数似然的公式为：  
@@ -66,16 +57,10 @@ $$
 > **[info]** 5.1.1 -> 5.5.1
 
 $$
-J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \theta) ||^2 + \text{const}
-$$
-    （6.13）
-{% reveal %}
-```
 \begin{aligned}
-J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \theta) ||^2 + \text{const} \tag {6.13}
+J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \theta) ||^2 + \text{const}  &&   (6.13)
 \end{aligned}
-```
-{% endreveal %}
+$$
 
 > **[success]问：把$$p_\text{model}(y\mid x)$$代入公式（6.12），怎么会得到（6.13）？**  
 答：假设$$p_\text{model}(y\mid x)$$符合高斯分布，且其均值为基于输入x计算出来的某个值，方差为固定值1。  
@@ -89,10 +74,12 @@ J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \t
 
 至少系数$$\frac{1}{2}$$和常数项不依赖于$$\theta$$。
 舍弃的常数是基于高斯分布的方差，在这种情况下我们选择不把它参数化。  
-> **[warning]** 不把它参数化是什么意思？  
+> **[success]**  
+问：不把它参数化是什么意思？  
+答：不把它抽象成一个参数。因为它是一个确定的值。
 
 之前，我们看到了对输出分布的最大似然估计和对线性模型均方误差的最小化之间的等价性，但事实上，这种等价性并不要求$$f(x; \theta)$$用于预测高斯分布的均值。  
-> **[warning]** 还适用于什么分面？如何证明？肯定不是对全部模型都适用，至少对sigmoid unit是不适用的。  
+> **[success]** 公式6.13中没有对$f(x; \theta)$有特殊的限制，说明对任意的f都适用。  
 
 # 优点1：减轻设计代价函数的负担
 
@@ -105,10 +92,9 @@ J(\theta) = \frac{1}{2} {\Bbb E}_{X, y \sim  \hat{p}_\text{data}} || y - f(x; \t
 贯穿神经网络设计的一个反复出现的主题是代价函数的梯度必须足够的大和具有足够的预测性，来为学习算法提供一个好的指引。  
 > **[success] 为什么梯度必须足够大？**   
 答：梯度下降法的理论依据是：“沿着导数的负方向移动，代价函数就会下降”。  
-因此梯度下降法的迭代是靠梯度来引导。当梯度太小时，无法引导算法继续优化。  
-
-　　  
-> **[warning]** 什么叫有足够的预测性？  
+因此梯度下降法的迭代是靠梯度来引导。当梯度太小时，无法引导算法继续优化。  　　  
+> **问：什么叫有足够的预测性？**  
+答：梯度提供的方向是有意义，是能引导cost变小的方向。如果会导致cost变大，或者cost不会产生明显的变化，那么这个方向没有意义。
 
 饱和（变得非常平）的函数破坏了这一目标，因为它们把梯度变得非常小。  
 > **[success] 什么是饱和？**  
@@ -162,6 +148,6 @@ $$
 
 逻辑回归是其中一个例子。
 对于实值的输出变量，如果模型可以控制输出分布的密度（例如，通过学习高斯输出分布的方差参数），那么它可能对正确的训练集输出赋予极其高的密度，这将导致交叉熵趋向负无穷。  
-> **[warning]** [?]不是趋向于0吗？
+> **[success]** log函数的形状决定了这一特点。
 
 第7章中描述的正则化技术提供了一些不同的方法来修正学习问题，使得模型不会通过这种方式来获得无限制的收益。
