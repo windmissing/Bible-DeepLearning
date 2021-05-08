@@ -37,10 +37,7 @@ J(\theta) = \frac{1}{4} \sum_{x\in \Bbb X} (f^*(x) - f(x; \theta))^2.
 $$
 
 > **[success]**  
-选择损失函数为MSE，即：  
-$$
-J(\theta) = \frac{1}{4}\sum_{x \in X}(f^*(x)-f(x;\theta))^2
-$$
+选择损失函数为MSE
 
 我们现在必须要选择我们模型$f(x; \theta)$的形式。
 假设我们选择一个线性模型，$\theta$包含$w$和$b$，那么我们的模型被定义成  
@@ -52,10 +49,7 @@ f(x; w, b) = x^\top w + b.
 $$
 
 > **[success]**  
-> 选择模型为线性模型，即：  
-$$
-f(x;\theta) = f(x;w, b) = x^Tw+b
-$$
+> 选择模型为线性模型
 
 我们可以使用正规方程关于$w$和$b$最小化$J(\theta)$，来得到一个闭式解。  
 > **[success]**  

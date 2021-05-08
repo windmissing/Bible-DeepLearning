@@ -86,7 +86,7 @@ f(x)：由模型得到的函数。
 非常通用的特征映射通常只基于局部光滑的原则，并且没有将足够的先验信息进行编码来解决高级问题。
 
 > **[success]**  
-[RBF核](TODO)  
+[RBF核](https://windmising.gitbook.io/liu-yu-bo-play-with-machine-learning/di-shi-yi-zhang-zhi-cheng-xiang-liang-ji-svm/11-7)  
 使用一个通用的ϕ。  
 优点：当ϕ的维度足够高，可以拟合任何训练数据。  
 缺点：泛化能力不够。  
