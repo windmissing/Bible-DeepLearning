@@ -1,0 +1,2035 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>7.14 切面距离、正切传播和流形正切分类器 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="windmissing">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex-plus/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Contest.html" />
+    
+    
+    <link rel="prev" href="13AdversarialTraining.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"windmissing/Bible-DeepLearning","types":["star","watch","fork"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Chapter6/0Introduction.html">
+            
+                <a href="../Chapter6/0Introduction.html">
+            
+                    
+                    第6章 深度前馈网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../Chapter6/1Examples.html">
+            
+                <a href="../Chapter6/1Examples.html">
+            
+                    
+                    6.1 例子：学习XOR
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../Chapter6/2Gradient/0Introduction.html">
+            
+                <a href="../Chapter6/2Gradient/0Introduction.html">
+            
+                    
+                    6.2 基于梯度的学习
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="../Chapter6/2Gradient/1Cost/0Introduction.html">
+            
+                <a href="../Chapter6/2Gradient/1Cost/0Introduction.html">
+            
+                    
+                    6.2.1 代价函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1" data-path="../Chapter6/2Gradient/1Cost/1Likelihood.html">
+            
+                <a href="../Chapter6/2Gradient/1Cost/1Likelihood.html">
+            
+                    
+                    6.2.1.1 使用最大似然学习条件分布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.2" data-path="../Chapter6/2Gradient/1Cost/2.html">
+            
+                <a href="../Chapter6/2Gradient/1Cost/2.html">
+            
+                    
+                    6.2.1.2 学习条件统计量
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="../Chapter6/2Gradient/2OutputUnit/0Introduction.html">
+            
+                <a href="../Chapter6/2Gradient/2OutputUnit/0Introduction.html">
+            
+                    
+                    6.2.2 输出单元
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.2.1" data-path="../Chapter6/2Gradient/2OutputUnit/1Linear.html">
+            
+                <a href="../Chapter6/2Gradient/2OutputUnit/1Linear.html">
+            
+                    
+                    6.2.2.1 用于高斯输出分布的线性神单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.2" data-path="../Chapter6/2Gradient/2OutputUnit/2Sigmoid.html">
+            
+                <a href="../Chapter6/2Gradient/2OutputUnit/2Sigmoid.html">
+            
+                    
+                    6.2.2.2 用于Bernoulli输出分布的sigmoid单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.3" data-path="../Chapter6/2Gradient/2OutputUnit/3Softmax.html">
+            
+                <a href="../Chapter6/2Gradient/2OutputUnit/3Softmax.html">
+            
+                    
+                    6.2.2.3 用于Multinoulli输出分布的softmax单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../Chapter6/3Hidden/0Introduction.html">
+            
+                <a href="../Chapter6/3Hidden/0Introduction.html">
+            
+                    
+                    6.3 隐藏单元
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../Chapter6/3Hidden/1ReLU.html">
+            
+                <a href="../Chapter6/3Hidden/1ReLU.html">
+            
+                    
+                    6.3.1 ReLU及其扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../Chapter6/3Hidden/2SigmoidTanh.html">
+            
+                <a href="../Chapter6/3Hidden/2SigmoidTanh.html">
+            
+                    
+                    6.3.2 logistic sigmoid与双曲正切函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="../Chapter6/3Hidden/3Other.html">
+            
+                <a href="../Chapter6/3Hidden/3Other.html">
+            
+                    
+                    6.3.3 其他隐藏单元
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="../Chapter6/SELU.md">
+            
+                <span>
+            
+                    
+                    李宏毅补充 SELU
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../Chapter6/4Architecture.html">
+            
+                <a href="../Chapter6/4Architecture.html">
+            
+                    
+                    6.4 架构设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../Chapter6/5Backprop/0Introduction.html">
+            
+                <a href="../Chapter6/5Backprop/0Introduction.html">
+            
+                    
+                    6.5 反向传播和其他的微分算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1" data-path="../Chapter6/5Backprop/1ComputationalGraphs.html">
+            
+                <a href="../Chapter6/5Backprop/1ComputationalGraphs.html">
+            
+                    
+                    6.5.1 计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.2" data-path="../Chapter6/5Backprop/2ChainRule.html">
+            
+                <a href="../Chapter6/5Backprop/2ChainRule.html">
+            
+                    
+                    6.5.2 微积分中的链式法则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.3" data-path="../Chapter6/5Backprop/3Recursively.html">
+            
+                <a href="../Chapter6/5Backprop/3Recursively.html">
+            
+                    
+                    6.5.3 递归地使用链式法则来实现反向传播
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.4" data-path="../Chapter6/5Backprop/4FullyConnectedMLP.html">
+            
+                <a href="../Chapter6/5Backprop/4FullyConnectedMLP.html">
+            
+                    
+                    6.5.4 全连接MLP中的反向传播计算
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.5" data-path="../Chapter6/5Backprop/5Diveriation.html">
+            
+                <a href="../Chapter6/5Backprop/5Diveriation.html">
+            
+                    
+                    6.5.5 符号到符号的导数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.6" data-path="../Chapter6/5Backprop/6-5-6.html">
+            
+                <a href="../Chapter6/5Backprop/6-5-6.html">
+            
+                    
+                    6.5.6 一般化的反向传播
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.7" data-path="../Chapter6/5Backprop/7MLPTraining.html">
+            
+                <a href="../Chapter6/5Backprop/7MLPTraining.html">
+            
+                    
+                    6.5.7 实例：用于MLP 训练的反向传播
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.8" data-path="../Chapter6/5Backprop/8Complications.html">
+            
+                <a href="../Chapter6/5Backprop/8Complications.html">
+            
+                    
+                    6.5.8 复杂化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0Introduction.html">
+            
+                <a href="0Introduction.html">
+            
+                    
+                    第7章 深度学习中的正则化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="1ParameterNormPenalties/0Introduction.html">
+            
+                <a href="1ParameterNormPenalties/0Introduction.html">
+            
+                    
+                    7.1 参数范数惩罚
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="1ParameterNormPenalties/1L2.html">
+            
+                <a href="1ParameterNormPenalties/1L2.html">
+            
+                    
+                    7.1.1 L2参数正则化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="1ParameterNormPenalties/2L1.html">
+            
+                <a href="1ParameterNormPenalties/2L1.html">
+            
+                    
+                    7.1.2 L1参数正则化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="2ConstrainedOptimization.html">
+            
+                <a href="2ConstrainedOptimization.html">
+            
+                    
+                    7.2 作为约束的范数惩罚
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="3UnderConstrainedProblems.html">
+            
+                <a href="3UnderConstrainedProblems.html">
+            
+                    
+                    7.3 正则化和欠约束问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="4DatasetAugmentation.md">
+            
+                <span>
+            
+                    
+                    7.4 数据集增强
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="5NoiseRobustness.html">
+            
+                <a href="5NoiseRobustness.html">
+            
+                    
+                    7.5 噪声鲁棒性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="6SemiSupervised.html">
+            
+                <a href="6SemiSupervised.html">
+            
+                    
+                    7.6 半监督学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="7Multitask.html">
+            
+                <a href="7Multitask.html">
+            
+                    
+                    7.7 多任务学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="8EarlyStopping.html">
+            
+                <a href="8EarlyStopping.html">
+            
+                    
+                    7.8 提前终止
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="9ParameterSharing.html">
+            
+                <a href="9ParameterSharing.html">
+            
+                    
+                    7.9 参数绑定和参数共享
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="10SparseRepresentations.html">
+            
+                <a href="10SparseRepresentations.html">
+            
+                    
+                    7.10 稀疏表示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="11Bagging.html">
+            
+                <a href="11Bagging.html">
+            
+                    
+                    7.11 Bagging 和其他集成方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="12Dropout.html">
+            
+                <a href="12Dropout.html">
+            
+                    
+                    7.12 Dropout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="13AdversarialTraining.html">
+            
+                <a href="13AdversarialTraining.html">
+            
+                    
+                    7.13 对抗训练
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.14" data-path="14Tangent.html">
+            
+                <a href="14Tangent.html">
+            
+                    
+                    7.14 切面距离、正切传播和流形正切分类器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="Contest.html">
+            
+                <a href="Contest.html">
+            
+                    
+                    Ag补充 一些能用于提升比赛成绩的方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter8/0Optimization.html">
+            
+                <a href="../Chapter8/0Optimization.html">
+            
+                    
+                    第8章 深度模型中的优化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../Chapter8/1Difference/0Difference.html">
+            
+                <a href="../Chapter8/1Difference/0Difference.html">
+            
+                    
+                    8.1 学习和纯优化有什么不同
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../Chapter8/1Difference/1EmpiricalRiskMinimization.html">
+            
+                <a href="../Chapter8/1Difference/1EmpiricalRiskMinimization.html">
+            
+                    
+                    8.1.1 经验风险最小化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../Chapter8/1Difference/2SurrogateLossFunctions.html">
+            
+                <a href="../Chapter8/1Difference/2SurrogateLossFunctions.html">
+            
+                    
+                    8.1.2 代理损失函数和提前终止
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="../Chapter8/1Difference/3Minibatch.html">
+            
+                <a href="../Chapter8/1Difference/3Minibatch.html">
+            
+                    
+                    8.1.3 批量算法和小批量算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    8.2 神经网络优化中的挑战
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../Chapter8/2Challenges/1IllConditioning.html">
+            
+                <a href="../Chapter8/2Challenges/1IllConditioning.html">
+            
+                    
+                    8.2.1 病态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../Chapter8/2Challenges/2LocalMinima.html">
+            
+                <a href="../Chapter8/2Challenges/2LocalMinima.html">
+            
+                    
+                    8.2.2 局部极小值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../Chapter8/2Challenges/3Saddle.html">
+            
+                <a href="../Chapter8/2Challenges/3Saddle.html">
+            
+                    
+                    8.2.3 8.2.3 高原、鞍点和其他平坦区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../Chapter8/2Challenges/4ExplodingGradients.html">
+            
+                <a href="../Chapter8/2Challenges/4ExplodingGradients.html">
+            
+                    
+                    8.2.4 悬崖和梯度爆炸
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../Chapter8/2Challenges/5LongTermDependencies.html">
+            
+                <a href="../Chapter8/2Challenges/5LongTermDependencies.html">
+            
+                    
+                    8.2.5 长期依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.6" data-path="../Chapter8/2Challenges/6InexactGradients.html">
+            
+                <a href="../Chapter8/2Challenges/6InexactGradients.html">
+            
+                    
+                    8.2.6 非精确梯度
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" >
+            
+                <span>
+            
+                    
+                    8.3 基本算法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../Chapter8/3BasicAlgorithms/1SGD.html">
+            
+                <a href="../Chapter8/3BasicAlgorithms/1SGD.html">
+            
+                    
+                    8.3.1 随机梯度下降
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../Chapter8/3BasicAlgorithms/2Momentum.html">
+            
+                <a href="../Chapter8/3BasicAlgorithms/2Momentum.html">
+            
+                    
+                    8.3.2 动量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../Chapter8/3BasicAlgorithms/3Nesterov.html">
+            
+                <a href="../Chapter8/3BasicAlgorithms/3Nesterov.html">
+            
+                    
+                    8.3.3 Nesterov 动量
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../Chapter8/4ParameterInitialization.html">
+            
+                <a href="../Chapter8/4ParameterInitialization.html">
+            
+                    
+                    8.4 参数初始化策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" >
+            
+                <span>
+            
+                    
+                    8.5 自适应学习率算法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../Chapter8/5AdaptiveLearningRates/1AdaGrad.html">
+            
+                <a href="../Chapter8/5AdaptiveLearningRates/1AdaGrad.html">
+            
+                    
+                    8.5.1 AdaGrad
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="../Chapter8/5AdaptiveLearningRates/2RMSProp.html">
+            
+                <a href="../Chapter8/5AdaptiveLearningRates/2RMSProp.html">
+            
+                    
+                    8.5.2 RMSProp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" data-path="../Chapter8/5AdaptiveLearningRates/3Adam.html">
+            
+                <a href="../Chapter8/5AdaptiveLearningRates/3Adam.html">
+            
+                    
+                    8.5.3 Adam
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" data-path="../Chapter8/5AdaptiveLearningRates/4Choose.html">
+            
+                <a href="../Chapter8/5AdaptiveLearningRates/4Choose.html">
+            
+                    
+                    8.5.4 选择正确的优化算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" >
+            
+                <span>
+            
+                    
+                    8.6 二阶近似方法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" >
+            
+                <a target="_blank" href="https://windmissing.github.io/mathematics_basic_for_ML/NumericalComputation/Newton.html">
+            
+                    
+                    8.6.1 牛顿法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2" data-path="../Chapter8/6ApproximateSecondOrder/2Conjugate.html">
+            
+                <a href="../Chapter8/6ApproximateSecondOrder/2Conjugate.html">
+            
+                    
+                    8.6.2 共轭梯度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.3" data-path="../Chapter8/6ApproximateSecondOrder/3BFGS.html">
+            
+                <a href="../Chapter8/6ApproximateSecondOrder/3BFGS.html">
+            
+                    
+                    8.6.3 BFGS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" >
+            
+                <span>
+            
+                    
+                    8.7 优化策略和元算法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.7.1" data-path="../Chapter8/7Strategies/1BatchNormalization.html">
+            
+                <a href="../Chapter8/7Strategies/1BatchNormalization.html">
+            
+                    
+                    8.7.1 批标准化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.2" data-path="../Chapter8/7Strategies/2CoordinateDescent.html">
+            
+                <a href="../Chapter8/7Strategies/2CoordinateDescent.html">
+            
+                    
+                    8.7.2 坐标下降
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.3" data-path="../Chapter8/7Strategies/3PolyakAveraging.html">
+            
+                <a href="../Chapter8/7Strategies/3PolyakAveraging.html">
+            
+                    
+                    8.7.3 Polyak 平均
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" data-path="../Chapter8/7Strategies/4SupervisedPretraining.html">
+            
+                <a href="../Chapter8/7Strategies/4SupervisedPretraining.html">
+            
+                    
+                    8.7.4 监督预训练
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.5" data-path="../Chapter8/7Strategies/5AidOptimization.html">
+            
+                <a href="../Chapter8/7Strategies/5AidOptimization.html">
+            
+                    
+                    8.7.5 设计有助于优化的模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../Chapter9/0cnn.html">
+            
+                <a href="../Chapter9/0cnn.html">
+            
+                    
+                    第9章 卷积网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../Chapter9/1Convolution.html">
+            
+                <a href="../Chapter9/1Convolution.html">
+            
+                    
+                    9.1 卷积运算
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../Chapter9/2Motivation.html">
+            
+                <a href="../Chapter9/2Motivation.html">
+            
+                    
+                    9.2 动机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../Chapter9/3Pooling.html">
+            
+                <a href="../Chapter9/3Pooling.html">
+            
+                    
+                    9.3 池化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../Chapter9/4Prior.html">
+            
+                <a href="../Chapter9/4Prior.html">
+            
+                    
+                    9.4 卷积与池化作为一种无限强的先验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../Chapter9/5Variant.html">
+            
+                <a href="../Chapter9/5Variant.html">
+            
+                    
+                    9.5 基本卷积函数的变体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../Chapter9/6StructuredOutputs.html">
+            
+                <a href="../Chapter9/6StructuredOutputs.html">
+            
+                    
+                    9.6 结构化输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../Chapter9/7Data.html">
+            
+                <a href="../Chapter9/7Data.html">
+            
+                    
+                    9.7 数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../Chapter10/Introduction.md">
+            
+                <span>
+            
+                    
+                    第10章 序列建模：循环和递归网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../Chapter10/1Unfolding.html">
+            
+                <a href="../Chapter10/1Unfolding.html">
+            
+                    
+                    10.1 展开计算图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../Chapter10/2RNN/0RNN.html">
+            
+                <a href="../Chapter10/2RNN/0RNN.html">
+            
+                    
+                    10.2 循环神经网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../Chapter10/2RNN/1TeacherForcing.html">
+            
+                <a href="../Chapter10/2RNN/1TeacherForcing.html">
+            
+                    
+                    10.2.1 导师驱动过程和输出循环网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../Chapter10/2RNN/2BPTT.html">
+            
+                <a href="../Chapter10/2RNN/2BPTT.html">
+            
+                    
+                    10.2.2 计算循环神经网络的梯度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../Chapter10/2RNN/3.html">
+            
+                <a href="../Chapter10/2RNN/3.html">
+            
+                    
+                    10.2.3 作为有向图模型的循环网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../Chapter10/2RNN/4.html">
+            
+                <a href="../Chapter10/2RNN/4.html">
+            
+                    
+                    10.2.4 基于上下文的RNN序列建模
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../Chapter10/3Bidirectional.html">
+            
+                <a href="../Chapter10/3Bidirectional.html">
+            
+                    
+                    10.3 双向RNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../Chapter10/4EncoderDecoder.html">
+            
+                <a href="../Chapter10/4EncoderDecoder.html">
+            
+                    
+                    10.4 基于编码 - 解码的序列到序列架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../Chapter10/5Deep.html">
+            
+                <a href="../Chapter10/5Deep.html">
+            
+                    
+                    10.5 深度循环网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../Chapter10/6.html">
+            
+                <a href="../Chapter10/6.html">
+            
+                    
+                    10.6 递归神经网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../Chapter10/7LongDependency.html">
+            
+                <a href="../Chapter10/7LongDependency.html">
+            
+                    
+                    10.7 长期依赖的挑战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../Chapter10/9.html">
+            
+                <a href="../Chapter10/9.html">
+            
+                    
+                    10.9 渗漏单元和其他多时间尺度的策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../Chapter10/10Gate/0.html">
+            
+                <a href="../Chapter10/10Gate/0.html">
+            
+                    
+                    10.10 长短期记忆和其他门控RNN
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.9.1" data-path="../Chapter10/10Gate/1LSTM.html">
+            
+                <a href="../Chapter10/10Gate/1LSTM.html">
+            
+                    
+                    10.10.1 LSTM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.2" data-path="../Chapter10/10Gate/2OtherGates.html">
+            
+                <a href="../Chapter10/10Gate/2OtherGates.html">
+            
+                    
+                    10.10.2 其他门控RNN
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" >
+            
+                <span>
+            
+                    
+                    10.11 优化长期依赖
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.10.1" data-path="../Chapter10/11OptimizationLTD/1.html">
+            
+                <a href="../Chapter10/11OptimizationLTD/1.html">
+            
+                    
+                    10.11.1 梯度截断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10.2" data-path="../Chapter10/11OptimizationLTD/2.html">
+            
+                <a href="../Chapter10/11OptimizationLTD/2.html">
+            
+                    
+                    10.11.2 引导信息流的正则化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="../Chapter10/12.html">
+            
+                <a href="../Chapter10/12.html">
+            
+                    
+                    10.12 外显记忆
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../Chapter11/0PracticalMethodology.html">
+            
+                <a href="../Chapter11/0PracticalMethodology.html">
+            
+                    
+                    第11章 实践方法论
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../Chapter11/1Performance.html">
+            
+                <a href="../Chapter11/1Performance.html">
+            
+                    
+                    11.1 性能度量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../Chapter11/2Baseline.html">
+            
+                <a href="../Chapter11/2Baseline.html">
+            
+                    
+                    11.2 默认的基准模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../Chapter11/3MoreData.html">
+            
+                <a href="../Chapter11/3MoreData.html">
+            
+                    
+                    11.3 决定是否收集更多数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../Chapter11/4Hyperparameters/0Hyperparameters.html">
+            
+                <a href="../Chapter11/4Hyperparameters/0Hyperparameters.html">
+            
+                    
+                    11.4 选择超参数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.4.1" data-path="../Chapter11/4Hyperparameters/1Manual.html">
+            
+                <a href="../Chapter11/4Hyperparameters/1Manual.html">
+            
+                    
+                    11.4.1 手动选择超参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.2" data-path="../Chapter11/4Hyperparameters/3Grid.html">
+            
+                <a href="../Chapter11/4Hyperparameters/3Grid.html">
+            
+                    
+                    11.4.3 网络搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.3" data-path="../Chapter11/4Hyperparameters/4Random.html">
+            
+                <a href="../Chapter11/4Hyperparameters/4Random.html">
+            
+                    
+                    11.4.4 随机搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../Chapter11/5Debug.html">
+            
+                <a href="../Chapter11/5Debug.html">
+            
+                    
+                    11.5 调试策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >7.14 切面距离、正切传播和流形正切分类器</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;"><b>1. </b>&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;"><b>2. </b>&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;</a></li><ul><li><span class="title-icon "></span><a href="#&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;--&#x6570;&#x636E;&#x96C6;&#x589E;&#x52A0;"><b>2.1. </b>&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5; + &#x6570;&#x636E;&#x96C6;&#x589E;&#x52A0;</a></li></ul><li><span class="title-icon "></span><a href="#&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;"><b>3. </b>&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;</a></li></ul></div><a href="#&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p>&#x5982;\secref{sec:manifold_learning}&#x6240;&#x8FF0;&#xFF0C;&#x8BB8;&#x591A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x901A;&#x8FC7;&#x5047;&#x8BBE;&#x6570;&#x636E;&#x4F4D;&#x4E8E;&#x4F4E;&#x7EF4;&#x6D41;&#x5F62;&#x9644;&#x8FD1;&#x6765;&#x514B;&#x670D;&#x7EF4;&#x6570;&#x707E;&#x96BE;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong>  &#x4F4E;&#x7EF4;&#x6D41;&#x5F62;&#xFF1F;  &#x7EF4;&#x6570;&#x707E;&#x96BE;&#xFF1F;  </p>
+</blockquote>
+<h1 id="&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;"><a name="&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;</h1>
+<p>&#x4E00;&#x4E2A;&#x5229;&#x7528;&#x6D41;&#x5F62;&#x5047;&#x8BBE;&#x7684;&#x65E9;&#x671F;&#x5C1D;&#x8BD5;&#x662F;<strong>&#x5207;&#x9762;&#x8DDD;&#x79BB;</strong>&#xFF08;tangent distance&#xFF09;&#x7B97;&#x6CD5;\citep{Simard93-small,Simard98}&#x3002;
+&#x5B83;&#x662F;&#x4E00;&#x79CD;&#x975E;&#x53C2;&#x6570;&#x7684;&#x6700;&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x5EA6;&#x91CF;&#x4E0D;&#x662F;&#x901A;&#x7528;&#x7684;&#x6B27;&#x51E0;&#x91CC;&#x5FB7;&#x8DDD;&#x79BB;&#xFF0C;&#x800C;&#x662F;&#x6839;&#x636E;&#x90BB;&#x8FD1;&#x6D41;&#x5F62;&#x5173;&#x4E8E;&#x805A;&#x96C6;&#x6982;&#x7387;&#x7684;&#x77E5;&#x8BC6;&#x5BFC;&#x51FA;&#x7684;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong> &#x6D41;&#x5F62;&#xFF1A;&#x5C40;&#x90E8;&#x5177;&#x6709;&#x6B27;&#x51E0;&#x91CC;&#x5FB7;&#x7A7A;&#x95F4;&#x6027;&#x8D28;&#x7684;&#x7A7A;&#x95F4;&#x3002;  [?] &#x90BB;&#x8FD1;&#x6D41;&#x5F62;&#x805A;&#x96C6;&#x6982;&#x7387;  </p>
+</blockquote>
+<p>&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;<strong>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x5206;&#x7C7B;&#x7684;&#x6837;&#x672C;&#x548C;&#x540C;&#x4E00;&#x6D41;&#x5F62;&#x4E0A;&#x7684;&#x6837;&#x672C;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x7C7B;&#x522B;</strong>&#x3002;  </p>
+<blockquote>
+<p><strong>[success]</strong> &#x6D41;&#x5F62;&#x5047;&#x8BBE;  </p>
+</blockquote>
+<p>&#x7531;&#x4E8E;&#x5206;&#x7C7B;&#x5668;&#x5E94;&#x8BE5;&#x5BF9;&#x5C40;&#x90E8;&#x56E0;&#x7D20;&#xFF08;&#x5BF9;&#x5E94;&#x4E8E;&#x6D41;&#x5F62;&#x4E0A;&#x7684;&#x79FB;&#x52A8;&#xFF09;&#x7684;&#x53D8;&#x5316;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#xFF0C;&#x4E00;&#x79CD;&#x5408;&#x7406;&#x7684;&#x5EA6;&#x91CF;&#x662F;&#x5C06;&#x70B9;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">x_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x548C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x5404;&#x81EA;&#x6240;&#x5728;&#x6D41;&#x5F62;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">M_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x548C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">M_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x7684;&#x8DDD;&#x79BB;&#x4F5C;&#x4E3A;&#x70B9;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">x_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x548C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x4E4B;&#x95F4;&#x7684;&#x6700;&#x8FD1;&#x90BB;&#x8DDD;&#x79BB;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong> &#x6D41;&#x5F62;&#x4E0A;&#x7684;&#x79FB;&#x52A8;?  </p>
+</blockquote>
+<p>&#x7136;&#x800C;&#x8FD9;&#x53EF;&#x80FD;&#x5728;&#x8BA1;&#x7B97;&#x4E0A;&#x662F;&#x56F0;&#x96BE;&#x7684;&#xFF08;&#x5B83;&#x9700;&#x8981;&#x89E3;&#x51B3;&#x4E00;&#x4E2A;&#x5BFB;&#x627E;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">M_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x548C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">M_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x6700;&#x8FD1;&#x70B9;&#x5BF9;&#x7684;&#x4F18;&#x5316;&#x95EE;&#x9898;&#xFF09;&#xFF0C;&#x4E00;&#x79CD;&#x5C40;&#x90E8;&#x5408;&#x7406;&#x7684;&#x5EC9;&#x4EF7;&#x66FF;&#x4EE3;&#x662F;&#x4F7F;&#x7528;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#x70B9;&#x5904;&#x5207;&#x5E73;&#x9762;&#x8FD1;&#x4F3C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">M_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span></span></span></span>&#xFF0C;&#x5E76;&#x6D4B;&#x91CF;&#x4E24;&#x6761;&#x5207;&#x5E73;&#x9762;&#x6216;&#x4E00;&#x4E2A;&#x5207;&#x5E73;&#x9762;&#x548C;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x8DDD;&#x79BB;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong> x&#x70B9;&#x5904;&#x5207;&#x5E73;&#x9762;&#x8FD1;&#x4F3C;M&#xFF1F;  </p>
+</blockquote>
+<p>&#x8FD9;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6C42;&#x89E3;&#x4E00;&#x4E2A;&#x4F4E;&#x7EF4;&#x7EBF;&#x6027;&#x7CFB;&#x7EDF;&#xFF08;&#x5C31;&#x6D41;&#x5F62;&#x7684;&#x7EF4;&#x6570;&#x800C;&#x8A00;&#xFF09;&#x6765;&#x5B9E;&#x73B0;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong> &#x4F4E;&#x7EF4;&#x7EBF;&#x6027;&#x7CFB;&#x7EDF;&#xFF1F;&#x5207;&#x5411;&#x91CF;&#xFF1F;  </p>
+</blockquote>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x79CD;&#x7B97;&#x6CD5;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x90A3;&#x4E9B;&#x5207;&#x5411;&#x91CF;&#x3002;  </p>
+<blockquote>
+<p><strong>[success]</strong><br>&#x7C7B;&#x4F3C;&#x4E8E;&#x6700;&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x3002;<br>&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#xFF1A;&#x6B27;&#x6C0F;&#x8DDD;&#x79BB; -&gt; &#x90BB;&#x8FD1;&#x6D41;&#x884C;&#x805A;&#x7126;&#x6982;&#x7387;<br>&#x90BB;&#x8FD1;&#x6D41;&#x884C;&#x805A;&#x7126;&#x6982;&#x7387;&#x8BA1;&#x7B97;&#xFF1A;x1&#x3001;x2&#x5404;&#x81EA;&#x6240;&#x5728;&#x7684;&#x6D41;&#x5F62;M1&#x3001;M2r&#x8DDD;&#x79BB; -&gt; x1&#x3001;x2&#x7684;&#x5207;&#x9762;&#x8DDD;&#x79BB;  </p>
+</blockquote>
+<h1 id="&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;"><a name="&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;</h1>
+<p>&#x53D7;&#x76F8;&#x5173;&#x542F;&#x53D1;&#xFF0C;<strong>&#x6B63;&#x5207;&#x4F20;&#x64AD;</strong>&#xFF08;tangent prop&#xFF09;&#x7B97;&#x6CD5;\citep{Simard92-short}&#xFF08;\figref{fig:chap7_mtc_color}&#xFF09;&#x8BAD;&#x7EC3;&#x5E26;&#x6709;&#x989D;&#x5916;&#x60E9;&#x7F5A;&#x7684;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5206;&#x7C7B;&#x5668;&#xFF0C;<strong>&#x4F7F;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x6BCF;&#x4E2A;&#x8F93;&#x51FA;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>&#x5BF9;&#x5DF2;&#x77E5;&#x7684;&#x53D8;&#x5316;&#x56E0;&#x7D20;&#x662F;&#x5C40;&#x90E8;&#x4E0D;&#x53D8;&#x7684;</strong>&#x3002;  </p>
+<blockquote>
+<p><strong>[success]</strong> &#x4EE3;&#x4EF7;&#x51FD;&#x6570;&#x7684;&#x76EE;&#x6807;  </p>
+</blockquote>
+<p>&#x8FD9;&#x4E9B;<strong>&#x53D8;&#x5316;&#x56E0;&#x7D20;&#x5BF9;&#x5E94;&#x4E8E;&#x6CBF;&#x7740;&#x7684;&#x76F8;&#x540C;&#x6837;&#x672C;&#x805A;&#x96C6;&#x7684;&#x6D41;&#x5F62;&#x7684;&#x79FB;&#x52A8;</strong>&#x3002;
+&#x8FD9;&#x91CC;&#x5B9E;&#x73B0;&#x5C40;&#x90E8;&#x4E0D;&#x53D8;&#x6027;&#x7684;&#x65B9;&#x6CD5;&#x662F;<strong>&#x8981;&#x6C42;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi mathvariant="normal">&#x2207;</mi><mi>x</mi></msub><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\nabla_{x} f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mord"><span class="mord">&#x2207;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">x</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"></span></span></span></span></span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>&#x4E0E;&#x5DF2;&#x77E5;&#x6D41;&#x5F62;&#x7684;&#x5207;&#x5411;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>v</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">v^{(i)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8879999999999999em;"></span><span class="strut bottom" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathit mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>&#x6B63;&#x4EA4;</strong>&#xFF0C;&#x6216;&#x8005;&#x7B49;&#x4EF7;&#x5730;<strong>&#x901A;&#x8FC7;&#x6B63;&#x5219;&#x5316;&#x60E9;&#x7F5A;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">&#x3A9;</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base"><span class="mord">&#x3A9;</span></span></span></span>&#x4F7F;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base"><span class="mord mathit" style="margin-right:0.10764em;">f</span></span></span></span>&#x5728;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base"><span class="mord mathit">x</span></span></span></span>&#x7684;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>v</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">v^{(i)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8879999999999999em;"></span><span class="strut bottom" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="base"><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathit mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>&#x65B9;&#x5411;&#x7684;&#x5BFC;&#x6570;&#x8F83;&#x5C0F;</strong>&#xFF1A;    </p>
+<blockquote>
+<p><strong>[success]</strong> &#x8FBE;&#x5230;&#x76EE;&#x6807;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;&#x8BBE;&#x7F6E;&#x6B63;&#x5219;&#x5316;&#x9879;  </p>
+</blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><mi mathvariant="normal">&#x3A9;</mi><mo>(</mo><mi>f</mi><mo>)</mo><mo>=</mo><msub><mo>&#x2211;</mo><mi>i</mi></msub><mo fence="false">(</mo><mo>(</mo><msub><mi mathvariant="normal">&#x2207;</mi><mrow><mi>x</mi></mrow></msub><mi>f</mi><mo>(</mo><mi>x</mi><msup><mo>)</mo><mi mathvariant="normal">&#x22A4;</mi></msup><msup><mi>v</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup><mo>)</mo><msup><mo fence="false">)</mo><mn>2</mn></msup><mi mathvariant="normal">.</mi></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{aligned}
+ \Omega(f) = \sum_i \Big((\nabla_{x} f(x)^\top v^{(i)}) \Big)^2 .
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.4963885em;"></span><span class="strut bottom" style="height:2.492777em;vertical-align:-0.9963884999999999em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist"><span style="top:-0.28128050000000004em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">&#x3A9;</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1776689999999999em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight">i</span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span><span class="mop op-symbol large-op">&#x2211;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size2">(</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">&#x2207;</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">&#x22A4;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mopen mtight">(</span><span class="mord mathit mtight">i</span><span class="mclose mtight">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size2">)</span></span><span class="msupsub"><span class="vlist"><span style="top:-0.7639999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mord mathrm">.</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></span></span></p>
+<p>&#x8FD9;&#x4E2A;&#x6B63;&#x5219;&#x5316;&#x9879;&#x5F53;&#x7136;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x9002;&#x5F53;&#x7684;&#x8D85;&#x53C2;&#x6570;&#x7F29;&#x653E;&#xFF0C;&#x5E76;&#x4E14;&#x5BF9;&#x4E8E;&#x5927;&#x591A;&#x6570;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x8BB8;&#x591A;&#x8F93;&#x51FA;&#x6C42;&#x548C;(&#x6B64;&#x5904;&#x4E3A;&#x63CF;&#x8FF0;&#x7B80;&#x5355;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>&#x4E3A;&#x552F;&#x4E00;&#x8F93;&#x51FA;)&#x3002;
+&#x4E0E;&#x5207;&#x9762;&#x8DDD;&#x79BB;&#x7B97;&#x6CD5;&#x4E00;&#x6837;&#xFF0C;&#x5207;&#x5411;&#x91CF;&#x662F;&#x4ECE;&#x5148;&#x9A8C;&#x77E5;&#x8BC6;&#x63A8;&#x5BFC;&#x7684;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x4ECE;&#x53D8;&#x6362;&#xFF08;&#x5982;&#x5E73;&#x79FB;&#x3001;&#x65CB;&#x8F6C;&#x548C;&#x7F29;&#x653E;&#x56FE;&#x50CF;&#xFF09;&#x7684;&#x6548;&#x679C;&#x83B7;&#x5F97;&#x7684;&#x5F62;&#x5F0F;&#x77E5;&#x8BC6;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong>  &#x63A8;&#x5BFC;&#x5148;&#x9A8C;&#xFF1F;&#x5F62;&#x5F0F;&#x77E5;&#x8BC6;&#xFF1F;  </p>
+</blockquote>
+<p>&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x4E0D;&#x4EC5;&#x7528;&#x4E8E;&#x76D1;&#x7763;&#x5B66;&#x4E60;\citep{Simard92-short}&#xFF0C;&#x8FD8;&#x5728;&#x5F3A;&#x5316;&#x5B66;&#x4E60;\citep{Thrun-NIPS1994}&#x4E2D;&#x6709;&#x6240;&#x5E94;&#x7528;&#x3002;  </p>
+<div class="click_reveal"><span> Click to show </span><div><p>\begin{figure}[!htb]
+\ifOpenSource
+\centerline{\includegraphics{figure.pdf}}
+\else
+\centerline{\includegraphics{Chapter7/figures/mtc_color}}
+\fi
+\caption{&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;\citep{Simard92-short}&#x548C;&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;&#x4E3B;&#x8981;&#x601D;&#x60F3;&#x7684;&#x793A;&#x610F;&#x56FE;\citep{Dauphin-et-al-NIPS2011-small}&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x6B63;&#x5219;&#x5316;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x8F93;&#x51FA;&#x51FD;&#x6570;{% math_inline %}f(x){% endmath_inline %}&#x3002;
+&#x6BCF;&#x6761;&#x66F2;&#x7EBF;&#x8868;&#x793A;&#x4E0D;&#x540C;&#x7C7B;&#x522B;&#x7684;&#x6D41;&#x5F62;&#xFF0C;&#x8FD9;&#x91CC;&#x8868;&#x793A;&#x5D4C;&#x5165;&#x4E8C;&#x7EF4;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E00;&#x7EF4;&#x6D41;&#x5F62;&#x3002;
+&#x5728;&#x4E00;&#x6761;&#x66F2;&#x7EBF;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x9009;&#x62E9;&#x5355;&#x4E2A;&#x70B9;&#x5E76;&#x7ED8;&#x5236;&#x4E00;&#x4E2A;&#x4E0E;&#x7C7B;&#x522B;&#x6D41;&#x5F62;&#x76F8;&#x5207;&#xFF08;&#x5E73;&#x884C;&#x5E76;&#x63A5;&#x89E6;&#x6D41;&#x5F62;&#xFF09;&#x7684;&#x5411;&#x91CF;&#x4EE5;&#x53CA;&#x4E0E;&#x7C7B;&#x522B;&#x6D41;&#x5F62;&#x5782;&#x76F4;&#xFF08;&#x4E0E;&#x6D41;&#x5F62;&#x6B63;&#x4EA4;&#xFF09;&#x7684;&#x5411;&#x91CF;&#x3002;
+&#x5728;&#x591A;&#x7EF4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x5B58;&#x5728;&#x8BB8;&#x591A;&#x5207;&#x7EBF;&#x65B9;&#x5411;&#x548C;&#x6CD5;&#x7EBF;&#x65B9;&#x5411;&#x3002;
+&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x5206;&#x7C7B;&#x51FD;&#x6570;&#x5728;&#x5782;&#x76F4;&#x4E8E;&#x6D41;&#x5F62;&#x65B9;&#x5411;&#x4E0A;&#x5FEB;&#x901F;&#x6539;&#x53D8;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x7C7B;&#x522B;&#x6D41;&#x5F62;&#x7684;&#x65B9;&#x5411;&#x4E0A;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x3002;
+&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x548C;&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;&#x90FD;&#x4F1A;&#x6B63;&#x5219;&#x5316; {% math_inline %}f(x){% endmath_inline %}&#xFF0C;&#x4F7F;&#x5176;&#x4E0D;&#x968F;{% math_inline %}x{% endmath_inline %}&#x6CBF;&#x6D41;&#x5F62;&#x7684;&#x79FB;&#x52A8;&#x800C;&#x5267;&#x70C8;&#x53D8;&#x5316;&#x3002;
+&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x9700;&#x8981;&#x7528;&#x6237;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x6B63;&#x5207;&#x65B9;&#x5411;&#x7684;&#x8BA1;&#x7B97;&#x51FD;&#x6570;&#xFF08;&#x4F8B;&#x5982;&#x6307;&#x5B9A;&#x5C0F;&#x5E73;&#x79FB;&#x540E;&#x7684;&#x56FE;&#x50CF;&#x4FDD;&#x7559;&#x5728;&#x76F8;&#x540C;&#x7C7B;&#x522B;&#x7684;&#x6D41;&#x5F62;&#x4E2D;&#xFF09;&#xFF0C;&#x800C;&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;&#x901A;&#x8FC7;&#x8BAD;&#x7EC3;&#x81EA;&#x7F16;&#x7801;&#x5668;&#x62DF;&#x5408;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x6765;&#x4F30;&#x8BA1;&#x6D41;&#x5F62;&#x7684;&#x6B63;&#x5207;&#x65B9;&#x5411; &#x3002;
+&#x6211;&#x4EEC;&#x5C06;&#x5728;\chapref{chap:autoencoders}&#x4E2D;&#x8BA8;&#x8BBA;&#x4F7F;&#x7528;&#x81EA;&#x7F16;&#x7801;&#x5668;&#x6765;&#x4F30;&#x8BA1;&#x6D41;&#x5F62;&#x3002;
+}
+\label{fig:chap7_mtc_color}
+\end{figure}</p>
+</div></div>
+
+<h2 id="&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;--&#x6570;&#x636E;&#x96C6;&#x589E;&#x52A0;"><a name="&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;--&#x6570;&#x636E;&#x96C6;&#x589E;&#x52A0;" class="anchor-navigation-ex-anchor" href="#&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5;--&#x6570;&#x636E;&#x96C6;&#x589E;&#x52A0;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1. &#x6B63;&#x5207;&#x4F20;&#x64AD;&#x7B97;&#x6CD5; + &#x6570;&#x636E;&#x96C6;&#x589E;&#x52A0;</h2>
+<p>&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x4E0E;&#x6570;&#x636E;&#x96C6;&#x589E;&#x5F3A;&#x5BC6;&#x5207;&#x76F8;&#x5173;&#x3002;
+&#x5728;&#x8FD9;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8BE5;&#x7B97;&#x6CD5;&#x7684;&#x7528;&#x6237;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x4E00;&#x7EC4;&#x5E94;&#x5F53;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x7F51;&#x7EDC;&#x8F93;&#x51FA;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x5C06;&#x5176;&#x5148;&#x9A8C;&#x77E5;&#x8BC6;&#x7F16;&#x7801;&#x81F3;&#x7B97;&#x6CD5;&#x4E2D;&#x3002;  </p>
+<blockquote>
+<p><strong>[success]</strong><br>&#x5148;&#x9A8C;&#x77E5;&#x8BC6;&#x662F;&#x6307;&#xFF1A;&#x5C06;&#x56FE;&#x50CF;&#x5E73;&#x79FB;&#x3001;&#x65CB;&#x8F6C;&#x3001;&#x7F29;&#x653E;&#x540E;&#x4E0D;&#x5F71;&#x54CD;&#x56FE;&#x50CF;&#x7684;&#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x3002;  </p>
+</blockquote>
+<p>&#x4E0D;&#x540C;&#x7684;&#x662F;&#x5728;&#x6570;&#x636E;&#x96C6;&#x589E;&#x5F3A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7F51;&#x7EDC;&#x663E;&#x5F0F;&#x5730;&#x8BAD;&#x7EC3;&#x6B63;&#x786E;&#x5206;&#x7C7B;&#x8FD9;&#x4E9B;&#x65BD;&#x52A0;&#x5927;&#x91CF;&#x53D8;&#x6362;&#x540E;&#x4EA7;&#x751F;&#x7684;&#x4E0D;&#x540C;&#x8F93;&#x5165;&#x3002;  </p>
+<blockquote>
+<p><strong>[success]</strong><br>&#x666E;&#x901A;&#x65B9;&#x6CD5;&#xFF1A;<br>&#x539F;&#x59CB;&#x56FE;&#x50CF; ---&gt; &#x8BAD;&#x7EC3;<br>&#x539F;&#x59CB;&#x56FE;&#x50CF; ---&gt; &#x4F7F;&#x7528;&#x5148;&#x9A8C;&#x77E5;&#x8BC6;&#x751F;&#x6210;&#x7684;&#x56FE;&#x50CF; ---&gt; &#x8BAD;&#x7EC3;  </p>
+</blockquote>
+<p>&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x4E0D;&#x9700;&#x8981;&#x663E;&#x5F0F;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x8F93;&#x5165;&#x70B9;&#x3002;
+&#x53D6;&#x800C;&#x4EE3;&#x4E4B;&#xFF0C;&#x5B83;&#x89E3;&#x6790;&#x5730;&#x5BF9;&#x6A21;&#x578B;&#x6B63;&#x5219;&#x5316;&#x4ECE;&#x800C;&#x5728;&#x6307;&#x5B9A;&#x8F6C;&#x6362;&#x7684;&#x65B9;&#x5411;&#x62B5;&#x6297;&#x6270;&#x52A8;&#x3002;</p>
+<blockquote>
+<p><strong>[success]</strong><br>&#x9AD8;&#x7EA7;&#x65B9;&#x6CD5;&#xFF1A;<br>&#x539F;&#x59CB;&#x56FE;&#x50CF; ---&gt; &#x8BAD;&#x7EC3;<br>&#x539F;&#x59CB;&#x56FE;&#x50CF; + &#x5148;&#x9A8C;&#x77E5;&#x8BC6; ---&gt; &#x8BAD;&#x7EC3; </p>
+</blockquote>
+<p>&#x867D;&#x7136;&#x8FD9;&#x79CD;&#x89E3;&#x6790;&#x65B9;&#x6CD5;&#x662F;&#x806A;&#x660E;&#x4F18;&#x96C5;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x6709;&#x4E24;&#x4E2A;&#x4E3B;&#x8981;&#x7684;&#x7F3A;&#x70B9;&#x3002;  </p>
+<blockquote>
+<p><strong>[warning]</strong> &#x7F3A;&#x70B9;&#x6CA1;&#x770B;&#x61C2;  </p>
+</blockquote>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x6B63;&#x5219;&#x5316;&#x53EA;&#x80FD;&#x62B5;&#x6297;&#x65E0;&#x7A77;&#x5C0F;&#x7684;&#x6270;&#x52A8;&#x3002;
+&#x663E;&#x5F0F;&#x7684;&#x6570;&#x636E;&#x96C6;&#x589E;&#x5F3A;&#x80FD;&#x62B5;&#x6297;&#x8F83;&#x5927;&#x7684;&#x6270;&#x52A8;&#x3002;
+&#x5176;&#x6B21;&#xFF0C;&#x6211;&#x4EEC;&#x5F88;&#x96BE;&#x5728;&#x57FA;&#x4E8E;&#x6574;&#x6D41;&#x7EBF;&#x6027;&#x5355;&#x5143;&#x7684;&#x6A21;&#x578B;&#x4E0A;&#x4F7F;&#x7528;&#x65E0;&#x9650;&#x5C0F;&#x7684;&#x65B9;&#x6CD5;&#x3002;
+&#x8FD9;&#x4E9B;&#x6A21;&#x578B;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x5173;&#x95ED;&#x5355;&#x5143;&#x6216;&#x7F29;&#x5C0F;&#x5B83;&#x4EEC;&#x7684;&#x6743;&#x91CD;&#x624D;&#x80FD;&#x7F29;&#x5C0F;&#x5B83;&#x4EEC;&#x7684;&#x5BFC;&#x6570;&#x3002;
+&#x5B83;&#x4EEC;&#x4E0D;&#x80FD;&#x50CF;\ENNAME{sigmoid}&#x6216;\ENNAME{tanh}&#x5355;&#x5143;&#x4E00;&#x6837;&#x901A;&#x8FC7;&#x8F83;&#x5927;&#x6743;&#x91CD;&#x5728;&#x9AD8;&#x503C;&#x5904;&#x9971;&#x548C;&#x4EE5;&#x6536;&#x7F29;&#x5BFC;&#x6570;&#x3002;
+&#x6570;&#x636E;&#x96C6;&#x589E;&#x5F3A;&#x5728;&#x6574;&#x6D41;&#x7EBF;&#x6027;&#x5355;&#x5143;&#x4E0A;&#x5DE5;&#x4F5C;&#x5F97;&#x5F88;&#x597D;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x540C;&#x7684;&#x6574;&#x6D41;&#x5355;&#x5143;&#x4F1A;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x8F93;&#x5165;&#x7684;&#x4E0D;&#x540C;&#x8F6C;&#x6362;&#x7248;&#x672C;&#x4E0A;&#x88AB;&#x6FC0;&#x6D3B;&#x3002;</p>
+<p>&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x4E5F;&#x548C;&#x53CC;&#x53CD;&#x5411;&#x4F20;&#x64AD;\citep{DruckerLeCun92}&#x4EE5;&#x53CA;&#x5BF9;&#x6297;&#x8BAD;&#x7EC3;\citep{Szegedy-ICLR2014,Goodfellow-2015-adversarial}&#x6709;&#x5173;&#x8054;&#x3002;
+&#x53CC;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x6B63;&#x5219;&#x5316;&#x4F7F;Jacobian&#x77E9;&#x9635;&#x504F;&#x5C0F;&#xFF0C;&#x800C;&#x5BF9;&#x6297;&#x8BAD;&#x7EC3;&#x627E;&#x5230;&#x539F;&#x8F93;&#x5165;&#x9644;&#x8FD1;&#x7684;&#x70B9;&#xFF0C;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#x5728;&#x8FD9;&#x4E9B;&#x70B9;&#x4E0A;&#x4EA7;&#x751F;&#x4E0E;&#x539F;&#x6765;&#x8F93;&#x5165;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x51FA;&#x3002;
+&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x548C;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x8F6C;&#x6362;&#x7684;&#x6570;&#x636E;&#x96C6;&#x589E;&#x5F3A;&#x90FD;&#x8981;&#x6C42;&#x6A21;&#x578B;&#x5728;&#x8F93;&#x5165;&#x53D8;&#x5316;&#x7684;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x7684;&#x65B9;&#x5411;&#x4E0A;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x3002;
+&#x53CC;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x548C;&#x5BF9;&#x6297;&#x8BAD;&#x7EC3;&#x90FD;&#x8981;&#x6C42;&#x6A21;&#x578B;&#x5BF9;&#x8F93;&#x5165;&#x6240;&#x6709;&#x65B9;&#x5411;&#x4E2D;&#x7684;&#x53D8;&#x5316;&#xFF08;&#x53EA;&#x8981;&#x8BE5;&#x53D8;&#x5316;&#x8F83;&#x5C0F;&#xFF09;&#x90FD;&#x5E94;&#x5F53;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x3002;
+&#x6B63;&#x5982;&#x6570;&#x636E;&#x96C6;&#x589E;&#x5F3A;&#x662F;&#x6B63;&#x5207;&#x4F20;&#x64AD;&#x975E;&#x65E0;&#x9650;&#x5C0F;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x5BF9;&#x6297;&#x8BAD;&#x7EC3;&#x662F;&#x53CC;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x975E;&#x65E0;&#x9650;&#x5C0F;&#x7684;&#x7248;&#x672C;&#x3002;</p>
+<blockquote>
+<p><strong>[warning]</strong> &#x8FD9;&#x4E00;&#x6BB5;&#x4E0D;&#x61C2;    </p>
+</blockquote>
+<h1 id="&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;"><a name="&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;</h1>
+<p>&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;\citep{Dauphin-et-al-NIPS2011}&#x65E0;&#x9700;&#x77E5;&#x9053;&#x5207;&#x7EBF;&#x5411;&#x91CF;&#x7684;&#x5148;&#x9A8C;&#x3002;  </p>
+<blockquote>
+<p><strong>[success]</strong><br>&#x524D;&#x9762;&#x4E24;&#x79CD;&#x7B97;&#x6CD5;&#x9700;&#x8981;&#x8BA1;&#x7B97;&#x4E00;&#x4E9B;&#x5148;&#x9A8C;&#x77E5;&#x9053;&#x3002;<br>&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;&#x5148;&#x901A;&#x8FC7;&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x628A;&#x8FD9;&#x4E9B;&#x5148;&#x9A8C;&#x77E5;&#x8BC6;&#x7B97;&#x51FA;&#x6765;&#x3002;  </p>
+</blockquote>
+<p>&#x6211;&#x4EEC;&#x5C06;&#x5728;\chapref{chap:autoencoders}&#x770B;&#x5230;&#xFF0C;&#x81EA;&#x7F16;&#x7801;&#x5668;&#x53EF;&#x4EE5;&#x4F30;&#x7B97;&#x6D41;&#x5F62;&#x7684;&#x5207;&#x5411;&#x91CF;&#x3002;
+&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x6280;&#x672F;&#x6765;&#x907F;&#x514D;&#x7528;&#x6237;&#x6307;&#x5B9A;&#x5207;&#x5411;&#x91CF;&#x3002;
+&#x5982;\figref{fig:chap14_cifar_cae}&#x6240;&#x793A;&#xFF0C;&#x8FD9;&#x4E9B;&#x4F30;&#x8BA1;&#x7684;&#x5207;&#x5411;&#x91CF;&#x4E0D;&#x4EC5;&#x5BF9;&#x56FE;&#x50CF;&#x7ECF;&#x5178;&#x51E0;&#x4F55;&#x53D8;&#x6362;&#xFF08;&#x5982;&#x8F6C;&#x5316;&#x3001;&#x65CB;&#x8F6C;&#x548C;&#x7F29;&#x653E;&#xFF09;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#xFF0C;&#x8FD8;&#x5FC5;&#x987B;&#x638C;&#x63E1;&#x5BF9;&#x7279;&#x5B9A;&#x5BF9;&#x8C61;&#xFF08;&#x5982;&#x6B63;&#x5728;&#x79FB;&#x52A8;&#x7684;&#x8EAB;&#x4F53;&#x67D0;&#x4E9B;&#x90E8;&#x5206;&#xFF09;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x7684;&#x56E0;&#x7D20;&#x3002;
+&#x56E0;&#x6B64;&#x6839;&#x636E;&#x6D41;&#x5F62;&#x6B63;&#x5207;&#x5206;&#x7C7B;&#x5668;&#x63D0;&#x51FA;&#x7684;&#x7B97;&#x6CD5;&#x76F8;&#x5F53;&#x7B80;&#x5355;&#xFF1A;
+&#xFF08;1&#xFF09;&#x4F7F;&#x7528;&#x81EA;&#x7F16;&#x7801;&#x5668;&#x901A;&#x8FC7;&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x6765;&#x5B66;&#x4E60;&#x6D41;&#x5F62;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x4EE5;&#x53CA;&#xFF08;2&#xFF09;&#x5982;&#x6B63;&#x5207;&#x4F20;&#x64AD;&#xFF08;\eqnref{eq:767}&#xFF09;&#x4E00;&#x6837;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x5207;&#x9762;&#x6B63;&#x5219;&#x5316;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5206;&#x7C7B;&#x5668;&#x3002;</p>
+<p>&#x5728;&#x672C;&#x7AE0;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x63CF;&#x8FF0;&#x4E86;&#x5927;&#x591A;&#x6570;&#x7528;&#x4E8E;&#x6B63;&#x5219;&#x5316;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x901A;&#x7528;&#x7B56;&#x7565;&#x3002;
+&#x6B63;&#x5219;&#x5316;&#x662F;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x4E2D;&#x5FC3;&#x4E3B;&#x9898;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x5C06;&#x4E0D;&#x65F6;&#x5728;&#x5176;&#x4F59;&#x5404;&#x7AE0;&#x4E2D;&#x91CD;&#x65B0;&#x56DE;&#x987E;&#x3002;
+&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x4E2D;&#x5FC3;&#x4E3B;&#x9898;&#x662F;&#x4F18;&#x5316;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x4E0B;&#x4E00;&#x7AE0;&#x63CF;&#x8FF0;&#x3002;</p>
+<div id="gitalk-container"></div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="13AdversarialTraining.html" class="navigation navigation-prev " aria-label="Previous page: 7.13 对抗训练">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Contest.html" class="navigation navigation-next " aria-label="Next page: Ag补充 一些能用于提升比赛成绩的方法">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"7.14 切面距离、正切传播和流形正切分类器","level":"1.3.14","depth":2,"next":{"title":"Ag补充 一些能用于提升比赛成绩的方法","level":"1.3.15","depth":2,"path":"Chapter7/Contest.md","ref":"Chapter7/Contest.md","articles":[]},"previous":{"title":"7.13 对抗训练","level":"1.3.13","depth":2,"path":"Chapter7/13AdversarialTraining.md","ref":"Chapter7/13AdversarialTraining.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex","katex-plus","alerts","mygitalk","github","github-buttons","splitter","-sharing","sharing-plus","donate","copy-code-button","anchor-navigation-ex","sectionx","click-reveal"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/windmissing/Bible-DeepLearning"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"http://windmissing.github.io/images/2020/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"http://windmissing.github.io/images/2020/weixin.jpg","wechatText":"微信打赏"},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"sectionx":{},"highlight":{},"anchor-navigation-ex":{"mode":"float","pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"showLevel":true,"tocLevel1Icon":"fa fa-hand-o-right","tocLevel2Icon":"fa fa-hand-o-right","tocLevel3Icon":"fa fa-hand-o-right","showGoTop":true,"isShowTocTitleIcon":true,"printLog":false,"multipleH1":true,"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false}},"katex-plus":{},"alerts":{},"github-buttons":{"repo":"windmissing/Bible-DeepLearning","types":["star","watch","fork"],"size":"small"},"copy-code-button":{},"mygitalk":{"flipMoveOptions":{},"clientID":"9893433c1bf273a50fce","number":-1,"perPage":10,"proxy":"https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","admin":["windmissing"],"createIssueManually":false,"distractionFreeMode":false,"repo":"Bible-DeepLearning","owner":"windmissing","enableHotKey":true,"clientSecret":"c1957c7f473efdcc1c8d14680380c44c0da97409","pagerDirection":"last","labels":["Gitalk"]},"sharing":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"windmissing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"3.2.3"},"file":{"path":"Chapter7/14Tangent.md","mtime":"2021-05-17T12:15:26.013Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-17T12:17:05.554Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+        
+    
+        
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mygitalk/mygitalk.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

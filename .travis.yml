@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - '8.9.1'
+
+# S: Build Lifecycle
+install:
+  - npm install gitbook-cli
+
+after_script:
+  - gitbook install
+  - gitbook build
+  - cd ./_book
+  - git init
+  - git config usr.name "${USER_NAME}"
+  - git config user.email "${USER_EMAIL}"
+  - git add .
+  - git commit -m "publish gitbook"
+  - git push --force --quiet "https://${test_token}@${GH_REF}" master:${P_BRANCH}
+
+branchs:
+  only:
+    master

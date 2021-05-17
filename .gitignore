@@ -1,0 +1,8 @@
+*.pyc
+__pycache__
+.ipynb_checkpoints
+.idea
+node_modules
+_book
+_build
+.DS_Store
